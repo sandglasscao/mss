@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Marketing Support Platform to help agent to develop stores, calculate
+     the commission for agent marketing, and manage internal and external agents">
+    <meta name="author" content="Cao Fang">
+    {% load staticfiles %}
+    <link rel="icon" href="{% static 'src/favicon.ico' %}">
+    <title>{% block title %} 拓店助手 {% endblock %}</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href='{% static  "src/styles.css" %}'>
+    <link rel="stylesheet" href='{% static  "src/lib/font-awesome-4.6.3/css/font-awesome.min.css" %}'>
+    <!--<script src="//tinymce.cachefly.net/4.2/tinymce.min.js"></script>-->
+    <!--<script>tinymce.init({selector:'textarea'});</script>-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <!-- Polyfills -->
+    <script src="{% static 'node_modules/core-js/client/shim.min.js' %}"></script>
+    <script src="{% static 'node_modules/zone.js/dist/zone.js' %}"></script>
+    <script src="{% static 'node_modules/systemjs/dist/system.src.js' %}"></script>
+    <script src="{% static 'src/systemjs.config.js' %}"></script>
+    <script>
+        System.import('app/main.js').catch(function (err) {
+            console.error(err);
+        });
+    </script>
+    <base href="/">
+</head>
+
+<body>
+
+
+{% block jumbotron %}
+{% endblock %}
+
+
+{% block content %}
+{% endblock %}
+
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src='{% static  "src/lib/jquery.min.js" %}'></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src='{% static  "src/lib/bootstrap.min.js" %}'></script>
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src='{% static  "src/lib/ie-emulation-modes-warning.js" %}'></script>
+
+</body>
+</html>
