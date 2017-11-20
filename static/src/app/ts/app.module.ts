@@ -1,20 +1,14 @@
-import { NgModule }       from '@angular/core';
-import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }    from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
+import {Router} from '@angular/router';
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
 
-import { Router } from '@angular/router';
-
-import { AppComponent }            from './app.component';
-import { AppRoutingModule }        from './app-routing.module';
-
-import { HeroesModule }            from './heroes/heroes.module';
-import { ComposeMessageComponent } from './compose-message.component';
-import { LoginRoutingModule }      from './login-routing.module';
-import { LoginComponent }          from './login.component';
-import { PageNotFoundComponent }   from './not-found.component';
-
-import { DialogService }           from './dialog.service';
+import {HeroesModule} from './heroes/heroes.module';
+import {LoginRoutingModule} from './login-routing.module';
+import {LoginComponent} from './login.component';
+import {PageNotFoundComponent} from './not-found.component';
 
 @NgModule({
   imports: [
@@ -22,19 +16,15 @@ import { DialogService }           from './dialog.service';
     FormsModule,
     HeroesModule,
     LoginRoutingModule,
-    AppRoutingModule,
-    BrowserAnimationsModule
+    AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    ComposeMessageComponent,
     LoginComponent,
     PageNotFoundComponent
   ],
-  providers: [
-    DialogService
-  ],
-  bootstrap: [ AppComponent ]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   // Diagnostic only: inspect router configuration

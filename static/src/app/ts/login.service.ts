@@ -1,28 +1,30 @@
-import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
-import {CookieService} from 'angular-cookie';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import { Credential } from "./credential"
+import {Profile} from "./profile"
+import {Headers, Http, RequestOptions} from "@angular/http";
 
 @Injectable()
 export class LoginService {
+  private baseUrl = '/login/';
+  private _cookieName = 'XSRF-TOKEN';
 
-    constructor(private http: Http,
-    private _cookieService: CookieService) { }
+  constructor(private http: Http) {
+  }
 
-    login(credential:Credential): Promise<Credential>{
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('X-CSRFToken', this._cookieService.get("csrftoken"));
-        return this.http
-                  .post("/login/", JSON.stringify(credential), {headers: headers})
-                  .toPromise()
-                  .then(res => res.json())
-                  .catch(this.handleError);
-    }
+  login(profile: Profile): Promise<Profile> {
+    //XSRF-TOKEN
+    let headers = new Headers({'XSRF-TOKEN': this._cookieName});
+    headers.set('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    return this.http
+      .post(this.baseUrl, JSON.stringify(profile), options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(this.handleError);
+  }
 
-    private handleError(error: any) {
-        console.error(error);
-        return Promise.reject(error._body);
-    }
+  private handleError(error: any) {
+    console.error(error);
+    return Promise.reject(error._body);
+  }
 }

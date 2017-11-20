@@ -29,16 +29,16 @@
       'core.js': 'npm:core.js',
       'rxjs': 'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-      'zone.js': 'npm:zone.js',
-      'systemjs': 'npm:systemjs'
+      'systemjs': 'npm:systemjs',
+      'zone.js': 'npm:zone.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {
       'app': {main: 'main.js', defaultExtension: 'js'},
-      'core.js': {main: 'client/shim.min.js', defaultExtension: 'js'},
+      'core.js': {main: 'client/shim.js', defaultExtension: 'js'},
       'rxjs': {main: 'bundles/Rx.min.js', defaultExtension: 'js'},
-      'zone.js': {main: 'dist/zone.js', defaultExtension: 'js'},
-      'systemjs': {main: 'dist/system.src.js', defaultExtension: 'js'}
+      'systemjs': {main: 'dist/system.src.js', defaultExtension: 'js',
+      'zone.js': {main: 'dist/zone.js', defaultExtension: 'js'}}
     }
   });
 })(this);

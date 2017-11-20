@@ -1,54 +1,44 @@
 import {Component} from '@angular/core';
-import { Router} from '@angular/router';
+import {Router} from '@angular/router';
 
-import {LoginService}  from './login.service';
-import {Credential} from './credential';
+import {LoginService} from './login.service';
+import {Profile} from './profile';
 
 
 @Component({
-    selector: 'login-form',
-    templateUrl: 'static/app/templates/login.html',
-    providers: [
-        LoginService,
-    ]
+  selector: 'login-form',
+  templateUrl: 'static/src/app/templates/login.html',
+  providers: [
+    LoginService,
+  ]
 })
 
 
 export class LoginComponent {
+  model = new Profile();
+  error = null;
 
-    model = new Credential();
-    error = null;
-    isWcodeValid = true;
+  constructor(private loginService: LoginService,
+              private router: Router) {
+  }
 
-    constructor(private loginService: LoginService,
-                private router: Router) {
+  onSubmit() {
+    if (this.model.username) {
+      this.loginService
+        .login(this.model)
+        .then(profile => {
+          sessionStorage.setItem('token', profile.token);
+          sessionStorage.setItem('account', this.model.username);
+          this.router.navigate(['/dashboard']);
+        })
+        .catch(error => {
+          // this.error = error;
+          this.error = "用户编码或密码错误!"
+        }); // TODO: Display error message
     }
+  }
 
-    onSubmit() {
-        if (this.model.username) {
-            if (this.model.username.substring(0, 1) != "1"
-                && this.model.username.substring(0, 1) != "5"
-                && this.model.username.substring(0, 1) != "9") {
-                this.error = "用户编码格式错误!";
-            } else {
-                this.loginService
-                    .login(this.model)
-                    .then(credential => {
-                        // this.model = credential;
-                        sessionStorage.setItem('token', credential.token);
-                        sessionStorage.setItem('weidcode', this.model.username);
-                        sessionStorage.setItem('usertype', this.model.username.substring(0, 1))
-                        this.router.navigate(['/dashboard']);
-                    })
-                    .catch(error => {
-                        // this.error = error;
-                        this.error = "用户编码或密码错误!"
-                    }); // TODO: Display error message
-            }
-        }
-    }
-
-    cleanerror() {
-        this.error = null;
-    }
+  cleanerror() {
+    this.error = null;
+  }
 }

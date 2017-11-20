@@ -1,4 +1,4 @@
-export class Credential {
+export class Profile {
   username: string;
   password: string;
   token: string;

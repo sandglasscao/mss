@@ -4,11 +4,11 @@
             <h1>User Login</h1>
             <hr>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="User code" (keydown)="cleanerror()"
+                <input class="form-control" type="text" placeholder="User Account" (keydown)="cleanerror()"
                        [(ngModel)]="model.username" required autofocus
                        minLength=7
                        maxLength=15
-                       ngControl="wcode" #wcode="ngForm"
+                       ngControl="accnt" #wcode="ngForm"
                 />
 
             </div>
