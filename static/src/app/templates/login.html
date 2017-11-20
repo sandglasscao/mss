@@ -1,27 +1,34 @@
 <div class="login-page">
     <div class="form">
-        <form class="login-form " (ngSubmit)="onSubmit()" #userForm="ngForm">
+        <form  #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
             <h1>User Login</h1>
             <hr>
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="User Account" (keydown)="cleanerror()"
+                <input class="form-control" type="text"
+                       placeholder="User Account"
+                       (keydown)="cleanerror()"
                        [(ngModel)]="model.username" required autofocus
                        minLength=7
                        maxLength=15
-                       ngControl="accnt" #wcode="ngForm"
+                       ngControl="accnt"
                 />
 
             </div>
             <div class="form-group">
-                <input class="form-control" type="password" placeholder="Password" [(ngModel)]="model.password" required
+                <input class="form-control"
+                       type="password"
+                       placeholder="Password"
+                       [(ngModel)]="model.password" required
                        minLength=6
                        maxLength=16
-                       ngControl="passwd" #passwd="ngForm"
+                       ngControl="passwd"
                 />
 
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="!userForm.form.valid">Login</button>
+                <button type="submit" class="btn btn-primary btn-block"
+                        [disabled]="!userForm.valid">Login
+                </button>
                 <a [routerLink]="['/resetpwd']">Don't remember?</a>|
 
                 <p class="message">No Account?

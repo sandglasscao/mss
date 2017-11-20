@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginService} from './login.service';
-import {Profile} from './profile';
+import {User} from './user';
 
 
 @Component({
@@ -15,7 +15,7 @@ import {Profile} from './profile';
 
 
 export class LoginComponent {
-  model = new Profile();
+  model = new User();
   error = null;
 
   constructor(private loginService: LoginService,
@@ -26,14 +26,14 @@ export class LoginComponent {
     if (this.model.username) {
       this.loginService
         .login(this.model)
-        .then(profile => {
-          sessionStorage.setItem('token', profile.token);
-          sessionStorage.setItem('account', this.model.username);
+        .then(account => {
+          sessionStorage.setItem('token', account.token);
+          sessionStorage.setItem('account', account.username);
           this.router.navigate(['/dashboard']);
         })
         .catch(error => {
           // this.error = error;
-          this.error = "用户编码或密码错误!"
+          this.error = "密码错误!"
         }); // TODO: Display error message
     }
   }

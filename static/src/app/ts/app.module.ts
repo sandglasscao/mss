@@ -5,16 +5,18 @@ import {Router} from '@angular/router';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
-import {HeroesModule} from './heroes/heroes.module';
+import {DashboardModule} from './dashboard/dashboard.module';
 import {LoginRoutingModule} from './login-routing.module';
 import {LoginComponent} from './login.component';
 import {PageNotFoundComponent} from './not-found.component';
+import {AdminModule} from "./admin/admin.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HeroesModule,
+    AdminModule,
+    DashboardModule,
     LoginRoutingModule,
     AppRoutingModule
   ],

@@ -1,11 +1,19 @@
-import { NgModule }             from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { PageNotFoundComponent }    from './not-found.component';
+import {PageNotFoundComponent} from './not-found.component';
 
 const appRoutes: Routes = [
-  { path: '',   redirectTo: '/superheroes', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
+  {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule'
+  },
+  {
+    path: 'dashboard',
+    loadChildren: './dashboard/dashboard.module#DashboardModule'
+  },
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -21,7 +29,7 @@ const appRoutes: Routes = [
   exports: [
     RouterModule
   ],
-  providers: [
-  ]
+  providers: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
