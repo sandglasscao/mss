@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
+#User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
 
 # common user profile data model
 class Profile(models.Model):
@@ -10,19 +10,9 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # https://docs.djangoproject.com/en/1.9/ref/models/fields/
-    usertype = models.IntegerField(default=1)  # 1,5,9
-    cell = models.CharField(max_length=11, unique=True)
-    email = models.EmailField(null=True)
+    isStaff = models.BooleanField(default=False)
+    cellphone = models.CharField(max_length=11, unique=True)
     #district = models.ForeignKey('Address', null=True)  # default address
-    first_name = models.CharField(max_length=50, null=True)
-    last_name = models.CharField(max_length=50, null=True)  # nickname or shortname
+    full_name = models.CharField(max_length=50, null=True)
+    rank = models.IntegerField(default=0)
 
-    def save(self, *args, **kwargs):
-        try:
-            this = Profile.objects.get(id=self.id)
-        except:
-            pass
-        super(Profile, self).save(*args, **kwargs)
-
-    def __str__(self):
-        return self.user.username

@@ -6,14 +6,12 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 @Injectable()
 export class LoginService {
   private baseUrl = '/login/';
-  private _cookieName = 'XSRF-TOKEN';
 
   constructor(private http: Http) {
   }
 
   login(account: User): Promise<User> {
-    //XSRF-TOKEN
-    let headers = new Headers({'XSRF-TOKEN': this._cookieName});
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
     return this.http
