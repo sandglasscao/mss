@@ -29,6 +29,7 @@ export class LoginComponent {
         .then(account => {
           sessionStorage.setItem('token', account.token);
           sessionStorage.setItem('account', account.username);
+          sessionStorage.setItem('isLogin', 'true');
           this.router.navigate(['/dashboard']);
         })
         .catch(error => {

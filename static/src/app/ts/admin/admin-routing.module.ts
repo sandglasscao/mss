@@ -8,14 +8,14 @@ import { ManageHeroesComponent }    from './manage-heroes.component';
 
 const adminRoutes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminComponent,
     children: [
       {
         path: '',
         children: [
           { path: 'crises', component: ManageCrisesComponent },
-          { path: 'heroes', component: ManageHeroesComponent },
+          { path: 'sales', component: ManageHeroesComponent },
           { path: '', component: AdminDashboardComponent }
         ]
       }
