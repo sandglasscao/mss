@@ -5,5 +5,11 @@ uprofile/migrations/0*
 console/migrations/0*
 .idea/*
 
+
+static/src/app/templates/
+.idea/
+mss/__pycache__/
+static/src/app/js/
+uprofile/__pycache__/
+uprofile/migrations/__pycache__/
 src/app/js/
-src/app/templates/
