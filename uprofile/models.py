@@ -2,9 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-#User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
+User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
 
-# common user profile data model
 class Profile(models.Model):
     # extend default user model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -15,4 +14,3 @@ class Profile(models.Model):
     #district = models.ForeignKey('Address', null=True)  # default address
     full_name = models.CharField(max_length=50, null=True)
     rank = models.IntegerField(default=0)
-

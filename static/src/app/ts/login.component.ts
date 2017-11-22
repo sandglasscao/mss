@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginService} from './login.service';
-import {User} from './user';
+import {User} from "./user";
 
 
 @Component({
@@ -28,7 +28,7 @@ export class LoginComponent {
         .login(this.model)
         .then(account => {
           sessionStorage.setItem('token', account.token);
-          sessionStorage.setItem('account', account.username);
+          sessionStorage.setItem('username', account.username);
           sessionStorage.setItem('isLogin', 'true');
           this.router.navigate(['/dashboard']);
         })
