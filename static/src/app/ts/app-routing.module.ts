@@ -4,7 +4,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './not-found.component';
 
 const appRoutes: Routes = [
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {
+    path: 'dashboard',
+    loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
+  },
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 

@@ -1,52 +1,39 @@
-<div class="login-page">
-    <div class="form">
-        <form  #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
-            <h1>User Login</h1>
-            <hr>
-            <div class="form-group">
-                <input class="form-control" type="text"
-                       placeholder="User Account"
-                       (keydown)="cleanerror()"
-                       [(ngModel)]="model.username" required autofocus
-                       minLength=7
-                       maxLength=15
-                       ngControl="accnt"
-                       [ngModelOptions]="{standalone: true}"
-                />
+<div class="wrap zhengwei">
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <img src="/static/src/assets/logo1.jpg"/>
+        <div class="inp">
+            <span>账号:</span>
+            <input type="text" class="username"
+                   placeholder="电话号码"
+                   (keydown)="cleanerror()"
+                   [(ngModel)]="user.username" required autofocus
+                   minLength=11
+                   maxLength=11
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
 
+        <div class="inp inp_2">
+            <span>密码:</span>
+            <input class="password"
+                   type="password"
+                   placeholder="密码"
+                   [(ngModel)]="user.password" required
+                   minLength=6
+                   maxLength=12
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+
+        <div class="rf">
+            <div class="content">
+                <a class="r" [routerLink]="['/register']">用户注册</a>
+                <a class="f" [routerLink]="['/resetpwd']">忘记密码?</a>
             </div>
-            <div class="form-group">
-                <input class="form-control"
-                       type="password"
-                       placeholder="Password"
-                       [(ngModel)]="model.password" required
-                       minLength=6
-                       maxLength=16
-                       ngControl="passwd"
-                       [ngModelOptions]="{standalone: true}"
-                />
+        </div>
 
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-block"
-                        [disabled]="!userForm.valid">Login
-                </button>
-                <a [routerLink]="['/resetpwd']">Don't remember?</a>|
-
-                <p class="message">No Account?
-                    <a [routerLink]="['/register']">Sign Up</a>
-
-                </p>
-
-            </div>
-            <div class="form-group" [hidden]="!error">
-
-            <span class="alert alert-danger">
-              {{ error }}
-            </span>
-
-            </div>
-        </form>
-
-    </div>
+        <button type="submit" class="login"
+                [disabled]="!userForm.valid">登录
+        </button>
+    </form>
 </div>

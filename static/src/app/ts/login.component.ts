@@ -8,6 +8,7 @@ import {User} from "./user";
 @Component({
   selector: 'login-form',
   templateUrl: 'static/src/app/templates/login.html',
+  styleUrls: ['static/src/assets/login.css'],
   providers: [
     LoginService,
   ]
@@ -15,7 +16,7 @@ import {User} from "./user";
 
 
 export class LoginComponent {
-  model = new User();
+  user = new User();
   error = null;
 
   constructor(private loginService: LoginService,
@@ -23,13 +24,12 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    if (this.model.username) {
+    if (this.user.username) {
       this.loginService
-        .login(this.model)
+        .login(this.user)
         .then(account => {
           sessionStorage.setItem('token', account.token);
-          sessionStorage.setItem('username', account.username);
-          sessionStorage.setItem('isLogin', 'true');
+          sessionStorage.setItem('username', this.user.username);
           this.router.navigate(['/dashboard']);
         })
         .catch(error => {
