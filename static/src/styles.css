@@ -4,8 +4,9 @@ body,ul,li{
 	list-style: none;
 }
 a{text-decoration: none;}
-input{
+input,button{
 	outline: none;
+  border:none;
 	padding: 0;
 }
 ::-webkit-input-placeholder { /* WebKit browsers */
@@ -23,4 +24,7 @@ input{
 :-ms-input-placeholder { /* Internet Explorer 10+ */
     color: #999;
     letter-spacing: 0.1rem;
+}
+body{
+  background-color: #E6F9FF;
 }

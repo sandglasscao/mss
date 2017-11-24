@@ -3,13 +3,13 @@
     <div class="title">注册信息</div>
     <form #userForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="inp">
-            <span>账号:</span>
+            <span class="aln"><span>账</span><span></span><span>号</span>:</span>
             <div class="username" *ngIf="registration">
                 <span>{{ registration.cellPhone }}</span>
             </div>
         </div>
         <div class="inp">
-            <span>用户名:</span>
+            <span class="aln"><span>昵</span><span></span><span>称</span>:</span>
             <input class="username" type="text"
                    placeholder="昵称"
                    (keydown)="cleanerror()"
@@ -20,7 +20,7 @@
             />
         </div>
         <div class="inp">
-            <span class="password"><span>密码</span>:</span>
+            <span class="aln"><span>密</span><span></span><span>码</span>:</span>
             <input class="password" type="password"
                    placeholder="请输入密码"
                    [(ngModel)]="registration.password" required
@@ -61,7 +61,7 @@
             </div>
         </div>
 
-        <button type="submit" class="login" [disabled]="!userForm.valid">注册</button>
+        <button type="submit" class="next" [disabled]="!userForm.valid">注册</button>
 
 
         <div [hidden]="!error">
