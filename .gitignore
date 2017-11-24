@@ -1,6 +1,6 @@
 *.pyc
 *.log
-metadata/migrations/0*
+meta/migrations/0*
 uprofile/migrations/0*
 console/migrations/0*
 .idea/*
