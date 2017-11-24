@@ -1,0 +1,71 @@
+body {
+  width: 100%;
+  background-color: #E6F9FF;
+}
+.wrap {
+  width: 12.28rem;
+  margin: 2.42rem auto 0;
+  text-align: center;
+}
+.wrap img {
+  display: block;
+  margin: 0 auto;
+  width: 4.62rem;
+}
+.wrap .title {
+  margin: 1rem 0 0.98rem;
+  width: 100%;
+  font-size: 0.84rem;
+  height: 0.84rem;
+  line-height: 0.84rem;
+  color: #519FF2;
+}
+.wrap .inp {
+  height: 1.2rem;
+  width: 100%;
+  color: #519FF2;
+  overflow: hidden;
+}
+.wrap .inp span {
+  float: left;
+  font-size: 0.64rem;
+  line-height: 1.2rem;
+  letter-spacing: 0.14rem;
+}
+.wrap .inp input {
+  box-sizing: border-box;
+  float: right;
+  width: 9.2rem;
+  height: 100%;
+  text-indent: 0.52rem;
+  border: 1px solid #6CB4FE;
+  border-radius: 0.24rem;
+}
+.wrap .btn_wrap {
+  width: 100%;
+  overflow: hidden;
+}
+.wrap .btn {
+  margin: 0.12rem 0 0.58rem;
+  float: right;
+  width: 3.2rem;
+  height: 1rem;
+  line-height: 1rem;
+  border-radius: 0.36rem;
+  background-color: #4FA0F2;
+  color: #fff;
+  font-size: 0.48rem;
+  letter-spacing: 0.1rem;
+}
+.wrap .next {
+  margin: 6.16rem auto 0;
+  width: 11.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  background-color: #4FA0F2;
+  color: #fff;
+  border-radius: 0.36rem;
+  text-align: center;
+  letter-spacing: 0.66rem;
+  font-size: 0.62rem;
+}

@@ -45,7 +45,6 @@ class RegisterSerializer(Serializer):
         model = Profile
 
     def create(self, validated_data):
-        print('register user...')
         cellphone = validated_data["cellphone"]
         username = cellphone
         user = User.objects.create(username=username)

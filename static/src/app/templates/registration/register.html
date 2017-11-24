@@ -1,0 +1,60 @@
+<div class="wrap">
+    <img src="../../../assets/logo1.jpg"/>
+    <div class="title">注册信息</div>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="inp">
+            <span>用户名:</span>
+            <input class="username" type="text"
+                   placeholder="请输入手机号"
+                   (keydown)="cleanerror()"
+                   [(ngModel)]="registration.cellphone" required autofocus
+                   minLength=11
+                   maxLength=11
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="inp">
+            <span class="password"><span>密</span><span></span><span>码</span>:</span>
+            <input class="password" type="password"
+                   placeholder="请输入密码"
+                   [(ngModel)]="registration.password" required
+                   minLength=6
+                   maxLength=12
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="inp">
+            <span class="con"><span>确认密码</span>:</span>
+            <input class="conp" type="password"
+                   placeholder="请再次输入"
+                   [(ngModel)]="second_pwd" required
+                   minLength=6
+                   maxLength=12
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="inps" [hidden]="!error">
+            <span>{{ error }}</span>
+        </div>
+
+        <div class="inp">
+            <span>推荐人:</span>
+            <input class="pnum" type="text"
+                   placeholder="推荐人编号"
+                   [(ngModel)]="registration.agent_num" required
+                   minLength=6
+                   maxLength=6
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="inp">
+            <!--<span>推荐人:</span>-->
+            <input class="pname" type="text"
+                   placeholder="推荐人姓名"
+                   [(ngModel)]="registration.agent_num" required
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+
+    </form>
+</div>

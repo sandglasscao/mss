@@ -6,7 +6,6 @@ console/migrations/0*
 .idea/*
 
 
-static/src/app/templates/
 .idea/
 mss/__pycache__/
 static/src/app/js/
