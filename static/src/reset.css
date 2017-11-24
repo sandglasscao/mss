@@ -1,0 +1,26 @@
+body,ul,li{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a{text-decoration: none;}
+input{
+	outline: none;
+	padding: 0;
+}
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #999;
+    letter-spacing: 5/@r;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #999;
+    letter-spacing: 5/@r;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #999;
+    letter-spacing: 5/@r;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #999;
+    letter-spacing: 5/@r;
+}
