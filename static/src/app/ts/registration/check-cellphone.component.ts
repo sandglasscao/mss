@@ -13,21 +13,18 @@ import {RegistraterService} from "./registrater.service";
 
 export class CheckCellphoneComponent {
   cellPhone: string;
-  smsCode = "";
-  verification = "";
+  smsCode: string;
+  verification = null;
   error = null;
 
   constructor(private registerService: RegistraterService,
               private router: Router) {
   }
 
-  verifySMS() {
+  getSMS() {
     if (this.cellPhone) {
       this.registerService
         .checkCell(this.cellPhone)
-        .then(reg => {
-          this.smsCode = reg.smsCode;
-        })
         .catch(error => {
           // this.error = error;
           this.error = "验证码服务超时!"
@@ -36,10 +33,14 @@ export class CheckCellphoneComponent {
   }
 
   onSubmit() {
-    if (this.smsCode == this.verification) {
+    //for debug, please comment the following two lines in production env.
+    this.verification = '123';
+    this.smsCode = this.verification;
+    if (this.verification && this.smsCode == this.verification) {
+      sessionStorage.setItem('cellPhone', this.cellPhone);
       this.router.navigate(['rgstr']);
     } else {
-      this.error = "验证码错误";
+      this.error = "验证未通过";
     }
   }
 

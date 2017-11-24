@@ -16,7 +16,6 @@ class Profile(models.Model):
     full_name = models.CharField(max_length=50, null=True)
     isEmployee = models.BooleanField(default=False)
     isAuth = models.BooleanField(default=False)
-    # district = models.ForeignKey('Address', null=True)  # default address
     address = models.ForeignKey('Address', null=True)
     parent_agent = models.ForeignKey(User, related_name='parent_agent', null=True)
     grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True)

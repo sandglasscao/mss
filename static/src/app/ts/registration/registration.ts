@@ -1,7 +1,8 @@
 export class Registration {
-  cellphone: string;
-  smsCode: string;
+  cellPhone: string;
+  fullName: string;
   password: string;
-  agent_num: string;
+  parentCode: string;
+  parentName: string;
   token: string;
 }

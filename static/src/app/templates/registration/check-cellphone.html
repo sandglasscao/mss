@@ -1,5 +1,5 @@
 <div class="wrap">
-    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #checkForm="ngForm" (ngSubmit)="onSubmit()">
         <img src="/static/src/assets/logo1.jpg"/>
         <div class="title">验证手机</div>
         <div class="inp">
@@ -13,7 +13,7 @@
             />
         </div>
         <div class="btn_wrap">
-            <button type="button" class="btn" (click)="verifySMS()">发送验证码</button>
+            <button type="button" class="btn" (click)="getSMS()">发送验证码</button>
         </div>
         <div class="inp">
             <span>验证码:</span>
@@ -27,7 +27,7 @@
             />
         </div>
 
-        <button type="submit" class="next">下一步</button>
+        <button type="submit" class="next" [disabled]="!checkForm.valid">下一步</button>
 
         <div [hidden]="!error">
             <span>{{ error }}</span>

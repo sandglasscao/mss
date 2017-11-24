@@ -8,5 +8,5 @@ from .views import (
 urlpatterns = [
     url(r'^$', UserListApiView.as_view(), name='list'),
     url(r'^(?P<username>[0-9]+)$', ProfileApiView.as_view(), name='retrieve'),
-
+    #url(r'^register$', UserRegisterApiView.as_view(), name='register'),
 ]

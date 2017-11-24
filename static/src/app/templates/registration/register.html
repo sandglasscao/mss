@@ -1,20 +1,26 @@
 <div class="wrap">
-    <img src="../../../assets/logo1.jpg"/>
+    <img src="/static/src/assets/logo1.jpg"/>
     <div class="title">注册信息</div>
     <form #userForm="ngForm" (ngSubmit)="onSubmit()">
         <div class="inp">
+            <span>账号:</span>
+            <div class="username" *ngIf="registration">
+                <span>{{ registration.cellPhone }}</span>
+            </div>
+        </div>
+        <div class="inp">
             <span>用户名:</span>
             <input class="username" type="text"
-                   placeholder="请输入手机号"
+                   placeholder="昵称"
                    (keydown)="cleanerror()"
-                   [(ngModel)]="registration.cellphone" required autofocus
-                   minLength=11
-                   maxLength=11
+                   [(ngModel)]="registration.fullName" required autofocus
+                   minLength=0
+                   maxLength=50
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
         <div class="inp">
-            <span class="password"><span>密</span><span></span><span>码</span>:</span>
+            <span class="password"><span>密码</span>:</span>
             <input class="password" type="password"
                    placeholder="请输入密码"
                    [(ngModel)]="registration.password" required
@@ -41,19 +47,25 @@
             <span>推荐人:</span>
             <input class="pnum" type="text"
                    placeholder="推荐人编号"
-                   [(ngModel)]="registration.agent_num" required
-                   minLength=6
+                   [(ngModel)]="registration.parentCode" required
+                   (keyup)="getAgentName()"
+                   minLength=2
                    maxLength=6
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
         <div class="inp">
-            <!--<span>推荐人:</span>-->
-            <input class="pname" type="text"
-                   placeholder="推荐人姓名"
-                   [(ngModel)]="registration.agent_num" required
-                   [ngModelOptions]="{standalone: true}"
-            />
+            <span>推荐人姓名:</span>
+            <div class="pname" *ngIf="registration.parentCode">
+                <span>{{ registration.parentName }}</span>
+            </div>
+        </div>
+
+        <button type="submit" class="login" [disabled]="!userForm.valid">注册</button>
+
+
+        <div [hidden]="!error">
+            <span>{{ error }}</span>
         </div>
 
     </form>

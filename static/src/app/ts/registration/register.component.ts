@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Registration} from "./registration";
 import {RegistraterService} from "./registrater.service";
 import {Router} from "@angular/router";
@@ -7,17 +7,30 @@ import {Router} from "@angular/router";
   templateUrl: 'static/src/app/templates/registration/register.html',
   styleUrls: ['static/src/app/templates/registration/register.css']
 })
-export class RegisterComponent {
-  error = null;
+export class RegisterComponent implements OnInit {
   registration = new Registration();
-  second_pwd = "";
+  second_pwd = null;
+  error = null;
 
   constructor(private registerService: RegistraterService,
               private router: Router) {
   }
 
+  ngOnInit(): void {
+    this.registration.cellPhone = sessionStorage.getItem('cellPhone');
+  }
+
+  getAgentName() {
+     this.registerService
+        .getAgentName(this.registration.parentCode)
+        .then(name => {this.registration.parentName = name})
+        .catch(error => {
+          // this.error = error;
+          this.error = "业务员不存在!"
+        });
+  }
   onSubmit() {
-    if (this.registration.cellphone) {
+    if (this.registration.cellPhone) {
       this.registerService
         .register(this.registration)
         .then(account => {

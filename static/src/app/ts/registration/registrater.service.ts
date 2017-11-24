@@ -5,12 +5,12 @@ import {Registration} from "./registration";
 
 @Injectable()
 export class RegistraterService {
-  private baseUrl = 'api/user/register';
+  private baseUrl = 'api/user/register/';
 
   constructor(private http: Http) {
   }
 
-  checkCell(cell: String): Promise<Registration> {
+  checkCell(cell: string): Promise<Registration> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
@@ -28,6 +28,18 @@ export class RegistraterService {
     let options = new RequestOptions({headers: headers});
     return this.http
       .post(this.baseUrl, JSON.stringify(registration), options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(this.handleError);
+  }
+
+  getAgentName(agentCode: string): Promise<string> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.set('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    let url = this.baseUrl + agentCode;
+    return this.http
+      .get(url, options)
       .toPromise()
       .then(resp => resp.json())
       .catch(this.handleError);
