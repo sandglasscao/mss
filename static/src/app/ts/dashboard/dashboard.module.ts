@@ -7,6 +7,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import {StoreListComponent} from "./store-list.component";
 import {StoreDetailComponent} from "./store-detail.component";
 import {DashboardHomeComponent} from "./dashboard-home.component";
+import {ProfileComponent} from "./profile.component";
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import {DashboardHomeComponent} from "./dashboard-home.component";
     DashboardComponent,
     StoreListComponent,
     StoreDetailComponent,
+    ProfileComponent,
     DashboardHomeComponent
   ],
   providers: [  ]

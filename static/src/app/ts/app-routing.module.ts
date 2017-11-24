@@ -5,10 +5,10 @@ import {PageNotFoundComponent} from './not-found.component';
 
 const appRoutes: Routes = [
   {
-    path: 'dashboard',
-    loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
+    path: 'register',
+    loadChildren: 'ts/registration/registration.module#RegistrationModule'
   },
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 
