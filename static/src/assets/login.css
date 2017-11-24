@@ -1,0 +1,71 @@
+.zhengwei {
+  width: 100%;
+  background-color: #E6F9FF;
+}
+.wrap {
+  width: 12.08rem;
+  margin: 2.46rem auto 0;
+  text-align: center;
+}
+.wrap img {
+  display: block;
+  margin: 0 auto 2.18rem;
+  width: 4.62rem;
+}
+.wrap .inp {
+  height: 1.2rem;
+  width: 100%;
+  color: #519FF2;
+  margin-bottom: 0.6rem;
+  overflow: hidden;
+}
+.wrap .inp span {
+  float: left;
+  font-size: 0.64rem;
+  line-height: 1.2rem;
+  letter-spacing: 0.14rem;
+}
+.wrap .inp input {
+  box-sizing: border-box;
+  float: right;
+  width: 9.2rem;
+  height: 100%;
+  text-indent: 0.52rem;
+  border: 1px solid #6CB4FE;
+  border-radius: 0.24rem;
+}
+.inp_2 {
+  margin-bottom: 0.42rem;
+}
+.rf {
+  height: 0.56rem;
+  line-height: 0.56rem;
+  letter-spacing: 0.12rem;
+  overflow: hidden;
+}
+.rf .content {
+  float: right;
+  width: 9.2rem;
+  height: 100%;
+  font-size: 0.56rem;
+}
+.rf a {
+  color: #5E9BDC;
+}
+.rf a.r {
+  float: left;
+}
+.rf a.f {
+  float: right;
+}
+.wrap .login {
+  margin: 4.8rem auto 0;
+  width: 11.2rem;
+  height: 1.2rem;
+  background-color: #4FA0F2;
+  color: #fff;
+  font-size: 0.64rem;
+  line-height: 1.2rem;
+  text-align: center;
+  border-radius: 0.36rem;
+}
