@@ -5,8 +5,8 @@ import {Registration} from "./registration";
 
 @Injectable()
 export class RegisterService {
-  private baseUrl = 'api/user/register/';
-  private usrUrl = 'api/user/';
+  private baseUrl = 'api/users/profile/';
+  private usrUrl = 'api/users/';
 
   constructor(private http: Http) {
   }

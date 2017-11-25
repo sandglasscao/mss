@@ -3,7 +3,7 @@ from django.db import models
 
 from meta.models import AddressCode
 
-User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
+#User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
 
 
 class Profile(models.Model):
@@ -11,7 +11,7 @@ class Profile(models.Model):
 
     # extend default user model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    cellphone = models.CharField(max_length=11, unique=True)
+    cellphone = models.CharField(max_length=11, unique=True, null=True)
     full_name = models.CharField(max_length=50, null=True)
     isEmployee = models.BooleanField(default=False)
     hasRecommAuth = models.BooleanField(default=False)
