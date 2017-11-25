@@ -48,19 +48,19 @@
             <input class="pnum" type="text"
                    placeholder="推荐人编号"
                    [(ngModel)]="registration.parentCode" required
-                   (keyup)="getAgentName()"
+                   (blur)="getAgentName()"
+                   (keydown)="cleanerror()"
                    minLength=2
                    maxLength=6
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
         <div class="inp">
-            <span>推荐人姓名:</span>
             <div class="pname" *ngIf="registration.parentCode">
                 <span>{{ registration.parentName }}</span>
             </div>
         </div>
-        <button type="submit" class="next" [disabled]="!userForm.valid">注册</button>
+        <button type="submit" class="next" [disabled]="!registration.parentName">注册</button>
         <div [hidden]="!error">
             <span>{{ error }}</span>
         </div>

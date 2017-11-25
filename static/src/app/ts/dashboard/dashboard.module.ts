@@ -1,13 +1,14 @@
-import { NgModule }       from '@angular/core';
-import { CommonModule }   from '@angular/common';
-import { FormsModule }    from '@angular/forms';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
-import { DashboardComponent }    from './dashboard.component';
-import { DashboardRoutingModule } from './dashboard-routing.module';
-import {StoreListComponent} from "./store-list.component";
-import {StoreDetailComponent} from "./store-detail.component";
-import {DashboardHomeComponent} from "./dashboard-home.component";
-import {ProfileComponent} from "./profile.component";
+import {DashboardComponent} from './dashboard.component';
+import {DashboardRoutingModule} from './dashboard-routing.module';
+import {LoginComponent} from "./login.component";
+import {RegisterComponent} from "./register.component";
+import {CheckCellphoneComponent} from "./check-cellphone.component";
+import {LoginService} from "./login.service";
+import {RegisterService} from "./registrater.service";
 
 @NgModule({
   imports: [
@@ -17,11 +18,11 @@ import {ProfileComponent} from "./profile.component";
   ],
   declarations: [
     DashboardComponent,
-    StoreListComponent,
-    StoreDetailComponent,
-    ProfileComponent,
-    DashboardHomeComponent
+    LoginComponent,
+    RegisterComponent,
+    CheckCellphoneComponent
   ],
-  providers: [  ]
+  providers: [LoginService, RegisterService]
 })
-export class DashboardModule {}
+export class DashboardModule {
+}

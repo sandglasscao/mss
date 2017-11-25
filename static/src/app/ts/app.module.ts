@@ -1,19 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {Router} from '@angular/router';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpModule} from "@angular/http";
 
 import {DashboardModule} from './dashboard/dashboard.module';
-import {LoginRoutingModule} from './login-routing.module';
-import {LoginComponent} from './login.component';
 import {PageNotFoundComponent} from './not-found.component';
-import {AdminModule} from "./admin/admin.module";
-import {HttpModule} from "@angular/http";
-import {RegistrationRoutingModule} from "./registration/registration-routing.module";
-import {RegistrationComponent} from "./registration/registration.component";
-import {RegistrationModule} from "./registration/registration.module";
+import {Router} from "@angular/router";
 
 @NgModule({
   imports: [
@@ -21,14 +15,11 @@ import {RegistrationModule} from "./registration/registration.module";
     HttpModule,
     FormsModule,
     //AdminModule,
-    //DashboardModule,
-    LoginRoutingModule,
-    RegistrationModule,
+    DashboardModule,
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
-    LoginComponent,
     PageNotFoundComponent
   ],
   providers: [],

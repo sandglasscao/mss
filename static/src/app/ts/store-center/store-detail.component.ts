@@ -6,7 +6,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 //import { Hero, HeroService }  from './hero.service';
 
 @Component({
-  templateUrl: 'static/src/app/templates/dashboard/store-detail.html'
+  templateUrl: 'static/src/app/templates/store-center/store-detail.html'
 })
 export class StoreDetailComponent implements OnInit {
 

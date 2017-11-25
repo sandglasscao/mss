@@ -4,7 +4,7 @@ import {Headers, Http, RequestOptions} from "@angular/http";
 import {Registration} from "./registration";
 
 @Injectable()
-export class RegistraterService {
+export class RegisterService {
   private baseUrl = 'api/user/register/';
 
   constructor(private http: Http) {

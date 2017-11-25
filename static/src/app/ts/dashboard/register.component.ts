@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {Registration} from "./registration";
-import {RegistraterService} from "./registrater.service";
+import {RegisterService} from "./registrater.service";
 import {Router} from "@angular/router";
 
 @Component({
-  templateUrl: 'static/src/app/templates/registration/register.html',
-  styleUrls: ['static/src/app/templates/registration/register.css']
+  templateUrl: 'static/src/app/templates/dashboard/register.html',
+  styleUrls: ['static/src/app/templates/dashboard/register.css']
 })
 export class RegisterComponent implements OnInit {
   registration = new Registration();
   second_pwd = null;
   error = null;
 
-  constructor(private registerService: RegistraterService,
+  constructor(private registerService: RegisterService,
               private router: Router) {
   }
 
@@ -34,7 +34,7 @@ export class RegisterComponent implements OnInit {
       this.registerService
         .register(this.registration)
         .then(account => {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['dashboard']);
         })
         .catch(error => {
           // this.error = error;

@@ -2,21 +2,31 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {DashboardComponent} from './dashboard.component';
-import {DashboardHomeComponent} from "./dashboard-home.component";
-import {StoreListComponent} from "./store-list.component";
-import {StoreDetailComponent} from "./store-detail.component";
-import {ProfileComponent} from "./profile.component";
+import {LoginComponent} from "./login.component";
+import {RegisterComponent} from "./register.component";
+import {CheckCellphoneComponent} from "./check-cellphone.component";
 
-const salesRoutes: Routes = [
-  {path: 'profile', component: ProfileComponent},
-  {path: 'stores', component: StoreListComponent},
-  {path: 'store', component: StoreDetailComponent},
-  {path: '', component: DashboardHomeComponent},
-  ];
+const dashboardRoutes: Routes = [
+  {
+    path: '',
+    children: [
+      {
+        path: '',
+        children: [
+          {path: 'login', component: LoginComponent},
+          {path: 'register', component: RegisterComponent},
+          {path: 'check-cell', component: CheckCellphoneComponent},
+          {path: 'dashboard', component: DashboardComponent},
+          {path: '', redirectTo: 'dashboard', pathMatch: 'full'}
+        ]
+      }
+    ]
+  }
+];
 
 @NgModule({
   imports: [
-    RouterModule.forChild(salesRoutes)
+    RouterModule.forChild(dashboardRoutes)
   ],
   exports: [
     RouterModule

@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {RegistraterService} from "./registrater.service";
+import {RegisterService} from "./registrater.service";
 
 
 @Component({
   selector: 'register-form',
-  templateUrl: 'static/src/app/templates/registration/check-cellphone.html',
-  styleUrls: ['static/src/app/templates/registration/check-cellphone.css']
+  templateUrl: 'static/src/app/templates/dashboard/check-cellphone.html',
+  styleUrls: ['static/src/app/templates/dashboard/check-cellphone.css']
 })
 
 
@@ -17,7 +17,7 @@ export class CheckCellphoneComponent {
   verification = null;
   error = null;
 
-  constructor(private registerService: RegistraterService,
+  constructor(private registerService: RegisterService,
               private router: Router) {
   }
 
@@ -38,7 +38,7 @@ export class CheckCellphoneComponent {
     this.smsCode = this.verification;
     if (this.verification && this.smsCode == this.verification) {
       sessionStorage.setItem('cellPhone', this.cellPhone);
-      this.router.navigate(['rgstr']);
+      this.router.navigate(['register']);
     } else {
       this.error = "验证未通过";
     }

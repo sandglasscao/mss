@@ -7,8 +7,8 @@ import {User} from "./user";
 
 @Component({
   selector: 'login-form',
-  templateUrl: 'static/src/app/templates/login.html',
-  styleUrls: ['static/src/assets/login.css'],
+  templateUrl: 'static/src/app/templates/dashboard/login.html',
+  styleUrls: ['static/src/app/templates/dashboard/login.css'],
   providers: [
     LoginService,
   ]
@@ -30,7 +30,8 @@ export class LoginComponent {
         .then(account => {
           sessionStorage.setItem('token', account.token);
           sessionStorage.setItem('username', this.user.username);
-          this.router.navigate(['/dashboard']);
+          sessionStorage.setItem('isLogin', '1');
+          this.router.navigate(['dashboard']);
         })
         .catch(error => {
           // this.error = error;
