@@ -8,6 +8,7 @@ import {HttpModule} from "@angular/http";
 import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './not-found.component';
 import {Router} from "@angular/router";
+import {StoresModule} from "./store-center/stores.module";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {Router} from "@angular/router";
     HttpModule,
     FormsModule,
     //AdminModule,
+    StoresModule,
     DashboardModule,
     AppRoutingModule
   ],

@@ -5,6 +5,14 @@ import {PageNotFoundComponent} from './not-found.component';
 
 const appRoutes: Routes = [
   {
+    path: 'admin',
+    loadChildren: 'ts/admin/admin.module#AdminModule'
+  },
+  {
+    path: 'store-center',
+    loadChildren: 'ts/store-center/stores.module#StoresModule'
+  },
+  {
     path: 'dashboard',
     loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
   },
