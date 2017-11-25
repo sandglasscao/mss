@@ -16,7 +16,7 @@ import {StoresModule} from "./store-center/stores.module";
     HttpModule,
     FormsModule,
     //AdminModule,
-    StoresModule,
+    //StoresModule,
     DashboardModule,
     AppRoutingModule
   ],

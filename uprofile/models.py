@@ -15,11 +15,11 @@ class Profile(models.Model):
     cellphone = models.CharField(max_length=11, unique=True)
     full_name = models.CharField(max_length=50, null=True)
     isEmployee = models.BooleanField(default=False)
-    isAuth = models.BooleanField(default=False)
-    address = models.ForeignKey('Address', null=True)
-    parent_agent = models.ForeignKey(User, related_name='parent_agent', null=True)
-    grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True)
-    created = models.DateTimeField(auto_now_add=True)
+    hasRecommAuth = models.BooleanField(default=False)
+    address = models.ForeignKey('Address', null=True, blank=True)
+    parent_agent = models.ForeignKey(User, related_name='parent_agent', null=True, blank=True)
+    grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True, blank=True)
+    created_dt = models.DateTimeField(auto_now_add=True)
 
 
 class Address(models.Model):
