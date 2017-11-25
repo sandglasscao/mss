@@ -34,7 +34,7 @@ export class RegisterService {
       .catch(this.handleError);
   }
 
-  getAgentName(agentCode: string): Promise<Registration> {
+  getAgentName(agentCode: string): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});

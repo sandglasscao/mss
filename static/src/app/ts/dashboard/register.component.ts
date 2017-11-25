@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
 })
 export class RegisterComponent implements OnInit {
   registration = new Registration();
+  agents: Registration[];
   second_pwd = null;
   error = null;
 
@@ -21,17 +22,19 @@ export class RegisterComponent implements OnInit {
   }
 
   getAgentName() {
-     this.registerService
-        .getAgentName(this.registration.parentCode)
-        .then(registration => {
-          this.registration.parentName = registration.full_name;
-          this.registration.parentid = registration.parentid;
-        })
-        .catch(error => {
-          // this.error = error;
-          this.error = "业务员不存在!"
-        });
+    this.registerService
+      .getAgentName(this.registration.parentCode)
+      .then(res => {
+        this.agents = res.count ? res.results : null;
+        this.registration.parentName = this.agents[0].full_name;
+        this.registration.parentid = this.agents[0].parentid;
+      })
+      .catch(error => {
+        // this.error = error;
+        this.error = "业务员不存在!"
+      });
   }
+
   onSubmit() {
     if (this.registration.cellphone) {
       this.registerService

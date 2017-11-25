@@ -32,11 +32,13 @@ class UserListApiView(ListAPIView):
     permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
     pagination_class = StandardPagination
-    queryset = Profile.objects.all()
 
-    def get(self, request, *args, **kwargs):
-        serializer = ProfileSerializer(self.queryset)
-        return Response(serializer.data, status=HTTP_200_OK)
+    def get_queryset(self):
+        username = self.kwargs.get('username', None)
+        user = User.objects.get(username=username)
+        queryset = Profile.objects.filter(user=user)
+        return queryset
+
 
 class ProfileViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
