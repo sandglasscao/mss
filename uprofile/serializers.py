@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
+from rest_framework.fields import (
+    DateTimeField,
+    BooleanField)
 from rest_framework.serializers import (
-    ModelSerializer,
-    Serializer)
+    ModelSerializer,)
 from rest_framework_jwt.settings import api_settings
 
 from .models import (
@@ -13,10 +15,9 @@ from .models import (
 class UserSerializer(ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ('username', 'first_name', 'last_name', 'email')
 
 
-class ProfileSerializer(ModelSerializer):
+class ProfileSerializer2(ModelSerializer):
     user = UserSerializer(required=False, read_only=True)
 
     class Meta:
@@ -39,10 +40,23 @@ class ProfileSerializer(ModelSerializer):
         instance.save()
         return instance
 
+class RegisterSerializer(ModelSerializer):
+    user = UserSerializer(required=False)
+    isEmployee = BooleanField(required=False)
+    hasRecommAuth = BooleanField(required=False)
+    parent_agent = UserSerializer(required=False)
+    grand_agent = UserSerializer(required=False)
+    created_dt = DateTimeField(required=False)
 
-class RegisterSerializer(Serializer):
     class Meta:
         model = Profile
+        read_only_fields = (
+            'user',
+            'isEmployee',
+            'hasRecommAuth',
+            'parent_agent',
+            'grand_agent',
+            'created_dt',)
 
     def create(self, validated_data):
         cellphone = validated_data["cellphone"]
@@ -53,12 +67,12 @@ class RegisterSerializer(Serializer):
 
         profile = user.profile
         profile.cellphone = cellphone
-        #profile.usertype = usertype
 
-        profile.name = validated_data.get("name", None)
-        profile.idtype = validated_data.get("idtype", None)
-        profile.idname = validated_data.get("idname", None)
-        profile.idno = validated_data.get("idno", None)
+        profile.full_name = validated_data.get("full_name", None)
+        profile.cellphone = cellphone
+        profile.address = validated_data.get("address", None)
+        profile.parent_agent = validated_data.get("parent_agent", None)
+        profile.grand_agent = profile.parent_agent.parent_agent
 
         # try:
         profile.save()
@@ -70,4 +84,6 @@ class RegisterSerializer(Serializer):
         validated_data["token"] = jwt_encode_handler(payload)
         validated_data['username'] = user.username
         return validated_data
+
+
 

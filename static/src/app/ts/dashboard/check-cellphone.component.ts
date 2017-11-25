@@ -22,20 +22,18 @@ export class CheckCellphoneComponent {
   }
 
   getSMS() {
-    if (this.cellPhone) {
+    /*if (this.cellPhone) {
       this.registerService
         .checkCell(this.cellPhone)
         .catch(error => {
           // this.error = error;
           this.error = "验证码服务超时!"
         }); // TODO: Display error message
-    }
+    }*/
+    this.verification='1234'; // for debugging register functions
   }
 
   onSubmit() {
-    //for debug, please comment the following two lines in production env.
-    this.verification = '123';
-    this.smsCode = this.verification;
     if (this.verification && this.smsCode == this.verification) {
       sessionStorage.setItem('cellPhone', this.cellPhone);
       this.router.navigate(['register']);

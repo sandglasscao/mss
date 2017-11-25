@@ -6,6 +6,7 @@ import {Registration} from "./registration";
 @Injectable()
 export class RegisterService {
   private baseUrl = 'api/user/register/';
+  private usrUrl = 'api/user/';
 
   constructor(private http: Http) {
   }
@@ -33,11 +34,11 @@ export class RegisterService {
       .catch(this.handleError);
   }
 
-  getAgentName(agentCode: string): Promise<string> {
+  getAgentName(agentCode: string): Promise<Registration> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
-    let url = this.baseUrl + agentCode;
+    let url = this.usrUrl + agentCode;
     return this.http
       .get(url, options)
       .toPromise()

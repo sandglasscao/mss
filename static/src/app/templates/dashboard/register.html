@@ -5,7 +5,7 @@
         <div class="inp">
             <span class="aln"><span>账</span><span></span><span>号</span>:</span>
             <div class="username" *ngIf="registration">
-                <span>{{ registration.cellPhone }}</span>
+                <span>{{ registration.cellphone }}</span>
             </div>
         </div>
         <div class="inp">
@@ -13,7 +13,7 @@
             <input class="username" type="text"
                    placeholder="昵称"
                    (keydown)="cleanerror()"
-                   [(ngModel)]="registration.fullName" required autofocus
+                   [(ngModel)]="registration.full_name" required autofocus
                    minLength=0
                    maxLength=50
                    [ngModelOptions]="{standalone: true}"

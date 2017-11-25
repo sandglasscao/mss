@@ -11,7 +11,6 @@ class Profile(models.Model):
 
     # extend default user model
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    gender = models.IntegerField(choices=((0, 'Male'), (1, 'Female'), (2, 'Other')))
     cellphone = models.CharField(max_length=11, unique=True)
     full_name = models.CharField(max_length=50, null=True)
     isEmployee = models.BooleanField(default=False)

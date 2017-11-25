@@ -17,20 +17,23 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.registration.cellPhone = sessionStorage.getItem('cellPhone');
+    this.registration.cellphone = sessionStorage.getItem('cellPhone');
   }
 
   getAgentName() {
      this.registerService
         .getAgentName(this.registration.parentCode)
-        .then(name => {this.registration.parentName = name})
+        .then(registration => {
+          this.registration.parentName = registration.full_name;
+          this.registration.parentid = registration.parentid;
+        })
         .catch(error => {
           // this.error = error;
           this.error = "业务员不存在!"
         });
   }
   onSubmit() {
-    if (this.registration.cellPhone) {
+    if (this.registration.cellphone) {
       this.registerService
         .register(this.registration)
         .then(account => {

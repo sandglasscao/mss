@@ -1,7 +1,5 @@
 import base64
-from django.http import HttpResponse
 import json
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.generics import (
@@ -24,8 +22,8 @@ from .models import (
 
 from .serializers import (
     UserSerializer,
-ProfileSerializer,
-)
+    ProfileSerializer2,
+    RegisterSerializer)
 #
 # class JSONResponse(HttpResponse):
 #     """
@@ -50,20 +48,33 @@ class UserListApiView(ListAPIView):
 
 class ProfileApiView(APIView):
     # permission_classes = (IsAuthenticatedOrReadOnly,)
-    serializer_class = ProfileSerializer
+    serializer_class = ProfileSerializer2
 
     def get(self, request, username):
         user = User.objects.get(username=username)
         profile = Profile.objects.get(user=user)
-        serializer = ProfileSerializer(profile)
+        serializer = ProfileSerializer2(profile)
         return Response(serializer.data, status=HTTP_200_OK)
 
     def put(self, request, *args, **kwargs):
         profile = request.user.profile
         # print(request.data)
-        serializer = ProfileSerializer(profile, data=request.data)
+        serializer = ProfileSerializer2(profile, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
+
+
+class RegisterApiView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        serializer = RegisterSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
