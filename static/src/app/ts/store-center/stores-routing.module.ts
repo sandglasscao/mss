@@ -7,14 +7,14 @@ import {StoreListComponent} from "./store-list.component";
 
 const storesRoutes: Routes = [
   {
-    path: '',
+    path: 'store-center',
+    component: StoresComponent,
     children: [
       {
         path: '',
         children: [
-          {path: 'stores', component: StoreListComponent},
           {path: 'store-detail', component: StoreDetailComponent},
-          {path: 'store-center', component: StoresComponent}
+          {path: 'store-list', component: StoreListComponent}
         ]
       }
     ]
