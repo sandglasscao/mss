@@ -24,11 +24,7 @@ export class RegisterComponent implements OnInit {
   getAgentName() {
     this.registerService
       .getAgentName(this.registration.parentCode)
-      .then(res => {
-        this.agents = res.count ? res.results : null;
-        this.registration.parentName = this.agents[0].full_name;
-        this.registration.parentid = this.agents[0].parentid;
-      })
+      .then(res => {this.agents = res})
       .catch(error => {
         // this.error = error;
         this.error = "业务员不存在!"

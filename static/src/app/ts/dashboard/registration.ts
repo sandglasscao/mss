@@ -1,8 +1,10 @@
+import {User} from "./user";
+
 export class Registration {
   cellphone: string;
   full_name: string;
   password: string;
-  parentid: number;
+  parent: User;
   parentCode: string;
   parentName: string;
   token: string;

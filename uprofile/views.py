@@ -31,14 +31,15 @@ class StandardPagination(PageNumberPagination):
 class UserListApiView(ListAPIView):
     permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
-    pagination_class = StandardPagination
 
     def get_queryset(self):
         username = self.kwargs.get('username', None)
-        user = User.objects.get(username=username)
-        queryset = Profile.objects.filter(user=user)
+        users = User.objects.filter(username__icontains=username)
+        queryset = []
+        for user in users:
+            profile = Profile.objects.get(user=user)
+            queryset.append(profile)
         return queryset
-
 
 class ProfileViewSet(ModelViewSet):
     permission_classes = (IsAuthenticatedOrReadOnly,)
