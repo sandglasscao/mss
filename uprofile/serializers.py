@@ -2,9 +2,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework.fields import (
     DateTimeField,
-    BooleanField)
+    BooleanField, CharField, IntegerField)
 from rest_framework.serializers import (
-    ModelSerializer, )
+    ModelSerializer, Serializer)
 from rest_framework_jwt.settings import api_settings
 
 from .models import (
@@ -77,6 +77,15 @@ class ProfileSerializer(ModelSerializer):
         instance.save()
         return instance
 
+
+class RegisterSerializer(Serializer):
+    username = CharField(max_length=6, required=False)
+    token = CharField(allow_blank=True, read_only=True)
+    password = CharField(max_length=15)
+    cellphone = CharField(max_length=11)
+    full_name = CharField(max_length=50, required=False)
+    parent_code = CharField(max_length=6)
+
     def create(self, validated_data):
         cellphone = validated_data["cellphone"]
         username = cellphone
@@ -84,17 +93,23 @@ class ProfileSerializer(ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
-        profile = user.profile
-        profile.cellphone = cellphone
+        full_name = validated_data.get("full_name", None)
+        parent_code = validated_data.get("parent_code", None)
+        try:
+            parent = User.objects.get(username=parent_code)
+            grand_agent = parent.profile.parent_agent
+        except User.DoesNotExist:
+            parent = None
+            grand_agent = None
 
-        profile.full_name = validated_data.get("full_name", None)
-        profile.cellphone = cellphone
-        profile.address = validated_data.get("address", None)
-        profile.parent_agent = validated_data.get("parent_agent", None)
-        profile.grand_agent = profile.parent_agent.parent_agent
-
-        # try:
-        profile.save()
+        profile = Profile.objects.create(
+            user=user,
+            cellphone=cellphone,
+            full_name=full_name,
+            parent_agent=parent,
+            grand_agent=grand_agent
+        )
+        # profile.save()
 
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
         jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
