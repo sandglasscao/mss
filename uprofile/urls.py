@@ -5,7 +5,6 @@ from .views import (
     UserListApiView)
 
 
-
 profile_list = ProfileViewSet.as_view({
     'get': 'list',
     'post': 'create'
