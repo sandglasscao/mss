@@ -41,7 +41,7 @@
             <span>推荐人:</span>
             <input class="pnum" type="text" name="refereecode"
                    placeholder="业务员编号"
-                   [(ngModel)]="registration.parentCode" required
+                   [(ngModel)]="registration.parent_code" required
                    (blur)="getAgentName()"
                    (keydown)="cleanerror()"
                    minLength=2
@@ -50,12 +50,12 @@
         </div>
 
         <div class="inp" *ngIf="agents">
-            <select class="pname" name="referee" [(ngModel)]="registration.parentCode">
-                <option *ngFor="let agent of agents" [value]="agent.user.username">{{ agent.full_name }}</option>
+            <select class="pname" name="referee" [(ngModel)]="registration.parent_code">
+                <option *ngFor="let agent of agents" [value]="agent.user.username" >{{ agent.full_name }}</option>
             </select>
         </div>
 
-        <button type="submit" class="next" [disabled]="!registration.parent">注册</button>
+        <button type="submit" class="next" [disabled]="!userForm.valid">注册</button>
         <div [hidden]="!error">
             <span>{{ error }}</span>
         </div>

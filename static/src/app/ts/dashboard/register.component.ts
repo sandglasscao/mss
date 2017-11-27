@@ -23,8 +23,10 @@ export class RegisterComponent implements OnInit {
 
   getAgentName() {
     this.registerService
-      .getAgentName(this.registration.parentCode)
-      .then(res => {this.agents = res})
+      .getAgentName(this.registration.parent_code)
+      .then(res => {
+        this.agents = res
+      })
       .catch(error => {
         // this.error = error;
         this.error = "业务员不存在!"
@@ -32,17 +34,18 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.registration.cellphone) {
-      this.registerService
-        .register(this.registration)
-        .then(account => {
-          this.router.navigate(['dashboard']);
-        })
-        .catch(error => {
-          // this.error = error;
-          this.error = "密码错误!"
-        }); // TODO: Display error message
-    }
+    this.registerService
+      .register(this.registration)
+      .then(account => {
+        sessionStorage.setItem('token', account.token);
+        sessionStorage.setItem('username', account.cellphone);
+        sessionStorage.setItem('isLogin', '1');
+        this.router.navigate(['dashboard']);
+      })
+      .catch(error => {
+        // this.error = error;
+        this.error = "密码错误!"
+      }); // TODO: Display error message
   }
 
   checkPwd() {

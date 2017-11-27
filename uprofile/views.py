@@ -19,7 +19,7 @@ from django.contrib.auth.models import User
 
 from uprofile.models import Profile
 from .serializers import (
-    ProfileSerializer)
+    ProfileSerializer, RegisterSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -41,8 +41,22 @@ class UserListApiView(ListAPIView):
             queryset.append(profile)
         return queryset
 
+
+class UserRegisterApiView(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        data = request.data
+        serializer = RegisterSerializer(data=data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
 class ProfileViewSet(ModelViewSet):
-    permission_classes = (IsAuthenticatedOrReadOnly,)
+    permission_classes = (AllowAny,)
     serializer_class = ProfileSerializer
     pagination_class = StandardPagination
 

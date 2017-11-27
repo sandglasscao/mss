@@ -5,22 +5,10 @@ import {Registration} from "./registration";
 
 @Injectable()
 export class RegisterService {
-  private baseUrl = 'api/users/profile/';
+  private baseUrl = 'api/users/register/';
   private usrUrl = 'api/users/';
 
   constructor(private http: Http) {
-  }
-
-  checkCell(cell: string): Promise<Registration> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.set('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers});
-    let cellJson = {cell: cell};
-    return this.http
-      .post(this.baseUrl, cellJson, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
   }
 
   register(registration: Registration): Promise<Registration> {
