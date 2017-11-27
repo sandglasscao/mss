@@ -1,0 +1,163 @@
+
+.wrap{
+	background:url(/static/src/assets/myteam.jpg) no-repeat;
+}
+
+header {
+  width: 100%;
+  height: 1.92rem;
+  background: url(/static/src/assets/header.jpg) no-repeat;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 1.92rem;
+  font-size: 0.7rem;
+  color: #fff;
+}
+header .head_back{
+	float:left;
+}
+
+
+.head_right{
+	width:100%;
+	text-align:center;
+	float:left;
+
+}
+
+section {
+	background:url(/static/src/assets/myteam.jpg) no-repeat;
+    background-size: 100%;
+    margin: 1.92rem 0;
+    width: 100%;
+    min-height:22.42rem;
+}
+
+.mystore{
+			width:100%;
+			height:4rem;
+		}
+		.mystoreL{
+			float:left;
+			width:50%;
+			background-color:#ffffff;
+			margin-top:0.6rem;
+
+		}
+		.mystoreL_con{
+			width:35%;
+			margin-left:28%;
+			padding-left:6%;
+			background-color:#b7e3f0;
+
+		}
+		.mystoreL_con img{
+			max-width:90%;
+			max-height:50%;
+		}
+
+		.mystoreL_con_one{
+			font-size: 0.48rem;
+            color: #148DBC;
+		}
+		.mystoreL_con_num{
+			font-size: 0.9rem;
+            color: #FB8852;
+		}
+		.mystoreL_con_two{
+			font-size: 0.9rem;
+            color: #6098EE;
+		}
+		.mystoreR{
+			float:right;
+			margin-top:0.6rem;
+			width:50%;
+			background-color:#ffffff;
+		}
+		.mystoreR_con{
+			width:35%;
+			margin-left:28%;
+			padding-left:6%;
+			background-color:#b7e3f0;
+		}
+		.mystoreR_con img{
+			max-width:90%;
+			max-height:50%;
+		}
+		.mystoreR_con_one{
+			font-size: 0.48rem;
+            color: #148DBC;
+		}
+		.mystoreR_con_num{
+			font-size: 0.9rem;
+            color: #FB8852;
+		}
+		.mystoreR_con_two{
+			font-size: 0.9rem;
+            color: #6098EE;
+		}
+
+.middel{
+  margin-top:1rem;
+}
+
+.store_list{
+  margin-top:10%;
+}
+
+
+.store_list li{
+	text-align:center;
+	color:#4FA0F2;
+	margin:0.3rem 0;
+	padding:0.3rem 0;
+	background-color:#ffffff;
+	font-size:0.6rem;
+}
+
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.92rem;
+  background-color: #3373F9;
+}
+
+footer a{
+	float: left;
+	width: 25%;
+	height: 1.48rem;
+	margin: 0.26rem 0 0.18rem;
+	color: #fff;
+}
+
+footer .footer_second{
+	color: #FAA76F;
+}
+
+footer a .bwrap{
+	width: 100%;
+	height: 1.48rem;
+	margin: 0 auto;
+}
+footer .bwrap i{
+	display: block;
+	width: 100%;
+	height: 0.82rem;
+	margin-bottom: 0.2rem;
+	text-align: center;
+	font-size: 0.9rem;
+}
+footer .bwrap span{
+	display: block;
+	width: 100%;
+	height: 0.46rem;
+	line-height: 0.46rem;
+	text-align: center;
+	font-size: 0.46rem;
+	transform: scale(0.9);
+}
