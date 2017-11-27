@@ -54,6 +54,8 @@ class ProfileSerializer(ModelSerializer):
         )
         read_only_fields = (
             'user',
+            'address',
+            'parent_agent',
             'grand_agent',
             'created_dt')
 
@@ -76,6 +78,7 @@ class ProfileSerializer(ModelSerializer):
 
         instance.save()
         return instance
+
 
 
 class RegisterSerializer(Serializer):

@@ -55,10 +55,27 @@ class UserRegisterApiView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class ProfileViewSet(ModelViewSet):
-    permission_classes = (AllowAny,)
+class ProfileApiView(APIView):
+    permission_classes = [AllowAny]
     serializer_class = ProfileSerializer
-    pagination_class = StandardPagination
 
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+    def get(self, request, username):
+        user = User.objects.get(username=username)
+        serializer = ProfileSerializer(user.profile)
+        return Response(serializer.data, status=HTTP_200_OK)
+
+    def put(self, request, *args, **kwargs):
+        profile = request.user.profile
+        # print(request.data)
+        data = request.data
+
+        # data.pop('user')
+        # data.pop('address')
+        # data.pop('user')
+        # data.pop('user')
+        serializer = ProfileSerializer(profile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
+
