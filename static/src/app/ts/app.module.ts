@@ -9,7 +9,9 @@ import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './not-found.component';
 import {Router} from "@angular/router";
 import {StoresModule} from "./store-center/stores.module";
-
+import {salesCenterModule} from "./sales-center/sales-center.module";
+import {personalInfoModule} from "./personal-info/personal-info.module";
+import {changePasswordModule} from "./change-password/change-password.module";
 @NgModule({
   imports: [
     BrowserModule,
@@ -17,7 +19,10 @@ import {StoresModule} from "./store-center/stores.module";
     FormsModule,
     //AdminModule,
     StoresModule,
+    salesCenterModule,
+    personalInfoModule,
     DashboardModule,
+    changePasswordModule,
     AppRoutingModule
   ],
   declarations: [

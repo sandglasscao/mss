@@ -1,0 +1,129 @@
+header {
+  width: 100%;
+  height: 1.92rem;
+  background: url(/static/src/assets/header.jpg) no-repeat;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 1.92rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #fff;
+}
+section {
+  margin-top: 1.92rem;
+  width: 100%;
+  background: url(/static/src/assets/my_bg.jpg) no-repeat;
+  min-height:23rem;
+  background-size: 100%;
+  padding-top: 0.62rem;
+}
+section .photo{
+	width: 3.6rem;
+	height: 3.6rem;
+	margin: 0 auto 0.58rem;
+	/*box-sizing: border-box;*/
+	border: 1px solid #fff;
+	border-radius: 50%;
+}
+section .photo .pic{
+	width: 3.32rem;
+	height: 3.32rem;
+	box-sizing: border-box;
+	border: 1px solid #fff;
+	border-radius: 50%;
+	position: relative;
+	top: 0.14rem;left: 0.14rem;
+}
+section .info{
+	width: 13.4rem;
+	margin: 0.58rem auto 0.92rem;
+	color: #3373F9;
+	font-size: 0.6rem;
+}
+section .info .info_list{
+	width: 13.4rem;
+	height: 1.36rem;
+	line-height: 1.36rem;
+	background-color: #fff;
+	margin-bottom: 0.2rem;
+	letter-spacing: 0.14rem;
+}
+section .info_list .list_left{
+	width: 3.6rem;
+	height: 100%;
+	text-indent: 0.6rem;
+}
+section .list_left i{
+	display: inline-block;
+	width: 0.75rem;
+	height: 0.6rem;
+}
+section .info_list .list_right{
+	text-indent: 0.6rem;
+}
+
+
+section .btn_a{
+	width: 12.96rem;
+	height: 1.6rem;
+	margin: 0 auto;
+}
+section .btn_a a{
+	width: 5.2rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	text-align: center;
+	color: #fff;
+	font-size: 0.72rem;
+	border-radius: 0.3rem;
+}
+section .btn_a a.change_pwd{background-color: #3373F9;}
+section .btn_a a.log_out{background-color: #F03C3D;}
+
+
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1.92rem;
+  background-color: #3373F9;
+}
+
+footer a{
+	float: left;
+	width: 25%;
+	height: 1.48rem;
+	margin: 0.26rem 0 0.18rem;
+	color: #fff;
+}
+
+footer .footer_fourth{
+	color: #FAA76F;
+}
+
+footer a .bwrap{
+	width: 100%;
+	height: 1.48rem;
+	margin: 0 auto;
+}
+footer .bwrap i{
+	display: block;
+	width: 100%;
+	height: 0.82rem;
+	margin-bottom: 0.2rem;
+	text-align: center;
+	font-size: 0.9rem;
+}
+footer .bwrap span{
+	display: block;
+	width: 100%;
+	height: 0.46rem;
+	line-height: 0.46rem;
+	text-align: center;
+	font-size: 0.46rem;
+	transform: scale(0.9);
+}

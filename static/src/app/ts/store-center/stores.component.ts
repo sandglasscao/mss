@@ -2,7 +2,9 @@
 import {Component} from '@angular/core';
 
 @Component({
-  templateUrl: 'static/src/app/templates/store-center/stores.html'
+  selector: 'store-center',
+  templateUrl: 'static/src/app/templates/store-center/stores.html',
+  styleUrls:['static/src/app/templates/store-center/stores.css']
 })
 export class StoresComponent {
 }

@@ -28,3 +28,6 @@ input,button{
 body{
   background-color: #E6F9FF;
 }
+
+.fl{float: left;}
+.fr{float: right;}
