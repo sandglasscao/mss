@@ -13,6 +13,18 @@ const appRoutes: Routes = [
     loadChildren: 'ts/store-center/stores.module#StoresModule'
   },
   {
+    path:'change-password',
+    loadChildren: 'ts/change-password/change-password.module#changePasswordModule'
+  },
+  {
+    path: 'personal-info',
+    loadChildren: 'ts/personal-info/personal-info.module#personInfoModule'
+  },
+  {
+    path: 'sales-center',
+    loadChildren: 'ts/sales-center/sales-center.module#salesCenterModule'
+  },
+  {
     path: 'dashboard',
     loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
   },
