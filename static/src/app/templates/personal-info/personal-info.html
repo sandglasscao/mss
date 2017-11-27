@@ -1,76 +1,78 @@
+<div [hidden]="toChangPwd||isSuccessful">
+    <header>个&nbsp;人&nbsp;资&nbsp;料</header>
+    <section>
+        <div class="photo">
+            <div class="pic"></div>
+        </div>
+        <div class="info">
+            <div class="info_list">
+                <div class="fl list_left">用户名：</div>
+                <div class="fl list_right username">{{ profile.full_name }}</div>
+            </div>
+            <div class="info_list">
+                <div class="fl list_left">编<i></i>码：</div>
+                <div class="fl list_right num">{{ username }}</div>
+            </div>
+            <div class="info_list">
+                <div class="fl list_left">手机号：</div>
+                <div class="fl list_right order_counts">{{ profile.cellphone }}</div>
+            </div>
+            <div class="info_list">
+                <div class="fl list_left">推荐人：</div>
+                <div class="fl list_right order_money">{{ profile.parent_code }}</div>
+            </div>
+            <div class="info_list">
+                <div class="fl list_left">推荐资格：</div>
+                <div class="fl list_right brokerage">{{ hasRecommAuth }}</div>
+            </div>
+        </div>
+        <div class="btn_a">
+            <button type="button" class="fl change_pwd" (click)="toChangPwd=!toChangPwd">修改密码</button>
+            <a routerLink="../dashboard/" routerLinkActive="active" class="fr log_out">
+                退出登录
+            </a>
+        </div>
+    </section>
+</div>
 
-<header>个&nbsp;人&nbsp;资&nbsp;料</header>
-		<section>
-			<div class="photo">
-				<div class="pic"></div>
-			</div>
-			<div class="info">
-				<div class="info_list">
-					<div class="fl list_left">用户名：</div>
-					<div class="fl list_right username">郑伟</div>
-				</div>
-				<div class="info_list">
-					<div class="fl list_left">编<i></i>码：</div>
-					<div class="fl list_right num">246538</div>
-				</div>
-				<div class="info_list">
-					<div class="fl list_left">订单数：</div>
-					<div class="fl list_right order_counts">145</div>
-				</div>
-				<div class="info_list">
-					<div class="fl list_left">总金额：</div>
-					<div class="fl list_right order_money">￥759434</div>
-				</div>
-				<div class="info_list">
-					<div class="fl list_left">佣<i></i>金：</div>
-					<div class="fl list_right brokerage">￥8125</div>
-				</div>
-			</div>
-			<div class="btn_a">
-				<a class="fl change_pwd" routerLink="../change-password" routerLinkActive="active">修改密码</a>
+<chng-pwd [hidden]="!toChangPwd" [showChng]="toChangPwd" (changed)="changePwd($event)"></chng-pwd>
 
-                <a routerLink="../dashboard/" routerLinkActive="active"  class="fr log_out">
-				退出登录
-                </a>
-			</div>
-		</section>
+<footer>
 
-       <footer>
+    <a routerLink="../dashboard" routerLinkActive="active" class="footer_first">
+        <div class="bwrap">
+            <i class="fa fa-home"></i>
+            <span>首页</span>
+        </div>
+    </a>
 
-            <a routerLink="../dashboard" routerLinkActive="active" class="footer_first">
-				<div class="bwrap">
-					<i class="fa fa-home"></i>
-					<span>首页</span>
-				</div>
-              </a>
+    <a routerLink="../sales-center" routerLinkActive="active" class="footer_second">
+        <div class="bwrap">
 
-			<a routerLink="../sales-center" routerLinkActive="active" class="footer_second">
-				<div class="bwrap">
-
-					<i class="fa fa-bank"></i>
-					<span>我的店铺</span>
-
-
-                </div>
-			</a>
-			<a routerLink="../store-center" routerLinkActive="active" class="footer_th">
-				<div class="bwrap">
+            <i class="fa fa-bank"></i>
+            <span>我的店铺</span>
 
 
-					<i class="fa fa-group"></i>
-					<span>我的团队</span>
+        </div>
+    </a>
+    <a routerLink="../store-center" routerLinkActive="active" class="footer_th">
+        <div class="bwrap">
 
-				</div>
-			</a>
 
-			<a routerLink="../personal-info" routerLinkActive="active" class="footer_fourth">
-				<div class="bwrap">
+            <i class="fa fa-group"></i>
+            <span>我的团队</span>
 
-					<i class="fa fa-address-card"></i>
-					<span>个人资料</span>
+        </div>
+    </a>
 
-				</div>
-			</a>
+    <a routerLink="../personal-info" routerLinkActive="active" class="footer_fourth">
+        <div class="bwrap">
 
-        </footer>
+            <i class="fa fa-address-card"></i>
+            <span>个人资料</span>
+
+        </div>
+    </a>
+
+</footer>
 

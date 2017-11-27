@@ -10,8 +10,7 @@ import {PageNotFoundComponent} from './not-found.component';
 import {Router} from "@angular/router";
 import {StoresModule} from "./store-center/stores.module";
 import {salesCenterModule} from "./sales-center/sales-center.module";
-import {personalInfoModule} from "./personal-info/personal-info.module";
-import {changePasswordModule} from "./change-password/change-password.module";
+import {PersonalInfoModule} from "./individual-center/personal-info.module";
 @NgModule({
   imports: [
     BrowserModule,
@@ -20,9 +19,8 @@ import {changePasswordModule} from "./change-password/change-password.module";
     //AdminModule,
     StoresModule,
     salesCenterModule,
-    personalInfoModule,
+    PersonalInfoModule,
     DashboardModule,
-    changePasswordModule,
     AppRoutingModule
   ],
   declarations: [

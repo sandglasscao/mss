@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Registration} from "./registration";
-import {Profile} from "./profile";
+import {Profile} from "../individual-center/profile";
 
 @Injectable()
 export class RegisterService {

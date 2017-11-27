@@ -1,14 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {personalInfoComponent} from './personal-info.components';
+import {PersonalInfoComponent} from './personal-info.components';
 
 
 const personalInfoRouts: Routes = [
   {
     path: 'personal-info',
-    component: personalInfoComponent,
-
+    component: PersonalInfoComponent,
   }
 ];
 
@@ -20,5 +19,5 @@ const personalInfoRouts: Routes = [
     RouterModule
   ]
 })
-export class personalInfoRoutingModule {
+export class PersonalInfoRoutingModule {
 }
