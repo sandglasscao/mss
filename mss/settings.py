@@ -101,7 +101,11 @@ DATABASES = {
         'PASSWORD': os.environ['MYSQL_DB_PASSWORD'],
         'HOST': os.environ['MYSQL_DB_HOST'],
         'PORT': os.environ['MYSQL_DB_PORT'],
-     },
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+            'charset': 'utf8',
+        }
+    },
     # 'b2b': {
     #     'ENGINE': 'django.db.backends.oracle',
     #     'NAME': os.environ['ORACLE_APP_NAME'],

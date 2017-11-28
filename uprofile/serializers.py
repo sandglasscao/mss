@@ -29,6 +29,17 @@ class AddressSerializer(ModelSerializer):
         return Address.objects.create(**validated_data)
 
 
+class PasswordSerializer(ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('password',)
+
+    def update(self, instance, validated_data):
+        instance.set_password(validated_data.get('password', instance.password))
+        instance.save()
+        return instance
+
+
 class ProfileSerializer(ModelSerializer):
     user = UserSerializer(required=False)
     isEmployee = BooleanField(required=False)
@@ -80,7 +91,6 @@ class ProfileSerializer(ModelSerializer):
         return instance
 
 
-
 class RegisterSerializer(Serializer):
     username = CharField(max_length=6, required=False)
     token = CharField(allow_blank=True, read_only=True)
@@ -121,14 +131,3 @@ class RegisterSerializer(Serializer):
         validated_data["token"] = jwt_encode_handler(payload)
         validated_data['username'] = user.username
         return validated_data
-
-
-class PasswordSerializer(ModelSerializer):
-    class Meta:
-        model = get_user_model()
-        fields = ('password',)
-
-    def update(self, instance, validated_data):
-        instance.set_password(validated_data.get('password', instance.password))
-        instance.save()
-        return instance

@@ -7,7 +7,7 @@ import {User} from "./user";
   templateUrl: 'static/src/app/templates/dashboard/change-password.html',
   styleUrls: ['static/src/app/templates/dashboard/change-password.css']
 })
-export class ChangePasswordComponent implements OnInit {
+export class PasswordComponent implements OnInit {
   user = new User();
   second_pwd = null;
   error = null;

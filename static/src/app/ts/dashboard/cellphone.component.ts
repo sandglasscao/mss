@@ -11,7 +11,7 @@ import {RegisterService} from "./registrater.service";
 })
 
 
-export class CheckCellphoneComponent {
+export class CellPhoneComponent {
   cellPhone: string;
   smsCode: string;
   verification = null;

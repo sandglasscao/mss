@@ -3,11 +3,11 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'home-team',
-  templateUrl: 'static/src/app/templates/dashboard/sales-center/sales-center.html',
-  styleUrls:['static/src/app/templates/dashboard/sales-center/sales-center.css']
+  selector: 'home-stores',
+  templateUrl: 'static/src/app/templates/dashboard/stores.html',
+  styleUrls:['static/src/app/templates/dashboard/stores.css']
 })
-export class DashboardTeamComponent implements OnInit {
+export class StoresComponent implements OnInit {
   constructor(private router: Router) {
   }
 

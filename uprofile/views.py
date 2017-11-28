@@ -74,6 +74,7 @@ class ProfileApiView(APIView):
             return Response(serializer.data, status=200)
         return Response(serializer.errors, status=400)
 
+
 class ChangePwdApiView(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = PasswordSerializer
@@ -84,6 +85,3 @@ class ChangePwdApiView(APIView):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
-
-
-

@@ -6,35 +6,32 @@ import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
 import {LoginComponent} from "./login.component";
 import {RegisterComponent} from "./register.component";
-import {CheckCellphoneComponent} from "./check-cellphone.component";
+import {CellPhoneComponent} from "./cellphone.component";
 import {LoginService} from "./login.service";
 import {RegisterService} from "./registrater.service";
-import {StoresModule} from "./store-center/stores.module";
 
 import {FooterComponent} from "./footer.components";
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PersonalInfoComponent} from "./profile.components";
-import {ChangePasswordComponent} from "./change-password.components";
-import {DashboardStoresComponent} from "./dashboard-stores.componet";
-import {DashboardTeamComponent} from "./dashboard-team.component";
+import {PasswordComponent} from "./password.components";
+import {StoresComponent} from "./stores.componet";
+import {TeamComponent} from "./team.component";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    StoresModule,
-
     DashboardRoutingModule
   ],
   declarations: [
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    CheckCellphoneComponent,
+    CellPhoneComponent,
     PersonalInfoComponent,
-    ChangePasswordComponent,
+    PasswordComponent,
     DashboardHomeComponent,
-    DashboardStoresComponent,
-    DashboardTeamComponent,
+    StoresComponent,
+    TeamComponent,
     FooterComponent,
   ],
   providers: [LoginService, RegisterService]
