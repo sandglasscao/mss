@@ -4,9 +4,10 @@ import {ProfileService} from "./profile.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'personal-info',
-  templateUrl: 'static/src/app/templates/personal-info/personal-info.html',
-  styleUrls: ['static/src/app/templates/personal-info/personal-info.css']
+  selector: 'profile-header',
+  templateUrl: 'static/src/app/templates/dashboard/profile.html',
+  styleUrls: ['static/src/app/templates/dashboard/profile.css'],
+  providers: [ProfileService]
 })
 export class PersonalInfoComponent implements OnInit {
   profile = new Profile();

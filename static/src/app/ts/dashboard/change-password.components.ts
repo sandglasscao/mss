@@ -4,8 +4,8 @@ import {ProfileService} from "./profile.service";
 
 @Component({
   selector: 'chng-pwd',
-  templateUrl: 'static/src/app/templates/individual-center/change-password.html',
-  styleUrls: ['static/src/app/templates/individual-center/change-password.css']
+  templateUrl: 'static/src/app/templates/dashboard/change-password.html',
+  styleUrls: ['static/src/app/templates/dashboard/change-password.css']
 })
 export class ChangePasswordComponent implements OnInit {
   password = null;

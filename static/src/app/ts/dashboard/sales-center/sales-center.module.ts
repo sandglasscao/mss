@@ -2,22 +2,21 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
-
-import {salesCenterRoutingModule} from "./sales-center-routing.module";
-import {salesCenterComponent} from "./sales-center.component";
+import {SalesCenterRoutingModule} from "./sales-center-routing.module";
+import {SalesCenterComponent} from "./sales-center.component";
 
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    salesCenterRoutingModule
+    SalesCenterRoutingModule
   ],
   declarations: [
-    salesCenterComponent,
+    SalesCenterComponent,
 
   ],
   providers: []
 })
-export class salesCenterModule {
+export class SalesCenterModule {
 }

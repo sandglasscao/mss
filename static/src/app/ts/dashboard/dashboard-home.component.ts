@@ -1,13 +1,13 @@
 // TODO SOMEDAY: Feature Componetized like CrisisCenter
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  templateUrl: 'static/src/app/templates/dashboard/dashboard.html'
+  selector: 'home-header',
+  templateUrl: 'static/src/app/templates/dashboard/dashboard-home.html',
+  styleUrls:['static/src/app/templates/dashboard/dashboard-home.css']
 })
-export class DashboardComponent implements OnInit {
-  isProfile: boolean;
-
+export class DashboardHomeComponent implements OnInit {
   constructor(private router: Router) {
   }
 
@@ -16,10 +16,5 @@ export class DashboardComponent implements OnInit {
     if (!isLogin) {
       this.router.navigate(['/login']);
     }
-    this.isProfile = false;
   }
-
-  changeShow(value) {
-        this.isProfile = value['isProfile'];
-    }
 }

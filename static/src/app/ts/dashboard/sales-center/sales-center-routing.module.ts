@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {salesCenterComponent} from './sales-center.component';
+import {SalesCenterComponent} from './sales-center.component';
 
 
 const salesCenterRoutes: Routes = [
   {
     path: 'sales-center',
-    component: salesCenterComponent,
+    component: SalesCenterComponent,
 
   }
 ];
@@ -20,5 +20,5 @@ const salesCenterRoutes: Routes = [
     RouterModule
   ]
 })
-export class salesCenterRoutingModule {
+export class SalesCenterRoutingModule {
 }

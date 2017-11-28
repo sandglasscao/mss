@@ -8,18 +8,13 @@ import {HttpModule} from "@angular/http";
 import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './not-found.component';
 import {Router} from "@angular/router";
-import {StoresModule} from "./store-center/stores.module";
-import {salesCenterModule} from "./sales-center/sales-center.module";
-import {PersonalInfoModule} from "./individual-center/personal-info.module";
+
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
     //AdminModule,
-    StoresModule,
-    salesCenterModule,
-    PersonalInfoModule,
     DashboardModule,
     AppRoutingModule
   ],

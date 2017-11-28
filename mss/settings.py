@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'crispy_forms',
     'uprofile',
-    'meta'
+    'meta',
+    'b2b',
 ]
 
 MIDDLEWARE = [
@@ -100,8 +101,24 @@ DATABASES = {
         'PASSWORD': os.environ['MYSQL_DB_PASSWORD'],
         'HOST': os.environ['MYSQL_DB_HOST'],
         'PORT': os.environ['MYSQL_DB_PORT'],
-    }
+     },
+    # 'b2b': {
+    #     'ENGINE': 'django.db.backends.oracle',
+    #     'NAME': os.environ['ORACLE_APP_NAME'],
+    #     'USER': os.environ['ORACLE_DB_USERNAME'],
+    #     'PASSWORD': os.environ['ORACLE_DB_PASSWORD'],
+    #     'HOST': os.environ['ORACLE_DB_HOST'],
+    #     'PORT': os.environ['ORACLE_DB_PORT'],
+    # }
 }
+#
+# # By Cao Fang >> use multi-database in django
+# DATABASE_ROUTERS = ['b2b.database_router.DatabaseAppsRouter']
+# DATABASE_APPS_MAPPING = {
+#     # example:
+#     #'app_name':'database_name',
+#     'b2b': 'b2b',
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators

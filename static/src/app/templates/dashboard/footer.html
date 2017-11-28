@@ -1,0 +1,36 @@
+<footer>
+    <a routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="footer_first">
+        <div class="bwrap">
+            <i class="fa fa-home"></i>
+            <span>首页</span>
+        </div>
+    </a>
+
+    <a routerLink="../sales-center" routerLinkActive="active">
+        <div class="bwrap">
+
+            <i class="fa fa-bank"></i>
+            <span>我的店铺</span>
+
+
+        </div>
+    </a>
+    <a routerLink="../store-center" routerLinkActive="active">
+        <div class="bwrap">
+
+
+            <i class="fa fa-group"></i>
+            <span>我的团队</span>
+
+        </div>
+    </a>
+
+    <div class="bwrap">
+        <button type="button" class="login" (click)="showProfile()">
+            <i class="fa fa-address-card"></i>个人资料
+        </button>
+    </div>
+
+</footer>
+
+
