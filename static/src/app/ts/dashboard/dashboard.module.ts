@@ -10,18 +10,19 @@ import {CheckCellphoneComponent} from "./check-cellphone.component";
 import {LoginService} from "./login.service";
 import {RegisterService} from "./registrater.service";
 import {StoresModule} from "./store-center/stores.module";
-import {SalesCenterModule} from "./sales-center/sales-center.module";
+
 import {FooterComponent} from "./footer.components";
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PersonalInfoComponent} from "./profile.components";
 import {ChangePasswordComponent} from "./change-password.components";
-
+import {DashboardStoresComponent} from "./dashboard-stores.componet";
+import {DashboardTeamComponent} from "./dashboard-team.component";
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     StoresModule,
-    SalesCenterModule,
+
     DashboardRoutingModule
   ],
   declarations: [
@@ -32,6 +33,8 @@ import {ChangePasswordComponent} from "./change-password.components";
     PersonalInfoComponent,
     ChangePasswordComponent,
     DashboardHomeComponent,
+    DashboardStoresComponent,
+    DashboardTeamComponent,
     FooterComponent,
   ],
   providers: [LoginService, RegisterService]

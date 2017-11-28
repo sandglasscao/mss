@@ -11,13 +11,6 @@ const dashboardRoutes: Routes = [
     path: '',
     children: [
       {
-        path: 'store-center',
-        loadChildren: 'ts/store-center/stores.module#StoresModule'
-      },
-      {
-        path: 'sales-center',
-        loadChildren: 'ts/sales-center/sales-center.module#SalesCenterModule'
-      }, {
         path: '',
         children: [
           {path: 'login', component: LoginComponent},

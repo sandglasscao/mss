@@ -51,7 +51,7 @@ section .info .info_list{
 	letter-spacing: 0.14rem;
 }
 section .info_list .list_left{
-	width: 3.6rem;
+	width: 4.3rem;
 	height: 100%;
 	text-indent: 0.6rem;
 }
@@ -70,6 +70,15 @@ section .btn_a{
 	height: 1.6rem;
 	margin: 0 auto;
 }
+section .btn_a button{
+  width: 5.2rem;
+	height: 1.6rem;
+	line-height: 1.6rem;
+	text-align: center;
+	color: #fff;
+	font-size: 0.72rem;
+	border-radius: 0.3rem;
+}
 section .btn_a a{
 	width: 5.2rem;
 	height: 1.6rem;
@@ -79,5 +88,5 @@ section .btn_a a{
 	font-size: 0.72rem;
 	border-radius: 0.3rem;
 }
-section .btn_a a.change_pwd{background-color: #3373F9;}
-section .btn_a a.log_out{background-color: #F03C3D;}
+section .btn_a .change_pwd{background-color: #3373F9;}
+section .btn_a .log_out{background-color: #F03C3D;}
