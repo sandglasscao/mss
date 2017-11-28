@@ -8,8 +8,8 @@ import {Component, EventEmitter, Output} from '@angular/core';
 export class FooterComponent {
   @Output() changed = new EventEmitter();
 
-  showProfile() {
-    let result = {'isProfile': true};
+  show(which: string) {
+    let result = {'shows': which};
     this.changed.emit(result);
   }
 }

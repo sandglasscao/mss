@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   templateUrl: 'static/src/app/templates/dashboard/dashboard.html'
 })
 export class DashboardComponent implements OnInit {
-  isProfile: boolean;
+  which: string;
 
   constructor(private router: Router) {
   }
@@ -16,10 +16,10 @@ export class DashboardComponent implements OnInit {
     if (!isLogin) {
       this.router.navigate(['/login']);
     }
-    this.isProfile = false;
+    this.which = "";
   }
 
   changeShow(value) {
-        this.isProfile = value['isProfile'];
+        this.which = value['shows'];
     }
 }
