@@ -14,7 +14,6 @@ export class PersonalInfoComponent implements OnInit {
   username = null;
   hasRecommAuth: string;
   toChangPwd: boolean;
-  isSuccessful: boolean;
   error = null;
 
   constructor(private profileService: ProfileService) {
@@ -26,7 +25,6 @@ export class PersonalInfoComponent implements OnInit {
 
   initProfile() {
     this.toChangPwd = false;
-    this.isSuccessful = false;
     this.username = sessionStorage.getItem('username');
     this.profileService
       .getProfile(this.username)
@@ -65,7 +63,6 @@ export class PersonalInfoComponent implements OnInit {
 
   changePwd(value) {
         this.toChangPwd = value['toChangPwd'];
-        this.profile.password = value['password'];
     }
 
 

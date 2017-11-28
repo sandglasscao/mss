@@ -19,7 +19,7 @@ from django.contrib.auth.models import User
 
 from uprofile.models import Profile
 from .serializers import (
-    ProfileSerializer, RegisterSerializer)
+    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -67,15 +67,23 @@ class ProfileApiView(APIView):
     def put(self, request, *args, **kwargs):
         profile = request.user.profile
         # print(request.data)
-        data = request.data
 
-        # data.pop('user')
-        # data.pop('address')
-        # data.pop('user')
-        # data.pop('user')
         serializer = ProfileSerializer(profile, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=200)
         return Response(serializer.errors, status=400)
+
+class ChangePwdApiView(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = PasswordSerializer
+
+    def put(self, request, *args, **kwargs):
+        serializer = PasswordSerializer(request.user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
+
 

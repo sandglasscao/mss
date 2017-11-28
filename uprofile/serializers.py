@@ -121,3 +121,14 @@ class RegisterSerializer(Serializer):
         validated_data["token"] = jwt_encode_handler(payload)
         validated_data['username'] = user.username
         return validated_data
+
+
+class PasswordSerializer(ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ('password',)
+
+    def update(self, instance, validated_data):
+        instance.set_password(validated_data.get('password', instance.password))
+        instance.save()
+        return instance

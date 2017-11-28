@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Profile} from "./profile";
 import {ProfileService} from "./profile.service";
+import {User} from "./user";
 
 @Component({
   selector: 'chng-pwd',
@@ -8,8 +8,7 @@ import {ProfileService} from "./profile.service";
   styleUrls: ['static/src/app/templates/dashboard/change-password.css']
 })
 export class ChangePasswordComponent implements OnInit {
-  password = null;
-  old_pwd = null;
+  user = new User();
   second_pwd = null;
   error = null;
 
@@ -20,19 +19,29 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.user.username = sessionStorage.getItem('username');
   }
 
 
   changePwd() {
     if (this.checkPwd()) {
-      this.showChng = false;
-      let result = {'toChangPwd': this.showChng, 'password': this.password};
-      this.changed.emit(result);
+      this.profileService
+        .changePwd(this.user)
+        .then(res => {
+          let a = 1;
+          this.showChng = false;
+          let result = {'toChangPwd': this.showChng};
+          this.changed.emit(result);
+        })
+        .catch(error => {
+          // this.error = error;
+          this.error = "密码错误!"
+        }); // TODO: Display error message
     }
   }
 
   checkPwd(): boolean {
-    this.error = (this.password != this.second_pwd) ? "密码不一致,请重新输入" : null;
+    this.error = (this.user.password != this.second_pwd) ? "密码不一致,请重新输入" : null;
     return (this.error) ? false : true;
   }
 
