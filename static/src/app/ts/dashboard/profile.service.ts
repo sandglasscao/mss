@@ -7,7 +7,7 @@ import {User} from "./user";
 @Injectable()
 export class ProfileService {
   private profileUrl = 'api/users/profile/';
-  private changepwdUrl = 'api/users/changepwd';
+  private changepwdUrl = 'api/users/changepwd/';
 
   constructor(private http: Http) {
   }
@@ -28,7 +28,8 @@ export class ProfileService {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    return this.http.put(this.changepwdUrl, JSON.stringify(user), {headers: headers})
+    let options = new RequestOptions({headers: headers});
+    return this.http.put(this.changepwdUrl, JSON.stringify(user), options)
       .toPromise()
       .then(response => response.json())
       .catch(this.handleError);

@@ -1,4 +1,7 @@
-<home-header *ngIf="!isProfile"></home-header>
-<profile-header *ngIf="isProfile"></profile-header>
+<div [ngSwitch]="which">
+    <profile-header *ngSwitchCase="'profile'"></profile-header>
+    <home-header *ngSwitchDefault></home-header>
+</div>
+
 <footer-bar (changed)="changeShow($event)"></footer-bar>
 
