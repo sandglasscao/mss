@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'home-stores',
   templateUrl: 'static/src/app/templates/dashboard/stores.html',
-  styleUrls:['static/src/app/templates/dashboard/stores.css']
+  styleUrls: ['static/src/app/templates/dashboard/stores.css']
 })
 export class StoresComponent implements OnInit {
   constructor(private router: Router) {

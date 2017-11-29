@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'home-team',
   templateUrl: 'static/src/app/templates/dashboard/sales-center.html',
-  styleUrls:['static/src/app/templates/dashboard/sales-center.css']
+  styleUrls: ['static/src/app/templates/dashboard/sales-center.css']
 })
 export class TeamComponent implements OnInit {
   constructor(private router: Router) {
