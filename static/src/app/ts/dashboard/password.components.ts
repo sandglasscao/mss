@@ -23,8 +23,8 @@ export class PasswordComponent implements OnInit {
   }
   back() {
     this.showChng = false;
-          let result = {'toChangPwd': this.showChng};
-          this.changed.emit(result);
+    let result = {'toChangPwd': this.showChng};
+    this.changed.emit(result);
   }
 
   changePwd() {
