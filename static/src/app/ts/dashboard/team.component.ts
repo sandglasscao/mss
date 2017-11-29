@@ -10,7 +10,10 @@ import {Router} from "@angular/router";
 export class TeamComponent implements OnInit {
   constructor(private router: Router) {
   }
-
+  onActive = true;
+  decide(tf: boolean) {
+    this.onActive = tf;
+  }
   ngOnInit(): void {
     let isLogin = sessionStorage.getItem('isLogin');
     if (!isLogin) {

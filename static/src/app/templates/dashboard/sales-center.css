@@ -46,14 +46,15 @@ section {
 			margin-top:0.6rem;
 
 		}
-		.mystoreL_con{
+    #mystoreL_c{
 			width:35%;
 			margin-left:28%;
 			padding-left:6%;
+    }
+		.mystoreL_con{
 			background-color:#b7e3f0;
-
 		}
-		.mystoreL_con img{
+		#mystoreL_c img{
 			max-width:90%;
 			max-height:50%;
 		}

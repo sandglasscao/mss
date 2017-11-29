@@ -9,28 +9,24 @@
 
 		<ul class="mystore">
 			<li class="mystoreL">
-				<a href="#">
-				<div class="mystoreL_con">
-					<img src="/static/src/assets/index4.jpg"/>
+
+				<div id="mystoreL_c" [class.mystoreL_con]="onActive" (click)="decide(true)">
+					<img src="/static/src/assets/index4.png"/>
 					<div class="mystoreL_con_one">有效店铺</div>
 					<span class="mystoreL_con_num">70</span>
 					<span class="mystoreL_con_two">家</span>
 				</div>
 
-				</a>
-
-
-
 			</li>
 			<li class="mystoreR">
-				 <a href="#">
-				 	<div class="mystoreR_con">
-				 		<img src="/static/src/assets/index8.jpg"/>
+
+				 	<div id="mystoreL_c" [class.mystoreL_con]="!onActive" (click)="decide(false)">
+				 		<img src="/static/src/assets/index8.png"/>
 				 		<div class="mystoreR_con_one">开单店铺</div>
 					    <span class="mystoreR_con_num">8</span>
 					    <span class="mystoreR_con_two">家</span>
 				 	</div>
-				 </a>
+
 
 			</li>
 		</ul>

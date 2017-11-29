@@ -21,7 +21,11 @@ export class PasswordComponent implements OnInit {
   ngOnInit(): void {
     this.user.username = sessionStorage.getItem('username');
   }
-
+  back() {
+    this.showChng = false;
+          let result = {'toChangPwd': this.showChng};
+          this.changed.emit(result);
+  }
 
   changePwd() {
     if (this.checkPwd()) {
@@ -29,9 +33,7 @@ export class PasswordComponent implements OnInit {
         .changePwd(this.user)
         .then(res => {
           let a = 1;
-          this.showChng = false;
-          let result = {'toChangPwd': this.showChng};
-          this.changed.emit(result);
+          this.back();
         })
         .catch(error => {
           // this.error = error;
