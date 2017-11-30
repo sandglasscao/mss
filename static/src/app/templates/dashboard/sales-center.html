@@ -26,36 +26,16 @@
 					    <span class="mystoreR_con_num">8</span>
 					    <span class="mystoreR_con_two">家</span>
 				 	</div>
-
 			</li>
 		</ul>
 
 			<div class="middel">
 				<ul class="store_list">
-					<li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-                    <li> <span> 1</span> .北京大兴区富康路188号   > </li>
-
-
+                    <li *ngFor="let item of items; let i = index;"><span>{{ i }}</span>.&nbsp;{{ item }}</li>
 				</ul>
 			</div>
 
 	</section>
-
-
 </div>
 
 
