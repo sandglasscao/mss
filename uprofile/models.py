@@ -3,7 +3,8 @@ from django.db import models
 
 from meta.models import AddressCode
 
-#User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
+
+# User.profile = property(lambda u: Profile.objects.get_or_create(user=u)[0])
 
 
 class Profile(models.Model):
@@ -32,3 +33,29 @@ class Address(models.Model):
         AddressCode,
         related_name='district', )
     owner = models.ForeignKey(User)
+
+
+class Store(models.Model):
+    name = models.CharField(max_length=50, null=True)
+    address = models.CharField(max_length=100, null=True)
+    latitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)
+    longitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)
+    owner = models.CharField(max_length=50, null=True)
+    cellphone = models.CharField(max_length=11, null=True)
+    agent = models.ForeignKey(User)
+    status = models.CharField(max_length=2,
+                              choices=(
+                                  ('-2', '审核未通过'),
+                                  ('-1', '待审核'),
+                                  ('0', '已注册'),
+                                  ('1', '已下单'),
+                                  ('2', '有效'),
+                              ),
+                              default='-1'
+                              )
+    license = models.CharField(max_length=20, null=True)
+    license_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
+    indoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
+    outdoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
+    b2b_id = models.IntegerField(null=True)
+    created_dt = models.DateTimeField(null=True)

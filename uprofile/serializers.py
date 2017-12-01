@@ -9,7 +9,7 @@ from rest_framework_jwt.settings import api_settings
 
 from .models import (
     Profile,
-    Address)
+    Address, Store)
 
 
 class UserSerializer(ModelSerializer):
@@ -131,3 +131,25 @@ class RegisterSerializer(Serializer):
         validated_data["token"] = jwt_encode_handler(payload)
         validated_data['username'] = user.username
         return validated_data
+
+
+class StoreSerializer(ModelSerializer):
+    class Meta:
+        model = Store
+        fields = (
+            'id',
+            'name',
+            'address',
+            'latitude',
+            'longitude',
+            'owner',
+            'cellphone',
+            'agent',
+            'status',
+            'license',
+            'license_pic',
+            'indoor_pic',
+            'outdoor_pic',
+            'b2b_id',
+            'created_dt',
+        )
