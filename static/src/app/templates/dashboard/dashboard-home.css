@@ -68,6 +68,7 @@ section .menu li {
   height: 0.48rem;
   font-size: 0.48rem;
   color: #148DBC;
+  text-align: left;
 }
 section .menu li:nth-child(odd) {
   margin-right: 0.12rem;

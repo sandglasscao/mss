@@ -4,7 +4,6 @@ import {Router} from '@angular/router';
 import {LoginService} from './login.service';
 import {User} from "./user";
 
-
 @Component({
   selector: 'login-form',
   templateUrl: 'static/src/app/templates/dashboard/login.html',
