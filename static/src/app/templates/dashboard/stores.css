@@ -52,13 +52,12 @@ section .list_left .photo_wrap{
 	top: 0;right: 0;bottom: 0;left: 0;
 	margin: auto;
 }
-section .photo_wrap .photo{
+section .photo_wrap img{
+  display: block;
 	margin: 0 auto;
 	width: 2.12rem;
 	height: 2.12rem;
 	border-radius: 50%;
-	background: url(/static/src/assets/logo1.jpg) no-repeat;
-	background-size: cover;
 }
 section .photo_wrap .name{
 	height: 0.6rem;

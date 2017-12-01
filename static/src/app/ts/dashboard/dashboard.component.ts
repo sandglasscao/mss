@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
     }
     this.which = "";
   }
-
   changeShow(value) {
         this.which = value['shows'];
     }

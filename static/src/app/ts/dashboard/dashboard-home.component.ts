@@ -12,9 +12,5 @@ export class DashboardHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let isLogin = sessionStorage.getItem('isLogin');
-    if (!isLogin) {
-      this.router.navigate(['/login']);
-    }
   }
 }
