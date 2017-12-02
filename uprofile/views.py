@@ -23,7 +23,7 @@ from .serializers import (
 
 
 class StandardPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
@@ -90,7 +90,7 @@ class ChangePwdApiView(APIView):
 class StoreListApiView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = StoreSerializer
-    #pagination_class = StandardPagination
+    pagination_class = StandardPagination
 
     def get_queryset(self):
         try:
