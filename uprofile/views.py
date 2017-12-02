@@ -149,7 +149,7 @@ class StoreListApiView(ListAPIView):
 
     def __create_agent__(self, agentb2b):
         user = User.objects.create(username=agentb2b.num)
-        user.set_password(agentb2b.num)
+        user.set_password(agentb2b.cellphone)
         user.save()
 
         cellphone = agentb2b.cellphone or None
