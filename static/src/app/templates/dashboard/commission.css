@@ -1,0 +1,131 @@
+ 	  .agent_res{
+	 	      position:fixed;
+	 	      top:0;
+	 	      left:0;
+	 	      width:50%;
+	 	  }
+	 	  .agent_res img{
+	 	  	max-width:100%;
+	 	  }
+	 	  .agent_con{
+	 	  	position:fixed;
+	 	    top:0;
+	 	    right:0;
+	 	    width:49%;
+	 	  }
+	 	  .agent_con{
+	 	  	padding-top:12%;
+	 	  }
+	 	  .agent_con_top{
+	 	  	font-size:40px;
+	 	    position:relative;
+	 	    left:47%;
+	 	    top:0;
+	 	  }
+	 	  .agent_con_first{
+	 	  	width:100%;
+	 	  	margin-top:4%;
+	 	  	padding-top:1%;
+	 	  	padding-bottom:1%;
+	 	  }
+	 	  .agent_con_first span{
+	 	  	float:left;
+	 	  	text-align:right;
+	 	  	width:36%;
+	 	  	font-size:35px;
+	 	  }
+	 	  .agent_con_first input{
+	 	  	 width: 50%;
+             height:43px ;
+	 	  	 box-sizing: border-box;
+	 	  	 border: 1px solid black;
+             border-radius: 3px;
+	 	  }
+	 	  .agent_con_second{
+	 	  	width:100%;
+	 	  	padding-top:1%;
+	 	  	padding-bottom:1%;
+	 	  }
+	 	  .agent_con_second span{
+	 	  	float:left;
+	 	  	text-align:right;
+	 	  	width:36%;
+	 	  	font-size:35px;
+	 	  }
+	 	  .agent_con_second input{
+	 	  	 width: 50%;
+             height:34px ;
+	 	  	 box-sizing: border-box;
+	 	  	 border: 1px solid black;
+             border-radius: 3px;
+	 	  }
+	 	  .agent_con_third{
+	 	  	width:100%;
+	 	  	padding-top:1%;
+	 	  	padding-bottom:1%;
+	 	  }
+	 	  .agent_con_third span{
+	 	  	float:left;
+	 	  	text-align:right;
+	 	  	width:36%;
+	 	  	font-size:35px;
+	 	  }
+	 	  .agent_con_third input{
+	 	  	 width: 50%;
+             height:34px ;
+	 	  	 box-sizing: border-box;
+	 	  	 border: 1px solid black;
+             border-radius: 3px;
+	 	  }
+	 	  .agent_con_fourth{
+	 	  	width:100%;
+	 	  	padding-top:1%;
+	 	  	padding-bottom:1%;
+	 	  }
+	 	  .agent_con_fourth span{
+	 	  	float:left;
+	 	  	text-align:right;
+	 	  	width:36%;
+	 	  	font-size:35px;
+	 	  }
+	 	  .agent_con_fourth textarea{
+	 	  	 width: 50%;
+             height:150px ;
+	 	  	 border-radius: 3px;
+	 	  	 border: 1px solid black;
+	 	  }
+	 	  .agent_con_seven{
+	 	  	width:100%;
+	 	  	padding-top:1%;
+	 	  }
+	 	  .agent_con_seven span{
+	 	  	float:left;
+	 	  	text-align:right;
+	 	  	width:36%;
+	 	  	font-size:35px;
+	 	  }
+	 	  .agent_con button{
+	 	  	font-size:35px;
+	 	  	border:0;
+	 	  	background-color:#177a41;
+	 	  	color:white;
+	 	  	width:40%;
+	 	  	height:45px;
+	 	  	position:relative;
+	 	  	left:36%;
+	 	  	border-radius: 13px;
+	 	  }
+
+	@media only screen and (max-width:1500px) {
+		.agent_res{
+			display:none;
+		}
+		.agent_con{
+			background:url(/static/src/assets/backstage1.jpg) no-repeat;
+	        background-size:20%;
+			width:100%;
+		}
+		.agent_con button{
+			left:30%;
+		}
+	}
