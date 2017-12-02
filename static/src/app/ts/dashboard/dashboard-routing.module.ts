@@ -4,7 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {LoginComponent} from './login.component';
 import {RegisterComponent} from './register.component';
 import {CellPhoneComponent} from './cellphone.component';
-import {StoresOfflineComponent} from './stores-offline.components';
+import {StoresOfflineComponent} from './stores-offline.component';
 
 const dashboardRoutes: Routes = [
   {

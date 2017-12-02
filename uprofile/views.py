@@ -90,7 +90,7 @@ class ChangePwdApiView(APIView):
 class StoreListApiView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = StoreSerializer
-    pagination_class = StandardPagination
+    #pagination_class = StandardPagination
 
     def get_queryset(self):
         try:
@@ -99,11 +99,21 @@ class StoreListApiView(ListAPIView):
         except Store.DoesNotExist:
             latest_store_id = 0
         self.__sync_stores_from_b2b__(latest_store_id)
-        username = self.kwargs['username']
+
+        # retrieve the agent's account
+        agentname = self.kwargs['username']
+        if agentname:
+            try:
+                agent = User.objects.get(username=agentname)
+            except User.DoesNotExist:
+                agent = self.request.user
+        else:
+            agent = self.request.user
+
+        # list agent's stores
         try:
-            usr = User.objects.get(username=username)
-            queryset = Store.objects.filter(agent=usr)
-        except User.DoesNotExist:
+            queryset = Store.objects.filter(agent=agent)
+        except Store.DoesNotExist:
             queryset = []
         return queryset
 

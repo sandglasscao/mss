@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
-import {StoresOfflineComponent} from './stores-offline.components';
+import {StoresOfflineComponent} from './stores-offline.component';
 import {StoresOfflineRoutingModule} from './stores-offline-routing.module';
 
 @NgModule({
