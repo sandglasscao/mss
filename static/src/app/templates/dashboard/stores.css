@@ -21,7 +21,11 @@ header {
   color: #fff;
 
 }
-
+.none-things{
+  width:100%;
+  height:0.6rem;
+  background-color:#b7e3f0;
+}
 section {
 	background:url(/static/src/assets/myteam.jpg) no-repeat;
     background-size: 100%;
@@ -98,7 +102,6 @@ section {
 }
 
 .store_list{
-  overflow:scroll;
   margin-top:8%;
 }
 
