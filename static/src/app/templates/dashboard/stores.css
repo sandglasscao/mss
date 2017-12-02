@@ -5,25 +5,20 @@
 
 header {
   width: 100%;
-  height: 1.92rem;
-  background: url(/static/src/assets/header.jpg) no-repeat;
-  background-size: 100%;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.head_right{
+  height: 1.92rem;
+  background: url(/static/src/assets/header.jpg) no-repeat;
+  background-size: 100%;
+	width:100%;
+	text-align:center;
   line-height: 1.92rem;
   font-size: 0.7rem;
   color: #fff;
-}
-header .head_back{
-	float:left;
-}
-
-
-.head_right{
-	width:100%;
-	text-align:center;
-	float:left;
 
 }
 
@@ -36,7 +31,7 @@ section {
 }
 
 .mystore{
-      position:fixed;
+      position:absolute;
 			width:100%;
 			height:4rem;
 		}
@@ -44,7 +39,7 @@ section {
 			float:left;
 			width:50%;
 			background-color:#ffffff;
-			margin-top:0.6rem;
+
 
 		}
     #mystoreL_c{
@@ -63,15 +58,14 @@ section {
 		}
 		.mystoreL_con_num{
 			font-size: 0.9rem;
-            color: #FB8852;
+      color: #FB8852;
 		}
 		.mystoreL_con_two{
 			font-size: 0.9rem;
-            color: #6098EE;
+      color: #6098EE;
 		}
 		.mystoreR{
 			float:right;
-			margin-top:0.6rem;
 			width:50%;
 			background-color:#ffffff;
 		}
@@ -91,11 +85,11 @@ section {
 		}
 		.mystoreR_con_num{
 			font-size: 0.9rem;
-            color: #FB8852;
+      color: #FB8852;
 		}
 		.mystoreR_con_two{
 			font-size: 0.9rem;
-            color: #6098EE;
+      color: #6098EE;
 		}
 
 .middel{
@@ -104,6 +98,7 @@ section {
 }
 
 .store_list{
+  overflow:scroll;
   margin-top:8%;
 }
 
@@ -124,7 +119,7 @@ section {
   border:0.1rem #b7e3f0 solid;
 }
 .store_list table tr th select{
-  width:1rem;
+  width:0.8rem;
   height:1rem;
   border-radius:1rem;
 }
