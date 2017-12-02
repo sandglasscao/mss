@@ -34,10 +34,10 @@ export class StoresComponent implements OnInit {
     this.storeService
       .listStore()
       .then(res => {
-        this.stores = res;
+        this.stores = res.results;
         let commStroes = this.stores.filter(store => store.status == '2');
         this.commLen = commStroes.length;
-        this.uncommLen = this.stores.length - this.commLen;
+        this.uncommLen = res.count - this.commLen;
         this.stores.map(store => {
           store.status = this.storeStatus.find(st => st.code == store.status).value;
         });
