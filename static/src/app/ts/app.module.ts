@@ -7,7 +7,7 @@ import {HttpModule} from "@angular/http";
 
 import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './not-found.component';
-import {Router} from "@angular/router";
+import {MetaService} from "./meta/meta.service";
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import {Router} from "@angular/router";
     AppComponent,
     PageNotFoundComponent
   ],
-  providers: [],
+  providers: [MetaService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

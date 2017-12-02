@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   templateUrl: 'static/src/app/templates/dashboard/stores.html',
   styleUrls: ['static/src/app/templates/dashboard/stores.css']
 })
-export class StoresComponent implements OnInit {
+export class StoresComponet implements OnInit {
   constructor(private router: Router) {
   }
   teamMembers = [{

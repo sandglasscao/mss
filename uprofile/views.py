@@ -23,7 +23,7 @@ from .serializers import (
 
 
 class StandardPagination(PageNumberPagination):
-    page_size = 5
+    page_size = 20
     page_size_query_param = 'page_size'
     max_page_size = 1000
 
@@ -99,11 +99,21 @@ class StoreListApiView(ListAPIView):
         except Store.DoesNotExist:
             latest_store_id = 0
         self.__sync_stores_from_b2b__(latest_store_id)
-        username = self.kwargs['username']
+
+        # retrieve the agent's account
+        agentname = self.kwargs['username']
+        if agentname:
+            try:
+                agent = User.objects.get(username=agentname)
+            except User.DoesNotExist:
+                agent = self.request.user
+        else:
+            agent = self.request.user
+
+        # list agent's stores
         try:
-            usr = User.objects.get(username=username)
-            queryset = Store.objects.filter(agent=usr)
-        except User.DoesNotExist:
+            queryset = Store.objects.filter(agent=agent)
+        except Store.DoesNotExist:
             queryset = []
         return queryset
 
@@ -139,7 +149,7 @@ class StoreListApiView(ListAPIView):
 
     def __create_agent__(self, agentb2b):
         user = User.objects.create(username=agentb2b.num)
-        user.set_password(agentb2b.num)
+        user.set_password(agentb2b.cellphone)
         user.save()
 
         cellphone = agentb2b.cellphone or None

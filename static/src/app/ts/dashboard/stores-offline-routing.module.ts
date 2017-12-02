@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
-import {StoresOfflineComponent} from './stores-offline.components';
+import {StoresOfflineComponent} from './stores-offline.component';
 
 const StoresOfflineRoutes: Routes = [
   {
