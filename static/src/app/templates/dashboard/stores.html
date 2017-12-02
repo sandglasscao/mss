@@ -10,7 +10,7 @@
         <ul class="mystore">
             <li class="mystoreL">
 
-                <div id="mystoreL_c" [class.mystoreL_con]="onActive" (click)="decide(true)">
+                <div id="mystoreL_c">
                     <img src="/static/src/assets/index4.png"/>
                     <div class="mystoreL_con_one">有效店铺</div>
                     <span class="mystoreL_con_num">{{ commLen }}</span>
@@ -20,7 +20,7 @@
             </li>
             <li class="mystoreR">
 
-                <div id="mystoreL_c" [class.mystoreL_con]="!onActive" (click)="decide(false)">
+                <div id="mystoreL_c" >
                     <img src="/static/src/assets/index8.png"/>
                     <div class="mystoreR_con_one">非有效店铺</div>
                     <span class="mystoreR_con_num">{{ uncommLen }}</span>
@@ -36,7 +36,17 @@
                     <tr>
                         <th>店名</th>
                         <th>店主</th>
-                        <th>状态</th>
+                        <th>状态
+                           <select>
+                              <option value="volvo">有效</option>
+                              <option value="saab">非有效</option>
+                              <option value="opel">待审核</option>
+                              <option value="audi">时间排序</option>
+                            </select>
+
+
+
+                        </th>
                     </tr>
                     </thead>
 
