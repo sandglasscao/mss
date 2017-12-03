@@ -5,9 +5,9 @@
 
 header {
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
 }
 
 .head_right{
@@ -26,14 +26,6 @@ header {
   height:0.6rem;
   background-color:#b7e3f0;
 }
-section {
-	background:url(/static/src/assets/myteam.jpg) no-repeat;
-    background-size: 100%;
-    margin: 1.92rem 0;
-    width: 100%;
-    min-height:22.42rem;
-}
-
 .mystore{
       position:absolute;
 			width:100%;
@@ -95,23 +87,27 @@ section {
       color: #6098EE;
 		}
 
+
+section {
+	background:url(/static/src/assets/myteam.jpg) no-repeat;
+    background-size: 100%;
+    width: 100%;
+    min-height:13rem;
+}
+
+
 .middel{
-  padding-top:25%;
-  margin-top:1rem;
-  width:95%;
+  width:94%;
   margin-left:2.5%;
 }
 
 .store_list{
-  margin-top:8%;
 }
 
 
 .store_list table{
 	text-align:center;
 	color:#4FA0F2;
-	margin:0.3rem 0;
-	padding:0.3rem 0;
 	background-color:#ffffff;
 	font-size:0.1rem;
 }

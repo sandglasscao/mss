@@ -2,28 +2,42 @@
     <header>
         <div class="head_right"> 我&nbsp;的&nbsp;店&nbsp;铺</div>
         <div class="none-things"></div>
+        <div class="store_num" style="width:100%;height:4.5rem;background-color:white;">
+           <div class="store_numL" style="width:49%;float:left">
 
-        <ul class="mystore">
-            <li class="mystoreL">
+              <img src="/static/src/assets/index4.png"/>
+              <div>有效店铺</div>
+              <span>{{ commLen }}</span>
+              <span>家</span>
+           </div>
+           <div class="store_numR" style="width:49%;float:right">
+               <img src="/static/src/assets/index8.png"/>
+               <div>非有效店铺</div>
+              <span>{{ uncommLen }}</span>
+              <span>家</span>
+           </div>
+        </div>
+         <div class="none-things"></div>
 
-                <div id="mystoreL_c">
-                    <img src="/static/src/assets/index4.png"/>
-                    <div class="mystoreL_con_one">有效店铺</div>
-                    <span class="mystoreL_con_num">{{ commLen }}</span>
-                    <span class="mystoreL_con_two">家</span>
-                </div>
 
-            </li>
-            <li class="mystoreR">
-
-                <div id="mystoreL_c">
-                    <img src="/static/src/assets/index8.png"/>
-                    <div class="mystoreR_con_one">非有效店铺</div>
-                    <span class="mystoreR_con_num">{{ uncommLen }}</span>
-                    <span class="mystoreR_con_two">家</span>
-                </div>
-            </li>
+      <div class="head-middel">
+        <ul class="store-head">
+          <table class="head-table">
+            <thead>
+            <tr>
+              <th>店名</th>
+                        <th>店主</th>
+                        <th>状态
+                            <select class="option_1" (change)="filterStores(opt.value)">
+                                <option *ngFor="let opt of storeStatus" [value]="opt.value">
+                                    {{ opt.value }}
+                                </option>
+                            </select>
+            </tr>
+            </thead>
+          </table>
         </ul>
+      </div>
     </header>
 
 
