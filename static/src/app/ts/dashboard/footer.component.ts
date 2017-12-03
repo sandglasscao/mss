@@ -3,7 +3,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 @Component({
   selector: 'footer-bar',
   templateUrl: 'static/src/app/templates/dashboard/footer.html',
-  styleUrls: ['static/src/app/templates/dashboard/footer.css']
+  styleUrls: ['static/src/app/templates/dashboard/dashboard.css']
 })
 export class FooterComponent {
   whichOn = '';

@@ -1,4 +1,4 @@
-footer {
+nav {
   width: 100%;
   height: 1.92rem;
   background-color: #3373F9;
@@ -6,43 +6,35 @@ footer {
   left: 0;
   bottom: 0;
 }
-footer .bwrap{
+nav a{
 	float: left;
 	width: 25%;
 	height: 100%;
 	color: #fff;
 }
-footer .bwrap button.active{
+
+nav a.active{
 	color: #FAA76F;
 }
-footer .bwrap button{
+
+nav a .wrap{
+  display: block;
   background-color: transparent;
   color: #fff;
   width: 100%;
 	height: 100%;
 	margin: 0 auto;
 }
-footer .bwrap button i{
+nav .wrap i{
 	display: block;
 	width: 100%;
 	height: 0.82rem;
 	margin-bottom: 0.2rem;
 	text-align: center;
 	font-size: 0.9rem;
-}
-footer .footer_first{
-	color: #FAA76F;
 }
 
-footer .bwrap i{
-	display: block;
-	width: 100%;
-	height: 0.82rem;
-	margin-bottom: 0.2rem;
-	text-align: center;
-	font-size: 0.9rem;
-}
-footer .bwrap span{
+nav .wrap span{
 	display: block;
 	width: 100%;
 	height: 0.46rem;
