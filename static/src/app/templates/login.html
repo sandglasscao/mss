@@ -5,8 +5,8 @@
         </div>
         <div class="wrap_input">
             <div class="login_top">拓店助手</div>
-            <form #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
-                <div class="login_account">
+            <form #userForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
+                <div class="input_ login_account">
                     <i class="fa fa-user-o"></i>
                     <input type="text" class="username"
                            placeholder="电话号码"
@@ -17,7 +17,7 @@
                            [ngModelOptions]="{standalone: true}"
                            name="" id="username"/>
                 </div>
-                <div class="login_password">
+                <div class="input_ login_password">
                     <i class="fa fa-lock"></i>
                     <input type="password" class="password" name="" id="password"
                            placeholder="请输入密码"
@@ -28,8 +28,8 @@
                     />
                 </div>
                 <div class="content">
-                    <a class="r" [routerLink]="['/check-cell']">用户注册</a>
-                    <a class="f" [routerLink]="['/resetpwd']">忘记密码?</a>
+                    <a class="register" [routerLink]="['/check-cell']">用户注册</a>
+                    <a class="forget" [routerLink]="['/resetpwd']">忘记密码?</a>
                 </div>
                 <div class="login_button">
 
