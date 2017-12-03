@@ -15,7 +15,8 @@ export class CommissionComponent implements OnInit {
 
   error = null;
 
-  constructor(private commissionService: CommissionService) {
+  constructor(private commissionService: CommissionService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -40,5 +41,6 @@ export class CommissionComponent implements OnInit {
     } else {
       this.commissionService.createCmmssn(this.commission);
     }
+    this.router.navigate(['../']);
   }
 }

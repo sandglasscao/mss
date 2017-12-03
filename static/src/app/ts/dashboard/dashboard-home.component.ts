@@ -1,6 +1,5 @@
 // TODO SOMEDAY: Feature Componetized like CrisisCenter
 import {Component} from '@angular/core';
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-dashhome',

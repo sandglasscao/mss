@@ -5,6 +5,8 @@ import {ConsoleComponent} from "./console.component";
 import {ConsoleRoutingModule} from "./console-routing.module";
 import {CommissionComponent} from "./commission.component";
 import {AgentComponent} from "./agent.component";
+import {ConsoleHomeComponent} from "./console-home.component";
+import {InitSystemComponent} from "./init-system.component";
 
 @NgModule({
   imports: [
@@ -14,7 +16,9 @@ import {AgentComponent} from "./agent.component";
   ],
   declarations: [
     ConsoleComponent,
+    ConsoleHomeComponent,
     CommissionComponent,
+    InitSystemComponent,
     AgentComponent,
   ],
   providers: []
