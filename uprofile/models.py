@@ -36,6 +36,9 @@ class Address(models.Model):
 
 
 class Store(models.Model):
+    class Meta:
+        ordering = ['-created_dt']
+
     name = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=100, null=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)

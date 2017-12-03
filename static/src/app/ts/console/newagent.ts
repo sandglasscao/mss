@@ -1,7 +1,4 @@
-import {User} from "./user";
-
-export class Profile {
-  id: number;
+export class NewAgent {
   username: string;
   password: string;
   cellphone: string;
@@ -9,7 +6,4 @@ export class Profile {
   isEmployee: boolean;
   hasRecommAuth: boolean;
   parent_code: string;
-  grand_code: string;
-  user: User;
-  created_dt: Date;
 }

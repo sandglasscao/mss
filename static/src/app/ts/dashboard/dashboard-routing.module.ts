@@ -1,24 +1,28 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
-import {LoginComponent} from './login.component';
 import {RegisterComponent} from './register.component';
 import {CellPhoneComponent} from './cellphone.component';
-import {StoresOfflineComponent} from './stores-offline.component';
+import {DashboardHomeComponent} from "./dashboard-home.component";
+import {PasswordComponent} from "./password.components";
+import {StoresComponent} from "./stores.component";
+import {ProfileComponent} from "./profile.component";
 
 const dashboardRoutes: Routes = [
   {
-    path: '',
+    path: 'dashboard',
+    component: DashboardComponent,
     children: [
       {
         path: '',
         children: [
-          {path: 'login', component: LoginComponent},
           {path: 'register', component: RegisterComponent},
           {path: 'check-cell', component: CellPhoneComponent},
-          {path: 'dashboard', component: DashboardComponent},
-          {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
-          {path: 'stores-offline', component: StoresOfflineComponent}
+          {path: 'home', component: DashboardHomeComponent},
+          {path: 'store', component: StoresComponent},
+          {path: 'team', component: DashboardHomeComponent},
+          {path: 'password', component: PasswordComponent},
+          {path: 'profile', component: ProfileComponent},
         ]
       }
     ],

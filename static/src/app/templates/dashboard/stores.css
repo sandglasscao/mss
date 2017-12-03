@@ -5,28 +5,27 @@
 
 header {
   width: 100%;
-  height: 1.92rem;
-  background: url(/static/src/assets/header.jpg) no-repeat;
-  background-size: 100%;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.head_right{
+  height: 1.92rem;
+  background: url(/static/src/assets/header.jpg) no-repeat;
+  background-size: 100%;
+	width:100%;
+	text-align:center;
   line-height: 1.92rem;
   font-size: 0.7rem;
   color: #fff;
-}
-header .head_back{
-	float:left;
-}
-
-
-.head_right{
-	width:100%;
-	text-align:center;
-	float:left;
 
 }
-
+.none-things{
+  width:100%;
+  height:0.6rem;
+  background-color:#b7e3f0;
+}
 section {
 	background:url(/static/src/assets/myteam.jpg) no-repeat;
     background-size: 100%;
@@ -36,7 +35,7 @@ section {
 }
 
 .mystore{
-      position:fixed;
+      position:absolute;
 			width:100%;
 			height:4rem;
 		}
@@ -44,7 +43,6 @@ section {
 			float:left;
 			width:50%;
 			background-color:#ffffff;
-			margin-top:0.6rem;
 
 		}
     #mystoreL_c{
@@ -63,15 +61,14 @@ section {
 		}
 		.mystoreL_con_num{
 			font-size: 0.9rem;
-            color: #FB8852;
+      color: #FB8852;
 		}
 		.mystoreL_con_two{
 			font-size: 0.9rem;
-            color: #6098EE;
+      color: #6098EE;
 		}
 		.mystoreR{
 			float:right;
-			margin-top:0.6rem;
 			width:50%;
 			background-color:#ffffff;
 		}
@@ -91,16 +88,18 @@ section {
 		}
 		.mystoreR_con_num{
 			font-size: 0.9rem;
-            color: #FB8852;
+      color: #FB8852;
 		}
 		.mystoreR_con_two{
 			font-size: 0.9rem;
-            color: #6098EE;
+      color: #6098EE;
 		}
 
 .middel{
   padding-top:25%;
   margin-top:1rem;
+  width:95%;
+  margin-left:2.5%;
 }
 
 .store_list{
@@ -114,20 +113,39 @@ section {
 	margin:0.3rem 0;
 	padding:0.3rem 0;
 	background-color:#ffffff;
-	font-size:0.6rem;
+	font-size:0.1rem;
 }
 .store_list table tr th{
   text-align:center;
+  font-size:0.1rem;
+}
+.store_list table thead tr th{
+  border-bottom:1px solid #5E9BDC;
+  font-size:0.1rem;
 }
 .store_list table tr td{
   text-align:center;
-  border:0.1rem #b7e3f0 solid;
+  border:0;
+  font-size:0.1rem;
+}
+.store_list table tr{
+  border-bottom:1px solid #b7e3f0;
+  font-size:0.1rem;
+
 }
 .store_list table tr th select{
-  width:1rem;
-  height:1rem;
-  border-radius:1rem;
+  width:0.6rem;
+  height:0.8rem;
+  border-radius:0.9rem;
+  font-size:0.1rem;
+
 }
+.store_list table tr th select option{
+  width:1.3rem;
+  height:0.8rem;
+  font-size:0.1rem;
+}
+
 
 
 

@@ -26,3 +26,4 @@ class Enumeration(models.Model):
 
     def __str__(self):
         return '%s-%s-%s' % (self.type, self.code, self.value)
+

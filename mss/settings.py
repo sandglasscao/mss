@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'uprofile',
     'meta',
     'b2b',
+    'console',
+    'utility',
 ]
 
 MIDDLEWARE = [
