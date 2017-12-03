@@ -5,9 +5,9 @@ import {RegisterService} from "./registrater.service";
 
 
 @Component({
-  selector: 'register-form',
-  templateUrl: 'static/src/app/templates/dashboard/check-cellphone.html',
-  styleUrls: ['static/src/app/templates/dashboard/check-cellphone.css']
+  selector: 'app-cell',
+  templateUrl: 'static/src/app/templates/dashboard/cellphone.html',
+  styleUrls: ['static/src/app/templates/dashboard/cellphone.css']
 })
 
 

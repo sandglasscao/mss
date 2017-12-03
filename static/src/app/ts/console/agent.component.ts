@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {CommissionService} from "./commission.service";
-import {NewAgent} from "./newagent";
+import {Agent} from "./agent";
 import {AgentService} from "./agent.service";
 
 @Component({
@@ -9,8 +9,8 @@ import {AgentService} from "./agent.service";
   styleUrls: ['static/src/app/templates/console/agent-new.css'],
   providers: [CommissionService]
 })
-export class AgentNewComponent {
-  agent = new NewAgent();
+export class AgentComponent {
+  agent = new Agent();
 
   error = null;
 

@@ -3,7 +3,7 @@
         <div class="head_right"> 我&nbsp;的&nbsp;店&nbsp;铺</div>
         <div class="none-things"></div>
 
-      <ul class="mystore">
+        <ul class="mystore">
             <li class="mystoreL">
 
                 <div id="mystoreL_c">
@@ -16,7 +16,7 @@
             </li>
             <li class="mystoreR">
 
-                <div id="mystoreL_c" >
+                <div id="mystoreL_c">
                     <img src="/static/src/assets/index8.png"/>
                     <div class="mystoreR_con_one">非有效店铺</div>
                     <span class="mystoreR_con_num">{{ uncommLen }}</span>
@@ -37,25 +37,21 @@
                         <th>店名</th>
                         <th>店主</th>
                         <th>状态
-                           <select>
-                              <option class="option_1">审核未通过</option>
-                              <option>待审核</option>
-                              <option>审核通过</option>
-                              <option>已开单</option>
-                              <option>有效</option>
-                              <option>已付佣金</option>
-                              <option>全部</option>
+                            <select class="option_1" (change)="filterStores(opt.value)">
+                                <option *ngFor="let opt of storeStatus" [value]="opt.value">
+                                    {{ opt.value }}
+                                </option>
                             </select>
                         </th>
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr *ngFor="let store of stores">
+                    <tr *ngFor="let store of sortedStores">
                         <td>{{ store.name }}</td>
                         <td>{{ store.owner }}</td>
                         <td>
-                            {{ store.status}}</td>
+                            {{ store.status }}</td>
                     </tr>
                     </tbody>
                 </table>

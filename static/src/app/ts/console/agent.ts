@@ -1,4 +1,4 @@
-export class NewAgent {
+export class Agent {
   username: string;
   password: string;
   cellphone: string;

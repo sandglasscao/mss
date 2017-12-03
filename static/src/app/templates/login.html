@@ -1,0 +1,85 @@
+<div class="wrap">
+    <div class="wrap_in">
+        <div class="wrap_logo">
+            <img src="/static/src/assets/backstage2.jpg"/>
+        </div>
+        <div class="wrap_input">
+            <div class="login_top">拓店助手</div>
+            <form #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
+                <div class="login_account">
+                    <i class="fa fa-user-o"></i>
+                    <input type="text" class="username"
+                           placeholder="电话号码"
+                           (keydown)="cleanerror()"
+                           [(ngModel)]="user.username" required autofocus
+                           minLength=11
+                           maxLength=11
+                           [ngModelOptions]="{standalone: true}"
+                           name="" id="username"/>
+                </div>
+                <div class="login_password">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" class="password" name="" id="password"
+                           placeholder="请输入密码"
+                           [(ngModel)]="user.password" required
+                           minLength=6
+                           maxLength=12
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="content">
+                    <a class="r" [routerLink]="['/check-cell']">用户注册</a>
+                    <a class="f" [routerLink]="['/resetpwd']">忘记密码?</a>
+                </div>
+                <div class="login_button">
+
+
+                    <button type="submit" class="login" [disabled]="!userForm.valid">登录</button>
+                    <div class="form-group" [hidden]="!error">
+                        <span class="alert alert-danger">{{ error }}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--<div class="wrap zhengwei">
+    <form #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
+        <div class="inp">
+            <span>账号:</span>
+            <input class="username" type="text"
+                   placeholder="电话号码"
+                   (keydown)="cleanerror()"
+                   [(ngModel)]="user.username" required autofocus
+                   minLength=11
+                   maxLength=11
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="inp inp_2">
+            <span>密码:</span>
+            <input class="password"
+                   type="password"
+                   placeholder="请输入密码"
+                   [(ngModel)]="user.password" required
+                   minLength=6
+                   maxLength=12
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="rf">
+            <div class="content">
+                <a class="r" [routerLink]="['../check-cell']">用户注册</a>
+                <a class="f" [routerLink]="['../resetpwd']">忘记密码?</a>
+            </div>
+        </div>
+        <button type="submit" class="login" [disabled]="!userForm.valid">登录</button>
+
+
+        <div class="form-group" [hidden]="!error">
+            <span class="alert alert-danger">{{ error }}</span>
+        </div>
+    </form>
+</div>-->

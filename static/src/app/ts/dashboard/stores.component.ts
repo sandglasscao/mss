@@ -7,14 +7,14 @@ import {StoreStatus} from "./store-status";
 import {forEach} from "@angular/router/src/utils/collection";
 
 @Component({
-  selector: 'home-stores',
+  selector: 'app-store',
   templateUrl: 'static/src/app/templates/dashboard/stores.html',
   styleUrls: ['static/src/app/templates/dashboard/stores.css'],
   providers: [StoreService]
 })
 export class StoresComponent implements OnInit {
-  onActive = true;
-  stores: Store[];
+  stores;
+  sortedStores: Store[];
   storeStatus;
   options: StoreStatus[];
   commLen = 0;
@@ -28,7 +28,6 @@ export class StoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.listStoreStatus();
-    this.setOptions();
     this.initStores();
   }
 
@@ -36,13 +35,14 @@ export class StoresComponent implements OnInit {
     this.storeService
       .listStore()
       .then(res => {
-        this.stores = res.results;
+        this.stores = res;
         let commStroes = this.stores.filter(store => store.status == '2');
         this.commLen = commStroes.length;
-        this.uncommLen = res.count - this.commLen;
+        this.uncommLen = this.stores.length - this.commLen;
         this.stores.map(store => {
-          store.status = this.storeStatus.find(st => st.code == store.status).value;
+          store.status = this.storeStatus.find(st => st.code == store.status).value
         });
+        this.sortedStores = this.stores;
       })
       .catch(error => {
         // this.error = error;
@@ -50,24 +50,24 @@ export class StoresComponent implements OnInit {
       });
   }
 
-  decide(tf: boolean) {
-    this.onActive = tf;
-  }
-
   private listStoreStatus() {
     this.metaService
       .listStoreStatus('1001')
       .then(res => {
         this.storeStatus = res
+        this.setOptions();
       })
       .catch(error => this.error = error);
   }
 
   private setOptions() {
-    this.options = this.storeStatus;
     let allStore = new StoreStatus();
     allStore.code = '100';
     allStore.value = '全部';
-    this.options.concat([allStore]);
+    this.storeStatus.append(allStore);
+  }
+
+  private filterStores(status: string) {
+    this.sortedStores = this.stores.filter(store => store.status == status);
   }
 }

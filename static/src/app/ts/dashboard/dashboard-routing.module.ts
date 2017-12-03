@@ -23,6 +23,7 @@ const dashboardRoutes: Routes = [
           {path: 'team', component: DashboardHomeComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
+          {path: '', redirectTo: 'home', pathMatch: 'full'},
         ]
       }
     ],

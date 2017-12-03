@@ -4,7 +4,7 @@ import {FormsModule} from '@angular/forms';
 import {ConsoleComponent} from "./console.component";
 import {ConsoleRoutingModule} from "./console-routing.module";
 import {CommissionComponent} from "./commission.component";
-import {AgentNewComponent} from "./agent-new.component";
+import {AgentComponent} from "./agent.component";
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import {AgentNewComponent} from "./agent-new.component";
   declarations: [
     ConsoleComponent,
     CommissionComponent,
-    AgentNewComponent,
+    AgentComponent,
   ],
   providers: []
 })

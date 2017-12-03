@@ -7,8 +7,8 @@ import {ProfileService} from "./dashboard/profile.service";
 
 @Component({
   selector: 'app-login',
-  templateUrl: 'static/src/app/templates/dashboard/login.html',
-  styleUrls: ['static/src/app/templates/dashboard/login.css'],
+  templateUrl: 'static/src/app/templates/login.html',
+  styleUrls: ['static/src/app/templates/login.css'],
   providers: [
     LoginService,
   ]

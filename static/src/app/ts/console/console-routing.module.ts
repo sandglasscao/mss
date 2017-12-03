@@ -3,17 +3,17 @@ import {RouterModule, Routes} from '@angular/router';
 
 import {ConsoleComponent} from './console.component';
 import {CommissionComponent} from "./commission.component";
-import {AgentNewComponent} from "./agent-new.component";
+import {AgentComponent} from "./agent.component";
 
 const consoleRoutes: Routes = [
   {
-    path: '',
+    path: 'console',
     children: [
       {
         path: '',
         children: [
           {path: 'console', component: ConsoleComponent},
-          {path: 'agnt-new', component: AgentNewComponent},
+          {path: 'agnt', component: AgentComponent},
           {path: 'cmmssn', component: CommissionComponent},
           {path: '', redirectTo: '/console', pathMatch: 'full'}
         ]
