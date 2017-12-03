@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Profile} from "../dashboard/profile";
-import {NewAgent} from "./newagent";
+import {Agent} from "./agent";
 
 @Injectable()
 export class AgentService {
@@ -22,7 +22,7 @@ export class AgentService {
       .catch(this.handleError);
   }
 
-  createAgent(agent: NewAgent): Promise<any> {
+  createAgent(agent: Agent): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));

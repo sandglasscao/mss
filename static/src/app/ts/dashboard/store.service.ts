@@ -10,7 +10,7 @@ export class StoreService {
   constructor(private http: Http) {
   }
 
-  listStore(): Promise<any> {
+  listStore(): Promise<Store[]> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});

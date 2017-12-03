@@ -4,7 +4,7 @@ import {ProfileService} from "./profile.service";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'profile-header',
+  selector: 'app-profile',
   templateUrl: 'static/src/app/templates/dashboard/profile.html',
   styleUrls: ['static/src/app/templates/dashboard/profile.css'],
   providers: []
@@ -13,10 +13,10 @@ export class ProfileComponent implements OnInit {
   profile = new Profile();
   username = null;
   hasRecommAuth: string;
-  toChangPwd: boolean;
   error = null;
 
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -24,7 +24,6 @@ export class ProfileComponent implements OnInit {
   }
 
   initProfile() {
-    this.toChangPwd = false;
     this.username = sessionStorage.getItem('username');
     this.profileService
       .getProfile(this.username)
@@ -37,7 +36,7 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  dealProfile(res: Profile) {
+  private dealProfile(res: Profile) {
     this.profile.username = this.username;
     this.profile.full_name = res.full_name;
     this.profile.cellphone = res.cellphone;
@@ -61,10 +60,14 @@ export class ProfileComponent implements OnInit {
        }); // TODO: Display error message*/
   }
 
-  changePwd(value) {
-        this.toChangPwd = value['toChangPwd'];
-    }
+  changPwd() {
+    this.router.navigate(['password']);
+  }
 
+  logout() {
+    sessionStorage.clear();
+    this.router.navigate(['/']);
+  }
 
   cleanerror() {
     this.error = null;

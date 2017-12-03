@@ -90,7 +90,7 @@ class ChangePwdApiView(APIView):
 class StoreListApiView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = StoreSerializer
-    pagination_class = StandardPagination
+    #pagination_class = StandardPagination
 
     def get_queryset(self):
         try:

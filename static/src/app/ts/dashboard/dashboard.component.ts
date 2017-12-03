@@ -7,5 +7,4 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['static/src/app/templates/dashboard/dashboard.css']
 })
 export class DashboardComponent {
-
 }

@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-dashhome',
   templateUrl: 'static/src/app/templates/dashboard/dashboard-home.html',
   styleUrls: ['static/src/app/templates/dashboard/dashboard-home.css']
 })
