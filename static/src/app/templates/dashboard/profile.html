@@ -1,32 +1,32 @@
-    <header>个&nbsp;人&nbsp;资&nbsp;料</header>
-    <section>
-        <div class="photo">
-            <div class="pic"></div>
+<header>个&nbsp;人&nbsp;资&nbsp;料</header>
+<section>
+    <div class="photo">
+        <div class="pic"></div>
+    </div>
+    <div class="info">
+        <div class="info_list">
+            <div class="fl list_left">用户名：</div>
+            <div class="fl list_right username">{{ profile.full_name }}</div>
         </div>
-        <div class="info">
-            <div class="info_list">
-                <div class="fl list_left">用户名：</div>
-                <div class="fl list_right username">{{ profile.full_name }}</div>
-            </div>
-            <div class="info_list">
-                <div class="fl list_left">编<i></i>码：</div>
-                <div class="fl list_right num">{{ username }}</div>
-            </div>
-            <div class="info_list">
-                <div class="fl list_left">手机号：</div>
-                <div class="fl list_right order_counts">{{ profile.cellphone }}</div>
-            </div>
-            <div class="info_list">
-                <div class="fl list_left">推荐人：</div>
-                <div class="fl list_right order_money">{{ profile.parent_code }}</div>
-            </div>
-            <div class="info_list">
-                <div class="fl list_left">推荐资格：</div>
-                <div class="fl list_right brokerage">{{ hasRecommAuth }}</div>
-            </div>
+        <div class="info_list">
+            <div class="fl list_left">编<i></i>码：</div>
+            <div class="fl list_right num">{{ username }}</div>
         </div>
-        <div class="btn_a">
-            <button type="button" class="fl change_pwd" (click)="changPwd()">修改密码</button>
-            <button type="button" class="fr log_out" (click)="logout()">退出登录</button>
+        <div class="info_list">
+            <div class="fl list_left">手机号：</div>
+            <div class="fl list_right order_counts">{{ profile.cellphone }}</div>
         </div>
-    </section>
+        <div class="info_list">
+            <div class="fl list_left">推荐人：</div>
+            <div class="fl list_right order_money">{{ profile.parent_code }}</div>
+        </div>
+        <div class="info_list">
+            <div class="fl list_left">推荐资格：</div>
+            <div class="fl list_right brokerage">{{ hasRecommAuth }}</div>
+        </div>
+    </div>
+    <div class="btn_a">
+        <a class="fl change_pwd" routerLink="../password">修改密码</a>
+        <button type="button" class="fr log_out" (click)="logout()">退出登录</button>
+    </div>
+</section>

@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProfileService} from "./profile.service";
 import {User} from "./user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-pwd',
@@ -12,22 +13,19 @@ export class PasswordComponent implements OnInit {
   second_pwd = null;
   error = null;
 
-  @Input() showChng: boolean;
-  @Output() changed = new EventEmitter();
-
-  constructor(private profileService: ProfileService) {
+  constructor(private profileService: ProfileService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
     this.user.username = sessionStorage.getItem('username');
   }
+
   back() {
-    this.showChng = false;
-    let result = {'toChangPwd': this.showChng};
-    this.changed.emit(result);
+    this.router.navigate(['../']);
   }
 
-  changePwd() {
+  onSubmit() {
     if (this.checkPwd()) {
       this.profileService
         .changePwd(this.user)
