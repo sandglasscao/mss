@@ -23,7 +23,7 @@ class InitSystemApiView(APIView):
     permission_classes = (AllowAny,)
     serializer_class = StoreSerializer
 
-    def get(self):
+    def get(self, request):
         SyncRecord.__sync_stores_from_b2b__()
         return Response(status=HTTP_200_OK)
 

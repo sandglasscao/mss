@@ -11,6 +11,10 @@ class SyncRecord(object):
     latest_store_id = 0
 
     @classmethod
+    def initSystem(cls):
+        cls.__init_agents__()
+
+    @classmethod
     def __sync_stores_from_b2b__(cls):
         storeb2bs = StoreB2B.objects.filter(id__gt=cls.latest_store_id)
         stores = []
