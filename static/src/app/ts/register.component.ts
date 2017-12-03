@@ -4,8 +4,8 @@ import {RegisterService} from "./registrater.service";
 import {Router} from "@angular/router";
 
 @Component({
-  templateUrl: 'static/src/app/templates/dashboard/register.html',
-  styleUrls: ['static/src/app/templates/dashboard/register.css'],
+  templateUrl: 'static/src/app/templates/register.html',
+  styleUrls: ['static/src/app/templates/register.css'],
 })
 export class RegisterComponent implements OnInit {
   registration = new Registration();

@@ -24,7 +24,6 @@ class InitSystemApiView(APIView):
     serializer_class = StoreSerializer
 
     def get(self, request):
-        SyncRecord.__sync_stores_from_b2b__()
-        return Response(status=HTTP_200_OK)
-
-
+        res = SyncRecord.sync_stores_from_b2b()
+        status = 200 if res else 400
+        return Response(status=status)

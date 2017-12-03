@@ -12,6 +12,8 @@ import {LoginComponent} from "./login.component";
 import {ProfileService} from "./dashboard/profile.service";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {ConsoleModule} from "./console/console.module";
+import {RegisterComponent} from "./register.component";
+import {RegisterService} from "./registrater.service";
 
 @NgModule({
   imports: [
@@ -25,10 +27,11 @@ import {ConsoleModule} from "./console/console.module";
   ],
   declarations: [
     AppComponent,
+    RegisterComponent,
     LoginComponent,
     PageNotFoundComponent
   ],
-  providers: [MetaService, ProfileService],
+  providers: [MetaService, ProfileService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

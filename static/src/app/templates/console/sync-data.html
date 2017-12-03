@@ -2,6 +2,10 @@
     <div>数据同步</div>
 </header>
 
-<div class="container">
+<div class="wrap">
     <button type="button" class="next" (click)="initSystem()">系统初始化</button>
+    <div *ngIf="msg">
+        <span>{{ msg }}</span>
+    </div>
 </div>
+

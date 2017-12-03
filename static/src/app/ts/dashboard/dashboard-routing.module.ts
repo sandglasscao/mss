@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
-import {RegisterComponent} from './register.component';
 import {CellPhoneComponent} from './cellphone.component';
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PasswordComponent} from "./password.components";
@@ -16,7 +15,6 @@ const dashboardRoutes: Routes = [
       {
         path: '',
         children: [
-          {path: 'register', component: RegisterComponent},
           {path: 'check-cell', component: CellPhoneComponent},
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},

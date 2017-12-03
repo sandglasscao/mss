@@ -19,7 +19,6 @@ export class SyncService {
     return this.http
       .get(this.baseUrl, options)
       .toPromise()
-      .then(resp => resp.json())
       .catch(this.handleError);
   }
 
