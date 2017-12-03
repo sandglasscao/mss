@@ -54,7 +54,7 @@ export class StoresComponent implements OnInit {
     this.metaService
       .listStoreStatus('1001')
       .then(res => {
-        this.storeStatus = res
+        this.storeStatus = res;
         this.setOptions();
       })
       .catch(error => this.error = error);

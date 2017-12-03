@@ -46,22 +46,8 @@ export class ProfileComponent implements OnInit {
     this.profile.created_dt = res.created_dt;
   }
 
-  onSubmit() {
-    /* this.registerService
-       .register(this.registration)
-       .then(account => {
-         sessionStorage.setItem('token', account.token);
-         sessionStorage.setItem('username', account.cellphone);
-         sessionStorage.setItem('isLogin', '1');
-       })
-       .catch(error => {
-         // this.error = error;
-         this.error = "密码错误!"
-       }); // TODO: Display error message*/
-  }
-
   changPwd() {
-    this.router.navigate(['password']);
+    this.router.navigate(['../password']);
   }
 
   logout() {
