@@ -3,17 +3,13 @@
         <img src="/static/src/assets/backlogo.jpg"/>
         <div class="title">后台管理系统</div>
     </header>
-    <div class="nothing" style="clear:both;"></div>
-
-    <div class="con">
-        <nav>
-            <ul>
-                <li><a routerLink="./agent-new" routerLinkActive="active">创建业务员</a></li>
-                <li><a routerLink="./agent-main" routerLinkActive="active">业务员维护</a></li>
-                <li><a routerLink="./cmmssn" routerLinkActive="active">佣金设置</a></li>
-                <li><a routerLink="./sync" routerLinkActive="active">数据同步</a></li>
-            </ul>
-        </nav>
-        <router-outlet></router-outlet>
-    </div>
+    <nav>
+        <ul>
+            <li><a routerLink="./agent-new" routerLinkActive="active">创建业务员</a></li>
+            <li><a routerLink="./agent-main" routerLinkActive="active">业务员维护</a></li>
+            <li><a routerLink="./cmmssn" routerLinkActive="active">佣金设置</a></li>
+            <li><a routerLink="./sync" routerLinkActive="active">数据同步</a></li>
+        </ul>
+    </nav>
+    <router-outlet></router-outlet>
 </div>
