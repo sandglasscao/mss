@@ -5,24 +5,30 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpModule} from "@angular/http";
 
-import {DashboardModule} from './dashboard/dashboard.module';
 import {PageNotFoundComponent} from './not-found.component';
 import {MetaService} from "./meta/meta.service";
+import {LoginRoutingModule} from "./login-routing.module";
+import {LoginComponent} from "./login.component";
+import {ProfileService} from "./dashboard/profile.service";
+import {DashboardModule} from "./dashboard/dashboard.module";
+import {ConsoleModule} from "./console/console.module";
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
-    //AdminModule,
     DashboardModule,
+    ConsoleModule,
+    LoginRoutingModule,
     AppRoutingModule
   ],
   declarations: [
     AppComponent,
+    LoginComponent,
     PageNotFoundComponent
   ],
-  providers: [MetaService],
+  providers: [MetaService, ProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

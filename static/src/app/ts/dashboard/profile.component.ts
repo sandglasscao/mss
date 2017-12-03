@@ -7,9 +7,9 @@ import {Router} from "@angular/router";
   selector: 'profile-header',
   templateUrl: 'static/src/app/templates/dashboard/profile.html',
   styleUrls: ['static/src/app/templates/dashboard/profile.css'],
-  providers: [ProfileService]
+  providers: []
 })
-export class PersonalInfoComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   profile = new Profile();
   username = null;
   hasRecommAuth: string;

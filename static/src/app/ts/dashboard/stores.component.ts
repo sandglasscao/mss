@@ -15,7 +15,8 @@ import {forEach} from "@angular/router/src/utils/collection";
 export class StoresComponent implements OnInit {
   onActive = true;
   stores: Store[];
-  storeStatus: StoreStatus[];
+  storeStatus;
+  options: StoreStatus[];
   commLen = 0;
   uncommLen = 0;
   error = null;
@@ -27,6 +28,7 @@ export class StoresComponent implements OnInit {
 
   ngOnInit(): void {
     this.listStoreStatus();
+    this.setOptions();
     this.initStores();
   }
 
@@ -59,5 +61,13 @@ export class StoresComponent implements OnInit {
         this.storeStatus = res
       })
       .catch(error => this.error = error);
+  }
+
+  private setOptions() {
+    this.options = this.storeStatus;
+    let allStore = new StoreStatus();
+    allStore.code = '100';
+    allStore.value = '全部';
+    this.options.concat([allStore]);
   }
 }

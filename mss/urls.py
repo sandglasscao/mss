@@ -22,6 +22,7 @@ from .views import home
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^api/users/', include('uprofile.urls')),
+    url(r'^api/console/', include('console.urls')),
     url(r'^api/meta/', include('meta.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^api-token-auth/', views.obtain_auth_token),

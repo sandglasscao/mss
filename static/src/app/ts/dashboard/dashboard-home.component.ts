@@ -1,16 +1,11 @@
 // TODO SOMEDAY: Feature Componetized like CrisisCenter
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'home-header',
+  selector: 'app-home',
   templateUrl: 'static/src/app/templates/dashboard/dashboard-home.html',
-  styleUrls:['static/src/app/templates/dashboard/dashboard-home.css']
+  styleUrls: ['static/src/app/templates/dashboard/dashboard-home.css']
 })
-export class DashboardHomeComponent implements OnInit {
-  constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
-  }
+export class DashboardHomeComponent {
 }

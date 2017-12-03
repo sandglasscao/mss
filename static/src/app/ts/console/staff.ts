@@ -1,4 +1,4 @@
-export class User {
+export class Staff {
   username: string;
   password: string;
   is_staff: boolean;

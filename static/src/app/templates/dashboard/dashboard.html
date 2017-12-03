@@ -1,8 +1,9 @@
-<div [ngSwitch]="which">
-    <profile-header *ngSwitchCase="'profile'"></profile-header>
-    <home-stores *ngSwitchCase="'store'"></home-stores>
-    <home-header *ngSwitchDefault></home-header>
-</div>
-
-<footer-bar (changed)="changeShow($event)"></footer-bar>
+<nav>
+    <a routerLink="./" routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: true }">首页</a>
+    <a routerLink="./store" routerLinkActive="active">我的店铺</a>
+    <a routerLink="./team" routerLinkActive="active">我的团队</a>
+    <a routerLink="./profile" routerLinkActive="active">个人资料</a>
+</nav>
+<router-outlet></router-outlet>
 

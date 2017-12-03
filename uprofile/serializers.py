@@ -15,7 +15,7 @@ from .models import (
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ('pk', 'username')
+        fields = ('pk', 'username', 'is_staff')
 
 
 class AddressSerializer(ModelSerializer):

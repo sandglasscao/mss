@@ -2,17 +2,19 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {PageNotFoundComponent} from './not-found.component';
+import {LoginComponent} from "./login.component";
 
 const appRoutes: Routes = [
-  /*{
-    path: 'admin',
-    loadChildren: 'ts/admin/admin.module#AdminModule'
-  },*/
+  {
+    path: 'console',
+    loadChildren: 'ts/console/console.module#ConsoleModule'
+  },
   {
     path: 'dashboard',
     loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
   },
-  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 

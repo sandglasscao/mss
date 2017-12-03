@@ -5,7 +5,7 @@ import {Router} from "@angular/router";
 
 @Component({
   templateUrl: 'static/src/app/templates/dashboard/register.html',
-  styleUrls: ['static/src/app/templates/dashboard/register.css']
+  styleUrls: ['static/src/app/templates/dashboard/register.css'],
 })
 export class RegisterComponent implements OnInit {
   registration = new Registration();

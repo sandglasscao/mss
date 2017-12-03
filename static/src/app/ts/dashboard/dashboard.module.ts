@@ -3,18 +3,13 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {LoginComponent} from './login.component';
 import {RegisterComponent} from './register.component';
 import {CellPhoneComponent} from './cellphone.component';
-import {LoginService} from './login.service';
 import {RegisterService} from './registrater.service';
-import {FooterComponent} from './footer.components';
 import {DashboardHomeComponent} from './dashboard-home.component';
-import {PersonalInfoComponent} from './profile.components';
+import {ProfileComponent} from './profile.component';
 import {PasswordComponent} from './password.components';
-import {StoresOfflineComponent} from './stores-offline.component';
 import {StoresComponent} from "./stores.component";
-import {MetaService} from "../meta/meta.service";
 
 @NgModule({
   imports: [
@@ -24,17 +19,14 @@ import {MetaService} from "../meta/meta.service";
   ],
   declarations: [
     DashboardComponent,
-    LoginComponent,
     RegisterComponent,
     CellPhoneComponent,
-    PersonalInfoComponent,
+    ProfileComponent,
     PasswordComponent,
     DashboardHomeComponent,
     StoresComponent,
-    FooterComponent,
-    StoresOfflineComponent
   ],
-  providers: [LoginService, RegisterService, MetaService]
+  providers: [RegisterService]
 })
 export class DashboardModule {
 }
