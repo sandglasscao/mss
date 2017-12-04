@@ -95,9 +95,8 @@ section {
 }
 
 .middel{
-  height:12rem;
+  height:16rem;
   overflow:auto;
-  opacity:0.8;
   width:94%;
   margin-left:2.5%;
   border:1px blue solid;
