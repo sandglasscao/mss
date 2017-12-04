@@ -26,6 +26,7 @@ export class PasswordComponent implements OnInit {
   back() {
     this.router.navigate(['../']);
   }
+
   goBack(): void {
     this.location.back();
   }
