@@ -4,6 +4,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './not-found.component';
 import {LoginComponent} from "./login.component";
 import {RegisterComponent} from "./register.component";
+import {CellPhoneComponent} from "./cellphone.component";
 
 const appRoutes: Routes = [
   {
@@ -14,9 +15,10 @@ const appRoutes: Routes = [
     path: 'dashboard',
     loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
   },
+  {path: 'check-cell', component: CellPhoneComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
 ];
 

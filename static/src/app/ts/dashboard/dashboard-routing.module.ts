@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
-import {CellPhoneComponent} from './cellphone.component';
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PasswordComponent} from "./password.components";
 import {StoresComponent} from "./stores.component";
 import {ProfileComponent} from "./profile.component";
 import {TeamComponent} from "./team.component";
+import {TeamDownLineComponent} from "./teamDownLine.component";
 
 
 const dashboardRoutes: Routes = [
@@ -17,10 +17,10 @@ const dashboardRoutes: Routes = [
       {
         path: '',
         children: [
-          {path: 'check-cell', component: CellPhoneComponent},
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},
           {path: 'team', component: TeamComponent},
+          {path: 'teamDownLine', component: TeamDownLineComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
           {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -29,7 +29,6 @@ const dashboardRoutes: Routes = [
     ],
   },
 ];
-
 @NgModule({
   imports: [
     RouterModule.forChild(dashboardRoutes)

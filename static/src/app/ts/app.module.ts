@@ -14,6 +14,7 @@ import {DashboardModule} from "./dashboard/dashboard.module";
 import {ConsoleModule} from "./console/console.module";
 import {RegisterComponent} from "./register.component";
 import {RegisterService} from "./registrater.service";
+import {CellPhoneComponent} from "./cellphone.component";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {RegisterService} from "./registrater.service";
   ],
   declarations: [
     AppComponent,
+    CellPhoneComponent,
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent

@@ -14,7 +14,7 @@ export class ProfileComponent implements OnInit {
   username = null;
   hasRecommAuth: string;
   error = null;
-
+  torf = false;
   constructor(private profileService: ProfileService,
               private router: Router) {
   }
