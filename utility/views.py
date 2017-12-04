@@ -1,6 +1,7 @@
 import datetime
 
 from registration.forms import User
+from rest_framework.response import Response
 
 from b2b.models import StoreB2B, AgentB2B
 from uprofile.models import Profile, Store
@@ -11,14 +12,19 @@ class SyncRecord(object):
 
     @classmethod
     def initSystem(cls):
-        cls.__init_agents__()
-        cls.sync_stores_from_b2b()
+        flag = False
+        try:
+            cls.__init_agents__()
+            cls.sync_stores_from_b2b()
+            flag = True
+        except:
+            pass
+        return flag
 
     @classmethod
     def sync_stores_from_b2b(cls):
-        flag = False
         try:
-            last = Store.objects.latest('id')
+            last = Store.objects.latest('b2b_id')
             latest_store_id = last.id
         except Store.DoesNotExist:
             latest_store_id = 0
@@ -38,23 +44,20 @@ class SyncRecord(object):
                 store['created_dt'] = storeb2b.created_dt or datetime.datetime.now()
                 agent_num = storeb2b.agent_num.strip()
 
+                # find user id for agent. If there is no account for this agent, it will be generated.
                 try:
                     usr = User.objects.get(username=agent_num)
-                    store['agent'] = usr.id
-                    stores.append(store)
                 except User.DoesNotExist:
                     agentb2b = AgentB2B.objects.get(id=storeb2b.agent_id)
                     cls.create_agent(agentb2b)
                     usr = User.objects.get(username=agent_num)
-                store['agent'] = usr.id
 
+                store['agent'] = usr.id
                 stores.append(store)
 
         serializer = StoreSerializer(data=stores, many=True)
         if serializer.is_valid():
             serializer.save()
-            flag = True
-        return flag
 
     @classmethod
     def __init_agents__(cls):

@@ -94,7 +94,7 @@ class StoreListApiView(ListAPIView):
     #pagination_class = StandardPagination
 
     def get_queryset(self):
-        SyncRecord.sync_stores_from_b2b()
+        #SyncRecord.sync_stores_from_b2b()
 
         # retrieve the agent's account
         agentname = self.kwargs['username']

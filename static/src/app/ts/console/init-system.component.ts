@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   providers: [SyncService]
 })
 export class InitSystemComponent {
-  msg = null;
+  msg = '数据同步中';
 
   constructor(private syncService: SyncService,
               private router: Router) {
@@ -24,7 +24,6 @@ export class InitSystemComponent {
       .catch(error => {
         this.msg = "同步失败!"
       });
-    this.router.navigate(['../']);
   }
 
 }
