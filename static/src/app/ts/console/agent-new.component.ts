@@ -3,7 +3,7 @@ import {AgentService} from "./agent.service";
 import {Agent} from "./agent";
 
 @Component({
-  selector: 'agnt-new',
+  selector: 'agent-new',
   templateUrl: 'static/src/app/templates/console/agent-new.html',
   styleUrls: ['static/src/app/templates/console/agent-new.css'],
   providers: [AgentService]
