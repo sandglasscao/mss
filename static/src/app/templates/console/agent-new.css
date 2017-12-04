@@ -1,20 +1,6 @@
-	 	  .agent_res{
-	 	      position:fixed;
-	 	      top:0;
-	 	      left:0;
-	 	      width:50%;
-	 	  }
-	 	  .agent_res img{
-	 	  	max-width:100%;
-	 	  }
-	 	  .agent_con{
-	 	  	position:fixed;
-	 	    top:0;
-	 	    right:0;
-	 	    width:49%;
-	 	  }
-	 	  .agent_con{
-	 	  	padding-top:12%;
+	.agent_con{
+        padding-top:2%;
+	 	    width:80%;
 	 	  }
 	 	  .agent_con_top{
 	 	  	font-size:40px;
@@ -141,10 +127,6 @@
 	 	  }
 
 
-	 	  @media only screen and (max-width:1500px) {
-	       .agent_res{display:none;}
-	       .agent_con{width:100%;
-	          background:url(/static/src/assets/backstage1.jpg) no-repeat;
-	          background-size:20%;
-	       }
+	 	  @media only screen and (max-width:400px) {
+        .agent_con{width:100%;}
 	    }

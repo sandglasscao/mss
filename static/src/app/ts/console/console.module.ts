@@ -4,9 +4,10 @@ import {FormsModule} from '@angular/forms';
 import {ConsoleComponent} from "./console.component";
 import {ConsoleRoutingModule} from "./console-routing.module";
 import {CommissionComponent} from "./commission.component";
-import {AgentComponent} from "./agent.component";
+import {AgentNewComponent} from "./agent-new.component";
 import {ConsoleHomeComponent} from "./console-home.component";
 import {InitSystemComponent} from "./init-system.component";
+import {AgentMainComponent} from "./agent-main.component";
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import {InitSystemComponent} from "./init-system.component";
     ConsoleHomeComponent,
     CommissionComponent,
     InitSystemComponent,
-    AgentComponent,
+    AgentMainComponent,
+    AgentNewComponent,
   ],
   providers: []
 })

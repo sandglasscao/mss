@@ -24,22 +24,6 @@
 
 }
 
-.agent_top {
-  margin-top: 1%;
-  width: 100%;
-  vertical-align: initial;
-}
-
-.agent_top button {
-  border: 0;
-  background-color: #318ce5;
-  color: white;
-  height: 35px;
-  width: 120px;
-  border-radius: 3px;
-  margin-left: 20px;
-  font-size: 20px;
-}
 
 .table_wrap {
   margin: 0 auto;
@@ -89,7 +73,7 @@
 
 #pagination-flickr {
   height: 40px;
-  width: 25%;
+  width: 30%;
   margin: 0 auto;
 }
 
