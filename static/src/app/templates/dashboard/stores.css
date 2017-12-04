@@ -130,7 +130,7 @@ section {
 }
 .store_list table tr{
   border-bottom:1px solid #b7e3f0;
-
+  font-size:0.6rem;
 }
 .head_table tr th select{
   width:0.6rem;
