@@ -38,8 +38,11 @@ class UserListApiView(ListAPIView):
         users = User.objects.filter(username__icontains=username)
         queryset = []
         for user in users:
-            profile = Profile.objects.get(user=user)
-            queryset.append(profile)
+            try:
+                profile = Profile.objects.get(user=user)
+                queryset.append(profile)
+            except Profile.DoesNotExist:
+                pass
         return queryset
 
 
@@ -91,10 +94,11 @@ class ChangePwdApiView(APIView):
 class StoreListApiView(ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = StoreSerializer
-    #pagination_class = StandardPagination
+
+    # pagination_class = StandardPagination
 
     def get_queryset(self):
-        #SyncRecord.sync_stores_from_b2b()
+        # SyncRecord.sync_stores_from_b2b()
 
         # retrieve the agent's account
         agentname = self.kwargs['username']
