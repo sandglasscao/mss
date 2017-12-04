@@ -3,13 +3,21 @@ header {
   height: 1.92rem;
   background: url(/static/src/assets/header.jpg) no-repeat;
   background-size: 100%;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   line-height: 1.92rem;
   font-size: 0.7rem;
   text-align: center;
   color: #fff;
+  text-indent: 1.5rem;
+}
+header i{
+	float: right;
+	width: 1.5rem;
+	height: 1.92rem;
+	background: url(/static/src/assets/reward.jpg) no-repeat 0 0.3rem;
+	background-size: 1.2rem;
 }
 section {
   margin-top: 1.92rem;
@@ -19,6 +27,38 @@ section {
   background-size: 100%;
   padding-top: 0.62rem;
 }
+
+section .info_reward{
+	font-size: 0.59rem;
+	text-indent: 2em;
+	box-sizing: border-box;
+	padding: 0.6rem 0.4rem;
+	position: fixed;
+	top: 2.2rem;left: 4%;
+	z-index: 100;
+	width: 92%;
+	height: 22rem;
+	border-radius: 1rem;
+	background-color: #EDFBFE;
+}
+section .info_reward .con{
+	overflow: auto;
+	height: 100%;
+}
+section .info_reward .clo{
+	position: absolute;
+	top: -0.1rem;
+	right: -0.14rem;
+	font-size: 0.6rem;
+	background-color: red;
+	color: #fff;
+	width: 0.8rem;
+	height: 0.8rem;
+	border-radius: 0.4rem;
+  text-indent: 0;
+  text-align: center;
+}
+
 section .photo{
 	width: 3.6rem;
 	height: 3.6rem;

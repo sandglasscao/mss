@@ -1,5 +1,6 @@
 <header>
-    <div> 我 的 团 队</div>
+    <i href="" (click)="goBack()"></i>
+    <div> 团 队</div>
 </header>
 <section>
     <div class="team_list" *ngFor="let team of teamList">
@@ -30,7 +31,7 @@
                         <span class="u">单</span>
                     </div>
                     <div>
-                        <a class="downline"  routerLink="../teamDownLine"><span class="title">下线<i></i></span>
+                        <a class="downline" href=""><span class="title">下线<i></i></span>
                             <span class="num">{{ team.downLine }}</span>
                             <span class="u">人</span></a>
                     </div>

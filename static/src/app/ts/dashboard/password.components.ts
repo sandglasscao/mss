@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ProfileService} from "./profile.service";
 import {User} from "./user";
 import {Router} from "@angular/router";
+import { Location }                 from '@angular/common';
 
 @Component({
   selector: 'app-pwd',
@@ -14,7 +15,8 @@ export class PasswordComponent implements OnInit {
   error = null;
 
   constructor(private profileService: ProfileService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
   }
 
   ngOnInit(): void {
@@ -23,6 +25,9 @@ export class PasswordComponent implements OnInit {
 
   back() {
     this.router.navigate(['../']);
+  }
+  goBack(): void {
+    this.location.back();
   }
 
   onSubmit() {
