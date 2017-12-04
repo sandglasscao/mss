@@ -1,9 +1,15 @@
-.wrap{background-color: #F2F3F5}
-header{
-  width: 100%;
-  height: 100px;
-  overflow: hidden;
+.wrap{
+  min-height:990px;
+  background-color: #F2F3F5
 }
+header{
+  padding-top:2%;
+  width: 100%;
+
+  overflow: hidden;
+  border-bottom:1px solid greenyellow;
+}
+
 header img{
   float: left;
   height: 74px;
@@ -13,15 +19,22 @@ header .title{
   height: 100%;
   line-height: 100px;
   font-size: 50px;
-  text-align: center;
+  /*padding-left:35%;*/
+  text-align:center;
+
 }
-.active{
-  color: orange;
+
+section{
+  width:100%;
 }
 nav{
+  padding-top:2%;
+  padding-left:2%;
   float: left;
-  width: 20%;
+  width: 15%;
   overflow: hidden;
+  border:1px greenyellow solid;
+  min-height:900px;
 }
 nav a{
   display: block;
@@ -31,7 +44,14 @@ nav a{
   font-size: 24px;
   text-indent: 30px;
 }
-router-outlet{
-  float: left;
-  width: 80%;
+.container{
+  width:85%;
+  float:right;
+  max-height:990px;
 }
+
+
+@media screen and (max-width:413px){
+   .nav{width:100%;height:auto;}
+   .container{clear:both;}
+		}

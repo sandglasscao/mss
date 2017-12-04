@@ -1,44 +1,4 @@
 .wrap{
-			width:100%;
-			min-height:4rem;
-			background-color:#f2f3f5;
-		}
-
-    header{
-      width:100%;
-    }
-		.wrap img{
-			float:left;
-		}
-		.title{
-      float:right;
-			width:60%;
-			height:10%;
-			text-align:center;
-      padding-top:2.4%;
-			font-size:40px;
-		}
-
-@media screen and (max-width:413px){
-       .wrap img{max-width:100%;}
-      .title{float:left;width:100%;font-size:24px;}
-		}
-
-.nothing{
-  clear:both;
-}
-.con{
-
-}
-.container{
-  float:left;
-}
-.wrap nav{
-  margin-left:4%;
-  margin-top:5%;
-  width:30%;
-  height:22rem;
-}
-
-.wrap nav ul li{
+  width:100%;
+  text-align:center;
 }
