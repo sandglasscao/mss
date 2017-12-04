@@ -115,17 +115,3 @@
 	 	  	left:36%;
 	 	  	border-radius: 13px;
 	 	  }
-
-	@media only screen and (max-width:1500px) {
-		.agent_res{
-			display:none;
-		}
-		.agent_con{
-			background:url(/static/src/assets/backstage1.jpg) no-repeat;
-	        background-size:20%;
-			width:100%;
-		}
-		.agent_con button{
-			left:30%;
-		}
-	}
