@@ -4,6 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PasswordComponent} from "./password.components";
 import {StoresComponent} from "./stores.component";
+import {StoreDetailComponent} from "./storeDetail.component";
 import {ProfileComponent} from "./profile.component";
 import {TeamComponent} from "./team.component";
 import {TeamDownLineComponent} from "./teamDownLine.component";
@@ -19,6 +20,7 @@ const dashboardRoutes: Routes = [
         children: [
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},
+          {path: 'storeDetail', component: StoreDetailComponent},
           {path: 'team', component: TeamComponent},
           {path: 'teamDownLine', component: TeamDownLineComponent},
           {path: 'password', component: PasswordComponent},

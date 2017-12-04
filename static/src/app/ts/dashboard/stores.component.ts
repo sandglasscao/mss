@@ -5,6 +5,7 @@ import {StoreService} from "./store.service";
 import {MetaService} from "../meta/meta.service";
 import {StoreStatus} from "./store-status";
 import {forEach} from "@angular/router/src/utils/collection";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-store',
@@ -22,7 +23,8 @@ export class StoresComponent implements OnInit {
   error = null;
 
   constructor(private storeService: StoreService,
-              private metaService: MetaService) {
+              private metaService: MetaService,
+              private router: Router) {
   }
 
 
@@ -30,7 +32,10 @@ export class StoresComponent implements OnInit {
     this.listStoreStatus();
     this.initStores();
   }
-
+  detail(id) {
+    sessionStorage.setItem("detailId", id);
+    this.router.navigate(['storeDetail']);
+  }
   initStores() {
     this.storeService
       .listStore()
