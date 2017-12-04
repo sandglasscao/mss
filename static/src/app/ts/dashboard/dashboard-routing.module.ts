@@ -6,6 +6,8 @@ import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PasswordComponent} from "./password.components";
 import {StoresComponent} from "./stores.component";
 import {ProfileComponent} from "./profile.component";
+import {TeamComponent} from "./team.component";
+
 
 const dashboardRoutes: Routes = [
   {
@@ -18,7 +20,7 @@ const dashboardRoutes: Routes = [
           {path: 'check-cell', component: CellPhoneComponent},
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},
-          {path: 'team', component: DashboardHomeComponent},
+          {path: 'team', component: TeamComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
           {path: '', redirectTo: 'home', pathMatch: 'full'},
