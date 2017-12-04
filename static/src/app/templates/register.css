@@ -92,3 +92,7 @@ body {
   font-size: 0.24rem;
   color: red;
 }
+.sele select{
+  width: 5rem;
+  height: 1.2rem;
+}
