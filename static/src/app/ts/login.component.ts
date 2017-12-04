@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginService} from './login.service';
@@ -14,7 +14,7 @@ import {ProfileService} from "./dashboard/profile.service";
   ]
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   user = new User();
   next = 'dashboard';
   error = null;
@@ -24,13 +24,6 @@ export class LoginComponent implements OnInit {
               private router: Router) {
   }
 
-  ngOnInit(): void {
-    if (sessionStorage.getItem('isLogin')) {
-      let next = sessionStorage.getItem('entry');
-      this.router.navigate([next]);
-    }
-  }
-
   onSubmit() {
     if (this.user.username) {
       this.loginService
@@ -38,7 +31,6 @@ export class LoginComponent implements OnInit {
         .then(account => {
           sessionStorage.setItem('token', account.token);
           sessionStorage.setItem('username', this.user.username);
-          sessionStorage.setItem('isLogin', '1');
           this.routSwitch();
         })
         .catch(error => {
