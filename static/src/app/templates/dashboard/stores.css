@@ -27,7 +27,7 @@ header {
   width:100%;height:4.5rem;background-color:white;
 }
 .store_numL{
-  width:49%;
+  margin-left:15%;
   float:left;
 }
 .store_numL img{
@@ -35,11 +35,10 @@ header {
 			max-height:50%;
 }
 .store_numR{
-  width:49%;
   float:right;
 }
 .store_numR img{
-      max-width:30%;
+      max-width:60%;
 			max-height:50%;
     }
 		.mystoreL{
@@ -48,7 +47,7 @@ header {
 			background-color:#ffffff;
 		}
     .store_numL img{
-      max-width:30%;
+      max-width:60%;
 			max-height:50%;
     }
 
@@ -74,8 +73,6 @@ header {
 			margin-left:28%;
 			padding-left:6%;
 			background-color:#b7e3f0;
-
-
 		}
 
 
