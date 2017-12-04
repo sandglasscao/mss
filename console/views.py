@@ -3,7 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
@@ -24,6 +23,7 @@ class InitSystemApiView(APIView):
     serializer_class = StoreSerializer
 
     def get(self, request):
-        res = SyncRecord.sync_stores_from_b2b()
-        status = 200 if res else 400
-        return Response(status=status)
+        if SyncRecord.initSystem():
+            return Response(status=200)
+        else:
+            return Response(status=500)
