@@ -3,37 +3,35 @@
         <div class="head_right"> 我&nbsp;的&nbsp;店&nbsp;铺</div>
         <div class="none-things"></div>
         <div class="store_num">
-           <div class="store_numL" style="width:49%;float:left">
-
+           <div class="store_numL">
               <img src="/static/src/assets/index4.png"/>
-              <div>有效店铺</div>
+              <div class="mystoreL_con_one">有效店铺</div>
               <span>{{ commLen }}</span>
-              <span>家</span>
+              <span class="mystoreL_con_num">家</span>
            </div>
-           <div class="store_numR" style="width:49%;float:right">
+           <div class="store_numR">
                <img src="/static/src/assets/index8.png"/>
-               <div>非有效店铺</div>
+               <div class="mystoreL_con_one"> 非有效店铺</div>
               <span>{{ uncommLen }}</span>
-              <span>家</span>
+              <span class="mystoreL_con_num">家</span>
            </div>
         </div>
          <div class="none-things"></div>
 
 
-      <div class="head-middel">
-        <ul class="store-head">
-          <table class="head-table">
+      <div class="head_middel">
+        <ul class="head_store">
+          <table class="head_table">
             <thead>
             <tr>
-              <th>店名</th>
-                        <th>店主</th>
-                        <th>状态
+              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;店名</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;店主</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态
                             <select class="option_1" (change)="filterStores(opt.value)">
                                 <option *ngFor="let opt of storeStatus" [value]="opt.value">
                                     {{ opt.value }}
                                 </option>
                             </select>
-                        </th>
             </tr>
              </thead>
           </table>
@@ -41,22 +39,10 @@
       </div>
     </header>
     <section>
-        <div class="middel" style="height:10rem;overflow:auto;opacity:0.8;">
+
+        <div class="middel" >
             <ul class="store_list">
-                <table class="table" style="border:1px blue solid;background-color:rgb(255,255,255)">
-                    <thead>
-                    <tr>
-                        <th>店名</th>
-                        <th>店主</th>
-                        <th>状态
-                            <select class="option_1" (change)="filterStores(opt.value)">
-                                <option *ngFor="let opt of storeStatus" [value]="opt.value">
-                                    {{ opt.value }}
-                                </option>
-                            </select>
-                        </th>
-                    </tr>
-                    </thead>
+                <table class="table">
 
                     <tbody>
                     <tr *ngFor="let store of sortedStores">
@@ -69,6 +55,7 @@
                 </table>
             </ul>
         </div>
+
     </section>
 </div>
 
