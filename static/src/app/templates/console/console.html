@@ -4,21 +4,19 @@
         <div class="title">后台管理系统</div>
     </header>
 
-  <section>
+    <section>
+        <nav>
+            <ul>
+                <li><a routerLink="./home" routerLinkActive="active">首页</a></li>
+                <li><a routerLink="./agent-new" routerLinkActive="active">创建业务员</a></li>
+                <li><a routerLink="./agent-main" routerLinkActive="active">业务员维护</a></li>
+                <li><a routerLink="./cmmssn" routerLinkActive="active">佣金设置</a></li>
+                <li><a routerLink="./sync" routerLinkActive="active">数据同步</a></li>
+            </ul>
+        </nav>
 
-
-    <nav>
-        <ul>
-            <li><a routerLink="./home" routerLinkActive="active">首页</a></li>
-            <li><a routerLink="./agent-new" routerLinkActive="active">创建业务员</a></li>
-            <li><a routerLink="./agent-main" routerLinkActive="active">业务员维护</a></li>
-            <li><a routerLink="./cmmssn" routerLinkActive="active">佣金设置</a></li>
-            <li><a routerLink="./sync" routerLinkActive="active">数据同步</a></li>
-        </ul>
-    </nav>
-
-    <div class="container">
-    <router-outlet></router-outlet>
-     </div>
-     </section>
+        <div class="container">
+            <router-outlet></router-outlet>
+        </div>
+    </section>
 </div>
