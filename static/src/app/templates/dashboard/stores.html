@@ -3,52 +3,51 @@
         <div class="head_right"> 我&nbsp;的&nbsp;店&nbsp;铺</div>
         <div class="none-things"></div>
         <div class="store_num">
-           <div class="store_numL">
-              <img src="/static/src/assets/index4.png"/>
-              <div class="mystoreL_con_one">有效店铺</div>
-              <span>{{ commLen }}</span>
-              <span class="mystoreL_con_num">家</span>
-           </div>
-           <div class="store_numR">
-               <img src="/static/src/assets/index8.png"/>
-               <div class="mystoreL_con_one"> 非有效店铺</div>
-              <span>{{ uncommLen }}</span>
-              <span class="mystoreL_con_num">家</span>
-           </div>
+            <div class="store_numL">
+                <img src="/static/src/assets/index4.png"/>
+                <div class="mystoreL_con_one">有效店铺</div>
+                <span>{{ commLen }}</span>
+                <span class="mystoreL_con_num">家</span>
+            </div>
+            <div class="store_numR">
+                <img src="/static/src/assets/index8.png"/>
+                <div class="mystoreL_con_one"> 非有效店铺</div>
+                <span>{{ uncommLen }}</span>
+                <span class="mystoreL_con_num">家</span>
+            </div>
         </div>
-         <div class="none-things"></div>
+        <div class="none-things"></div>
 
 
-      <div class="head_middel">
-        <ul class="head_store">
-          <table class="head_table">
-            <thead>
-            <tr>
-              <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;店名</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;店主</th>
-                        <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态
+        <div class="head_middel">
+            <ul class="head_store">
+                <table class="head_table">
+                    <thead>
+                    <tr>
+                        <th class="fir">店名</th>
+                        <th class="sec">店主</th>
+                        <th class="thi">状态
                             <select class="option_1" (change)="filterStores(opt.value)">
                                 <option *ngFor="let opt of storeStatus" [value]="opt.value">
                                     {{ opt.value }}
                                 </option>
                             </select>
-            </tr>
-             </thead>
-          </table>
-        </ul>
-      </div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </ul>
+        </div>
     </header>
     <section>
-
-        <div class="middel" >
+        <div class="middel">
             <ul class="store_list">
                 <table class="table">
-
                     <tbody>
                     <tr *ngFor="let store of sortedStores" (click)="detail(store.name);">
-                        <td>{{ store.name }}</td>
-                        <td>{{ store.owner }}</td>
-                        <td>{{ store.status }}</td>
+                        <td class="fir">{{ store.name }}</td>
+                        <td class="sec">{{ store.owner }}</td>
+                        <td class="thi">{{ store.status }}</td>
                     </tr>
                     </tbody>
                 </table>
