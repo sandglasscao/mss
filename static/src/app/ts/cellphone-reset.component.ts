@@ -19,15 +19,13 @@ export class CellPhoneResetComponent {
   user = new User();
   next = 'reset-pwd';
   cellPhone: string;
-  smsCode: string;
-  verification = null;
   error = null;
 
   constructor(private cellphoneService: CellphoneResetService,
               private profileService: ProfileService,
               private router: Router) {
   }
-  onSub() {
+  onSubmit() {
     if (this.user.username) {
       this.cellphoneService
         .login(this.user)
@@ -55,27 +53,6 @@ export class CellPhoneResetComponent {
         // this.error = error;
         this.error = "业务员不存在!"
       });
-  }
-
-  getSMS() {
-    /*if (this.cellPhone) {
-      this.registerService
-        .checkCell(this.cellPhone)
-        .catch(error => {
-          // this.error = error;
-          this.error = "验证码服务超时!"
-        }); // TODO: Display error message
-    }*/
-    this.verification='1234'; // for debugging register functions
-  }
-
-  onSubmit() {
-    if (this.verification && this.smsCode == this.verification) {
-      sessionStorage.setItem('cellPhone', this.cellPhone);
-      this.router.navigate(['reset-pwd']);
-    } else {
-      this.error = "验证未通过";
-    }
   }
 
   cleanerror() {
