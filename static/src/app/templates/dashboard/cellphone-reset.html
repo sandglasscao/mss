@@ -1,20 +1,26 @@
 <div class="wrap">
-    <form #checkForm="ngForm" (ngSubmit)="onSubmit()">
+<form #userForm="ngForm" (ngSubmit)="onSub()">
         <img src="/static/src/assets/logo1.jpg"/>
         <div class="title">重置密码</div>
         <div class="inp">
             <span>手机号:</span>
             <input class="username" type="text"
                    placeholder="请输入手机号"
-                   [(ngModel)]="cellPhone" required
+                   (keydown)="cleanerror()"
+                   [(ngModel)]="user.username" required autofocus
                    minLength=11
                    maxLength=11
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
         <div class="btn_wrap">
-            <button type="button" class="btn" (click)="getSMS()">发送验证码</button>
+          <div class="form-group" [hidden]="!error">
+            <span class="alert-danger">{{ error }}</span>
+          </div>
+            <button type="submit" class="btn" [disabled]="!userForm.valid">发送验证码</button>
         </div>
+
+</form>
         <div class="inp">
             <span>验证码:</span>
             <input class="username" type="text"
@@ -26,7 +32,7 @@
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
-
+       <form #checkForm="ngForm" (ngSubmit)="onSubmit()">
         <button type="submit" class="next" [disabled]="!checkForm.valid">下一步</button>
 
         <div [hidden]="!error">
