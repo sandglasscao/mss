@@ -11,9 +11,14 @@ from uprofile.serializers import StoreSerializer, RegisterSerializer, OrderSeria
 class SyncRecord(object):
     @classmethod
     def sync_records_from_b2b(cls):
-        cls.sync_agents()
-        cls.sync_stores()
-        cls.sync_orders()
+        flag = True
+        try:
+            cls.sync_agents()
+            cls.sync_stores()
+            cls.sync_orders()
+        except:
+            flag = False
+        return flag
 
     @classmethod
     def sync_agents(cls):
