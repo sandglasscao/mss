@@ -16,6 +16,7 @@ import {RegisterComponent} from "./register.component";
 import {RegisterService} from "./registrater.service";
 import {CellPhoneComponent} from "./cellphone.component";
 import {CellPhoneResetComponent} from './cellphone-reset.component';
+import {PasswordResetComponent} from './password-reset.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -30,6 +31,7 @@ import {CellPhoneResetComponent} from './cellphone-reset.component';
     AppComponent,
     CellPhoneComponent,
     CellPhoneResetComponent,
+    PasswordResetComponent,
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent

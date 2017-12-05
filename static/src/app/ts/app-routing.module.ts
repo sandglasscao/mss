@@ -6,6 +6,7 @@ import {LoginComponent} from './login.component';
 import {RegisterComponent} from './register.component';
 import {CellPhoneComponent} from './cellphone.component';
 import {CellPhoneResetComponent} from './cellphone-reset.component';
+import {PasswordResetComponent} from './password-reset.component';
 const appRoutes: Routes = [
   {
     path: 'console',
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
   },
   {path: 'check-cell', component: CellPhoneComponent},
   {path: 'cell-reset', component: CellPhoneResetComponent},
+  {path: 'reset-pwd', component: PasswordResetComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
