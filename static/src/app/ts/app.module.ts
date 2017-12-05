@@ -15,7 +15,7 @@ import {ConsoleModule} from "./console/console.module";
 import {RegisterComponent} from "./register.component";
 import {RegisterService} from "./registrater.service";
 import {CellPhoneComponent} from "./cellphone.component";
-
+import {CellPhoneResetComponent} from './cellphone-reset.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -29,6 +29,7 @@ import {CellPhoneComponent} from "./cellphone.component";
   declarations: [
     AppComponent,
     CellPhoneComponent,
+    CellPhoneResetComponent,
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent
