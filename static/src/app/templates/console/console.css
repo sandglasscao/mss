@@ -3,7 +3,7 @@
   background-color: #F2F3F5
 }
 header{
-  padding-top:2%;
+  padding:10px 0;
   width: 100%;
 
   overflow: hidden;
@@ -12,7 +12,7 @@ header{
 
 header img{
   float: left;
-  height: 74px;
+  height: 64px;
   margin: 13px 20px;
 }
 header .title{
@@ -21,7 +21,6 @@ header .title{
   font-size: 50px;
   /*padding-left:35%;*/
   text-align:center;
-
 }
 
 section{
@@ -31,10 +30,9 @@ nav{
   padding-top:2%;
   float: left;
   width: 15%;
-  min-width: 200px;
+  min-width: 175px;
   overflow: hidden;
   border:1px greenyellow solid;
-  min-height:900px;
 }
 nav a{
   display: block;
@@ -42,20 +40,15 @@ nav a{
   height: 40px;
   line-height: 40px;
   font-size: 24px;
-  text-indent: 30px;
+  text-indent: 26px;
   text-decoration: none;
 }
 nav a.active{
   background-color: #318CE5;
   color: #fff;
 }
-.container{
-  width:85%;
-  max-width: 1100px;
+.container-right{
+  width:75%;
+  min-width: 710px;
   float:right;
-  max-height:990px;
 }
-@media screen and (max-width:413px){
-   .nav{width:100%;height:auto;}
-   .container{clear:both;}
-		}
