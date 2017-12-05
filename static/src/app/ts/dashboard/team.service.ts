@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
-import {DashboardHome} from "./dashboard-home";
+import {Team} from "./team";
 
 @Injectable()
-export class DashboardHomeService {
-  private baseUrl = 'api/users/home/';
+export class TeamService {
+  private baseUrl = 'api/users/team/';
 
   constructor(private http: Http) {
   }
 
-  getSummary(): Promise<DashboardHome> {
+  listTeam(): Promise<Team[]> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});

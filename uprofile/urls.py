@@ -6,7 +6,7 @@ from .views import (
     ProfileApiView,
     ChangePwdApiView,
     StoreViewSet,
-    OrderViewSet, DashHomeListApiView)
+    OrderViewSet, DashHomeListApiView, TeamListApiView)
 
 store_list = StoreViewSet.as_view({
     'get': 'list',
@@ -38,4 +38,5 @@ urlpatterns = [
     url(r'^order/$', store_list, name='order-list'),
     url(r'^order/(?P<id>[0-9]+)$', order_detail, name='order-detail'),
     url(r'^home/$', DashHomeListApiView.as_view(), name='homelist'),
+    url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
 ]

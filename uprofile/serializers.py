@@ -195,3 +195,10 @@ class DashHomeSerializer(Serializer):
     ordered_cnt = IntegerField(read_only=False)
     myteam_cnt = IntegerField(read_only=False)
     commission = DecimalField(max_digits=10, decimal_places=2, read_only=False)
+
+class TeamListSerializer(Serializer):
+    agent = UserSerializer(read_only=False)
+    double_cnt = IntegerField(read_only=False)
+    ordered_cnt = IntegerField(read_only=False)
+    order_cnt = IntegerField(read_only=False)
+    subagent_cnt = IntegerField(read_only=False)

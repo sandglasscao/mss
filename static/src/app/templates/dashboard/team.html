@@ -5,8 +5,8 @@
     <div class="team_list" *ngFor="let team of teamList">
         <div class="fl list_left">
             <div class="photo_wrap">
-                <img class="photo" src="/static/src/assets/{{ team.img }}"/>
-                <div class="name">{{ team.name }}</div>
+                <img class="photo" src="/static/src/assets/logo1.jpg"/>
+                <div class="name">{{ team.agent.username }}</div>
             </div>
         </div>
         <div class="fl list_right">
@@ -14,24 +14,24 @@
                 <div class="con_up">
                     <div>
                         <span class="title">有效店铺</span>
-                        <span class="num">{{ team.old }}</span>
+                        <span class="num">{{ team.double_cnt }}</span>
                         <span class="u">家</span>
                     </div>
                     <div>
                         <span class="title">下单店铺</span>
-                        <span class="num">{{ team.new }}</span>
+                        <span class="num">{{ team.ordered_cnt }}</span>
                         <span class="u">家</span>
                     </div>
                 </div>
                 <div class="con_down">
                     <div>
                         <span class="title">店铺下单</span>
-                        <span class="num">{{ team.old }}</span>
+                        <span class="num">{{ team.order_cnt }}</span>
                         <span class="u">单</span>
                     </div>
                     <div>
-                        <a class="downline"  routerLink="../teamDownLine"><span class="title">下线<i></i></span>
-                            <span class="num">{{ team.downLine }}</span>
+                        <a class="downline" routerLink="../downLine"><span class="title">下线<i></i></span>
+                            <span class="num">{{ team.subagent_cnt }}</span>
                             <span class="u">人</span></a>
                     </div>
                 </div>
