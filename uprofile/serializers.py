@@ -188,3 +188,13 @@ class OrderSerializer(ModelSerializer):
         store.save()
 
         return validated_data
+
+# class cellresetSerializer(ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ('username',)
+
+class cellresetSerializer(Serializer):
+    class Meta:
+        model = User
+        fields = ('username',)

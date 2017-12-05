@@ -1,6 +1,8 @@
 import datetime
+
+from django.http import HttpResponse
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK
+from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
 from rest_framework.generics import (
     ListAPIView,
     ListCreateAPIView,
@@ -20,7 +22,8 @@ from b2b.models import StoreB2B, AgentB2B
 from uprofile.models import Profile, Store, Order
 from utility.views import SyncRecord
 from .serializers import (
-    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer, StoreSerializer, OrderSerializer)
+    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer, StoreSerializer, OrderSerializer,
+    cellresetSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -113,3 +116,14 @@ class OrderViewSet(ModelViewSet):
         else:
             queryset = []
         return queryset
+
+class cellreset(APIView):
+    permission_classes = [AllowAny]
+    serializer_class = UserSerializer
+
+    def post(self,request, *args, **kwargs):
+        profile = Profile.objects.filter(cellphone=request.data['username'])
+        if profile.count()>0:
+            serializer = UserSerializer(profile[0].user)
+            return Response(serializer.data,status=HTTP_200_OK)
+        return Response(status=HTTP_400_BAD_REQUEST)
