@@ -2,20 +2,13 @@
   width: 100%;
   min-height: 45rem;
   background-color: #f2f3f5;
+  padding-top: 26px;
 }
 
 .wrap img {
   position: absolute;
   left: 0;
   top: 0;
-}
-
-.title {
-  width: 100%;
-  height: 100px;
-  text-align: center;
-  padding-top: 2.3%;
-  font-size: 40px;
 }
 
 .agent-table {
@@ -38,7 +31,16 @@
   border-collapse: collapse;
 
 }
-
+#customers td button{
+  padding: 0 4px;
+    border-radius: 3px;
+}
+#customers td button:nth-child(1){
+  background-color: lightcyan;
+}
+#customers td button:nth-child(2){
+  background-color: crimson;
+}
 #customers th {
   border: 1px solid #e2eafa;
   font-size: 16px;
@@ -66,16 +68,43 @@
 }
 
 .page {
-  margin-top: 1.4%;
+  margin-top: 20px;
   width: 100%;
   height: 50px;
 }
 
-#pagination-flickr {
+.pagination-flickr {
   height: 40px;
-  width: 30%;
+  width: 400px;
   margin: 0 auto;
+  overflow: hidden;
 }
+
+.pagination-flickr a,
+.pagination-flickr .pages{
+  float: left;
+}
+.pagination-flickr a{
+  text-decoration: none;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 0 3px;
+}
+.pagination-flickr a:hover{
+  color: orange;
+}
+.pagination-flickr .pages{padding: 0 15px;}
+.pagination-flickr .pages a{
+  color: #318ce5;
+  background-color: transparent;
+}
+.pagination-flickr .pages a.active{
+  color: #000;
+}
+.pagination-flickr .pages a:hover{
+  color: orange;
+}
+
 
 #pagination-flickr li {
   border: 0;

@@ -1,0 +1,12 @@
+.wrap{
+  padding: 26px;
+}
+.agent_con_seven button{
+  background-color: green;
+    color: #fff;
+    padding: 3px 6px;
+    border-radius: 5px;
+}
+.res{
+  padding-top: 15px;
+}

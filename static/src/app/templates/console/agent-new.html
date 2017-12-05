@@ -1,46 +1,43 @@
  <form #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
         <div class="agent_con">
-            <span class="agent_con_top">创建业务员</span>
-
-            <div class="agent_con_first">
+            <div class="agent_con_">
                 <span>业务员编号：</span>
                 <input class="agentname" type="text" name="agentname"
                        [(ngModel)]="agent.username" required
                 />
             </div>
 
-            <div class="agent_con_second">
+            <div class="agent_con_">
                 <span> 姓名： </span>
                 <input class="username" type="text" name="username"
                        [(ngModel)]="agent.full_name" required
                 />
             </div>
-            <div class="agent_con_third">
+            <div class="agent_con_">
                 <span> 手机号： </span>
                 <input class="cellphone" type="text" name="cellphone"
                        [(ngModel)]="agent.cellphone" required
                 />
             </div>
 
-            <div class="agent_con_fourth">
+            <div class="agent_con_">
                 <span>密码： </span>
                 <input class="cellphone" type="password" name="password"
                        [(ngModel)]="agent.password" required
                 />
             </div>
 
-            <div class="agent_con_fifth">
-                <span>正式员工 ： </span>
+            <div class="agent_con_tf">
+                <label>
+                <span>正式员工</span>
                 <input class="trueagent" type="checkbox" name="trueagent"
                        [(ngModel)]="agent.isEmployee" required
-                />
-            </div>
-
-            <div class="agent_con_six">
-                <span>推荐资格 ： </span>
+                /></label>
+                <label>
+                <span>推荐资格</span>
                 <input class="certification" type="checkbox" name="certification"
                        [(ngModel)]="agent.hasRecommAuth" required
-                />
+                /></label>
             </div>
 
             <div class="agent_con_seven">

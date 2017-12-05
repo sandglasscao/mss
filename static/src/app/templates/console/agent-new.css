@@ -1,132 +1,61 @@
-	.agent_con{
-        padding-top:2%;
-	 	    width:100%;
-	 	  }
-	 	  .agent_con_top{
-	 	  	font-size:40px;
-	 	    position:relative;
-	 	    left:40%;
-	 	    top:0;
-	 	  }
-	 	  .agent_con_first{
-	 	  	width:100%;
-	 	  	margin-top:4%;
-	 	  	padding-top:1%;
-	 	  	padding-bottom:1%;
-	 	  }
-	 	  .agent_con_first span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_first input{
-	 	  	 width:50% ;
-         height:43px;
-	 	  	 box-sizing: border-box;
-	 	  	 border: 1px solid black;
-         border-radius: 3px;
-	 	  }
-	 	  .agent_con_second{
-	 	  	width:100%;
-	 	  	padding-top: 1%;
-	 	  	padding-bottom: 1%;
-	 	  }
-	 	  .agent_con_second span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_second input{
-	 	  	 width: 50%;
-         height: 43px;
-	 	  	 box-sizing: border-box;
-	 	  	 border: 1px solid black;
-         border-radius: 3px;
-	 	  }
-	 	  .agent_con_third{
-	 	  	width:100%;
-	 	  	padding-top:1%;
-	 	  	padding-bottom:1%;
-	 	  }
-	 	  .agent_con_third span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_third input{
-	 	  	 width: 50%;
-         height: 43px;
-	 	  	 box-sizing: border-box;
-	 	  	 border: 1px solid black;
-         border-radius: 3px;
-	 	  }
-	 	  .agent_con_fourth{
-	 	  	width:100%;
-	 	  	padding-top:1% ;
-	 	  	padding-bottom: 1%;
-	 	  }
-	 	  .agent_con_fourth span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_fourth input{
-	 	  	 width: 50%;
-         height:43px ;
-	 	  	 box-sizing: border-box;
-	 	  	 border: 1px solid black;
-         border-radius: 3px;
-	 	  }
-	 	  .agent_con_fifth{
-	 	  	width:100%;
-	 	  	padding-top:1%;
-	 	  	padding-bottom:1%;
-	 	  }
-	 	  .agent_con_fifth span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_fifth input{
-	 	  	 width: 10%;
-         height: 43px ;
-	 	  }
-	 	  .agent_con_six{
-	 	  	width:100%;
-	 	  	padding-top:1%;
-	 	  	padding-bottom:1%;
-	 	  }
-	 	  .agent_con_six span{
-	 	  	float:left;
-	 	  	text-align:right;
-	 	  	width:36%;
-	 	  	font-size:35px;
-	 	  }
-	 	  .agent_con_six input{
-	 	  	 width: 10%;
-         height: 43px;
-	 	  }
-	 	  .agent_con_seven{
-	 	  	width:100%;
-	 	  }
+.agent_con {
+  box-sizing: border-box;
+  padding-top: 50px;
+  padding-left: 50px;
+  width: 86%;
+  margin: 0 auto;
+}
 
-	 	  .agent_con button{
-	 	  	font-size:35px;
-	 	  	border:0;
-	 	  	background-color:#177a41;
-	 	  	color:white;
-	 	  	width:40%;
-	 	  	position:relative;
-	 	  	left:40%;
-	 	  	border-radius: 13px;
-	 	  }
+.agent_con_ {
+  width: 100%;
+  margin-top: 10px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
 
+.agent_con_ span {
+  float: left;
+  width: 160px;
+  line-height: 40px;
+  font-size: 24px;
+}
 
-	 	  @media only screen and (max-width:400px) {
-        .agent_con{width:100%;}
-	    }
+.agent_con_ input {
+  width: calc(100% - 160px);
+  height: 40px;
+  box-sizing: border-box;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.agent_con_seven {
+  width: calc(100% - 160px);
+    float: right;
+    padding-top: 30px;
+    text-align: center;
+}
+
+.agent_con button {
+  font-size: 35px;
+  border: 0;
+  background-color: #177a41;
+  color: white;
+  width: 80%;
+  border-radius: 13px;
+}
+.agent_con_tf{
+  width: 100%;
+  padding-left: 160px;
+}
+.agent_con_tf span{
+  font-size: 24px;
+  font-weight: 400;
+}
+.agent_con_tf input{
+  margin: 0;
+  width: 18px;
+    height: 18px;
+}
+.agent_con_tf label:nth-child(1){
+  float: right;
+}
