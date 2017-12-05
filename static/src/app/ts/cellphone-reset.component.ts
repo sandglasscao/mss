@@ -36,7 +36,7 @@ export class CellPhoneResetComponent {
   onSubmit() {
     if (this.verification && this.smsCode == this.verification) {
       sessionStorage.setItem('cellPhone', this.cellPhone);
-      this.router.navigate(['']);
+      this.router.navigate(['dashboard/password']);
     } else {
       this.error = "验证未通过";
     }
