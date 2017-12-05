@@ -34,15 +34,13 @@ section .menu li {
   overflow: hidden;
 }
 .menu li .btn {
-  margin-top: 1rem;
+  margin: 0.5rem 0;
   box-sizing: border-box;
   width: 100%;
   height: 2.64rem;
+  padding-right: 0;
 }
-.menu li:nth-child(odd) .btn {
-  padding-left: 2.22rem;
-}
-.menu li:nth-child(even) .btn {
+.menu li:nth-child .btn {
   padding-left: 0.88rem;
 }
 .menu .btn .btn_up {
