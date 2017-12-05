@@ -17,10 +17,10 @@ from rest_framework.permissions import (
 from django.contrib.auth.models import User
 
 from b2b.models import StoreB2B, AgentB2B
-from uprofile.models import Profile, Store
+from uprofile.models import Profile, Store, Order
 from utility.views import SyncRecord
 from .serializers import (
-    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer, StoreSerializer)
+    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer, StoreSerializer, OrderSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -91,28 +91,25 @@ class ChangePwdApiView(APIView):
         return Response(serializer.errors, status=400)
 
 
-class StoreListApiView(ListAPIView):
-    permission_classes = [IsAuthenticatedOrReadOnly]
+class StoreViewSet(ModelViewSet):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = StoreSerializer
-
-    # pagination_class = StandardPagination
+    lookup_field = 'id'
 
     def get_queryset(self):
-        # SyncRecord.sync_stores_from_b2b()
+        queryset = Store.objects.filter(agent=self.request.user)
+        return queryset
 
-        # retrieve the agent's account
-        agentname = self.kwargs['username']
-        if agentname:
-            try:
-                agent = User.objects.get(username=agentname)
-            except User.DoesNotExist:
-                agent = self.request.user
+
+class OrderViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticatedOrReadOnly]
+    serializer_class = OrderSerializer
+    lookup_field = 'id'
+
+    def get_queryset(self):
+        store = self.kwargs['store']
+        if store:
+            queryset = Order.objects.filter(store=store)
         else:
-            agent = self.request.user
-
-        # list agent's stores
-        try:
-            queryset = Store.objects.filter(agent=agent)
-        except Store.DoesNotExist:
             queryset = []
         return queryset

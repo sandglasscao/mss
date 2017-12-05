@@ -9,7 +9,7 @@ from rest_framework_jwt.settings import api_settings
 
 from .models import (
     Profile,
-    Address, Store)
+    Address, Store, Order)
 
 
 class UserSerializer(ModelSerializer):
@@ -153,3 +153,38 @@ class StoreSerializer(ModelSerializer):
             'b2b_id',
             'created_dt',
         )
+
+
+class OrderSerializer(ModelSerializer):
+    class Meta:
+        model = Order
+        fields = (
+            'id',
+            'order_sn',
+            'status',
+            'amount',
+            'discount',
+            'store',
+            'b2b_id',
+            'created_dt',
+        )
+
+    def create(self, validated_data):
+        order = Order.objects.create(
+            order_sn=validated_data.get("order_sn", None),
+            status=validated_data.get("status", None),
+            amount=validated_data.get("amount", None),
+            discount=validated_data.get("discount", None),
+            store=validated_data.get("store", None),
+            b2b_id=validated_data.get("b2b_id", None),
+            created_dt=validated_data.get("created_dt", None)
+        )
+
+        store = order.store
+        if store.status == '0':
+            store.status = '1'
+        elif store.status == '1':
+            store.status = '2'
+        store.save()
+
+        return validated_data

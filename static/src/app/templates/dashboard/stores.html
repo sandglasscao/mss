@@ -45,15 +45,11 @@
                 <table class="table">
 
                     <tbody>
-                    <a href="#">
-                    <tr *ngFor="let store of sortedStores">
+                    <tr *ngFor="let store of sortedStores" (click)="detail(store.name);">
                         <td>{{ store.name }}</td>
                         <td>{{ store.owner }}</td>
-                        <td>
-                            {{ store.status }}</td>
+                        <td>{{ store.status }}</td>
                     </tr>
-
-                      </a>
                     </tbody>
                 </table>
             </ul>

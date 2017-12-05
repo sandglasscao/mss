@@ -10,6 +10,7 @@ import {PasswordComponent} from './password.components';
 import {StoresComponent} from "./stores.component";
 import {TeamComponent} from "./team.component";
 import {TeamDownLineComponent} from "./teamDownLine.component";
+import {StoreDetailComponent} from "./storeDetail.component";
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import {TeamDownLineComponent} from "./teamDownLine.component";
     DashboardHomeComponent,
     StoresComponent,
     TeamComponent,
-    TeamDownLineComponent
+    TeamDownLineComponent,
+    StoreDetailComponent
   ],
   providers: [RegisterService]
 })

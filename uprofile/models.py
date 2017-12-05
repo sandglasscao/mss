@@ -37,7 +37,7 @@ class Address(models.Model):
 
 class Store(models.Model):
     class Meta:
-        ordering = ['-created_dt']
+        ordering = ['-b2b_id']
 
     name = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=100, null=True)
@@ -53,6 +53,7 @@ class Store(models.Model):
                                   ('0', '已注册'),
                                   ('1', '已下单'),
                                   ('2', '有效'),
+                                  ('3', '已付佣金'),
                               ),
                               default='-1'
                               )
@@ -60,5 +61,18 @@ class Store(models.Model):
     license_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
     indoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
     outdoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
+    b2b_id = models.IntegerField(null=True)
+    created_dt = models.DateTimeField(null=True)
+
+
+class Order(models.Model):
+    class Meta:
+        ordering = ['-b2b_id']
+
+    order_sn = models.CharField(max_length=20, null=True)
+    status = models.CharField(max_length=100, null=True)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    discount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    store = models.ForeignKey(Store)
     b2b_id = models.IntegerField(null=True)
     created_dt = models.DateTimeField(null=True)

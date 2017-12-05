@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
       .then(account => {
         sessionStorage.setItem('token', account.token);
         sessionStorage.setItem('username', account.cellphone);
-        sessionStorage.setItem('isLogin', '1');
         this.router.navigate(['dashboard']);
       })
       .catch(error => {
