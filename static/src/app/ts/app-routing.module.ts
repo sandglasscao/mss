@@ -2,10 +2,10 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {PageNotFoundComponent} from './not-found.component';
-import {LoginComponent} from "./login.component";
-import {RegisterComponent} from "./register.component";
-import {CellPhoneComponent} from "./cellphone.component";
-
+import {LoginComponent} from './login.component';
+import {RegisterComponent} from './register.component';
+import {CellPhoneComponent} from './cellphone.component';
+import {CellPhoneResetComponent} from './cellphone-reset.component';
 const appRoutes: Routes = [
   {
     path: 'console',
@@ -16,6 +16,7 @@ const appRoutes: Routes = [
     loadChildren: 'ts/dashboard/dashboard.module#DashboardModule'
   },
   {path: 'check-cell', component: CellPhoneComponent},
+  {path: 'cell-reset', component: CellPhoneResetComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: '', redirectTo: 'login', pathMatch: 'full'},
