@@ -27,8 +27,10 @@
                         <th class="fir">店名</th>
                         <th class="sec">店主</th>
                         <th class="thi">状态
-                            <select class="option_1" (change)="filterStores(opt.value)">
-                                <option *ngFor="let opt of storeStatus" [value]="opt.value">
+                            <select class="option_1"
+                                    (change)="filterStores(selectedStatus)"
+                                    [(ngModel)]="selectedStatus">
+                                <option *ngFor="let opt of statuslst" [value]="opt.code">
                                     {{ opt.value }}
                                 </option>
                             </select>

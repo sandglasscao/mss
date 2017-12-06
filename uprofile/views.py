@@ -181,7 +181,7 @@ class TeamListApiView(ListAPIView):
             for store in agent.store.all():
                 order_cnt = order_cnt + store.order.filter(status='1').count()
             team['order_cnt'] = order_cnt
-            team['subagent_cnt'] = agent.son_agnet.all().count()
+            team['subagent_cnt'] = agent.son_agent.all().count()
 
             queryset = [team]
         return queryset

@@ -16,8 +16,9 @@ import {Router} from "@angular/router";
 export class StoresComponent implements OnInit {
   stores;
   sortedStores: Store[];
-  storeStatus;
+  statuslst;
   options: StoreStatus[];
+  selectedStatus: string;
   commLen = 0;
   uncommLen = 0;
   error = null;
@@ -32,10 +33,12 @@ export class StoresComponent implements OnInit {
     this.listStoreStatus();
     this.initStores();
   }
+
   detail(id) {
     sessionStorage.setItem("detailId", id);
     this.router.navigate(['storeDetail']);
   }
+
   initStores() {
     this.storeService
       .listStore()
@@ -45,7 +48,7 @@ export class StoresComponent implements OnInit {
         this.commLen = commStroes.length;
         this.uncommLen = this.stores.length - this.commLen;
         this.stores.map(store => {
-          store.status = this.storeStatus.find(st => st.code == store.status).value
+          store.status = this.statuslst.find(st => st.code == store.status).value
         });
         this.sortedStores = this.stores;
       })
@@ -59,7 +62,7 @@ export class StoresComponent implements OnInit {
     this.metaService
       .listStoreStatus('1001')
       .then(res => {
-        this.storeStatus = res;
+        this.statuslst = res;
         this.setOptions();
       })
       .catch(error => this.error = error);
@@ -69,10 +72,11 @@ export class StoresComponent implements OnInit {
     let allStore = new StoreStatus();
     allStore.code = '100';
     allStore.value = '全部';
-    this.storeStatus.append(allStore);
+    this.statuslst.push(allStore);
   }
 
-  private filterStores(status: string) {
-    this.sortedStores = this.stores.filter(store => store.status == status);
+  private filterStores(code: string) {
+    let value = this.statuslst.find(status => status.code == code).value;
+    this.sortedStores = this.stores.filter(store => store.status == value);
   }
 }
