@@ -5,7 +5,7 @@
             <div class="btn">
                 <div class="btn_up">
                     <img src="/static/src/assets/index3.jpg"/>
-                    <span class="num">78</span>
+                    <span class="num">{{ summary.store_cnt }}</span>
                     <span>家</span>
                 </div>
                 <div class="btn_down">我的店铺</div>
@@ -15,7 +15,7 @@
             <div class="btn">
                 <div class="btn_up">
                     <img src="/static/src/assets/index4.png"/>
-                    <span class="num">8</span>
+                    <span class="num">{{ summary.ordered_cnt }}</span>
                     <span>家</span>
                 </div>
                 <div class="btn_down">下单店铺</div>
@@ -25,7 +25,7 @@
             <div class="btn">
                 <div class="btn_up">
                     <img src="/static/src/assets/index5.jpg"/>
-                    <span class="num">78</span>
+                    <span class="num">{{ summary.myteam_cnt }}</span>
                     <span>名</span>
                 </div>
                 <div class="btn_down">我的团队</div>
@@ -34,31 +34,11 @@
         <li class="myStore">
             <div class="btn">
                 <div class="btn_up">
-                    <img src="/static/src/assets/index6.jpg"/>
-                    <span class="num">145</span>
-                    <span>单</span>
-                </div>
-                <div class="btn_down">店铺订单</div>
-            </div>
-        </li>
-        <li class="myStore">
-            <div class="btn">
-                <div class="btn_up">
                     <img src="/static/src/assets/index7.jpg"/>
-                    <span class="num">78</span>
+                    <span class="num">{{ summary.commission }}</span>
                     <span>元</span>
                 </div>
                 <div class="btn_down">我的佣金</div>
-            </div>
-        </li>
-        <li class="myStore">
-            <div class="btn">
-                <div class="btn_up">
-                    <img src="/static/src/assets/index2.jpg"/>
-                    <span class="num">73845</span>
-                    <span>元</span>
-                </div>
-                <div class="btn_down">消费金额</div>
             </div>
         </li>
     </ul>

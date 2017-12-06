@@ -17,7 +17,7 @@ class Profile(models.Model):
     isEmployee = models.BooleanField(default=False)
     hasRecommAuth = models.BooleanField(default=False)
     address = models.ForeignKey('Address', null=True, blank=True)
-    parent_agent = models.ForeignKey(User, related_name='parent_agent', null=True, blank=True)
+    parent_agent = models.ForeignKey(User, related_name='son_agent', null=True, blank=True)
     grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True, blank=True)
     created_dt = models.DateTimeField(auto_now_add=True)
 
@@ -45,7 +45,7 @@ class Store(models.Model):
     longitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)
     owner = models.CharField(max_length=50, null=True)
     cellphone = models.CharField(max_length=11, null=True)
-    agent = models.ForeignKey(User)
+    agent = models.ForeignKey(User, related_name='store',)
     status = models.CharField(max_length=2,
                               choices=(
                                   ('-2', '审核未通过'),
@@ -73,6 +73,6 @@ class Order(models.Model):
     status = models.CharField(max_length=100, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
     discount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    store = models.ForeignKey(Store)
+    store = models.ForeignKey(Store, related_name='order',)
     b2b_id = models.IntegerField(null=True)
     created_dt = models.DateTimeField(null=True)

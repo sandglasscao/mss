@@ -1,6 +1,6 @@
 <div class="wrap">
     <div class="agent_con_seven">
-        <button type="button" class="login" (click)="initSystem()">系统初始化</button>
+        <button type="button" class="login" [disabled]="msg" (click)="initSystem()">系统初始化</button>
     </div>
     <div class="res">
         <span>{{ msg }}</span>

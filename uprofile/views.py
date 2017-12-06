@@ -1,16 +1,12 @@
-import datetime
-
-from django.http import HttpResponse
+from django.db.models import Q
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_200_OK
 from rest_framework.generics import (
     ListAPIView,
-    ListCreateAPIView,
-    RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.views import APIView
-from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
@@ -18,12 +14,22 @@ from rest_framework.permissions import (
 )
 from django.contrib.auth.models import User
 
-from b2b.models import StoreB2B, AgentB2B
-from uprofile.models import Profile, Store, Order
-from utility.views import SyncRecord
+from console.models import Commission
+from uprofile.models import (
+    Profile,
+    Store,
+    Order
+)
 from .serializers import (
-    ProfileSerializer, RegisterSerializer, UserSerializer, PasswordSerializer, StoreSerializer, OrderSerializer,
-    cellresetSerializer)
+    ProfileSerializer,
+    RegisterSerializer,
+    UserSerializer,
+    PasswordSerializer,
+    StoreSerializer,
+    OrderSerializer,
+    DashHomeSerializer,
+    TeamListSerializer
+)
 
 
 class StandardPagination(PageNumberPagination):
@@ -117,13 +123,77 @@ class OrderViewSet(ModelViewSet):
             queryset = []
         return queryset
 
+
+class DashHomeListApiView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = DashHomeSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        store_cnt = user.store.all().count()  # Store.objects.filter(agent=user).count()
+        ordered_cnt = 0
+        for store in user.store.all():
+            ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
+        # Store.objects.filter(user=self.request.user, status='1').count()
+        myteam_cnt = Profile.objects.filter(Q(parent_agent=user) | Q(grand_agent=user)).count() or 0
+        response = {}
+        response['store_cnt'] = store_cnt
+        response['ordered_cnt'] = ordered_cnt
+        response['myteam_cnt'] = myteam_cnt
+        response['commission'] = self.__commission__()
+
+        queryset = [response]
+        return queryset
+
+    def __commission__(self):
+        user = self.request.user
+        myStore_cnt = user.store.filter(status='2').count()
+        subStore_cnt = 0
+        for subAgentProfile in user.son_agent.all():
+            subStore_cnt = subAgentProfile.user.store.filter(status='2').count()
+        subsubStore_cnt = 0
+        for grandAgentProfile in user.grand_agent.all():
+            subsubStore_cnt = grandAgentProfile.user.store.filter(status='2').count()
+        commissions = Commission.objects.all()
+        commission = commissions[0]
+        myComm = commission.base * (
+            myStore_cnt
+            + subStore_cnt * commission.parent_percent
+            + subsubStore_cnt * commission.grand_percent
+        )
+        return myComm
+
+
+class TeamListApiView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = TeamListSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        queryset = []
+        for agentP in user.son_agent.all():
+            team = {}
+            agent = agentP.user
+            team['agent'] = agent.username
+            team['double_cnt'] = agent.store.filter(status='2').count()
+            team['ordered_cnt'] = agent.store.filter(status='1').count()
+            order_cnt = 0
+            for store in agent.store.all():
+                order_cnt = order_cnt + store.order.filter(status='1').count()
+            team['order_cnt'] = order_cnt
+            team['subagent_cnt'] = agent.son_agent.all().count()
+
+            queryset = [team]
+        return queryset
+
+
 class cellreset(APIView):
     permission_classes = [AllowAny]
     serializer_class = UserSerializer
 
-    def post(self,request, *args, **kwargs):
-        profile = Profile.objects.filter(cellphone=request.data['username'])
-        if profile.count()>0:
+    def post(self, request, *args, **kwargs):
+        profile = Profile.objects.filter(cellphone=kwargs['username'])
+        if profile.count() > 0:
             serializer = UserSerializer(profile[0].user)
-            return Response(serializer.data,status=HTTP_200_OK)
-        return Response(status=HTTP_400_BAD_REQUEST)
+            return Response(serializer.data, status=200)
+        return Response(status=400)

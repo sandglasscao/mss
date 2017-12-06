@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
   providers: [SyncService]
 })
 export class InitSystemComponent {
-  msg = '数据同步中';
+  msg = "";
 
   constructor(private syncService: SyncService,
               private router: Router) {

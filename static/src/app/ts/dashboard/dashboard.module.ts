@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {DashboardComponent} from './dashboard.component';
 import {DashboardRoutingModule} from './dashboard-routing.module';
-import {RegisterService} from '../registrater.service';
 import {DashboardHomeComponent} from './dashboard-home.component';
 import {ProfileComponent} from './profile.component';
 import {PasswordComponent} from './password.components';
@@ -28,7 +27,7 @@ import {StoreDetailComponent} from "./storeDetail.component";
     TeamDownLineComponent,
     StoreDetailComponent
   ],
-  providers: [RegisterService]
+  providers: []
 })
 export class DashboardModule {
 }

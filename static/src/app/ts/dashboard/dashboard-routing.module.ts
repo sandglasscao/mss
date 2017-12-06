@@ -22,7 +22,7 @@ const dashboardRoutes: Routes = [
           {path: 'store', component: StoresComponent},
           {path: 'storeDetail', component: StoreDetailComponent},
           {path: 'team', component: TeamComponent},
-          {path: 'teamDownLine', component: TeamDownLineComponent},
+          {path: 'downLine', component: TeamDownLineComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
           {path: '', redirectTo: 'home', pathMatch: 'full'},

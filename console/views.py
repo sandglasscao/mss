@@ -23,7 +23,7 @@ class InitSystemApiView(APIView):
     serializer_class = StoreSerializer
 
     def get(self, request):
-        if SyncRecord.initSystem():
+        if SyncRecord.sync_records_from_b2b():
             return Response(status=200)
         else:
             return Response(status=500)

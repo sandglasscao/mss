@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from rest_framework.fields import (
     DateTimeField,
-    BooleanField, CharField, IntegerField)
+    BooleanField, CharField, IntegerField, DecimalField)
 from rest_framework.serializers import (
     ModelSerializer, Serializer)
 from rest_framework_jwt.settings import api_settings
@@ -180,7 +180,7 @@ class OrderSerializer(ModelSerializer):
             created_dt=validated_data.get("created_dt", None)
         )
 
-        store = order.store
+        store = Store.objects.get(id=order.store.id)
         if store.status == '0':
             store.status = '1'
         elif store.status == '1':
@@ -189,12 +189,16 @@ class OrderSerializer(ModelSerializer):
 
         return validated_data
 
-# class cellresetSerializer(ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ('username',)
 
-class cellresetSerializer(Serializer):
-    class Meta:
-        model = User
-        fields = ('username',)
+class DashHomeSerializer(Serializer):
+    store_cnt = IntegerField(read_only=False)
+    ordered_cnt = IntegerField(read_only=False)
+    myteam_cnt = IntegerField(read_only=False)
+    commission = DecimalField(max_digits=10, decimal_places=2, read_only=False)
+
+class TeamListSerializer(Serializer):
+    agent = CharField(read_only=False)
+    double_cnt = IntegerField(read_only=False)
+    ordered_cnt = IntegerField(read_only=False)
+    order_cnt = IntegerField(read_only=False)
+    subagent_cnt = IntegerField(read_only=False)
