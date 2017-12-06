@@ -199,6 +199,6 @@ class DashHomeSerializer(Serializer):
 class TeamListSerializer(Serializer):
     agent = CharField(read_only=False)
     double_cnt = IntegerField(read_only=False)
+    subdouble_cnt = IntegerField(read_only=False)
     ordered_cnt = IntegerField(read_only=False)
-    order_cnt = IntegerField(read_only=False)
-    subagent_cnt = IntegerField(read_only=False)
+    pending_cnt = IntegerField(read_only=False)

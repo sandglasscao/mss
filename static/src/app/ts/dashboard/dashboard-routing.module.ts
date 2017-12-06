@@ -7,7 +7,6 @@ import {StoresComponent} from "./stores.component";
 import {StoreDetailComponent} from "./storeDetail.component";
 import {ProfileComponent} from "./profile.component";
 import {TeamComponent} from "./team.component";
-import {TeamDownLineComponent} from "./teamDownLine.component";
 
 
 const dashboardRoutes: Routes = [
@@ -20,9 +19,8 @@ const dashboardRoutes: Routes = [
         children: [
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},
-          {path: 'storeDetail', component: StoreDetailComponent},
+          {path: 'store/:id', component: StoreDetailComponent},
           {path: 'team', component: TeamComponent},
-          {path: 'downLine', component: TeamDownLineComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
           {path: '', redirectTo: 'home', pathMatch: 'full'},

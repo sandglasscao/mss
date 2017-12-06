@@ -18,10 +18,10 @@ export class StoreService {
       .get(this.storeUrl, options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(this.handleError);
+      .catch(error=> StoreService.handleError(error));
   }
 
-  private handleError(error: any) {
+  private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);
   }
