@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 
 import {CellphoneResetService} from './cellphone-reset.service';
 import {User} from './dashboard/user';
-import {ProfileService} from './dashboard/profile.service';
+import {Location} from '@angular/common';
 @Component({
   selector: 'cell-reset',
   templateUrl: 'static/src/app/templates/dashboard/cellphone-reset.html',
@@ -19,43 +19,49 @@ export class CellPhoneResetComponent {
   user = new User();
   next = 'reset-pwd';
   cellPhone: string;
+  smsCode: string;
+  verification = null;
   error = null;
-
-  constructor(private cellphoneService: CellphoneResetService,
-              private profileService: ProfileService,
-              private router: Router) {
+  constructor(private cellphoneResetService: CellphoneResetService,
+              private router: Router,
+              private location: Location) {
+  }
+  getSMS() {
+    /*if (this.cellPhone) {
+      this.registerService
+        .checkCell(this.cellPhone)
+        .catch(error => {
+          // this.error = error;
+          this.error = "验证码服务超时!"
+        }); // TODO: Display error message
+    }*/
+    this.verification='1234'; // for debugging register functions
   }
   onSubmit() {
     if (this.user.username) {
-      this.cellphoneService
-        .login(this.user)
+      this.cellphoneResetService
+        .check(this.user)
         .then(account => {
-          sessionStorage.setItem('token', account.token);
           sessionStorage.setItem('username', this.user.username);
-          this.routSwitch();
+          if (this.smsCode == this.verification) {
+            this.router.navigate(['reset-pwd']);
+          }else { this.error = "验证码错误"; }
         })
         .catch(error => {
           // this.error = error;
           this.error = "业务员不存在!"
         }); // TODO: Display error message
+    } else {
+      this.error = "验证未通过";
     }
   }
-  routSwitch() {
-    this.profileService
-      .getProfile(this.user.username)
-      .then(res => {
-        this.next = (res.user.is_staff) ? 'reset-pwd' : 'login';
-        let entry = (res.user.is_staff) ? 'reset-pwd' : 'login';
-        sessionStorage.setItem('entry', entry);
-        this.router.navigate([this.next]);
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "业务员不存在!"
-      });
-  }
-
   cleanerror() {
     this.error = null;
+  }
+  back() {
+    this.router.navigate(['../']);
+  }
+  goBack() {
+    this.location.back();
   }
 }

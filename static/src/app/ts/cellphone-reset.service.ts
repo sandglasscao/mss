@@ -5,12 +5,12 @@ import {Headers, Http, RequestOptions} from '@angular/http';
 
 @Injectable()
 export class CellphoneResetService {
-  private baseUrl = '/cell-reset/';
+  private baseUrl = 'api/users/cell-verify/';
 
   constructor(private http: Http) {
   }
 
-  login(account: User): Promise<User> {
+  check(account: User): Promise<User> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
