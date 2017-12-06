@@ -44,7 +44,7 @@ class UserListApiView(ListAPIView):
 
     def get_queryset(self):
         username = self.kwargs.get('username', None)
-        users = User.objects.filter(username__icontains=username)
+        users = User.objects.filter(username__icontains=username, id__gt=1)
         queryset = []
         for user in users:
             try:

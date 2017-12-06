@@ -19,7 +19,7 @@ export class RegisterComponent implements OnInit {
   constructor(private registerService: RegisterService,
               private router: Router) {
     this.term.valueChanges
-      .debounceTime(400)
+      .debounceTime(100)
       .subscribe(term =>
         this.registerService
           .getAgentName(this.registration.parent_code)

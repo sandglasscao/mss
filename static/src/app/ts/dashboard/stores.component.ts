@@ -8,8 +8,7 @@ import {Router} from "@angular/router";
 @Component({
   selector: 'app-store',
   templateUrl: 'static/src/app/templates/dashboard/stores.html',
-  styleUrls: ['static/src/app/templates/dashboard/stores.css'],
-  providers: [StoreService]
+  styleUrls: ['static/src/app/templates/dashboard/stores.css']
 })
 export class StoresComponent implements OnInit {
   myStores;

@@ -4,7 +4,7 @@ import {DashboardComponent} from './dashboard.component';
 import {DashboardHomeComponent} from "./dashboard-home.component";
 import {PasswordComponent} from "./password.components";
 import {StoresComponent} from "./stores.component";
-import {StoreDetailComponent} from "./storeDetail.component";
+import {StoreDetailComponent} from "./store-detail.component";
 import {ProfileComponent} from "./profile.component";
 import {TeamComponent} from "./team.component";
 

@@ -8,8 +8,9 @@ import {ProfileComponent} from './profile.component';
 import {PasswordComponent} from './password.components';
 import {StoresComponent} from "./stores.component";
 import {TeamComponent} from "./team.component";
-import {StoreDetailComponent} from "./storeDetail.component";
+import {StoreDetailComponent} from "./store-detail.component";
 import {MetaService} from "../meta/meta.service";
+import {StoreService} from "./store.service";
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import {MetaService} from "../meta/meta.service";
     TeamComponent,
     StoreDetailComponent
   ],
-  providers: [MetaService]
+  providers: [MetaService, StoreService]
 })
 export class DashboardModule {
 }

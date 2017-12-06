@@ -2,10 +2,12 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Store} from "./store";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class StoreService {
   private storeUrl = 'api/users/store/';
+  myStores: Observable<Store[]>;
 
   constructor(private http: Http) {
   }
