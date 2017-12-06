@@ -18,10 +18,10 @@ export class CellphoneResetService {
       .post(this.baseUrl, JSON.stringify(account), options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(this.handleError);
+      .catch(CellphoneResetService.handleError);
   }
 
-  private handleError(error: any) {
+  private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);
   }
