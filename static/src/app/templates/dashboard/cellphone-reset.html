@@ -14,13 +14,8 @@
             />
         </div>
         <div class="btn_wrap">
-          <div class="form-group" [hidden]="!error">
-            <span class="alert-danger">{{ error }}</span>
-          </div>
-            <button type="submit" class="btn" [disabled]="!userForm.valid">发送验证码</button>
+            <button type="button" class="btn" (click)="getSMS()">发送验证码</button>
         </div>
-
-</form>
         <div class="inp">
             <span>验证码:</span>
             <input class="username" type="text"
@@ -32,12 +27,13 @@
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
-       <form #checkForm="ngForm" (ngSubmit)="onSubmit()">
-        <button type="submit" class="next" [disabled]="!checkForm.valid">下一步</button>
+
+        <button type="submit" class="next" [disabled]="!userForm.valid">下一步</button>
 
         <div [hidden]="!error">
             <span>{{ error }}</span>
         </div>
+         <button type="button" class="next_step" (click)="goBack()">返回登录</button>
     </form>
 
 </div>
