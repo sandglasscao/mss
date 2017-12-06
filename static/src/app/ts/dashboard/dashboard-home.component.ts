@@ -22,5 +22,4 @@ export class DashboardHomeComponent implements OnInit {
         this.summary = res ? res[0] : this.summary;
       })
   }
-
 }

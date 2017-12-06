@@ -36,7 +36,7 @@ export class StoresComponent implements OnInit {
 
   detail(id) {
     sessionStorage.setItem("detailId", id);
-    this.router.navigate(['storeDetail']);
+    this.router.navigate(['dashboard/storeDetail']);
   }
 
   initStores() {
