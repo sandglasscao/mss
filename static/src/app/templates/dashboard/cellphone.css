@@ -79,3 +79,17 @@ body {
   letter-spacing: 0.66rem;
   font-size: 0.62rem;
 }
+
+.next_step{
+  margin: 1rem auto 0;
+  width: 11.2rem;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  background-color: #4FA0F2;
+  color: #fff;
+  border-radius: 0.36rem;
+  text-align: center;
+  letter-spacing: 0.66rem;
+  font-size: 0.62rem;
+
+}
