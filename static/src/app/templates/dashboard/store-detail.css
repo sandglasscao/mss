@@ -12,18 +12,22 @@ header {
   text-align: center;
   color: #fff;
 }
-header a{
-	position: absolute;
-	top: 0;left: 0;
-	height: 100%;
-	width: 1.18rem;
-	padding-left: 0.62rem;
-	background: url(/static/src/assets/back.png) no-repeat center;
-	background-size: 1.18rem;
+
+header a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 1.18rem;
+  padding-left: 0.62rem;
+  background: url(/static/src/assets/back.png) no-repeat center;
+  background-size: 1.18rem;
 }
-header div{
-	margin: auto;
+
+header div {
+  margin: auto;
 }
+
 section {
   margin: 1.92rem 0;
   width: 100%;
@@ -33,72 +37,87 @@ section {
   padding-top: 0.28rem;
   overflow: auto;
 }
-section .photo{
-	width: 4.8rem;
-	height: 4.8rem;
-	margin: 0 auto 0.58rem;
-	border: 1px solid #CDDAFC;
-	border-radius: 50%;
+
+section .photo {
+  width: 4.8rem;
+  height: 4.8rem;
+  margin: 0 auto 0.58rem;
+  border: 1px solid #CDDAFC;
+  border-radius: 50%;
 }
-section .photo .pic{
-	width: 4.4rem;
-	height: 4.4rem;
-	box-sizing: border-box;
-	border: 1px solid #346EF7;
-	border-radius: 50%;
-	position: relative;
-	top: 0.2rem;left: 0.2rem;
+
+section .photo .pic {
+  width: 4.4rem;
+  height: 4.4rem;
+  box-sizing: border-box;
+  border: 1px solid #346EF7;
+  border-radius: 50%;
+  position: relative;
+  top: 0.2rem;
+  left: 0.2rem;
+  overflow: hidden;
 }
-section .info{
-	width: 14.02rem;
-	height: 14.4rem;
-	margin: 0.58rem auto 0;
-	background-color: #fff;
-	color: #4FA0F2;
-	font-size: 0.72rem;
-	box-sizing: border-box;
-	padding-top: 0.5rem;
+section .pic img{
+  width: 100%;
 }
-section .info .infoList{
+
+section .info {
+  width: 14.02rem;
+  height: 14.4rem;
+  margin: 0.58rem auto 0;
+  background-color: #fff;
+  color: #4FA0F2;
+  font-size: 0.72rem;
+  box-sizing: border-box;
+  padding-top: 0.8rem;
+}
+
+section .info .infoList {
   box-sizing: content-box;
-	width: 12rem;
-	height: 0.92rem;
-	padding: 0.2rem 0;
-	border-bottom: 1px solid #71D0FC;
-	margin: 0 auto 0.28rem;
-	position: relative;
+  width: 12rem;
+  height: 0.92rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #71D0FC;
+  margin: 0 auto 0.28rem;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 section .infoList div,
-section .infoList span{display: inline-block;}
-section .infoList .listTitle{
-	width: 3rem;
-	height: 100%;
-	letter-spacing: 0.28rem;
-}
-section .listTitle i{
-	display: inline-block;
-	width: 0.9rem;
-	height: 0.5rem;
-}
-section .infoList .data{
-	font-size: 0.52rem;
-	color: #78A6F4;
+section .infoList span {
+  display: inline-block;
 }
 
-section .coord{
-	padding: 0.1rem 0.05rem 0.1rem 0.18rem;
-    background-color: #6AD6F9;
-    letter-spacing: 0.1rem;
-    color: #fff;
-    position: absolute;
-    font-size: 0.58rem;
-    border-radius: 0.2rem;
-    right: 0;
+section .infoList .listTitle {
+  width: 3rem;
+  height: 100%;
+  letter-spacing: 0.28rem;
 }
 
+section .listTitle i {
+  display: inline-block;
+  width: 0.9rem;
+  height: 0.5rem;
+}
 
+section .infoList .data {
+  color: #78A6F4;
+}
+
+section .coord {
+  padding: 0.1rem 0.05rem 0.1rem 0.18rem;
+  background-color: #6AD6F9;
+  letter-spacing: 0.1rem;
+  color: #fff;
+  position: absolute;
+  font-size: 0.58rem;
+  border-radius: 0.2rem;
+  right: 0;
+}
 
 section #four,
-section #five{
-	letter-spacing: 0rem;
+section #five {
+  letter-spacing: 0rem;
 }
