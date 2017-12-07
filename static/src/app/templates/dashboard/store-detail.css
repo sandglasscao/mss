@@ -51,20 +51,22 @@ section .photo .pic{
 }
 section .info{
 	width: 14.02rem;
-	height: 13.6rem;
+	height: 14.4rem;
 	margin: 0.58rem auto 0;
 	background-color: #fff;
-	color: #3D6AED;
+	color: #4FA0F2;
 	font-size: 0.72rem;
 	box-sizing: border-box;
-	padding-top: 1.52rem;
+	padding-top: 0.5rem;
 }
 section .info .infoList{
+  box-sizing: content-box;
 	width: 12rem;
 	height: 0.92rem;
-	padding-bottom: 0.2rem;
+	padding: 0.2rem 0;
 	border-bottom: 1px solid #71D0FC;
-	margin: 0 auto 0.64rem;
+	margin: 0 auto 0.28rem;
+	position: relative;
 }
 section .infoList div,
 section .infoList span{display: inline-block;}
@@ -82,6 +84,21 @@ section .infoList .data{
 	font-size: 0.52rem;
 	color: #78A6F4;
 }
-section .listTitle.four{
+
+section .coord{
+	padding: 0.1rem 0.05rem 0.1rem 0.18rem;
+    background-color: #6AD6F9;
+    letter-spacing: 0.1rem;
+    color: #fff;
+    position: absolute;
+    font-size: 0.58rem;
+    border-radius: 0.2rem;
+    right: 0;
+}
+
+
+
+section #four,
+section #five{
 	letter-spacing: 0rem;
 }
