@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from "./store";
 import {StoreService} from "./store.service";
-import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import "rxjs/add/operator/switchMap";
-import {Observable} from "rxjs/Observable";
 
 
 @Component({
@@ -13,9 +11,8 @@ import {Observable} from "rxjs/Observable";
 })
 export class StoreDetailComponent implements OnInit {
   store: Store;
-  constructor(private route: ActivatedRoute,
-              private router: Router,
-              private service: StoreService) {
+
+  constructor(private service: StoreService) {
   }
 
   ngOnInit(): void {
