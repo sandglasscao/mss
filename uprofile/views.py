@@ -205,6 +205,5 @@ class cellreset(APIView):
             user.token = jwt_encode_handler(payload)
             serializer = ResetpwdSerializer(user)
 
-
             return Response(serializer.data, status=200)
         return Response(status=400)
