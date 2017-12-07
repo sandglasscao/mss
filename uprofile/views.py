@@ -194,7 +194,6 @@ class cellreset(APIView):
     serializer_class = ResetpwdSerializer
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         profile = Profile.objects.filter(cellphone=request.data['username'])
         if profile.count() > 0:
             user = profile[0].user
@@ -203,6 +202,5 @@ class cellreset(APIView):
             payload = jwt_payload_handler(user)
             user.token = jwt_encode_handler(payload)
             serializer = ResetpwdSerializer(user)
-
             return Response(serializer.data, status=200)
         return Response(status=400)
