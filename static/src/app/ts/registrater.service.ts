@@ -3,48 +3,25 @@ import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Registration} from "./registration";
 import {Profile} from "./dashboard/profile";
+import {User} from "./dashboard/user";
 
 @Injectable()
 export class RegisterService {
   private baseUrl = 'api/users/';
-  private regUrl = 'api/users/register/';
-  private profileUrl = 'api/users/profile/';
 
   constructor(private http: Http) {
   }
 
-  getProfile(): Promise<Profile> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    let url = this.profileUrl + sessionStorage.getItem('username');
-    return this.http
-      .get(url, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
-  }
-
-  updateProfile(profile: Profile): Promise<Profile> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let url = this.profileUrl + sessionStorage.getItem("weidcode");
-    return this.http.put(url, JSON.stringify(profile), {headers: headers})
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
-  }
-
-  register(registration: Registration): Promise<Registration> {
+  cellExist(cellphone: string): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
     let options = new RequestOptions({headers: headers});
+    let url = this.baseUrl + 'cell/';
     return this.http
-      .post(this.regUrl, JSON.stringify(registration), options)
+      .post(url, JSON.stringify({'cellphone': cellphone}), options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(this.handleError);
+      .catch(RegisterService.handleError);
   }
 
   getAgentName(agentCode: string): Promise<any> {
@@ -55,10 +32,45 @@ export class RegisterService {
       .get(url, options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(this.handleError);
+      .catch(RegisterService.handleError);
   }
 
-  private handleError(error: any) {
+  getProfile(): Promise<Profile> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let options = new RequestOptions({headers: headers});
+    let url = this.baseUrl + 'profile/' + sessionStorage.getItem('username');
+    return this.http
+      .get(url, options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(RegisterService.handleError);
+  }
+
+  register(registration: Registration): Promise<Registration> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.set('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    let url = this.baseUrl + 'register/';
+    return this.http
+      .post(url, JSON.stringify(registration), options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(RegisterService.handleError);
+  }
+
+  updateProfile(profile: Profile): Promise<Profile> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let url = this.baseUrl + 'profile/' + sessionStorage.getItem("username");
+    return this.http.put(url, JSON.stringify(profile), {headers: headers})
+      .toPromise()
+      .then(response => response.json())
+      .catch(RegisterService.handleError);
+  }
+
+  private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);
   }

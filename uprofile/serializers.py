@@ -203,7 +203,6 @@ class TeamListSerializer(Serializer):
     ordered_cnt = IntegerField(read_only=False)
     pending_cnt = IntegerField(read_only=False)
 
-class ResetpwdSerializer(Serializer):
-
+class CheckCellSerializer(Serializer):
     username = CharField(max_length=11,required=True)
     token = CharField(max_length=200,required=True)

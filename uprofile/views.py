@@ -24,13 +24,12 @@ from uprofile.models import (
 from .serializers import (
     ProfileSerializer,
     RegisterSerializer,
-    UserSerializer,
     PasswordSerializer,
     StoreSerializer,
     OrderSerializer,
     DashHomeSerializer,
     TeamListSerializer,
-    ResetpwdSerializer)
+    CheckCellSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -189,18 +188,23 @@ class TeamListApiView(ListAPIView):
         return queryset
 
 
-class cellreset(APIView):
+class CellCheckAPIView(APIView):
     permission_classes = [AllowAny]
-    serializer_class = ResetpwdSerializer
+    serializer_class = CheckCellSerializer
 
     def post(self, request, *args, **kwargs):
-        profile = Profile.objects.filter(cellphone=request.data['username'])
-        if profile.count() > 0:
-            user = profile[0].user
+        try:
+            profile = Profile.objects.get(cellphone=request.data['cellphone'])
             jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
             jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-            payload = jwt_payload_handler(user)
-            user.token = jwt_encode_handler(payload)
-            serializer = ResetpwdSerializer(user)
-            return Response(serializer.data, status=200)
-        return Response(status=400)
+            payload = jwt_payload_handler(profile.user)
+            token = jwt_encode_handler(payload)
+            data = request.data
+            data['token'] = token
+            data['username'] = profile.user.username
+            serializer = CheckCellSerializer(data=data)
+            if serializer.is_valid():
+                return Response(serializer.data, status=200)
+            Response(status=400)
+        except Profile.DoesNotExist:
+            Response(status=400)
