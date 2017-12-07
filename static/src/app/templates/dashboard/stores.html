@@ -46,7 +46,7 @@
             <ul class="store_list">
                 <table class="table">
                     <tbody>
-                    <tr *ngFor="let store of sortedStores" (click)="detail(store.name);">
+                    <tr *ngFor="let store of sortedStores" (click)="goDetail(store.id);">
                         <td class="fir">{{ store.name }}</td>
                         <td class="sec">{{ store.owner }}</td>
                         <td class="thi">{{ store.status }}</td>
@@ -55,7 +55,6 @@
                 </table>
             </ul>
         </div>
-
     </section>
 </div>
 

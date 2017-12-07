@@ -45,7 +45,7 @@ class UserListApiView(ListAPIView):
 
     def get_queryset(self):
         username = self.kwargs.get('username', None)
-        users = User.objects.filter(username__icontains=username)
+        users = User.objects.filter(username__icontains=username, id__gt=1)
         queryset = []
         for user in users:
             try:
@@ -178,13 +178,14 @@ class TeamListApiView(ListAPIView):
             team['agent'] = agent.username
             team['double_cnt'] = agent.store.filter(status='2').count()
             team['ordered_cnt'] = agent.store.filter(status='1').count()
-            order_cnt = 0
-            for store in agent.store.all():
-                order_cnt = order_cnt + store.order.filter(status='1').count()
-            team['order_cnt'] = order_cnt
-            team['subagent_cnt'] = agent.son_agent.all().count()
+            team['pending_cnt'] = agent.store.filter(status='-1').count()
+            subdouble_cnt = 0
+            for sonAgentProfile in agent.son_agent.all():
+                subdouble_cnt = subdouble_cnt + sonAgentProfile.user.store.filter(status='2').count()
+            team['subdouble_cnt'] = subdouble_cnt
 
-            queryset = [team]
+            queryset.append(team)
+
         return queryset
 
 

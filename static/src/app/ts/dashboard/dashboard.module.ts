@@ -8,8 +8,9 @@ import {ProfileComponent} from './profile.component';
 import {PasswordComponent} from './password.components';
 import {StoresComponent} from "./stores.component";
 import {TeamComponent} from "./team.component";
-import {TeamDownLineComponent} from "./teamDownLine.component";
-import {StoreDetailComponent} from "./storeDetail.component";
+import {StoreDetailComponent} from "./store-detail.component";
+import {MetaService} from "../meta/meta.service";
+import {StoreService} from "./store.service";
 
 @NgModule({
   imports: [
@@ -24,10 +25,9 @@ import {StoreDetailComponent} from "./storeDetail.component";
     DashboardHomeComponent,
     StoresComponent,
     TeamComponent,
-    TeamDownLineComponent,
     StoreDetailComponent
   ],
-  providers: []
+  providers: [MetaService, StoreService]
 })
 export class DashboardModule {
 }

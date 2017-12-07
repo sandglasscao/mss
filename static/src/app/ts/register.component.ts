@@ -2,12 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {Registration} from "./registration";
 import {RegisterService} from "./registrater.service";
 import {Router} from "@angular/router";
+import {FormControl} from "@angular/forms";
+import "rxjs/add/operator/debounceTime";
 
 @Component({
   templateUrl: 'static/src/app/templates/register.html',
   styleUrls: ['static/src/app/templates/register.css'],
 })
 export class RegisterComponent implements OnInit {
+  term = new FormControl();
   registration = new Registration();
   agents: Registration[];
   second_pwd = null;
@@ -15,22 +18,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(private registerService: RegisterService,
               private router: Router) {
+    this.term.valueChanges
+      .debounceTime(100)
+      .subscribe(term =>
+        this.registerService
+          .getAgentName(this.registration.parent_code)
+          .then(items => this.agents = items));
   }
 
   ngOnInit(): void {
     this.registration.cellphone = sessionStorage.getItem('cellPhone');
-  }
-
-  getAgentName() {
-    this.registerService
-      .getAgentName(this.registration.parent_code)
-      .then(res => {
-        this.agents = res
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "业务员不存在!"
-      });
   }
 
   onSubmit() {

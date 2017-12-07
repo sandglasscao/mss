@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpModule} from "@angular/http";
@@ -22,6 +22,7 @@ import {PasswordResetComponent} from './password-reset.component';
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     DashboardModule,
     ConsoleModule,
     LoginRoutingModule,

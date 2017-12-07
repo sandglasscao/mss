@@ -42,7 +42,7 @@
             <input class="pnum" type="text" name="refereecode"
                    placeholder="业务员编号"
                    [(ngModel)]="registration.parent_code" required
-                   (blur)="getAgentName()"
+                   [formControl]="term"
                    (keydown)="cleanerror()"
                    minLength=2
                    maxLength=6

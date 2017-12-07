@@ -1,20 +1,17 @@
-// TODO SOMEDAY: Feature Componetized like CrisisCenter
 import {Component, OnInit} from '@angular/core';
 import {Store} from "./store";
 import {StoreService} from "./store.service";
 import {MetaService} from "../meta/meta.service";
 import {StoreStatus} from "./store-status";
-import {forEach} from "@angular/router/src/utils/collection";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-store',
   templateUrl: 'static/src/app/templates/dashboard/stores.html',
-  styleUrls: ['static/src/app/templates/dashboard/stores.css'],
-  providers: [StoreService]
+  styleUrls: ['static/src/app/templates/dashboard/stores.css']
 })
 export class StoresComponent implements OnInit {
-  stores;
+  myStores;
   sortedStores: Store[];
   statuslst;
   options: StoreStatus[];
@@ -34,29 +31,29 @@ export class StoresComponent implements OnInit {
     this.initStores();
   }
 
-  detail(id) {
-    sessionStorage.setItem("detailId", id);
-    this.router.navigate(['storeDetail']);
+  goDetail(id) {
+    this.router.navigate([this.router.url, id]);
   }
 
   initStores() {
     this.storeService
       .listStore()
       .then(res => {
-        this.stores = res;
-        let commStroes = this.stores.filter(store => store.status == '2');
+        this.myStores = res;
+        let commStroes = this.myStores.filter(store => store.status == '2');
         this.commLen = commStroes.length;
-        this.uncommLen = this.stores.length - this.commLen;
-        this.stores.map(store => {
+        this.uncommLen = this.myStores.length - this.commLen;
+        this.myStores.map(store => {
           store.status = this.statuslst.find(st => st.code == store.status).value
         });
-        this.sortedStores = this.stores;
+        this.sortedStores = this.myStores;
       })
       .catch(error => {
         // this.error = error;
         this.error = "业务员不存在!"
       });
   }
+
 
   private listStoreStatus() {
     this.metaService
@@ -77,6 +74,6 @@ export class StoresComponent implements OnInit {
 
   private filterStores(code: string) {
     let value = this.statuslst.find(status => status.code == code).value;
-    this.sortedStores = this.stores.filter(store => store.status == value);
+    this.sortedStores = this.myStores.filter(store => store.status == value);
   }
 }

@@ -2,10 +2,12 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Store} from "./store";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class StoreService {
   private storeUrl = 'api/users/store/';
+  myStores: Observable<Store[]>;
 
   constructor(private http: Http) {
   }
@@ -18,10 +20,10 @@ export class StoreService {
       .get(this.storeUrl, options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(this.handleError);
+      .catch(error=> StoreService.handleError(error));
   }
 
-  private handleError(error: any) {
+  private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);
   }
