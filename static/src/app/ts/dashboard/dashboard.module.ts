@@ -11,6 +11,7 @@ import {TeamComponent} from "./team.component";
 import {StoreDetailComponent} from "./store-detail.component";
 import {MetaService} from "../meta/meta.service";
 import {StoreService} from "./store.service";
+import {StoreCoordComponent} from "./storeCoord.component";
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {StoreService} from "./store.service";
     DashboardHomeComponent,
     StoresComponent,
     TeamComponent,
+    StoreCoordComponent,
     StoreDetailComponent
   ],
   providers: [MetaService, StoreService]

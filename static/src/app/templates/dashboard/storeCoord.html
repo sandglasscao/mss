@@ -1,0 +1,17 @@
+<header>
+    <i class="fa fa-angle-left" (click)="goBack()"></i>
+    <div>定位</div>
+</header>
+<section>
+    <div id="map"></div>
+    <div id="panner">
+        <div class="float_div" id="localtion" (click)="getCurrentPosition()">定位</div>
+        <div class="float_div" id="visit">保存</div>
+        <div id="r_title"><b>定位结果:</b></div>
+        <div>{{ coord.info }}</div>
+        <div *ngIf="coord.coords">
+            <div>经度：{{ coord.coords[0] }}</div>
+            <div>纬度：{{ coord.coords[1] }}</div>
+        </div>
+    </div>
+</section>

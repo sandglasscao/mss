@@ -7,6 +7,7 @@ import {StoresComponent} from "./stores.component";
 import {StoreDetailComponent} from "./store-detail.component";
 import {ProfileComponent} from "./profile.component";
 import {TeamComponent} from "./team.component";
+import {StoreCoordComponent} from "./storeCoord.component";
 
 
 const dashboardRoutes: Routes = [
@@ -20,6 +21,7 @@ const dashboardRoutes: Routes = [
           {path: 'home', component: DashboardHomeComponent},
           {path: 'store', component: StoresComponent},
           {path: 'store/:id', component: StoreDetailComponent},
+          {path: 'storeCoord', component: StoreCoordComponent},
           {path: 'team', component: TeamComponent},
           {path: 'password', component: PasswordComponent},
           {path: 'profile', component: ProfileComponent},
