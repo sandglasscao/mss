@@ -13,7 +13,7 @@ export class StoreCoordComponent implements OnInit {
   storeId: string;
   map = null;
   geolocation = null;
-  private coord = {'info': '尚未定位'}
+  private coord = {'info': '尚未定位'};
   private coordError = null;
   constructor(private location: Location) {
   }
