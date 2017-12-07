@@ -15,6 +15,7 @@ import {Location} from '@angular/common';
 })
 
 
+
 export class CellPhoneResetComponent {
   user = new User();
   next = 'reset-pwd';
