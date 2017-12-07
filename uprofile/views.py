@@ -198,7 +198,6 @@ class cellreset(APIView):
         profile = Profile.objects.filter(cellphone=request.data['username'])
         if profile.count() > 0:
             user = profile[0].user
-
             jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
             jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
