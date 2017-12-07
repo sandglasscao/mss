@@ -32,6 +32,7 @@ export class StoresComponent implements OnInit {
   }
 
   goDetail(id) {
+    sessionStorage.setItem('selected', id.toString());
     this.router.navigate([this.router.url, id]);
   }
 
@@ -47,6 +48,7 @@ export class StoresComponent implements OnInit {
           store.status = this.statuslst.find(st => st.code == store.status).value
         });
         this.sortedStores = this.myStores;
+        this.storeService.myStores = this.myStores;
       })
       .catch(error => {
         // this.error = error;

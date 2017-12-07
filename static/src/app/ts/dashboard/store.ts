@@ -5,4 +5,5 @@ export class Store {
   owner: string;
   cellphone: string;
   status: string;
+  created_dt: Date;
 }

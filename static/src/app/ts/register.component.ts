@@ -4,6 +4,7 @@ import {RegisterService} from "./registrater.service";
 import {Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
 
 @Component({
   templateUrl: 'static/src/app/templates/register.html',
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
               private router: Router) {
     this.term.valueChanges
       .debounceTime(100)
+      .distinctUntilChanged()
       .subscribe(term =>
         this.registerService
           .getAgentName(this.registration.parent_code)

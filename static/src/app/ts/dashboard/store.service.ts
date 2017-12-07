@@ -7,7 +7,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class StoreService {
   private storeUrl = 'api/users/store/';
-  myStores: Observable<Store[]>;
+  myStores: Store[];
 
   constructor(private http: Http) {
   }
@@ -20,7 +20,17 @@ export class StoreService {
       .get(this.storeUrl, options)
       .toPromise()
       .then(resp => resp.json())
-      .catch(error=> StoreService.handleError(error));
+      .catch(error => StoreService.handleError(error));
+  }
+
+  getStores() {
+    return this.myStores;
+  }
+
+  getStore(id: number | string) {
+    return this.getStores()
+      // (+) before `id` turns the string into a number
+      .find(store => store.id === +id);
   }
 
   private static handleError(error: any) {
