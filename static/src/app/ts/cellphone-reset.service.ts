@@ -20,7 +20,6 @@ export class CellphoneResetService {
       .then(resp => resp.json())
       .catch(CellphoneResetService.handleError);
   }
-
   private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);

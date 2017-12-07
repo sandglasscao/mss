@@ -13,6 +13,7 @@ from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
 )
 from django.contrib.auth.models import User
+from rest_framework_jwt.settings import api_settings
 
 from console.models import Commission
 from uprofile.models import (
@@ -28,8 +29,8 @@ from .serializers import (
     StoreSerializer,
     OrderSerializer,
     DashHomeSerializer,
-    TeamListSerializer
-)
+    TeamListSerializer,
+    ResetpwdSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -190,11 +191,16 @@ class TeamListApiView(ListAPIView):
 
 class cellreset(APIView):
     permission_classes = [AllowAny]
-    serializer_class = UserSerializer
+    serializer_class = ResetpwdSerializer
 
     def post(self, request, *args, **kwargs):
-        profile = Profile.objects.filter(cellphone=kwargs['username'])
+        profile = Profile.objects.filter(cellphone=request.data['username'])
         if profile.count() > 0:
-            serializer = UserSerializer(profile[0].user)
+            user = profile[0].user
+            jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+            jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+            payload = jwt_payload_handler(user)
+            user.token = jwt_encode_handler(payload)
+            serializer = ResetpwdSerializer(user)
             return Response(serializer.data, status=200)
         return Response(status=400)

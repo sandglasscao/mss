@@ -202,3 +202,8 @@ class TeamListSerializer(Serializer):
     subdouble_cnt = IntegerField(read_only=False)
     ordered_cnt = IntegerField(read_only=False)
     pending_cnt = IntegerField(read_only=False)
+
+class ResetpwdSerializer(Serializer):
+
+    username = CharField(max_length=11,required=True)
+    token = CharField(max_length=200,required=True)

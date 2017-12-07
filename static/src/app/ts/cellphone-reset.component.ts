@@ -15,6 +15,7 @@ import {Location} from '@angular/common';
 })
 
 
+
 export class CellPhoneResetComponent {
   user = new User();
   next = 'reset-pwd';
@@ -43,6 +44,7 @@ export class CellPhoneResetComponent {
         .check(this.user)
         .then(account => {
           sessionStorage.setItem('username', this.user.username);
+          sessionStorage.setItem('token', account.token);
           if (this.smsCode == this.verification) {
             this.router.navigate(['reset-pwd']);
           }else { this.error = "验证码错误"; }

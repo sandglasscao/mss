@@ -18,7 +18,6 @@ from django.contrib import admin
 
 from rest_framework_jwt.views import obtain_jwt_token
 
-from uprofile.views import cellreset
 from .views import home
 
 urlpatterns = [
@@ -31,5 +30,4 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token),
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^cell-reset/checkcell/',cellreset.as_view())
 ]
