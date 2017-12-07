@@ -30,5 +30,4 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token),
     url(r'^admin/', include(admin.site.urls)),
 
-
 ]

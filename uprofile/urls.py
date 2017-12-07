@@ -39,6 +39,5 @@ urlpatterns = [
     url(r'^order/(?P<id>[0-9]+)$', order_detail, name='order-detail'),
     url(r'^home/$', DashHomeListApiView.as_view(), name='homelist'),
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
-
     url(r'^cell-verify/',cellreset.as_view())
 ]
