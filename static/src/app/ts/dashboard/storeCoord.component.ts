@@ -3,6 +3,7 @@ import { Location }                 from '@angular/common';
 import {Router} from "@angular/router";
 declare var AMap:any;
 
+
 @Component({
   selector: 'app-storeCoord',
   templateUrl: 'static/src/app/templates/dashboard/storeCoord.html',
