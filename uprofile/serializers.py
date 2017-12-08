@@ -31,8 +31,9 @@ class AddressSerializer(ModelSerializer):
 
 class PasswordSerializer(ModelSerializer):
     class Meta:
-        model = get_user_model()
-        fields = ('password',)
+        model = User
+        fields = ('pk', 'username', 'is_staff', 'password',)
+        read_only_fields = ('pk', 'username', 'is_staff',)
 
     def update(self, instance, validated_data):
         instance.set_password(validated_data.get('password', instance.password))
@@ -65,9 +66,6 @@ class ProfileSerializer(ModelSerializer):
         )
         read_only_fields = (
             'user',
-            'address',
-            'parent_agent',
-            'grand_agent',
             'created_dt')
 
     def update(self, instance, validated_data):
@@ -196,6 +194,7 @@ class DashHomeSerializer(Serializer):
     myteam_cnt = IntegerField(read_only=False)
     commission = DecimalField(max_digits=10, decimal_places=2, read_only=False)
 
+
 class TeamListSerializer(Serializer):
     agent = CharField(read_only=False)
     double_cnt = IntegerField(read_only=False)
@@ -203,6 +202,7 @@ class TeamListSerializer(Serializer):
     ordered_cnt = IntegerField(read_only=False)
     pending_cnt = IntegerField(read_only=False)
 
+
 class CheckCellSerializer(Serializer):
-    username = CharField(max_length=11,required=True)
-    token = CharField(max_length=200,required=True)
+    username = CharField(max_length=11, required=True)
+    token = CharField(max_length=200, required=True)

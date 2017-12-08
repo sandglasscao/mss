@@ -1,153 +1,47 @@
 <div class="wrap">
-  <div class="table_wrap">
-    <table id="customers" class="customers-top-line">
-      <tr class="customers-top-line">
-        <th>编号</th>
-        <th>姓名</th>
-        <th>手机号</th>
-        <th>正式员工</th>
-        <th>推荐资格</th>
-        <th>操作</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Maria</td>
-        <td>13311582599</td>
-        <td>是</td>
-        <td>否</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>2</td>
-        <td>Christina</td>
-        <td>Sweden</td>
-        <td>Christina</td>
-        <td>Sweden</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>Francisco</td>
-        <td>Mexico</td>
-        <td>Francisco</td>
-        <td>Mexico</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>4</td>
-        <td>Roland</td>
-        <td>Austria</td>
-        <td>Roland</td>
-        <td>Austria</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr>
-        <td>5</td>
-        <td>Helen</td>
-        <td>UK</td>
-        <td>Helen</td>
-        <td>UK</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>6</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>Yoshi</td>
-        <td>Canada</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>8</td>
-        <td>Giovanni</td>
-        <td>Italy</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr>
-        <td>9</td>
-        <td>Simon</td>
-        <td>UK</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>10</td>
-        <td>Marie</td>
-        <td>France</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-      <tr class="alt">
-        <td>11</td>
-        <td>Marie</td>
-        <td>France</td>
-        <td>Philip</td>
-        <td>Germany</td>
-        <td>
-          <button> 密码重置</button>
-          <button> 删除</button>
-        </td>
-      </tr>
-    </table>
-  </div>
+    <div class="table_wrap">
+        <table id="customers" class="customers-top-line">
+            <thead>
+            <tr class="customers-top-line">
+                <th>序号</th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>手机号</th>
+                <th>正式员工</th>
+                <th>推荐资格</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let agent of agents; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ agent.user.username }}</td>
+                <td>{{ agent.full_name }}</td>
+                <td>{{ agent.cellphone }}</td>
+                <td>
+                    <div *ngIf="agent.isEmployee">是</div>
+                    <div *ngIf="!agent.isEmployee">否</div>
+                </td>
+                <td>
+                    <div *ngIf="agent.hasRecommAuth">是</div>
+                    <div *ngIf="!agent.hasRecommAuth">否</div>
+                </td>
+                <td>
+                    <button type="button" (click)="resetPwd(agent)">密码重置</button>
+                    <button type="button" (click)="delAgent(agent)">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
-  <div class="page">
-      <div class="pagination-flickr">
-          <a href="">首页</a>
-          <a href="">上一页</a>
-          <div class="pages">
-              <a class="active" href="">1</a>
-              <a href="">2</a>
-              <a href="">3</a>
-              <a href="">4</a>
-              <a href="">5</a>
-              <a href="">6</a>
-              <a href="">7</a>
-          </div>
-          <a href="">下一页</a>
-          <a href="">尾页</a>
-      </div>
-  </div>
+    <div class="page">
+        <div class="pagination-flickr">
+            <input type="button" class="btn btn-warning" value="<<" (click)="paginate(previouspg)"
+                   [disabled]="!previouspg"/>
+            <span> 共 {{ count }} 页 第 {{ pageNo }} 页 </span>
+            <input type="button" class="btn btn-warning" value=">>" (click)="paginate(nextpg)"
+                   [disabled]="!nextpg"/>
+        </div>
+    </div>
 </div>

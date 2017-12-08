@@ -1,6 +1,7 @@
+import {User} from "../dashboard/user";
+
 export class Agent {
-  username: string;
-  password: string;
+  user: User;
   cellphone: string;
   full_name: string;
   isEmployee: boolean;

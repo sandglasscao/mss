@@ -93,7 +93,12 @@ class ChangePwdApiView(APIView):
     serializer_class = PasswordSerializer
 
     def put(self, request, *args, **kwargs):
-        serializer = PasswordSerializer(request.user, data=request.data)
+        try:
+            pk = request.data.get('pk')
+            user = User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            user = request.user
+        serializer = PasswordSerializer(user, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)

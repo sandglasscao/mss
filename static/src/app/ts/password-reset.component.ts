@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProfileService} from './dashboard/profile.service';
 import {User} from './dashboard/user';
 import {Router} from '@angular/router';
-import { Location }  from '@angular/common';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'reset-pwd',
@@ -36,7 +36,6 @@ export class PasswordResetComponent implements OnInit {
       this.profileService
         .changePwd(this.user)
         .then(res => {
-          let a = 1;
           this.back();
         })
         .catch(error => {
