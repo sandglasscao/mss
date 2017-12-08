@@ -47,6 +47,7 @@ export class StoreCoordComponent implements OnInit {
     this.location.back();
   }
   onComplete(data) {
+    this.coord = data;
     const info = {
       'info': '定位成功',
       'coords': {'lng': data.position.getLng(),'lat': data.position.getLat()}

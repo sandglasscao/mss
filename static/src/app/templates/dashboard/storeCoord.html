@@ -9,13 +9,16 @@
         <div class="float_div" id="show_res" (click)="showPosition()">显示</div>
         <div class="float_div" id="visit">保存</div>
         <div id="r_title"><b>定位结果:</b></div>
-        <div>{{ coord.info }}</div>
-        <div *ngIf="coord.info == '定位成功'">
-            <div>经度：{{ coord.coords.lng }}</div>
-            <div>纬度：{{ coord.coords.lat }}</div>
-        </div>
-         <div *ngIf="coord.info == '定位失败'">
-            <div>原因：{{ coord.coords }}</div>
+        <div class="resP">
+            <div *ngIf="coord.info == '定位成功'">
+                <div>{{ coord.info }}</div>
+                <div>经度：{{ coord.coords.lng }}</div>
+                <div>纬度：{{ coord.coords.lat }}</div>
+            </div>
+            <div *ngIf="coord.info == '定位失败'">
+                <div>{{ coord.info }}</div>
+                <div>原因：{{ coord.coords }}</div>
+            </div>
         </div>
     </div>
 </section>
