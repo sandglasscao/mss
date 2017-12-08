@@ -33,15 +33,15 @@
             <div class="listTitle">经纬度</div>
             <span>：</span>
             <div class="tel">{{ store.coord }}</div>
-            <button class="coord">保存</button>
-            <a routerLink="../../storeCoord" class="coord">获取</a>
+            <button class="coord" *ngIf="store.coord != '待获取'">保存</button>
+            <a routerLink="../../storeCoord" class="coord" *ngIf="store.coord == '待获取'">获取</a>
         </div>
         <div class="infoList">
             <div id="five" class="listTitle">店铺快照</div>
             <span>：</span>
             <div class="date">未上传</div>
-            <button class="coord">保存</button>
-            <a href="" class="coord">上传</a>
+            <button class="coord" *ngIf="store.pic">保存</button>
+            <a href="" class="coord" *ngIf="!store.pic">上传</a>
         </div>
     </div>
 </section>
