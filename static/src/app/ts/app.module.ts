@@ -17,6 +17,7 @@ import {RegisterService} from "./registrater.service";
 import {CellPhoneComponent} from "./cellphone.component";
 import {CellPhoneResetComponent} from './cellphone-reset.component';
 import {PasswordResetComponent} from './password-reset.component';
+
 @NgModule({
   imports: [
     BrowserModule,

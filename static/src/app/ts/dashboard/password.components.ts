@@ -36,8 +36,7 @@ export class PasswordComponent implements OnInit {
       this.profileService
         .changePwd(this.user)
         .then(res => {
-          let a = 1;
-          this.back();
+          this.goBack();
         })
         .catch(error => {
           // this.error = error;

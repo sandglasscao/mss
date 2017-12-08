@@ -2,16 +2,17 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Profile} from "../dashboard/profile";
-import {Agent} from "./agent";
+import {User} from "../dashboard/user";
 
 @Injectable()
 export class AgentService {
   private baseUrl = 'api/console/agent/';
+  private resetPwdUrl = 'api/users/changepwd/';
 
   constructor(private http: Http) {
   }
 
-  listAgent(): Promise<Profile[]> {
+  listAgent(): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
@@ -22,7 +23,7 @@ export class AgentService {
       .catch(this.handleError);
   }
 
-  createAgent(agent: Agent): Promise<any> {
+  createAgent(agent: Profile): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
@@ -34,14 +35,24 @@ export class AgentService {
       .catch(this.handleError);
   }
 
-  updateAgent(profile: Profile): Promise<any> {
+  paginate(link: string) {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.append('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    return this.http.get(link, {headers: headers})
+      .toPromise()
+      .then(response => response.json())
+      .catch(this.handleError);
+  }
+
+  resetPwd(user: User): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
-    let url = this.baseUrl + profile.id;
+    let url = this.baseUrl + 'resetpwd';
     return this.http
-      .put(this.baseUrl, JSON.stringify(profile), options)
+      .put(url, JSON.stringify(user), options)
       .toPromise()
       .then(resp => resp.json())
       .catch(this.handleError);

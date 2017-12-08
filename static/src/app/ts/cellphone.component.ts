@@ -6,8 +6,8 @@ import {RegisterService} from "./registrater.service";
 
 @Component({
   selector: 'app-cell',
-  templateUrl: 'static/src/app/templates/dashboard/cellphone.html',
-  styleUrls: ['static/src/app/templates/dashboard/cellphone.css']
+  templateUrl: 'static/src/app/templates/cellphone.html',
+  styleUrls: ['static/src/app/templates/cellphone.css']
 })
 
 

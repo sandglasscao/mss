@@ -3,11 +3,14 @@ import {Router} from '@angular/router';
 
 import {User} from './dashboard/user';
 import {RegisterService} from "./registrater.service";
+import {timer} from "rxjs/observable/timer";
+import {Observable} from "rxjs/Observable";
+import "rxjs/add/observable/timer";
 
 @Component({
   selector: 'app-cellreset',
-  templateUrl: 'static/src/app/templates/dashboard/cellphone-reset.html',
-  styleUrls: ['static/src/app/templates/dashboard/cellphone.css'],
+  templateUrl: 'static/src/app/templates/cellphone-reset.html',
+  styleUrls: ['static/src/app/templates/cellphone.css'],
 })
 
 export class CellPhoneResetComponent {
@@ -16,12 +19,16 @@ export class CellPhoneResetComponent {
   smsCode: string;
   verification = null;
   error = null;
+  smslbl = "发送验证码";
 
   constructor(private registerService: RegisterService,
               private router: Router) {
+    //this.timer = Observable.timer(0, 1000);
   }
 
+
   getSMS() {
+    //this.timer.subscribe(t => this.theValue += 1);
     /*if (this.cellPhone) {
       this.registerService
         .checkCell(this.cellPhone)

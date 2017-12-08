@@ -8,6 +8,7 @@ import {AgentNewComponent} from "./agent-new.component";
 import {ConsoleHomeComponent} from "./console-home.component";
 import {InitSystemComponent} from "./init-system.component";
 import {AgentMainComponent} from "./agent-main.component";
+import {AgentService} from "./agent.service";
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import {AgentMainComponent} from "./agent-main.component";
     AgentMainComponent,
     AgentNewComponent,
   ],
-  providers: []
+  providers: [AgentService]
 })
 export class ConsoleModule {
 }
