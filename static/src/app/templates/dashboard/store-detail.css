@@ -75,7 +75,7 @@ section .info {
 section .info .infoList {
   box-sizing: content-box;
   width: 12rem;
-  height: 0.92rem;
+  line-height: 0.92rem;
   padding: 0.4rem 0;
   border-bottom: 1px solid #71D0FC;
   margin: 0 auto 0.28rem;
@@ -89,9 +89,10 @@ section .infoList div,
 section .infoList span {
   display: inline-block;
 }
+section .infoList span {width: 0.4rem;}
 
 section .infoList .listTitle {
-  width: 3rem;
+  width: 2.52rem;
   height: 100%;
   letter-spacing: 0.28rem;
 }
@@ -111,10 +112,10 @@ section .coord {
   background-color: #6AD6F9;
   letter-spacing: 0.1rem;
   color: #fff;
-  position: absolute;
   font-size: 0.58rem;
   border-radius: 0.2rem;
-  right: 0;
+  float: right;
+  margin-left: 0.2rem;
 }
 
 section #four,
