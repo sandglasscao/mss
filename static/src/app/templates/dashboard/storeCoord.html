@@ -7,18 +7,22 @@
     <div id="panner">
         <div class="float_div" id="localtion" (click)="getCurrentPosition()">定位</div>
         <div class="float_div" id="show_res" (click)="showPosition()">显示</div>
-        <div class="float_div" id="visit">保存</div>
+        <div class="float_div" id="visit" (click)="savePosition()">保存</div>
         <div id="r_title"><b>定位结果:</b></div>
         <div class="resP">
+            <div>{{ coord.info }}</div>
             <div *ngIf="coord.info == '定位成功'">
-                <div>{{ coord.info }}</div>
                 <div>经度：{{ coord.coords.lng }}</div>
                 <div>纬度：{{ coord.coords.lat }}</div>
             </div>
             <div *ngIf="coord.info == '定位失败'">
-                <div>{{ coord.info }}</div>
                 <div>原因：{{ coord.coords }}</div>
             </div>
         </div>
+    </div>
+    <div class="rool_">
+        <p>1.点击定位按钮获取位置信息；</p>
+        <p>2.提示成功（或失败）后点击显示然后查看坐标（或失败信息）；</p>
+        <p>3.最后点击保存；</p>
     </div>
 </section>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Location }                 from '@angular/common';
 import {Router} from "@angular/router";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 declare var AMap:any;
 
 
@@ -15,8 +16,8 @@ export class StoreCoordComponent implements OnInit {
   map = null;
   geolocation = null;
   private coord = {'info': '定位后可点击显示查看结果'};
-  private coordError = null;
-  constructor(private location: Location) {
+  constructor(private location: Location,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -57,12 +58,7 @@ export class StoreCoordComponent implements OnInit {
   }
   onError(data){
     console.log(data.message);
-    const info = {
-      'info': '定位失败',
-      'coords': data.message
-    }
-    sessionStorage.setItem('coordInfo', JSON.stringify(info));
-    alert('定位失败');
+    alert('定位失败:' + data.message);
   }
   getCurrentPosition() {
     this.geolocation.getCurrentPosition();
@@ -71,5 +67,12 @@ export class StoreCoordComponent implements OnInit {
     this.coord = JSON.parse(sessionStorage.getItem('coordInfo'));
     console.log(this);
     console.log(this.coord);
+  }
+  savePosition() {
+    if (this.coord.info == '定位成功') {
+
+    }else {
+      alert('请先定位，然后查看结果成功与否，最后再保存');
+    }
   }
 }

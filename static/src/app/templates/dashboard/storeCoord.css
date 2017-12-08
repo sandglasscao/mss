@@ -67,3 +67,12 @@ header div {
   position: relative;
 }
 #panner .resP div{margin: 6px;}
+#panner .resP div div{margin: 0;}
+.rool_{
+  padding: 0.3rem 0 0 0.5rem;
+  font-size: 0.65rem;
+}
+.rool_ p{
+  margin: 0;
+  line-height: 1.2rem;
+}
