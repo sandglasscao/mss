@@ -7,7 +7,8 @@ import {Profile} from "../dashboard/profile";
   templateUrl: 'static/src/app/templates/console/agent-new.html',
   styleUrls: ['static/src/app/templates/console/agent-new.css']
 })
-export class AgentNewComponent {
+export class AgentNewComponent{
+
   agent = new Profile();
 
   error = null;
@@ -16,6 +17,7 @@ export class AgentNewComponent {
   }
 
   onSubmit() {
+    this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
     this.agentService
       .createAgent(this.agent)
       .then(res => {

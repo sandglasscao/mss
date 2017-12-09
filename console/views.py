@@ -28,7 +28,7 @@ class AgentViewSet(ModelViewSet):
 
     def get_queryset(self):
         users = User.objects.filter(id__gt=1)
-        return Profile.objects.filter(user__in=users)
+        return Profile.objects.filter(user__in=users, isDeleted=False)
 
 
 class CommissionViewSet(ModelViewSet):

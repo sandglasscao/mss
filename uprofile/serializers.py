@@ -48,6 +48,7 @@ class ProfileSerializer(ModelSerializer):
     address = AddressSerializer(required=False)
     parent_agent = UserSerializer(required=False)
     grand_agent = UserSerializer(required=False)
+    isDeleted = BooleanField(required=False)
     created_dt = DateTimeField(required=False)
 
     class Meta:
@@ -62,6 +63,7 @@ class ProfileSerializer(ModelSerializer):
             'address',
             'parent_agent',
             'grand_agent',
+            'isDeleted',
             'created_dt',
         )
         read_only_fields = (
@@ -75,18 +77,42 @@ class ProfileSerializer(ModelSerializer):
         instance.address = validated_data.get('address', instance.address)
         instance.hasRecommAuth = validated_data.get('hasRecommAuth', instance.hasRecommAuth)
         instance.parent_agent = validated_data.get('parent_agent', instance.parent_agent)
-        instance.grand_agent = instance.parent_agent.parent_agent
+        if instance.parent_agent is not None:
+            instance.grand_agent = validated_data.get('grand_agent', instance.parent_agent.parent_agent)
+        instance.isDeleted = validated_data.get('isDeleted', instance.isDeleted)
 
         # update user
         usr = instance.user
-        usr.username = validated_data.get('username', instance.username)
-        password = validated_data.get('username', None)
+        usr.username = validated_data.get('username', usr.username)
+        password = validated_data.get('password')
         if password:
             usr.set_password(password)
         usr.save()
 
         instance.save()
         return instance
+
+    def create(self, validated_data):
+        cellphone = validated_data.get('cellphone')
+        username = self.initial_data.get('username')
+        password = self.initial_data.get('password', cellphone)
+        user = User.objects.create(username=username)
+        user.set_password(password)
+        user.save()
+
+        full_name = validated_data.get('full_name')
+        isEmployee = validated_data.get('isEmployee', False)
+        hasRecommAuth = validated_data.get('hasRecommAuth', False)
+
+        profile = Profile.objects.create(
+            user=user,
+            cellphone=cellphone,
+            full_name=full_name,
+            isEmployee=isEmployee,
+            hasRecommAuth=hasRecommAuth,
+        )
+        validated_data['username'] = user.username
+        return validated_data
 
 
 class RegisterSerializer(Serializer):

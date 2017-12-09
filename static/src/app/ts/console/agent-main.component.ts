@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AgentService} from "./agent.service";
 import {Profile} from "../dashboard/profile";
-import {User} from "../dashboard/user";
 
 @Component({
   selector: 'agnt-main',
@@ -53,6 +52,15 @@ export class AgentMainComponent implements OnInit {
     usr.password = agent.cellphone;
     this.agentService
       .resetPwd(usr)
+      .catch(error => {
+        this.error = error;
+      });
+  }
+
+  delAgent(agent: Profile) {
+    agent.isDeleted = true;
+    this.agentService
+      .delAgent(agent)
       .catch(error => {
         this.error = error;
       });

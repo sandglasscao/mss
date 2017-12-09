@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from uprofile.views import ChangePwdApiView
+from uprofile.views import ChangePwdApiView, UserRegisterApiView
 from .views import (
     CommissionViewSet,
     InitSystemApiView,
@@ -24,7 +24,6 @@ agent_list = AgentViewSet.as_view({
 agent_detail = AgentViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
-    'delete': 'destroy'
 })
 
 urlpatterns = [
@@ -33,6 +32,6 @@ urlpatterns = [
     url(r'^agent/$', agent_list, name='agent-list'),
     url(r'^agent/(?P<pk>[0-9]+)$', agent_detail, name='agent-detail'),
     url(r'^sync$', InitSystemApiView.as_view(), name='syncdata'),
-    url(r'^resetpwd', ChangePwdApiView.as_view(), name='resetpwd'),
+    url(r'^resetpwd/', ChangePwdApiView.as_view(), name='resetpwd'),
 
 ]
