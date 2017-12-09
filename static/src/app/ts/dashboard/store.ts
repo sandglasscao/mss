@@ -6,6 +6,7 @@ export class Store {
   cellphone: string;
   status: string;
   created_dt: Date;
-  coord: string;
+  longitude: number;
+  latitude: number;
   pic: string;
 }

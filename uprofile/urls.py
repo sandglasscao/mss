@@ -18,6 +18,7 @@ store_list = StoreViewSet.as_view({
 store_detail = StoreViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
+    'patch': 'partial_update',
     'delete': 'destroy'
 })
 
@@ -37,8 +38,8 @@ urlpatterns = [
     url(r'^changepwd/$', ChangePwdApiView.as_view(), name='chngpwd'),
     url(r'^register/$', UserRegisterApiView.as_view(), name='register'),
     url(r'^store/$', store_list, name='store-list'),
-    url(r'^store/(?P<id>[0-9]+)$', order_detail, name='store-detail'),
-    url(r'^order/$', store_list, name='order-list'),
+    url(r'^store/(?P<id>[0-9]+)$', store_detail, name='store-detail'),
+    url(r'^order/$', order_list, name='order-list'),
     url(r'^order/(?P<id>[0-9]+)$', order_detail, name='order-detail'),
     url(r'^home/$', DashHomeListApiView.as_view(), name='homelist'),
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),

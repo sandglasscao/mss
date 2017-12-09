@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "./store";
 import {StoreService} from "./store.service";
 import "rxjs/add/operator/switchMap";
-import { Location }                 from '@angular/common';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-teamDownLine',
@@ -11,23 +11,32 @@ import { Location }                 from '@angular/common';
 })
 export class StoreDetailComponent implements OnInit {
   store: Store;
-  getShow = sessionStorage.getItem('getShow');
+  getShow: string;
+  error: null;
 
   constructor(private service: StoreService,
               private location: Location) {
   }
 
   ngOnInit(): void {
+    this.getShow = sessionStorage.getItem('getShow');
     this.store = this.service.getStore(sessionStorage.getItem('selected'));
-    console.log(this.store.coord);
-    let pos = sessionStorage.getItem('coordInfo');
-    if (this.getShow) {
-      this.store.coord = pos;
-    }
-    console.log(this.store.coord);
+    this.store.longitude = this.getShow ? +sessionStorage.getItem('lng') : this.store.longitude;
+    this.store.latitude = this.getShow ? +sessionStorage.getItem('lat') : this.store.latitude;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  saveLatlng() {
+    this.service
+      .saveLatlng(this.store)
+      .then(res=>{
+        let a = 1;
+      })
+      .catch(error => {
+        this.error = error;
+      });
   }
 }

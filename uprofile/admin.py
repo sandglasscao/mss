@@ -44,7 +44,6 @@ class StoreAdmin(admin.ModelAdmin):
         'name',
         'owner',
         'cellphone',
-        'agent',
         'status',
         'license',
     )

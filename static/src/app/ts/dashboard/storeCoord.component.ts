@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import { Location }                 from '@angular/common';
+import {Location} from '@angular/common';
 import {Router} from "@angular/router";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
-declare var AMap:any;
+
+declare var AMap: any;
 
 
 @Component({
@@ -16,6 +16,7 @@ export class StoreCoordComponent implements OnInit {
   map = null;
   geolocation = null;
   private coord = {'info': '定位后可点击显示查看结果'};
+
   constructor(private location: Location,
               private router: Router) {
   }
@@ -44,37 +45,44 @@ export class StoreCoordComponent implements OnInit {
     });
 
   }
+
   goBack(): void {
     this.location.back();
   }
+
   onComplete(data) {
     this.coord = data;
     const info = {
       'info': '定位成功',
-      'coords': {'lng': data.position.getLng(),'lat': data.position.getLat()}
+      'coords': {'lng': data.position.getLng(), 'lat': data.position.getLat()}
     };
     sessionStorage.setItem('coordShow', JSON.stringify(info));
-    sessionStorage.setItem('coordInfo', '(' + info.coords.lng + ',' + info.coords.lat + ')');
+    sessionStorage.setItem('lng', info.coords.lng.toString());
+    sessionStorage.setItem('lat', info.coords.lat.toString());
     sessionStorage.setItem('getShow', '1');
     alert('定位成功:' + '(' + info.coords.lng + ',' + info.coords.lat + ')');
   }
-  onError(data){
-    console.log(data.message);
+
+  onError(data) {
+    //console.log(data.message);
     alert('定位失败:' + data.message);
   }
+
   getCurrentPosition() {
     this.geolocation.getCurrentPosition();
   };
+
   showPosition() {
     this.coord = JSON.parse(sessionStorage.getItem('coordShow'));
-    console.log(this.coord);
+    //console.log(this.coord);
   }
+
   savePosition() {
     if (this.coord.info == '定位成功') {
       //this.location.back();
       this.router.navigate(['/dashboard/store', sessionStorage.getItem("selected")]);
-      console.log(this.router.url);
-    }else {
+      //console.log(this.router.url);
+    } else {
       alert('请先定位，然后查看结果成功与否，最后再保存');
     }
   }

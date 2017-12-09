@@ -114,6 +114,9 @@ class StoreViewSet(ModelViewSet):
         queryset = Store.objects.filter(agent=self.request.user)
         return queryset
 
+    def update(self, request, *args, **kwargs):
+        return super(StoreViewSet,self).update(request, *args, **kwargs)
+
 
 class OrderViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
