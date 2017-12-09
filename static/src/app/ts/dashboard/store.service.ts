@@ -39,7 +39,7 @@ export class StoreService {
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
     let url = this.storeUrl + store.id;
-    let ll = {'lat': store.latitude, 'lng': store.longitude};
+    let ll = {'latitude': store.latitude, 'longitude': store.longitude};
     return this.http.patch(url, JSON.stringify(ll), options)
       .toPromise()
       .then(response => response.json())
