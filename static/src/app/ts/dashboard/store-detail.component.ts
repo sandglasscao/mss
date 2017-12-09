@@ -11,6 +11,7 @@ import { Location }                 from '@angular/common';
 })
 export class StoreDetailComponent implements OnInit {
   store: Store;
+  getShow = sessionStorage.getItem('getShow');
 
   constructor(private service: StoreService,
               private location: Location) {
@@ -19,12 +20,11 @@ export class StoreDetailComponent implements OnInit {
   ngOnInit(): void {
     this.store = this.service.getStore(sessionStorage.getItem('selected'));
     console.log(this.store.coord);
-    //if (!this.store.coord) {
-      let coordsP = JSON.parse(sessionStorage.getItem('coordInfo'));
-      console.log(JSON.parse(sessionStorage.getItem('coordInfo')));
-      console.log(coordsP);
-      this.store.coord = (coordsP)?('(' + coordsP.coords.lng + ',' + coordsP.coords.lat + ')'):'待获取';
-    //}
+    let pos = sessionStorage.getItem('coordInfo');
+    if (this.getShow) {
+      this.store.coord = pos;
+    }
+    console.log(this.store.coord);
   }
 
   goBack(): void {

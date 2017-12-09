@@ -54,5 +54,3 @@ export class PasswordComponent implements OnInit {
     this.error = null;
   }
 }
-
-

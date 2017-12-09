@@ -29,6 +29,9 @@ export class StoresComponent implements OnInit {
   ngOnInit(): void {
     this.listStoreStatus();
     this.initStores();
+    if (sessionStorage.getItem('getShow')) {
+      sessionStorage.removeItem('getShow');
+    }
   }
 
   goDetail(id) {
@@ -55,8 +58,6 @@ export class StoresComponent implements OnInit {
         this.error = "业务员不存在!"
       });
   }
-
-
   private listStoreStatus() {
     this.metaService
       .listStoreStatus('1001')
@@ -66,14 +67,12 @@ export class StoresComponent implements OnInit {
       })
       .catch(error => this.error = error);
   }
-
   private setOptions() {
     let allStore = new StoreStatus();
     allStore.code = '100';
     allStore.value = '全部';
     this.statuslst.push(allStore);
   }
-
   private filterStores(code: string) {
     let value = this.statuslst.find(status => status.code == code).value;
     this.sortedStores = this.myStores.filter(store => store.status == value);

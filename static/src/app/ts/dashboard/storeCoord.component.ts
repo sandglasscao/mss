@@ -52,9 +52,11 @@ export class StoreCoordComponent implements OnInit {
     const info = {
       'info': '定位成功',
       'coords': {'lng': data.position.getLng(),'lat': data.position.getLat()}
-    }
-    sessionStorage.setItem('coordInfo', JSON.stringify(info));
-    alert('定位成功');
+    };
+    sessionStorage.setItem('coordShow', JSON.stringify(info));
+    sessionStorage.setItem('coordInfo', '(' + info.coords.lng + ',' + info.coords.lat + ')');
+    sessionStorage.setItem('getShow', '1');
+    alert('定位成功:' + '(' + info.coords.lng + ',' + info.coords.lat + ')');
   }
   onError(data){
     console.log(data.message);
@@ -64,13 +66,14 @@ export class StoreCoordComponent implements OnInit {
     this.geolocation.getCurrentPosition();
   };
   showPosition() {
-    this.coord = JSON.parse(sessionStorage.getItem('coordInfo'));
+    this.coord = JSON.parse(sessionStorage.getItem('coordShow'));
     console.log(this.coord);
   }
   savePosition() {
     if (this.coord.info == '定位成功') {
-      this.location.back();
-      //this.router.navigate(['../../store', sessionStorage.getItem("selected")]);
+      //this.location.back();
+      this.router.navigate(['/dashboard/store', sessionStorage.getItem("selected")]);
+      console.log(this.router.url);
     }else {
       alert('请先定位，然后查看结果成功与否，最后再保存');
     }
