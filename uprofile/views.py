@@ -152,7 +152,12 @@ class DashHomeListApiView(ListAPIView):
 
     def __commission__(self):
         user = self.request.user
-        myStore_cnt = user.store.filter(status='2').count()
+        #myStore_cnt = user.store.filter(status='2').count()
+        if user.profile.isEmployee:
+            # this agent is employee, so his/her stores should not be involved in commission.
+            myStore_cnt =0
+        else:
+            myStore_cnt = user.store.filter(status='2').count()
         subStore_cnt = 0
         for subAgentProfile in user.son_agent.all():
             subStore_cnt = subAgentProfile.user.store.filter(status='2').count()
