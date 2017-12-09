@@ -3,6 +3,7 @@ import {Store} from "./store";
 import {StoreService} from "./store.service";
 import "rxjs/add/operator/switchMap";
 import {Location} from '@angular/common';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-teamDownLine',
@@ -15,7 +16,8 @@ export class StoreDetailComponent implements OnInit {
   error: null;
 
   constructor(private service: StoreService,
-              private location: Location) {
+              private location: Location,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,8 +27,8 @@ export class StoreDetailComponent implements OnInit {
     this.store.latitude = this.getShow ? +sessionStorage.getItem('lat') : this.store.latitude;
   }
 
-  goBack(): void {
-    this.location.back();
+  goBack(){
+    this.router.navigate(['/dashboard/store']);
   }
 
   saveLatlng() {
