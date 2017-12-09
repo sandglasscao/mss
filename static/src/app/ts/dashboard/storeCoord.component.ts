@@ -65,12 +65,12 @@ export class StoreCoordComponent implements OnInit {
   };
   showPosition() {
     this.coord = JSON.parse(sessionStorage.getItem('coordInfo'));
-    console.log(this);
     console.log(this.coord);
   }
   savePosition() {
     if (this.coord.info == '定位成功') {
-
+      this.location.back();
+      //this.router.navigate(['../../store', sessionStorage.getItem("selected")]);
     }else {
       alert('请先定位，然后查看结果成功与否，最后再保存');
     }

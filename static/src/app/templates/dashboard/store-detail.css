@@ -74,7 +74,7 @@ section .info {
 
 section .info .infoList {
   box-sizing: content-box;
-  width: 12rem;
+  width: 13rem;
   line-height: 0.92rem;
   padding: 0.4rem 0;
   border-bottom: 1px solid #71D0FC;
@@ -83,16 +83,19 @@ section .info .infoList {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  display: flex;
+    display: -webkit-box;
 }
-
-section .infoList div,
-section .infoList span {
-  display: inline-block;
+section .info .infoList .address {
+  text-overflow: ellipsis;
+overflow: hidden;
+white-space: nowrap;
+width: 10rem;
 }
 section .infoList span {width: 0.4rem;}
 
 section .infoList .listTitle {
-  width: 2.52rem;
+  width: 2.6rem;
   height: 100%;
   letter-spacing: 0.28rem;
 }
@@ -114,8 +117,8 @@ section .coord {
   color: #fff;
   font-size: 0.58rem;
   border-radius: 0.2rem;
-  float: right;
-  margin-left: 0.2rem;
+  position: absolute;
+  right: 0;
 }
 
 section #four,

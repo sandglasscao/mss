@@ -7,4 +7,5 @@ export class Store {
   status: string;
   created_dt: Date;
   coord: string;
+  pic: string;
 }
