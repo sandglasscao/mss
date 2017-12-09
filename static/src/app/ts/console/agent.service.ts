@@ -35,6 +35,20 @@ export class AgentService {
       .catch(this.handleError);
   }
 
+  delAgent(agent: Profile): Promise<any> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let options = new RequestOptions({headers: headers});
+    let url = this.baseUrl + agent.id;
+    let toDel = {'isDeleted': true};
+    return this.http
+      .put(url, JSON.stringify(toDel), options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(this.handleError);
+  }
+
   paginate(link: string) {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.append('Content-Type', 'application/json');
@@ -50,9 +64,8 @@ export class AgentService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
-    let url = this.baseUrl + 'resetpwd';
     return this.http
-      .put(url, JSON.stringify(user), options)
+      .put(this.resetPwdUrl, JSON.stringify(user), options)
       .toPromise()
       .then(resp => resp.json())
       .catch(this.handleError);

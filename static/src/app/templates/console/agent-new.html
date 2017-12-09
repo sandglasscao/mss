@@ -10,7 +10,7 @@
             <div class="agent_con_">
                 <span> 姓名： </span>
                 <input class="username" type="text" name="username"
-                       [(ngModel)]="agent.full_name" required
+                       [(ngModel)]="agent.full_name"
                 />
             </div>
             <div class="agent_con_">
@@ -30,13 +30,14 @@
             <div class="agent_con_tf">
                 <label>
                 <span>正式员工</span>
-                <input class="trueagent" type="checkbox" name="trueagent"
-                       [(ngModel)]="agent.isEmployee" required
+                <input class="trueagent" type="checkbox" name="trueagent" checked="checked"
+                       [(ngModel)]="agent.isEmployee"
                 /></label>
                 <label>
                 <span>推荐资格</span>
                 <input class="certification" type="checkbox" name="certification"
-                       [(ngModel)]="agent.hasRecommAuth" required
+                       checked="checked"
+                       [(ngModel)]="agent.hasRecommAuth"
                 /></label>
             </div>
 

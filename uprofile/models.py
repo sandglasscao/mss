@@ -19,6 +19,7 @@ class Profile(models.Model):
     address = models.ForeignKey('Address', null=True, blank=True)
     parent_agent = models.ForeignKey(User, related_name='son_agent', null=True, blank=True)
     grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True, blank=True)
+    isDeleted = models.BooleanField(default=False)
     created_dt = models.DateTimeField(auto_now_add=True)
 
 

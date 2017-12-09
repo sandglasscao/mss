@@ -10,6 +10,7 @@ export class Profile {
   hasRecommAuth: boolean;
   parent_code: string;
   grand_code: string;
+  isDeleted: boolean;
   user: User;
   created_dt: Date;
 }
