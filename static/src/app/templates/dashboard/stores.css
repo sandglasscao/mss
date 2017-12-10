@@ -90,7 +90,6 @@ section {
   background: url(/static/src/assets/myteam.jpg) no-repeat;
   background-size: 100%;
   width: 100%;
-  min-height: 13rem;
 }
 
 .head_middel {
@@ -105,7 +104,7 @@ section {
 }
 
 .middel {
-  height: 16rem;
+  height: 14.8rem;
   overflow: auto;
   width: 94%;
   margin-left: 2.5%;

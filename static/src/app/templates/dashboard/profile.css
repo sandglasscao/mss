@@ -3,7 +3,7 @@ header {
   height: 1.92rem;
   background: url(/static/src/assets/header.jpg) no-repeat;
   background-size: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   line-height: 1.92rem;
