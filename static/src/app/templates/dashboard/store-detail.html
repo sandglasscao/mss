@@ -32,7 +32,7 @@
         <div class="infoList">
             <div class="listTitle">经纬度</div>
             <span>：</span>
-            <div class="tel">{{ store.longitude }}, {{ store.latitude }}</div>
+            <div class="tel">{{ store.longitude }}<span *ngIf="store.longitude">,</span>{{ store.latitude }}</div>
             <button class="coord" *ngIf="getShow" (click)="saveLatlng()">保存</button>
             <a routerLink="../../storeCoord" class="coord" *ngIf="!getShow">获取</a>
         </div>
