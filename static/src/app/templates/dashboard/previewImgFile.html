@@ -10,7 +10,7 @@
             <i class="fa fa-remove uploadimgremove" (click)="remove(i)"></i>
         </label>
         <label class="preview-label" *ngIf="previewImgSrcs.length<3">
-            <input type="file" (change)="previewPic($event)">
+            <input type="file" accept="image/*" (change)="previewPic($event)">
             <i class="fa fa-2x fa-plus uploadimgicon"></i>
         </label>
     </div>
@@ -21,7 +21,7 @@
             <i class="fa fa-remove uploadimgremove" (click)="remove(i)"></i>
         </label>
         <label class="preview-label" *ngIf="previewImgSrcs_.length<1">
-            <input type="file" (change)="previewPic_($event)">
+            <input type="file" accept="image/*" (change)="previewPic_($event)">
             <i class="fa fa-2x fa-plus uploadimgicon"></i>
         </label>
     </div>

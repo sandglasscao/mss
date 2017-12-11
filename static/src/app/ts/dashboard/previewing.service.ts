@@ -5,8 +5,8 @@ import {Headers, Http} from "@angular/http";
 @Injectable()
 export class PreviewImgService {
 
-  constructor() { }
-
+  constructor(private http: Http) { }
+  private url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s';
 
 
   getReader(resolve, reject) {
