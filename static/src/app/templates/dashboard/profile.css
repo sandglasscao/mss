@@ -22,7 +22,7 @@ header i{
 section {
   margin-top: 1.92rem;
   width: 100%;
-  background: url(/static/src/assets/my_bg.jpg) no-repeat;
+  background: url(/static/src/assets/my_bg.jpg) no-repeat 0 -2.5rem;
   min-height:19.8rem;
   background-size: 100%;
   padding-top: 0.62rem;
