@@ -1,0 +1,68 @@
+header {
+  width: 100%;
+  height: 1.92rem;
+  background: url(/static/src/assets/header.jpg) no-repeat;
+  background-size: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  line-height: 1.92rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #fff;
+}
+
+header i {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 1.8rem;
+  font-size: 1.8rem;
+  line-height: 1.9rem;
+  color: #fff;
+}
+
+header div {
+  margin: auto;
+}
+
+section{
+  margin: 1.92rem 0;
+  padding-top: 0.2rem;
+}
+section .wrap p{
+  text-align: center;
+  background-color: #71D0FC;
+  height: 1.4rem;
+    line-height: 1.4rem;
+    margin: 0.2rem 0;
+}
+
+.preview-label {
+  width: 4rem;
+    height: 4rem;
+  border:1px dotted #ccc;
+  position: relative;
+  vertical-align: top;
+  display: inline-block
+}
+.preview-label input {
+  display: none;
+}
+.preview-label img{
+  width: 100%;
+  height: 100%;
+}
+.preview-label .uploadimgicon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.preview-label .uploadimgremove {
+  position: absolute;
+  top:5px;
+  right:5px;
+}

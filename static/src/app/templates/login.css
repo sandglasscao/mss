@@ -134,3 +134,9 @@
 				width:100%;
 			}
 		}
+.errorTitle{
+  padding-top: 0.5rem;
+    font-size: 0.7rem;
+    color: lightgray;
+    letter-spacing: 0.2rem;
+}

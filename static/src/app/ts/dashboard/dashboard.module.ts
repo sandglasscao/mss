@@ -12,6 +12,8 @@ import {StoreDetailComponent} from "./store-detail.component";
 import {MetaService} from "../meta/meta.service";
 import {StoreService} from "./store.service";
 import {StoreCoordComponent} from "./storeCoord.component";
+import {PreviewImgComponent} from "./previewImgFile.component";
+import {PreviewImgService} from "./previewing.service";
 
 @NgModule({
   imports: [
@@ -27,9 +29,10 @@ import {StoreCoordComponent} from "./storeCoord.component";
     StoresComponent,
     TeamComponent,
     StoreCoordComponent,
-    StoreDetailComponent
+    StoreDetailComponent,
+    PreviewImgComponent
   ],
-  providers: [MetaService, StoreService]
+  providers: [MetaService, StoreService, PreviewImgService]
 })
 export class DashboardModule {
 }

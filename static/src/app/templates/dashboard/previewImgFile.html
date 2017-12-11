@@ -1,0 +1,28 @@
+<header>
+    <i class="fa fa-angle-left" (click)="goBack()"></i>
+    <div>店铺图片</div>
+</header>
+<section>
+    <div class="wrap">
+        <p>店铺快照</p>
+        <label class="preview-label" *ngFor="let img of previewImgSrcs let i = index">
+            <img src="{{ img }}">
+            <i class="fa fa-remove uploadimgremove" (click)="remove(i)"></i>
+        </label>
+        <label class="preview-label" *ngIf="previewImgSrcs.length<3">
+            <input type="file" (change)="previewPic($event)">
+            <i class="fa fa-2x fa-plus uploadimgicon"></i>
+        </label>
+    </div>
+    <div class="wrap">
+        <p>营业执照</p>
+        <label class="preview-label" *ngFor="let img of previewImgSrcs_ let i = index">
+            <img src="{{ img }}">
+            <i class="fa fa-remove uploadimgremove" (click)="remove(i)"></i>
+        </label>
+        <label class="preview-label" *ngIf="previewImgSrcs_.length<1">
+            <input type="file" (change)="previewPic_($event)">
+            <i class="fa fa-2x fa-plus uploadimgicon"></i>
+        </label>
+    </div>
+</section>

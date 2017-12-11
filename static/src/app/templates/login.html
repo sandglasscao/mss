@@ -32,11 +32,9 @@
                     <a class="forget" [routerLink]="['/cell-reset']">忘记密码?</a>
                 </div>
                 <div class="login_button">
-
-
                     <button type="submit" class="login" [disabled]="!userForm.valid">登录</button>
-                    <div class="form-group" [hidden]="!error">
-                        <span class="alert alert-danger">{{ error }}</span>
+                    <div class="form-group errorTitle" [hidden]="!error">
+                        <span>{{ error }}</span>
                     </div>
                 </div>
             </form>
