@@ -9,7 +9,7 @@
             <img src="{{ img }}">
             <i class="fa fa-remove uploadimgremove" (click)="remove(i)"></i>
         </label>
-        <label class="preview-label" *ngIf="previewImgSrcs.length<3">
+        <label class="preview-label" *ngIf="previewImgSrcs.length<1">
             <input type="file" accept="image/*" (change)="previewPic($event)">
             <i class="fa fa-2x fa-plus uploadimgicon"></i>
         </label>

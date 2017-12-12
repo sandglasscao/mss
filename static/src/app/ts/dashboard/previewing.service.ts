@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http} from "@angular/http";
+import {Headers, Http, RequestOptions} from "@angular/http";
+import {Pic} from "./pic";
 
 @Injectable()
 export class PreviewImgService {
+  private baseUrl = '/login/';
 
   constructor(private http: Http) { }
   private url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s';
@@ -33,5 +35,21 @@ export class PreviewImgService {
     return () => {
       reject(reader.result);
     };
+  }
+
+
+  subs(pic: Pic): Promise<any> {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.set('Content-Type', 'application/json');
+    let options = new RequestOptions({headers: headers});
+    return this.http
+      .post(this.baseUrl, JSON.stringify(pic), options)
+      .toPromise()
+      .then(resp => resp.json())
+      .catch(this.handleError);
+  }
+  private handleError(error: any) {
+    console.error(error);
+    return Promise.reject(error._body);
   }
 }
