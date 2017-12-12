@@ -66,3 +66,14 @@ section .wrap p{
   top:5px;
   right:5px;
 }
+section .sub{
+  text-align: center;
+}
+section .sub input{
+  color: #fff;
+  background-color: #3373F9;
+  width: 4rem;
+    height: 1.4rem;
+    line-height: 1.4rem;
+    border-radius: 0.25rem;
+}
