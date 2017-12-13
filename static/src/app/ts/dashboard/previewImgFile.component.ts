@@ -84,7 +84,7 @@ export class PreviewImgComponent implements OnInit {
   }
 
   setfiles() {
-    this.pic
+    
   }
 
   upload() {

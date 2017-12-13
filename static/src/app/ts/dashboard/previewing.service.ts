@@ -5,7 +5,7 @@ import {Pic} from "./pic";
 
 @Injectable()
 export class PreviewImgService {
-  private baseUrl = '/login/';
+  private storeUrl = 'api/users/store/';
 
   constructor(private http: Http) { }
   private url = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=s';
@@ -37,7 +37,7 @@ export class PreviewImgService {
     };
   }
 
-
+/*
   subs(pic: Pic): Promise<any> {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
     headers.set('Content-Type', 'application/json');
@@ -47,7 +47,7 @@ export class PreviewImgService {
       .toPromise()
       .then(resp => resp.json())
       .catch(this.handleError);
-  }
+  }*/
 
   uploadpic(id: number, formData: FormData) {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
@@ -58,10 +58,10 @@ export class PreviewImgService {
     return this.http.patch(url, formData, options)
       .toPromise()
       .then(response => response.json())
-      .catch(StoreService.handleError);
+      .catch(PreviewImgService.handleError);
 
   }
-  private handleError(error: any) {
+  private static handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);
   }
