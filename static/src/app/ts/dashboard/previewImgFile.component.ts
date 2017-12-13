@@ -9,6 +9,7 @@ import {Pic} from "./pic";
   styleUrls: ['static/src/app/templates/dashboard/previewImgFile.css']
 })
 export class PreviewImgComponent implements OnInit {
+  formData = new FormData();
 
   //@Input()
   //previewImgFile;
@@ -82,17 +83,14 @@ export class PreviewImgComponent implements OnInit {
     //this.previewImgFile.splice(i, 1);
   }
 
+  setfiles() {
+    this.pic
+  }
 
-  sub() {
+  upload() {
+    this.setfiles();
     this.previewImgService
-      .subs(this.pic)
-      .then(res => {
-        alert('成功上传!');
-        let that = this;
-        setTimeout(function () {
-          this.goBack();
-        },1200);
-      })
+      .uploadpic(+sessionStorage.getItem('selected'), this.formData)
       .catch(error => {
         // this.error = error;
         this.error = "出现错误,请联系工作人员或稍后再试!"

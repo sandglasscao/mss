@@ -48,6 +48,19 @@ export class PreviewImgService {
       .then(resp => resp.json())
       .catch(this.handleError);
   }
+
+  uploadpic(id: number, formData: FormData) {
+    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
+    headers.append('Content-Type', 'application/json');
+    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let options = new RequestOptions({headers: headers});
+    let url = this.storeUrl + id;
+    return this.http.patch(url, formData, options)
+      .toPromise()
+      .then(response => response.json())
+      .catch(StoreService.handleError);
+
+  }
   private handleError(error: any) {
     console.error(error);
     return Promise.reject(error._body);

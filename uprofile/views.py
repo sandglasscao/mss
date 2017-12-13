@@ -1,3 +1,5 @@
+import json
+
 from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -115,6 +117,14 @@ class StoreViewSet(ModelViewSet):
         return queryset
 
     def update(self, request, *args, **kwargs):
+        data = request.data
+        store = json.loads(data.get('store', None))
+        licpic = ('license_pic' in data.keys()) and data.pop('license_pic')[0]
+
+        if licpic:
+            store['license_pic'] = licpic
+        elif 'license_pic' in store.keys():
+            store.pop('license_pic')
         return super(StoreViewSet,self).update(request, *args, **kwargs)
 
 
