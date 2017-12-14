@@ -8,5 +8,7 @@ export class Store {
   created_dt: Date;
   longitude: number;
   latitude: number;
-  pic: string;
+  indoor_pic: string;
+  outdoor_pic: string;
+  license_pic: string;
 }

@@ -39,9 +39,8 @@
         <div class="infoList">
             <div id="five" class="listTitle">店铺快照</div>
             <span>：</span>
-            <div class="date">未上传</div>
-            <button class="coord" *ngIf="store.pic">保存</button>
-            <a routerLink="../../previewImgFile" class="coord" *ngIf="!store.pic">上传</a>
+            <div class="date">{{ license_pic+outdoor_pic+indoor_pic }}/3</div>
+            <a routerLink="../../previewImgFile" class="coord">上传</a>
         </div>
     </div>
 </section>
