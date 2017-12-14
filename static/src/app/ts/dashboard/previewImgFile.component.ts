@@ -116,6 +116,7 @@ export class PreviewImgComponent implements OnInit {
   check_(res) {
     if (res.license_pic==1 && res.store_pic==1 && res.store_indoor_pic==1){
       this.router.navigate(['/dashboard/store', sessionStorage.getItem('selected')]);
+      console.log(res);
     }else {
       this.error_message.license_pic=(res.license_pic==0) ? 1 : 0;
       this.error_message.store_indoor_pic=(res.store_indoor_pic==0) ? 1 : 0;
