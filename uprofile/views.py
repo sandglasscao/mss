@@ -127,7 +127,6 @@ class StoreViewSet(ModelViewSet):
             store.pop('license_pic')
         return super(StoreViewSet,self).update(request, *args, **kwargs)
 
-
 class OrderViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = OrderSerializer

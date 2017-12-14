@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PreviewImgService} from './previewing.service';
 import {Location} from '@angular/common';
-import {Pic} from "./pic";
 
 @Component({
   selector: 'app-previewImg',
@@ -9,13 +8,13 @@ import {Pic} from "./pic";
   styleUrls: ['static/src/app/templates/dashboard/previewImgFile.css']
 })
 export class PreviewImgComponent implements OnInit {
+
   formData = new FormData();
 
   //@Input()
   //previewImgFile;
   //@Output()
   //previewImgFileChange: EventEmitter<string> = new EventEmitter();
-  pic = new Pic();
   error = null;
 
 
@@ -45,13 +44,11 @@ export class PreviewImgComponent implements OnInit {
     let that = this;
     this.previewImgService.readAsDataUrl(event.target.files[0]).then(function (result) {
       that.previewImgSrcs.push(result);
-      that.pic.username = that.previewImgSrcs[0];
       //let file = event.target.files[0];
       //that.previewImgFile.push(file);
       //that.previewImgFileChange.emit(that.previewImgFile);
     });
     console.log(this.previewImgSrcs);
-    console.log(this.pic);
   }
 
   remove(i) {
@@ -69,22 +66,17 @@ export class PreviewImgComponent implements OnInit {
     let that = this;
     this.previewImgService.readAsDataUrl(event.target.files[0]).then(function (result) {
       that.previewImgSrcs_.push(result);
-      that.pic.license = that.previewImgSrcs_[0];
-      //let file = event.target.files[0];
-      //that.previewImgFile.push(file);
-      //that.previewImgFileChange.emit(that.previewImgFile);
     });
     console.log(this.previewImgSrcs_);
-    console.log(this.pic);
   }
 
   remove_(i) {
     this.previewImgSrcs_.splice(i, 1);
-    //this.previewImgFile.splice(i, 1);
   }
 
   setfiles() {
-    
+    this.formData.append('license_pic', this.previewImgSrcs_[0]);
+    this.formData.append('store_pic', this.previewImgSrcs[0]);
   }
 
   upload() {

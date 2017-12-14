@@ -51,7 +51,6 @@ export class PreviewImgService {
 
   uploadpic(id: number, formData: FormData) {
     let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
     let url = this.storeUrl + id;
