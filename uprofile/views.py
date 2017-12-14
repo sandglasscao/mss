@@ -129,7 +129,8 @@ class StoreViewSet(ModelViewSet):
     def update(self, request, *args, **kwargs):
         photo1 = request.data.get('license_pic', None)
         photo2 = request.data.get('store_pic', None)
-        a,b = 0,0
+        photo3 = request.data.get('store_indoor_pic', None)
+        a,b,c = 0,0,0
         if photo1 != 'undefined':
             photo11 = photo1.split(',')[1]
             photo111 = base64.b64decode(photo11)
@@ -140,9 +141,9 @@ class StoreViewSet(ModelViewSet):
             destiantion.write(photo111)
             destiantion.close()
             photopath = r'static/store_images/'+picName
-            x = Store.objects.get(id=self.kwargs.get('id'))
-            x.license_pic = photopath
-            x.save()
+            store = Store.objects.get(id=self.kwargs.get('id'))
+            store.license_pic = photopath
+            store.save()
             a = 1
 
         if photo2 != 'undefined':
@@ -154,11 +155,26 @@ class StoreViewSet(ModelViewSet):
             destiantion.write(photo211)
             destiantion.close()
             photopath = r'static/store_images/' + picName
-            x = Store.objects.get(id=self.kwargs.get('id'))
-            x.outdoor_pic = photopath
-            x.save()
+            store = Store.objects.get(id=self.kwargs.get('id'))
+            store.outdoor_pic = photopath
+            store.save()
             b = 1
-        return Response(data={'license_pic':a,'store_pic':b},status=200)
+
+        if photo3 != 'undefined':
+            photo31 = photo1.split(',')[1]
+            photo311 = base64.b64decode(photo31)
+            picName = self.kwargs.get('id')+'indoor'+'.jpeg'
+
+            destiantion = open(r'static/store_images/'+picName, 'wb+')
+            # for chunk in photo111.chunks:
+            destiantion.write(photo311)
+            destiantion.close()
+            photopath = r'static/store_images/'+picName
+            store = Store.objects.get(id=self.kwargs.get('id'))
+            store.indoor_pic = photopath
+            store.save()
+            c = 1
+        return Response(data={'license_pic': a, 'store_pic': b, 'store_indoor_pic': c}, status= 200)
         # licpic = ('license_pic' in data.keys()) and data.pop('license_pic')[0]
         #
         # if licpic:
