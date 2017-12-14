@@ -28,6 +28,7 @@ export class PreviewImgComponent implements OnInit {
   ngOnInit() {
     this.previewImgSrcs = [];
     this.previewImgSrcs_ = [];
+    //this.pic.store_id = sessionStorage.getItem('selected');
   }
 
   goBack(): void {

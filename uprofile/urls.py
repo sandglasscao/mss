@@ -9,7 +9,9 @@ from .views import (
     OrderViewSet,
     DashHomeListApiView,
     TeamListApiView,
-CellCheckAPIView)
+    CellCheckAPIView,
+    # save_photo, Save_photoAPIView
+    )
 
 store_list = StoreViewSet.as_view({
     'get': 'list',
@@ -44,4 +46,7 @@ urlpatterns = [
     url(r'^home/$', DashHomeListApiView.as_view(), name='homelist'),
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
     url(r'^cell/$',CellCheckAPIView.as_view(), name='cell-check'),
+
+    # url(r'^storephoto/$',Save_photoAPIView.as_view()),# 店铺照片POST地址
+
 ]
