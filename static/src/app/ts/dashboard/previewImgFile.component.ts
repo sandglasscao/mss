@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PreviewImgService} from './previewing.service';
 import {Location} from '@angular/common';
+import {Router} from "@angular/router";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'app-previewImg',
@@ -22,7 +24,8 @@ export class PreviewImgComponent implements OnInit {
   previewImgSrcs_;
 
   constructor(private location: Location,
-              public previewImgService: PreviewImgService) {
+              public previewImgService: PreviewImgService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -84,9 +87,17 @@ export class PreviewImgComponent implements OnInit {
     this.setfiles();
     this.previewImgService
       .uploadpic(+sessionStorage.getItem('selected'), this.formData)
+      .then(res => this.check_(res))
       .catch(error => {
         // this.error = error;
         this.error = "出现错误,请联系工作人员或稍后再试!"
       });
+  }
+  check_(res) {
+    if (res.license_pic==1 && res.store_pic==1){
+      this.router.navigate(['/dashboard/store', sessionStorage.getItem('selected')]);
+    }else {
+      alert('1');
+    }
   }
 }
