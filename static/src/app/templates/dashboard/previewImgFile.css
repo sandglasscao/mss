@@ -37,7 +37,7 @@ section .wrap p{
   background-color: #71D0FC;
   height: 1.4rem;
     line-height: 1.4rem;
-    margin: 0.2rem 0;
+    margin-bottom: 0.2rem;
 }
 
 .preview-label {
@@ -76,4 +76,10 @@ section .sub input{
     height: 1.4rem;
     line-height: 1.4rem;
     border-radius: 0.25rem;
+}
+section .message{
+  margin-top: 0.4rem;
+  text-align: center;
+  color: #C80000;
+  font-size: 0.6rem;
 }

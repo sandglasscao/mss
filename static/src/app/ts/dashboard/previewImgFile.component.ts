@@ -3,7 +3,7 @@ import {PreviewImgService} from './previewing.service';
 import {Location} from '@angular/common';
 import {Router} from "@angular/router";
 import {el} from "@angular/platform-browser/testing/src/browser_util";
-
+import {Message} from "./m";
 @Component({
   selector: 'app-previewImg',
   templateUrl: 'static/src/app/templates/dashboard/previewImgFile.html',
@@ -18,9 +18,11 @@ export class PreviewImgComponent implements OnInit {
   //@Output()
   //previewImgFileChange: EventEmitter<string> = new EventEmitter();
   error = null;
+  error_message = new Message();
 
 
   previewImgSrcs;
+  previewImgSrcs2;
   previewImgSrcs_;
 
   constructor(private location: Location,
@@ -30,6 +32,7 @@ export class PreviewImgComponent implements OnInit {
 
   ngOnInit() {
     this.previewImgSrcs = [];
+    this.previewImgSrcs2 = [];
     this.previewImgSrcs_ = [];
     //this.pic.store_id = sessionStorage.getItem('selected');
   }
@@ -59,7 +62,23 @@ export class PreviewImgComponent implements OnInit {
     this.previewImgSrcs.splice(i, 1);
     //this.previewImgFile.splice(i, 1);
   }
+  previewPic2(event) {
+    if (this.previewImgSrcs2.length >= 1) {
+      return;
+    }
+    if (!event.target.files[0]) {
+      return;
+    }
+    let that = this;
+    this.previewImgService.readAsDataUrl(event.target.files[0]).then(function (result) {
+      that.previewImgSrcs2.push(result);
+    });
+    console.log(this.previewImgSrcs2);
+  }
 
+  remove2(i) {
+    this.previewImgSrcs2.splice(i, 1);
+  }
   previewPic_(event) {
     if (this.previewImgSrcs_.length >= 1) {
       return;
@@ -81,6 +100,7 @@ export class PreviewImgComponent implements OnInit {
   setfiles() {
     this.formData.append('license_pic', this.previewImgSrcs_[0]);
     this.formData.append('store_pic', this.previewImgSrcs[0]);
+    this.formData.append('store_indoor_pic', this.previewImgSrcs[0]);
   }
 
   upload() {
@@ -94,10 +114,12 @@ export class PreviewImgComponent implements OnInit {
       });
   }
   check_(res) {
-    if (res.license_pic==1 && res.store_pic==1){
+    if (res.license_pic==1 && res.store_pic==1 && res.store_indoor_pic==1){
       this.router.navigate(['/dashboard/store', sessionStorage.getItem('selected')]);
     }else {
-      alert('1');
+      this.error_message.license_pic=(res.license_pic==0) ? 1 : 0;
+      this.error_message.store_indoor_pic=(res.store_indoor_pic==0) ? 1 : 0;
+      this.error_message.store_pic=(res.store_pic==0) ? 1 : 0;
     }
   }
 }
