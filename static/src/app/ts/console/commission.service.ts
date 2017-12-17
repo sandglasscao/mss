@@ -38,9 +38,9 @@ export class CommissionService {
     headers.append('Content-Type', 'application/json');
     headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
     let options = new RequestOptions({headers: headers});
-    let url = this.baseUrl + commission.pk;
+    let url = this.baseUrl + commission.id;
     return this.http
-      .put(this.baseUrl, JSON.stringify(commission), options)
+      .put(url, JSON.stringify(commission), options)
       .toPromise()
       .then(resp => resp.json())
       .catch(this.handleError);

@@ -1,5 +1,5 @@
 export class Commission {
-  pk: number;
+  id: number;
   base: string;
   parent_percent: string;
   grand_percent: boolean;

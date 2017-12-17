@@ -41,6 +41,7 @@ export class CommissionComponent implements OnInit {
     } else {
       this.commissionService.createCmmssn(this.commission);
     }
-    this.router.navigate(['../']);
+    //should go back console home stay here instead of logout
+    //this.router.navigate(['../']);
   }
 }
