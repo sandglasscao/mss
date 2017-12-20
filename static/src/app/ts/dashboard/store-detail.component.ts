@@ -19,7 +19,6 @@ export class StoreDetailComponent implements OnInit {
   license_pic: number;
 
   constructor(private service: StoreService,
-              private location: Location,
               private router: Router) {
   }
 
@@ -40,9 +39,6 @@ export class StoreDetailComponent implements OnInit {
   saveLatlng() {
     this.service
       .saveLatlng(this.store)
-      .then(res=>{
-        let a = 1;
-      })
       .catch(error => {
         this.error = error;
       });
