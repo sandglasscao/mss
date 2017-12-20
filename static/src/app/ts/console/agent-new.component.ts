@@ -4,14 +4,14 @@ import {Profile} from "../dashboard/profile";
 
 @Component({
   selector: 'agent-new',
-  templateUrl: 'static/src/app/templates/console/agent-new.html',
-  styleUrls: ['static/src/app/templates/console/agent-new.css']
+  templateUrl: '../../templates/console/agent-new.html',
+  styleUrls: ['../../templates/console/agent-new.css']
 })
 export class AgentNewComponent{
 
   agent = new Profile();
 
-  error = null;
+  error: any;
 
   constructor(private agentService: AgentService) {
   }

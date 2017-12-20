@@ -5,15 +5,15 @@ import {Commission} from "./commission";
 
 @Component({
   selector: 'cmmssn',
-  templateUrl: 'static/src/app/templates/console/commission.html',
-  styleUrls: ['static/src/app/templates/console/commission.css'],
+  templateUrl: '../../templates/console/commission.html',
+  styleUrls: ['../../templates/console/commission.css'],
   providers: [CommissionService]
 })
 export class CommissionComponent implements OnInit {
   commission = new Commission();
   hasCommssion = false;
 
-  error = null;
+  error: any;
 
   constructor(private commissionService: CommissionService,
               private router: Router) {

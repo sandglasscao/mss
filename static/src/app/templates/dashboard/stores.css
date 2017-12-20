@@ -1,6 +1,6 @@
 
 .wrap {
-  background: url(/static/src/assets/myteam.jpg) no-repeat;
+  background: url(/static/src/assets/images/myteam.jpg) no-repeat;
 }
 
 header {
@@ -9,7 +9,7 @@ header {
 
 .head_right {
   height: 1.92rem;
-  background: url(/static/src/assets/header.jpg) no-repeat;
+  background: url(/static/src/assets/images/header.jpg) no-repeat;
   background-size: 100%;
   width: 100%;
   text-align: center;
@@ -87,7 +87,7 @@ header {
 }
 
 section {
-  background: url(/static/src/assets/myteam.jpg) no-repeat;
+  background: url(/static/src/assets/images/myteam.jpg) no-repeat;
   background-size: 100%;
   width: 100%;
 }

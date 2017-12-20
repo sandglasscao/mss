@@ -1,7 +1,7 @@
 header {
   width: 100%;
   height: 1.92rem;
-  background: url(/static/src/assets/header.jpg) no-repeat;
+  background: url(/static/src/assets/images/header.jpg) no-repeat;
   background-size: 100%;
   position: fixed;
   top: 0;
@@ -14,7 +14,7 @@ header {
 section {
   margin: 1.92rem 0 0;
   width: 100%;
-  background: url(/static/src/assets/index1.jpg) no-repeat 0 -2.5rem;
+  background: url(/static/src/assets/images/index1.jpg) no-repeat 0 -2.5rem;
   background-size: 100%;
   min-height:19.8rem;
 }

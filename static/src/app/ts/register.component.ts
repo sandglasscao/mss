@@ -7,15 +7,15 @@ import "rxjs/add/operator/debounceTime";
 import "rxjs/add/operator/distinctUntilChanged";
 
 @Component({
-  templateUrl: 'static/src/app/templates/register.html',
-  styleUrls: ['static/src/app/templates/register.css'],
+  templateUrl: '../templates/register.html',
+  styleUrls: ['../templates/register.css'],
 })
 export class RegisterComponent implements OnInit {
   term = new FormControl();
   registration = new Registration();
   agents: Registration[];
-  second_pwd = null;
-  error = null;
+  second_pwd: any;
+  error: any;
 
   constructor(private registerService: RegisterService,
               private router: Router) {

@@ -3,8 +3,8 @@ import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-conhome',
-  templateUrl: 'static/src/app/templates/console/console-home.html',
-  styleUrls: ['static/src/app/templates/console/console-home.css']
+  templateUrl: '../../templates/console/console-home.html',
+  styleUrls: ['../../templates/console/console-home.css']
 })
 export class ConsoleHomeComponent {
 }

@@ -5,8 +5,8 @@ import {DashboardHomeService} from "./dashboard-home.service";
 
 @Component({
   selector: 'app-dashhome',
-  templateUrl: 'static/src/app/templates/dashboard/dashboard-home.html',
-  styleUrls: ['static/src/app/templates/dashboard/dashboard-home.css'],
+  templateUrl: '../../templates/dashboard/dashboard-home.html',
+  styleUrls: ['../../templates/dashboard/dashboard-home.css'],
   providers: [DashboardHomeService]
 })
 export class DashboardHomeComponent implements OnInit {
