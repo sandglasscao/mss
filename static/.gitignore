@@ -6,10 +6,6 @@ debug.log
 src/**/*.js
 dist
 !src/lib/*.js
-!src/systemjs.config.extras.js
-!src/systemjs.config.js
-!src/systemjs-angular-loader.js
-!src/rem.js
 *.js.map
 e2e/**/*.js
 e2e/**/*.js.map
