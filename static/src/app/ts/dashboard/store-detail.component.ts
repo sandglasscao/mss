@@ -2,11 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from "./store";
 import {StoreService} from "./store.service";
 import "rxjs/add/operator/switchMap";
-import {Location} from '@angular/common';
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-teamDownLine',
+  selector: 'app-detail',
   templateUrl: 'static/src/app/templates/dashboard/store-detail.html',
   styleUrls: ['static/src/app/templates/dashboard/store-detail.css']
 })
