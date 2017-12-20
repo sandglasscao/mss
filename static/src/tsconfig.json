@@ -3,11 +3,10 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "app/js",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "lib": [ "es2017", "dom" ],
+    "lib": ["es2015", "dom"],
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true
   }

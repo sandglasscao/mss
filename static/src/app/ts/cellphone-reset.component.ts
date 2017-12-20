@@ -9,16 +9,16 @@ import "rxjs/add/observable/timer";
 
 @Component({
   selector: 'app-cellreset',
-  templateUrl: 'static/src/app/templates/cellphone-reset.html',
-  styleUrls: ['static/src/app/templates/cellphone.css'],
+  templateUrl: '../templates/cellphone-reset.html',
+  styleUrls: ['../templates/cellphone.css'],
 })
 
 export class CellPhoneResetComponent {
   user = new User();
   cellPhone: string;
   smsCode: string;
-  verification = null;
-  error = null;
+  verification: any;
+  error: any;
   smslbl = "发送验证码";
 
   constructor(private registerService: RegisterService,

@@ -1,7 +1,7 @@
 .wrap{
 			width:100%;
 			min-height:970px;
-			background:url(/static/src/assets/back-login.jpg);
+			background:url(/static/src/assets/images/back-login.jpg);
 			background-size:100%;
 		}
 		.wrap_in{

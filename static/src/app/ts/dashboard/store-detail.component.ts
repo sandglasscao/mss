@@ -7,8 +7,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-teamDownLine',
-  templateUrl: 'static/src/app/templates/dashboard/store-detail.html',
-  styleUrls: ['static/src/app/templates/dashboard/store-detail.css']
+  templateUrl: '../../templates/dashboard/store-detail.html',
+  styleUrls: ['../../templates/dashboard/store-detail.css']
 })
 export class StoreDetailComponent implements OnInit {
   store: Store;

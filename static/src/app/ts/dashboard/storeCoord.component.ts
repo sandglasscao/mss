@@ -7,14 +7,14 @@ declare var AMap: any;
 
 @Component({
   selector: 'app-storeCoord',
-  templateUrl: 'static/src/app/templates/dashboard/storeCoord.html',
-  styleUrls: ['static/src/app/templates/dashboard/storeCoord.css']
+  templateUrl: '../../templates/dashboard/storeCoord.html',
+  styleUrls: ['../../templates/dashboard/storeCoord.css']
 })
 
 export class StoreCoordComponent implements OnInit {
   storeId: string;
-  map = null;
-  geolocation = null;
+  map: any;
+  geolocation: any;
   private coord = {'info': '定位后可点击显示查看结果'};
 
   constructor(private location: Location,
@@ -50,7 +50,7 @@ export class StoreCoordComponent implements OnInit {
     this.location.back();
   }
 
-  onComplete(data) {
+  onComplete(data: any) {
     this.coord = data;
     const info = {
       'info': '定位成功',
@@ -63,7 +63,7 @@ export class StoreCoordComponent implements OnInit {
     alert('定位成功:' + '(' + info.coords.lng + ',' + info.coords.lat + ')');
   }
 
-  onError(data) {
+  onError(data: any) {
     //console.log(data.message);
     alert('定位失败:' + data.message);
   }
