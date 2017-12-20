@@ -4,8 +4,8 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-sync',
-  templateUrl: '../../templates/console/sync-data.html',
-  styleUrls: ['../../templates/console/sync-data.css'],
+  templateUrl: 'static/src/app/templates/console/sync-data.html',
+  styleUrls: ['static/src/app/templates/console/sync-data.css'],
   providers: [SyncService]
 })
 export class InitSystemComponent {

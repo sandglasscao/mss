@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 
 @Component({
-  templateUrl: '../../templates/console/console.html',
-  styleUrls: ['../../templates/console/console.css']
+  templateUrl: 'static/src/app/templates/console/console.html',
+  styleUrls: ['static/src/app/templates/console/console.css']
 })
 export class ConsoleComponent{
 }

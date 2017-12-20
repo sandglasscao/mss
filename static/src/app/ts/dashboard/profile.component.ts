@@ -5,15 +5,15 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
-  templateUrl: '../../templates/dashboard/profile.html',
-  styleUrls: ['../../templates/dashboard/profile.css'],
+  templateUrl: 'static/src/app/templates/dashboard/profile.html',
+  styleUrls: ['static/src/app/templates/dashboard/profile.css'],
   providers: []
 })
 export class ProfileComponent implements OnInit {
   profile = new Profile();
-  username: any;
+  username = null;
   hasRecommAuth: string;
-  error: any;
+  error = null;
   torf = false;
   constructor(private profileService: ProfileService,
               private router: Router) {

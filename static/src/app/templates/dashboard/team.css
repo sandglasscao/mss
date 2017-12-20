@@ -10,7 +10,7 @@ header {
   font-size: 0.7rem;
   text-align: center;
   color: #fff;
-  background: url(/static/src/assets/images/header.jpg) no-repeat;
+  background: url(/static/src/assets/header.jpg) no-repeat;
   background-size: 100%;
 }
 header a{
@@ -19,7 +19,7 @@ header a{
 	height: 100%;
 	width: 1.18rem;
 	padding-left: 0.62rem;
-	background: url(/static/src/assets/images/back.png) no-repeat center;
+	background: url(/static/src/assets/back.png) no-repeat center;
 	background-size: 1.18rem;
 }
 header div{
@@ -28,7 +28,7 @@ header div{
 section {
   margin: 1.92rem 0;
   width: 100%;
-  background: url(/static/src/assets/images/myteam.jpg) repeat-y;
+  background: url(/static/src/assets/myteam.jpg) repeat-y;
   background-size: 100%;
   box-sizing: border-box;
   padding-top: 0.28rem;
@@ -108,7 +108,7 @@ section .r_content .downline i{
 	width: 0.62rem;
 	height: 0.62rem;
 	margin-left: 0.32rem;
-	background: url(/static/src/assets/images/downline.png) no-repeat;
+	background: url(/static/src/assets/downline.png) no-repeat;
 	background-size: 0.62rem;
 }
 section .r_content .downline .u{

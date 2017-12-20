@@ -7,8 +7,8 @@ import {ProfileService} from "./dashboard/profile.service";
 
 @Component({
   selector: 'app-login',
-  templateUrl: '../templates/login.html',
-  styleUrls: ['../templates/login.css'],
+  templateUrl: 'static/src/app/templates/login.html',
+  styleUrls: ['static/src/app/templates/login.css'],
   providers: [
     LoginService,
   ]
@@ -17,7 +17,7 @@ import {ProfileService} from "./dashboard/profile.service";
 export class LoginComponent {
   user = new User();
   next = 'dashboard';
-  error: any;
+  error = null;
 
   constructor(private loginService: LoginService,
               private profileService: ProfileService,

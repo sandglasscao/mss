@@ -6,8 +6,8 @@ import {el} from "@angular/platform-browser/testing/src/browser_util";
 import {Message} from "./m";
 @Component({
   selector: 'app-previewImg',
-  templateUrl: '../../templates/dashboard/previewImgFile.html',
-  styleUrls: ['../../templates/dashboard/previewImgFile.css']
+  templateUrl: 'static/src/app/templates/dashboard/previewImgFile.html',
+  styleUrls: ['static/src/app/templates/dashboard/previewImgFile.css']
 })
 export class PreviewImgComponent implements OnInit {
 
@@ -17,13 +17,13 @@ export class PreviewImgComponent implements OnInit {
   //previewImgFile;
   //@Output()
   //previewImgFileChange: EventEmitter<string> = new EventEmitter();
-  error: any;
+  error = null;
   error_message = new Message();
 
 
-  previewImgSrcs: any;
-  previewImgSrcs2: any;
-  previewImgSrcs_: any;
+  previewImgSrcs;
+  previewImgSrcs2;
+  previewImgSrcs_;
 
   constructor(private location: Location,
               public previewImgService: PreviewImgService,

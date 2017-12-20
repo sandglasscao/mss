@@ -7,18 +7,18 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-store',
-  templateUrl: '../../templates/dashboard/stores.html',
-  styleUrls: ['../../templates/dashboard/stores.css']
+  templateUrl: 'static/src/app/templates/dashboard/stores.html',
+  styleUrls: ['static/src/app/templates/dashboard/stores.css']
 })
 export class StoresComponent implements OnInit {
-  myStores: Store[];
+  myStores;
   sortedStores: Store[];
-  statuslst: StoreStatus[];
+  statuslst;
   options: StoreStatus[];
   selectedStatus: string;
   commLen = 0;
   uncommLen = 0;
-  error: any;
+  error = null;
 
   constructor(private storeService: StoreService,
               private metaService: MetaService,
@@ -34,7 +34,7 @@ export class StoresComponent implements OnInit {
     }
   }
 
-  goDetail(id: number) {
+  goDetail(id) {
     sessionStorage.setItem('selected', id.toString());
     this.router.navigate([this.router.url, id]);
   }

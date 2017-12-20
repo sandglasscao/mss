@@ -4,8 +4,8 @@ import {Profile} from "../dashboard/profile";
 
 @Component({
   selector: 'agnt-main',
-  templateUrl: '../../templates/console/agent-main.html',
-  styleUrls: ['../../templates/console/agent-main.css']
+  templateUrl: 'static/src/app/templates/console/agent-main.html',
+  styleUrls: ['static/src/app/templates/console/agent-main.css']
 })
 export class AgentMainComponent implements OnInit {
   agents: Profile[];
@@ -13,7 +13,7 @@ export class AgentMainComponent implements OnInit {
   pageNo: number;
   previouspg: string;
   nextpg: string;
-  error: any;
+  error = null;
 
   constructor(private agentService: AgentService) {
   }

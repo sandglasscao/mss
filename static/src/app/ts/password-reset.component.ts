@@ -6,13 +6,13 @@ import {Location} from '@angular/common';
 
 @Component({
   selector: 'reset-pwd',
-  templateUrl: '../templates/dashboard/password.html',
-  styleUrls: ['../templates/dashboard/password.css']
+  templateUrl: 'static/src/app/templates/dashboard/password.html',
+  styleUrls: ['static/src/app/templates/dashboard/password.css']
 })
 export class PasswordResetComponent implements OnInit {
   user = new User();
-  second_pwd: any;
-  error: any;
+  second_pwd = null;
+  error = null;
 
   constructor(private profileService: ProfileService,
               private router: Router,

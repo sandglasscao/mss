@@ -6,16 +6,16 @@ import {RegisterService} from "./registrater.service";
 
 @Component({
   selector: 'app-cell',
-  templateUrl: '../templates/cellphone.html',
-  styleUrls: ['../templates/cellphone.css']
+  templateUrl: 'static/src/app/templates/cellphone.html',
+  styleUrls: ['static/src/app/templates/cellphone.css']
 })
 
 
 export class CellPhoneComponent {
   cellPhone: string;
   smsCode: string;
-  verification: any;
-  error: any;
+  verification = null;
+  error = null;
 
   constructor(private registerService: RegisterService,
               private router: Router) {
