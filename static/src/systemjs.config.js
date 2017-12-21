@@ -25,6 +25,8 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
+      '@alicloud/sms-sdk': 'npm:@alicloud/sms-sdk/index.js',
+
       // other libraries
       'core.js': 'npm:core.js',
       'rxjs': 'npm:rxjs',

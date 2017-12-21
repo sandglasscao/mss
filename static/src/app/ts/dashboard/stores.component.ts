@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
 import {Store} from "./store";
 import {StoreService} from "./store.service";
 import {MetaService} from "../meta/meta.service";
 import {StoreStatus} from "./store-status";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-store',
@@ -58,21 +59,14 @@ export class StoresComponent implements OnInit {
         this.error = "业务员不存在!"
       });
   }
+
   private listStoreStatus() {
     this.metaService
       .listStoreStatus('1001')
-      .then(res => {
-        this.statuslst = res;
-        this.setOptions();
-      })
+      .then(res => this.statuslst = res)
       .catch(error => this.error = error);
   }
-  private setOptions() {
-    let allStore = new StoreStatus();
-    allStore.code = '100';
-    allStore.value = '全部';
-    this.statuslst.push(allStore);
-  }
+
   private filterStores(code: string) {
     let value = this.statuslst.find(status => status.code == code).value;
     this.sortedStores = this.myStores.filter(store => store.status == value);
