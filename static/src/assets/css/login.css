@@ -1,0 +1,142 @@
+.wrap{
+			width:100%;
+			min-height:970px;
+			background:url(/static/src/assets/images/back-login.jpg);
+			background-size:100%;
+		}
+		.wrap_in{
+			width:100%;
+			height:35%;
+			background-color:white;
+			background: rgba(255,255,255,.8);
+			position:absolute;
+			top:22%;
+			left:0;
+		}
+		.wrap_logo{
+			float:left;
+			width:50%;
+			height:100%;
+		}
+		.wrap_logo img{
+			position:relative;
+			top:25%;
+			max-width:50%;
+			max-height:50%;
+			float:right;
+		}
+		.wrap_input{
+			position:relative;
+			width:22%;
+			height:100%;
+			float:left;
+			background-color:#7d7d7d;
+			overflow:hidden;
+		}
+		.login_top{
+			margin-top:9%;
+			height:20%;
+			text-align: center;
+			color:#ffffff;
+			font-size:28px;
+		}
+    .input_{
+      width: 80%;
+      margin: 0 auto 6px;
+    }
+    .login-form i{
+      font-size: 24px;
+      position: relative;
+      top: 3px;
+      text-align: center;
+      width: 20px;
+    }
+    .login-form input{
+      width: calc(100% - 28px);
+      height: 35px;
+      border-radius: 8px;
+      text-indent: 8px;
+    }
+    .content{
+      width: 80%;
+      margin: 0 auto 6px;
+      overflow: hidden;
+    }
+    .content a{
+      text-decoration: none;
+      color: #fff;
+    }
+    .content a.register{
+      float: left;
+      padding-left: 20px;
+    }
+    .content a.forget{
+      float: right;
+    }
+
+		.login_button{
+			overflow:hidden;
+			width:100%;
+      text-align: center;
+            clear:both;
+            color:white;
+            margin-top:10%;
+		}
+		.login_button button{
+			background-color:#a4c520;
+			color:white;
+      width: 78%;
+      height: 35px;
+      border-radius: 8px;
+      font-size: 20px;
+		}
+
+		@media screen and (min-width:2100px){
+		.wrap_in{
+       		height:50%;
+       	}
+		}
+		@media screen and (min-width:1600px) and (max-width:2099px){
+			.wrap_in{height:35%}
+		}
+		@media screen and (min-width:1200px) and (max-width:1599px){
+			.wrap_in{height:55%}
+			.wrap_input{width:25%}
+		}
+		@media screen and (min-width:700px) and (max-width:1199px){
+			.wrap_in{height:55%}
+			.wrap_input{width:30%}
+		}
+		@media screen and (min-width:600px) and (max-width:699px){
+			.wrap_logo{display:none;}
+			.wrap_in{
+				height:60%
+			}
+			.wrap_input{
+				width:60%;
+			}
+		}
+		@media screen and (min-width:414px) and (max-width:599px){
+			.wrap_logo{display:none;}
+			.wrap_in{
+				height:70%
+			}
+			.wrap_input{
+				width:100%;
+			}
+		}
+		@media screen and (max-width:413px){
+			.wrap_logo{display:none;}
+			.wrap_in{
+				height:100%
+			}
+			.wrap_input{
+				width:100%;
+			}
+		}
+.errorTitle{
+  padding-top: 0.5rem;
+    font-size: 0.7rem;
+    color: lightgray;
+    letter-spacing: 0.2rem;
+}

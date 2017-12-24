@@ -1,0 +1,37 @@
+<div class="wrap">
+    <form #checkForm="ngForm" (ngSubmit)="onSubmit()">
+        <img src="/static/src/assets/images/logo1.jpg"/>
+        <div class="title">验证手机</div>
+        <div class="inp">
+            <span>手机号:</span>
+            <input class="username" type="text"
+                   placeholder="请输入手机号"
+                   [(ngModel)]="cellPhone" required
+                   minLength=11
+                   maxLength=11
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+        <div class="btn_wrap">
+            <button type="button" class="btn" (click)="getSMS()">发送验证码</button>
+        </div>
+        <div class="inp">
+            <span>验证码:</span>
+            <input class="username" type="text"
+                   placeholder="请输入验证码"
+                   (keydown)="cleanerror()"
+                   [(ngModel)]="smsCode" required
+                   minLength=4
+                   maxLength=4
+                   [ngModelOptions]="{standalone: true}"
+            />
+        </div>
+
+        <button type="submit" class="next" [disabled]="!checkForm.valid">下一步</button>
+
+        <div [hidden]="!error">
+            <span>{{ error }}</span>
+        </div>
+    </form>
+
+</div>

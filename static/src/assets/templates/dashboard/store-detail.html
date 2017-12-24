@@ -1,0 +1,46 @@
+<header>
+    <i class="fa fa-angle-left" (click)="goBack()"></i>
+    <div>店铺详情</div>
+</header>
+<section>
+    <div class="photo">
+        <div class="pic">
+            <img src="/static/src/assets/images/logo1.jpg" alt="头像">
+        </div>
+    </div>
+    <div class="info">
+        <div class="infoList">
+            <div class="listTitle">店铺名</div>
+            <span>：</span>
+            <div class="data">{{ store.name }}</div>
+        </div>
+        <div class="infoList">
+            <div class="listTitle">地<i></i>址</div>
+            <span>：</span>
+            <div class="address">{{ store.address }}</div>
+        </div>
+        <div class="infoList">
+            <div class="listTitle">电<i></i>话</div>
+            <span>：</span>
+            <div class="tel">{{ store.cellphone }}</div>
+        </div>
+        <div class="infoList">
+            <div id="four" class="listTitle">入驻时间</div>
+            <span>：</span>
+            <div class="date">{{ store.created_dt|date }}</div>
+        </div>
+        <div class="infoList">
+            <div class="listTitle">经纬度</div>
+            <span>：</span>
+            <div class="tel">{{ store.longitude }}<span *ngIf="store.longitude">,</span>{{ store.latitude }}</div>
+            <button class="coord" *ngIf="getShow" (click)="saveLatlng()">保存</button>
+            <a routerLink="../../storeCoord" class="coord" *ngIf="!getShow">获取</a>
+        </div>
+        <div class="infoList">
+            <div id="five" class="listTitle">店铺快照</div>
+            <span>：</span>
+            <div class="date">{{ license_pic+outdoor_pic+indoor_pic }}/3</div>
+            <a routerLink="../../previewImgFile" class="coord">上传</a>
+        </div>
+    </div>
+</section>

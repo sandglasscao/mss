@@ -1,6 +1,6 @@
 import datetime
 
-from registration.forms import User
+from django.contrib.auth.models import User
 from rest_framework.response import Response
 
 from b2b.models import StoreB2B, AgentB2B, OrderB2B

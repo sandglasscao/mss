@@ -1,0 +1,116 @@
+header {
+  width: 100%;
+  height: 1.92rem;
+  background-size: 100%;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  line-height: 1.92rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #fff;
+  background: url(/static/src/assets/images/header.jpg) no-repeat;
+  background-size: 100%;
+}
+header a{
+	position: absolute;
+	top: 0;left: 0;
+	height: 100%;
+	width: 1.18rem;
+	padding-left: 0.62rem;
+	background: url(/static/src/assets/images/back.png) no-repeat center;
+	background-size: 1.18rem;
+}
+header div{
+	margin: auto;
+}
+section {
+  margin: 1.92rem 0;
+  width: 100%;
+  background: url(/static/src/assets/images/myteam.jpg) repeat-y;
+  background-size: 100%;
+  box-sizing: border-box;
+  padding-top: 0.28rem;
+  overflow: auto;
+}
+section .team_list{
+	width: 100%;
+	height: 4.12rem;
+	background-color: #fff;
+	margin-bottom: 0.24rem;
+}
+section .team_list .list_left{
+	width: 3.76rem;
+	height: 100%;
+	position: relative;
+}
+section .list_left .photo_wrap{
+	width: 100%;
+	height: 2.72rem;
+	position: absolute;
+	top: 0;right: 0;bottom: 0;left: 0;
+	margin: auto;
+}
+section .photo_wrap .photo{
+	display: block;
+	margin: 0 auto;
+	width: 2.12rem;
+	height: 2.12rem;
+	border-radius: 50%;
+}
+section .photo_wrap .name{
+	height: 0.6rem;
+	width: 100%;
+	text-align: center;
+	color: #0F96C0;
+	font-size: 0.6rem;
+}
+section .team_list .list_right{
+	width: 11.24rem;
+	height: 100%;
+	box-sizing: border-box;
+	padding: 0.38rem 0;
+}
+section .list_right .r_content{
+	width: 100%;
+	height: 3.36rem;
+	font-size: 12px;
+}
+section .list_right .r_content div{
+	float: left;
+}
+section .r_content .con_up,
+section .r_content .con_down{
+	width: 100%;
+	height: 1.58rem;
+}
+section .r_content .con_up{
+	border-bottom: 0.08rem solid #E3F8FD;
+}
+section .con_up div,
+section .con_down div{
+	width: 50%;
+	padding: 0.52rem 0;
+}
+section .r_content .num,
+section .r_content .u{font-size: 14px;}
+section .r_content .num{
+	color: #EC940E;
+	padding-left: 0.56rem;
+}
+section .r_content .u{
+	padding-left: 0.52rem;
+	color: #3069EA;
+}
+section .r_content .downline i{
+	display: inline-block;
+	width: 0.62rem;
+	height: 0.62rem;
+	margin-left: 0.32rem;
+	background: url(/static/src/assets/images/downline.png) no-repeat;
+	background-size: 0.62rem;
+}
+section .r_content .downline .u{
+	padding-left: 0.32rem;
+}

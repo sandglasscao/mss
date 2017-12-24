@@ -1,0 +1,70 @@
+header {
+  width: 100%;
+  height: 1.92rem;
+  background: url(/static/src/assets/images/header.jpg) no-repeat;
+  background-size: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 1.92rem;
+  font-size: 0.7rem;
+  text-align: center;
+  color: #fff;
+}
+section {
+  margin: 1.92rem 0 0;
+  width: 100%;
+  background: url(/static/src/assets/images/index1.jpg) no-repeat 0 -2.5rem;
+  background-size: 100%;
+  min-height:19.8rem;
+}
+section .menu {
+  padding-top: 0.66rem;
+  width: 100%;
+  overflow: hidden;
+}
+section .menu li {
+  float: left;
+  width: 7.44rem;
+  height: 4.24rem;
+  background-color: #fff;
+  margin-bottom: 0.2rem;
+}
+.menu li a {
+  overflow: hidden;
+}
+.menu li .btns {
+  margin: 0.5rem 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 2.64rem;
+  padding-left: 0.6rem;
+}
+.menu .btns .btn_up {
+  height: 1.94rem;
+  line-height: 1.94rem;
+}
+.menu .btn_up img {
+  float: left;
+  height: 1.94rem;
+  padding-right: 0.34rem;
+}
+.menu .btn_up span {
+  float: left;
+  font-size: 0.7rem;
+  color: #6098EE;
+}
+.menu .btn_up span.num {
+  color: #FB8852;
+  padding-right: 0.52rem;
+}
+.menu .btns .btn_down {
+  margin-top: 0.22rem;
+  height: 0.48rem;
+  font-size: 0.48rem;
+  color: #148DBC;
+  text-align: left;
+}
+section .menu li:nth-child(odd) {
+  margin-right: 0.12rem;
+}

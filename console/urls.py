@@ -1,6 +1,6 @@
 from django.conf.urls import url
 
-from uprofile.views import ChangePwdApiView, UserRegisterApiView
+from uprofile.views import ChangePwdApiView
 from .views import (
     CommissionViewSet,
     InitSystemApiView,

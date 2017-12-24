@@ -1,0 +1,43 @@
+<div class="wrap">
+    <div class="wrap_in">
+        <div class="wrap_logo">
+            <img src="/static/src/assets/images/backstage2.jpg"/>
+        </div>
+        <div class="wrap_input">
+            <div class="login_top">拓店助手</div>
+            <form #userForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
+                <div class="input_ login_account">
+                    <i class="fa fa-user-o"></i>
+                    <input type="text" class="username"
+                           placeholder="账号"
+                           (keydown)="cleanerror()"
+                           [(ngModel)]="user.username" required autofocus
+                           minLength=11
+                           maxLength=11
+                           [ngModelOptions]="{standalone: true}"
+                           name="" id="username"/>
+                </div>
+                <div class="input_ login_password">
+                    <i class="fa fa-lock"></i>
+                    <input type="password" class="password" name="" id="password"
+                           placeholder="请输入密码"
+                           [(ngModel)]="user.password" required
+                           minLength=6
+                           maxLength=12
+                           [ngModelOptions]="{standalone: true}"
+                    />
+                </div>
+                <div class="content">
+                    <a class="register" [routerLink]="['/check-cell']">用户注册</a>
+                    <a class="forget" [routerLink]="['/cell-reset']">忘记密码?</a>
+                </div>
+                <div class="login_button">
+                    <button type="submit" class="login" [disabled]="!userForm.valid">登录</button>
+                    <div class="form-group errorTitle" [hidden]="!error">
+                        <span>{{ error }}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
