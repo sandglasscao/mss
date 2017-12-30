@@ -19,15 +19,18 @@ from django.contrib import admin
 from rest_framework_jwt.views import obtain_jwt_token
 
 from .views import home
+from utility.views import SMSClient
 
 urlpatterns = [
     url(r'^$', home, name='home'),
+    url(r'^sms/send/(?P<phone_number>\d{11})$', SMSClient.send_sms, name='sendsms'),
+    url(r'^sms/verify/(?P<phone_number>\d{11})/(?P<code>\w+)$', SMSClient.verify_code, name='verifysms'),
     url(r'^api/users/', include('uprofile.urls')),
     url(r'^api/console/', include('console.urls')),
     url(r'^api/meta/', include('meta.urls')),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^api-token-auth/', views.obtain_auth_token),
     url(r'^login/', obtain_jwt_token),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 
 ]

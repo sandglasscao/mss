@@ -13,7 +13,7 @@
             />
         </div>
         <div class="btn_wrap">
-            <button type="button" class="btn" (click)="getSMS()">发送验证码</button>
+            <button type="button" class="btn" id="verifybtn" (click)="sendSMS()">{{ currlbl }}</button>
         </div>
         <div class="inp">
             <span>验证码:</span>
@@ -21,8 +21,8 @@
                    placeholder="请输入验证码"
                    (keydown)="cleanerror()"
                    [(ngModel)]="smsCode" required
-                   minLength=4
-                   maxLength=4
+                   minLength=6
+                   maxLength=6
                    [ngModelOptions]="{standalone: true}"
             />
         </div>

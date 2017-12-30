@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {Router} from '@angular/router';
 
-import {RegisterService} from "./registrater.service";
+import {SMSService} from "./sms.service";
 
 
 @Component({
@@ -11,35 +11,66 @@ import {RegisterService} from "./registrater.service";
 })
 
 
-export class CellPhoneComponent {
+export class CellPhoneComponent implements OnDestroy {
   cellPhone: string;
   smsCode: string;
-  verification = null;
   error = null;
+  count = 60; //发送间隔
+  verifylbl = '发送验证码';
+  currlbl = this.verifylbl;
+  private timer;
 
-  constructor(private registerService: RegisterService,
+  constructor(private smsService: SMSService,
               private router: Router) {
   }
 
-  getSMS() {
-    /*if (this.cellPhone) {
-      this.registerService
-        .checkCell(this.cellPhone)
-        .catch(error => {
-          // this.error = error;
-          this.error = "验证码服务超时!"
-        }); // TODO: Display error message
-    }*/
-    this.verification='1234'; // for debugging register functions
+  ngOnDestroy(): void {
+    if (this.timer)
+      clearInterval(this.timer);
+  }
+
+  sendSMS() {
+    if (this.cellPhone) {
+      this.cleanerror();
+      let timeOut = Date.now() + this.count * 1000;
+      this.timer = setInterval(this.setRemainTime, 1000, timeOut, this.verifylbl);
+      document.getElementById('verifybtn').setAttribute('disabled', 'true');
+      this.smsService
+        .sendSMS(this.cellPhone)
+        .then(res => this.error = ('OK' == res.code) ? null : '频繁获取验证码')
+        .catch(error => this.error = error);
+    }
   }
 
   onSubmit() {
-    if (this.verification && this.smsCode == this.verification) {
-      sessionStorage.setItem('cellPhone', this.cellPhone);
-      this.router.navigate(['register']);
+    if (this.smsCode) {
+      this.smsService
+        .verifySMS(this.cellPhone, this.smsCode)
+        .then(res => {
+          if ('OK' == res.code) {
+            sessionStorage.setItem('cellPhone', this.cellPhone);
+            this.router.navigate(['register']);
+          } else {
+            this.error = '验证码错误';
+          }
+        })
+        .catch(error => this.error = error);
     } else {
-      this.error = "验证未通过";
+      this.error = "请输入验证码";
     }
+  }
+
+  private setRemainTime(timeOut: number, verifylbl: string) {
+    let currlbl = verifylbl;
+    let currTime = Date.now();
+    if (currTime >= timeOut) {
+      clearInterval(this.timer);
+      document.getElementById('verifybtn').removeAttribute('disabled');
+    } else {
+      let currCount = Math.round((timeOut - currTime) / 1000);
+      currlbl = currCount.toString() + 's后可重发';
+    }
+    document.getElementById('verifybtn').innerHTML = currlbl;
   }
 
   cleanerror() {

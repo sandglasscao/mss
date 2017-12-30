@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Registration} from "./registration";
-import {RegisterService} from "./registrater.service";
+import {RegisterService} from "./register.service";
 import {Router} from "@angular/router";
 import {FormControl} from "@angular/forms";
 import "rxjs/add/operator/debounceTime";

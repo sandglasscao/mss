@@ -3,7 +3,6 @@ import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Registration} from "./registration";
 import {Profile} from "./dashboard/profile";
-import {User} from "./dashboard/user";
 
 @Injectable()
 export class RegisterService {

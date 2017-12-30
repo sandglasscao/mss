@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpModule} from "@angular/http";
+import {HttpClientModule} from "@angular/common/http";
 
 import {PageNotFoundComponent} from './not-found.component';
 import {MetaService} from "./meta/meta.service";
@@ -13,15 +14,17 @@ import {ProfileService} from "./dashboard/profile.service";
 import {DashboardModule} from "./dashboard/dashboard.module";
 import {ConsoleModule} from "./console/console.module";
 import {RegisterComponent} from "./register.component";
-import {RegisterService} from "./registrater.service";
+import {RegisterService} from "./register.service";
 import {CellPhoneComponent} from "./cellphone.component";
 import {CellPhoneResetComponent} from './cellphone-reset.component';
 import {PasswordResetComponent} from './password-reset.component';
+import {SMSService} from "./sms.service";
 
 @NgModule({
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     DashboardModule,
@@ -38,7 +41,7 @@ import {PasswordResetComponent} from './password-reset.component';
     LoginComponent,
     PageNotFoundComponent
   ],
-  providers: [MetaService, ProfileService, RegisterService],
+  providers: [MetaService, ProfileService, RegisterService, SMSService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

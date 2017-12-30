@@ -47,7 +47,7 @@ export class PasswordResetComponent implements OnInit {
 
   checkPwd(): boolean {
     this.error = (this.user.password != this.second_pwd) ? "密码不一致,请重新输入" : null;
-    return (this.error) ? false : true;
+    return (!this.error);
   }
 
   cleanerror() {
