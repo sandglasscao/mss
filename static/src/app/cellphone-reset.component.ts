@@ -14,12 +14,9 @@ import {SMSService} from "./sms.service";
 export class CellPhoneResetComponent implements OnDestroy {
   cellPhone: string;
   smsCode: string;
-  verification = null;
   error = null;
-  smslbl = "发送验证码";
   count = 60; //发送间隔
   verifylbl = '发送验证码';
-  currlbl = this.verifylbl;
   private timer;
 
   constructor(private registerService: RegisterService,
@@ -40,7 +37,7 @@ export class CellPhoneResetComponent implements OnDestroy {
       document.getElementById('verifybtn').setAttribute('disabled', 'true');
       this.smsService
         .sendSMS(this.cellPhone)
-        .then(res => this.error = ('OK' == res.code) ? null : '频繁获取验证码')
+        .then(res => this.error = ('OK' == res.Code) ? null : '频繁获取验证码')
         .catch(error => this.error = error);
     }
   }
@@ -50,7 +47,7 @@ export class CellPhoneResetComponent implements OnDestroy {
       this.smsService
         .verifySMS(this.cellPhone, this.smsCode)
         .then(res => {
-          if ('OK' == res.code) {
+          if ('OK' == res.Code) {
             this.registerService
               .cellExist(this.cellPhone)
               .then(res => {

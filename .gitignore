@@ -5,6 +5,7 @@ b2b/migrations/*
 console/migrations/*
 meta/migrations/*
 uprofile/migrations/*
+utility/migrations/*
 .idea/*
 
 

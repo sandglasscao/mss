@@ -206,7 +206,7 @@ class SMSClient(object):
         resp = {}
         try:
             SMSCode.objects.get(phone_number=phone_number, code=code)
-            resp['code'] = 'OK'
+            resp['Code'] = 'OK'
         except SMSCode.DoesNotExist:
-            resp['code'] = 'ErrCode'
+            resp['Code'] = 'ErrCode'
         return HttpResponse(json.dumps(resp))

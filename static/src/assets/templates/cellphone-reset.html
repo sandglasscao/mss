@@ -14,7 +14,7 @@
             />
         </div>
         <div class="btn_wrap">
-            <button type="button" class="btn" id="verifybtn" (click)="sendSMS()">{{ currlbl }}</button>
+            <button type="button" class="btn" id="verifybtn" (click)="sendSMS()">{{ verifylbl }}</button>
         </div>
         <div class="inp">
             <span>验证码:</span>
@@ -27,12 +27,13 @@
                    [ngModelOptions]="{standalone: true}"
             />
         </div>
-
-        <button type="submit" class="next" [disabled]="!userForm.valid">下一步</button>
-
         <div [hidden]="!error">
             <span>{{ error }}</span>
         </div>
+
+        <button type="submit" class="next" [disabled]="!userForm.valid">下一步</button>
+
+
         <button type="button" class="next_step" (click)="goBack()">返回登录</button>
     </form>
 
