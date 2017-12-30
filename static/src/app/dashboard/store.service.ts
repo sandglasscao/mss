@@ -1,26 +1,21 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
 import {Store} from "./store";
 import {Observable} from "rxjs/Observable";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class StoreService {
   private storeUrl = 'api/users/store/';
   myStores: Store[];
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  listStore(): Promise<Store[]> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .get(this.storeUrl, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(error => StoreService.handleError(error));
+  listStore(): Observable<Store[]> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.get<Store[]>(this.storeUrl, {headers});
   }
 
   getStores() {
@@ -33,22 +28,11 @@ export class StoreService {
       .find(store => store.id === +id);
   }
 
-  saveLatlng(store: Store): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  saveLatlng(store: Store): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.storeUrl + store.id;
     let ll = {'latitude': store.latitude, 'longitude': store.longitude};
-    return this.http.patch(url, JSON.stringify(ll), options)
-      .toPromise()
-      .then(response => response.json())
-      .catch(StoreService.handleError);
-  }
-
-
-  private static handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+    return this.http.patch(url, ll, {headers})
   }
 }

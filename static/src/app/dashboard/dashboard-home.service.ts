@@ -1,28 +1,20 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 import {DashboardHome} from "./dashboard-home";
 
 @Injectable()
 export class DashboardHomeService {
   private baseUrl = 'api/users/home/';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  getSummary(): Promise<DashboardHome> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  getSummary(): Observable<DashboardHome> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     return this.http
-      .get(this.baseUrl, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+      .get<DashboardHome>(this.baseUrl, {headers})
   }
 }

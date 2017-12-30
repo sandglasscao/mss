@@ -1,27 +1,19 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class MetaService {
   private baseUrl = 'api/meta/storestatus/';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  listStoreStatus(code: string) {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  listStoreStatus(code: string): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.baseUrl + code;
-    return this.http.get(url, options)
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+    return this.http.get(url, {headers})
   }
 }

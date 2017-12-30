@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 
 @Injectable()
@@ -12,21 +12,20 @@ export class SMSService {
   }
 
   sendSMS(cellphone: string): Promise<any> {
-    let headers = new HttpHeaders({'X-CSRFToken': 'csrftoken'});
-    let options = {headers: headers};
     let url = this.smsUrl + 'send/' + cellphone;
     return this.http
-      .get(url, options)
+      .get(url)
       .toPromise()
       .catch(SMSService.handleError);
   }
 
   verifySMS(cellphone: string, code: string): Promise<any> {
-    let headers = new HttpHeaders({'X-CSRFToken': 'csrftoken'});
-    let options = {headers: headers};
-    let url = this.smsUrl + 'verify/' + cellphone  + '/'+ code;
+    let url = this.smsUrl + 'verify/';
+    let params = new HttpParams()
+      .set('phone_number', cellphone)
+      .set('code', code);
     return this.http
-      .get(url, options)
+      .get(url, {params})
       .toPromise()
       .catch(SMSService.handleError);
   }

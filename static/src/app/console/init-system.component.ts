@@ -19,12 +19,10 @@ export class InitSystemComponent {
     this.msg = null;
     this.syncService
       .initSystem()
-      .then(res => {
-        this.msg = "同步成功";
-      })
-      .catch(error => {
-        this.msg = "同步失败!"
-      });
+      .subscribe(
+        res => this.msg = "同步成功",
+        error => this.msg = "同步失败!"
+      );
   }
 
 }

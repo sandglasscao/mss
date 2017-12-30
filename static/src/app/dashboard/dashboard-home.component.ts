@@ -1,4 +1,3 @@
-// TODO SOMEDAY: Feature Componetized like CrisisCenter
 import {Component, OnInit} from '@angular/core';
 import {DashboardHome} from "./dashboard-home";
 import {DashboardHomeService} from "./dashboard-home.service";
@@ -18,8 +17,6 @@ export class DashboardHomeComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardHomeSerice
       .getSummary()
-      .then(res => {
-        this.summary = res ? res[0] : this.summary;
-      })
+      .subscribe(res => this.summary = res);
   }
 }

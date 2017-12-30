@@ -26,13 +26,13 @@ export class CommissionComponent implements OnInit {
   initCmmssn() {
     this.commissionService
       .getCmmssn()
-      .then(res => {
-        this.hasCommssion = (0 != res.length);
-        this.commission = (0 != res.length) ? res[0] : this.commission;
-      })
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(
+        res => {
+          this.hasCommssion = (0 != res.length);
+          this.commission = (0 != res.length) ? res[0] : this.commission;
+        },
+        error => this.error = error
+      );
   }
 
   onSubmit() {
@@ -41,7 +41,5 @@ export class CommissionComponent implements OnInit {
     } else {
       this.commissionService.createCmmssn(this.commission);
     }
-    //should go back console home stay here instead of logout
-    //this.router.navigate(['../']);
   }
 }

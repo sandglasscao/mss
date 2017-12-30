@@ -2,52 +2,32 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
 import {Headers, Http, RequestOptions} from "@angular/http";
 import {Commission} from "./commission";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class CommissionService {
   private baseUrl = 'api/console/cmmssn/';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  getCmmssn(): Promise<Commission[]> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .get(this.baseUrl, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
+  getCmmssn(): Observable<Commission[]> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.get<Commission[]>(this.baseUrl, {headers})
   }
 
-  createCmmssn(commission: Commission): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .post(this.baseUrl, JSON.stringify(commission), options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
+  createCmmssn(commission: Commission): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.post(this.baseUrl, commission, {headers})
   }
 
-  updateCmmssn(commission: Commission): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  updateCmmssn(commission: Commission): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.baseUrl + commission.id;
-    return this.http
-      .put(url, JSON.stringify(commission), options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+    return this.http.put(url, commission, {headers})
   }
 }

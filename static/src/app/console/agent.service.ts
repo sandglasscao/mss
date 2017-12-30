@@ -1,78 +1,47 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
 import {Profile} from "../dashboard/profile";
 import {User} from "../dashboard/user";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class AgentService {
   private baseUrl = 'api/console/agent/';
   private resetPwdUrl = 'api/users/changepwd/';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  listAgent(): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .get(this.baseUrl, options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
+  listAgent(): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.get(this.baseUrl, {headers})
   }
 
-  createAgent(agent: Profile): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .post(this.baseUrl, JSON.stringify(agent), options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
+  createAgent(agent: Profile): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.post(this.baseUrl, agent, {headers})
   }
 
-  delAgent(agent: Profile): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  delAgent(agent: Profile): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.baseUrl + agent.id;
     let toDel = {'isDeleted': true};
-    return this.http
-      .put(url, JSON.stringify(toDel), options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
+    return this.http.put(url, toDel, {headers})
   }
 
-  paginate(link: string) {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    let options = new RequestOptions({headers: headers});
-    return this.http.get(link, {headers: headers})
-      .toPromise()
-      .then(response => response.json())
-      .catch(this.handleError);
+  paginate(link: string): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.get(link, {headers})
   }
 
-  resetPwd(user: User): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
-    return this.http
-      .put(this.resetPwdUrl, JSON.stringify(user), options)
-      .toPromise()
-      .then(resp => resp.json())
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+  resetPwd(user: User): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    return this.http.put(this.resetPwdUrl, user, {headers})
   }
 }

@@ -50,14 +50,15 @@ export class CellPhoneResetComponent implements OnDestroy {
           if ('OK' == res.Code) {
             this.registerService
               .cellExist(this.cellPhone)
-              .then(res => {
-                sessionStorage.setItem('username', res.username);
-                sessionStorage.setItem('token', res.token);
-                this.router.navigate(['reset-pwd']);
-              })
-              .catch(error => this.error = "您尚未注册!");
+              .subscribe(
+                res => {
+                  sessionStorage.setItem('username', res.username);
+                  sessionStorage.setItem('token', res.token);
+                  this.router.navigate(['reset-pwd']);
+                },
+                error => this.error = "您尚未注册!");
           } else this.error = '验证码错误';
-        }).catch()
+        })
     } else this.error = "请输入验证码";
   }
 

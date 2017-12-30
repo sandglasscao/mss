@@ -116,7 +116,6 @@ class StoreViewSet(ModelViewSet):
         queryset = Store.objects.filter(agent=self.request.user)
         return queryset
 
-
     # 获取照片
     # 为照片命名
     # 将照片和名字保存
@@ -127,17 +126,17 @@ class StoreViewSet(ModelViewSet):
         photo1 = request.data.get('license_pic', None)
         photo2 = request.data.get('store_pic', None)
         photo3 = request.data.get('store_indoor_pic', None)
-        a,b,c = 0,0,0
+        a, b, c = 0, 0, 0
         if photo1 != 'undefined':
             photo11 = photo1.split(',')[1]
             photo111 = base64.b64decode(photo11)
-            picName = self.kwargs.get('id')+'mentou'+'.jpeg'
+            picName = self.kwargs.get('id') + 'mentou' + '.jpeg'
 
-            destiantion = open(r'static/store_images/'+picName, 'wb+')
+            destiantion = open(r'static/store_images/' + picName, 'wb+')
             # for chunk in photo111.chunks:
             destiantion.write(photo111)
             destiantion.close()
-            photopath = r'static/store_images/'+picName
+            photopath = r'static/store_images/' + picName
             store = Store.objects.get(id=self.kwargs.get('id'))
             store.license_pic = photopath
             store.save()
@@ -146,9 +145,9 @@ class StoreViewSet(ModelViewSet):
         if photo2 != 'undefined':
             photo21 = photo2.split(',')[1]
             photo211 = base64.b64decode(photo21)
-            picName = self.kwargs.get('id')+'lience'+'.jpeg'
+            picName = self.kwargs.get('id') + 'lience' + '.jpeg'
 
-            destiantion = open(r'static/store_images/'+picName, 'wb+')
+            destiantion = open(r'static/store_images/' + picName, 'wb+')
             destiantion.write(photo211)
             destiantion.close()
             photopath = r'static/store_images/' + picName
@@ -160,18 +159,18 @@ class StoreViewSet(ModelViewSet):
         if photo3 != 'undefined':
             photo31 = photo1.split(',')[1]
             photo311 = base64.b64decode(photo31)
-            picName = self.kwargs.get('id')+'indoor'+'.jpeg'
+            picName = self.kwargs.get('id') + 'indoor' + '.jpeg'
 
-            destiantion = open(r'static/store_images/'+picName, 'wb+')
+            destiantion = open(r'static/store_images/' + picName, 'wb+')
             # for chunk in photo111.chunks:
             destiantion.write(photo311)
             destiantion.close()
-            photopath = r'static/store_images/'+picName
+            photopath = r'static/store_images/' + picName
             store = Store.objects.get(id=self.kwargs.get('id'))
             store.indoor_pic = photopath
             store.save()
             c = 1
-        return Response(data={'license_pic': a, 'store_pic': b, 'store_indoor_pic': c}, status= 200)
+        return Response(data={'license_pic': a, 'store_pic': b, 'store_indoor_pic': c}, status=200)
         # licpic = ('license_pic' in data.keys()) and data.pop('license_pic')[0]
         #
         # if licpic:
@@ -180,6 +179,7 @@ class StoreViewSet(ModelViewSet):
         #     store.pop('license_pic')
         # return super(StoreViewSet,self).update(request, *args, **kwargs)
         #
+
 
 class OrderViewSet(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -195,11 +195,11 @@ class OrderViewSet(ModelViewSet):
         return queryset
 
 
-class DashHomeListApiView(ListAPIView):
-    permission_classes = (AllowAny,)
+class DashHomeApiView(APIView):
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     serializer_class = DashHomeSerializer
 
-    def get_queryset(self):
+    def get(self, request):
         user = self.request.user
         store_cnt = user.store.all().count()  # Store.objects.filter(agent=user).count()
         ordered_cnt = 0
@@ -213,15 +213,14 @@ class DashHomeListApiView(ListAPIView):
         response['myteam_cnt'] = myteam_cnt
         response['commission'] = self.__commission__()
 
-        queryset = [response]
-        return queryset
+        return Response(response, status=HTTP_200_OK)
 
     def __commission__(self):
         user = self.request.user
-        #myStore_cnt = user.store.filter(status='2').count()
+        # myStore_cnt = user.store.filter(status='2').count()
         if user.profile.isEmployee:
             # this agent is employee, so his/her stores should not be involved in commission.
-            myStore_cnt =0
+            myStore_cnt = 0
         else:
             myStore_cnt = user.store.filter(status='2').count()
         subStore_cnt = 0
@@ -284,4 +283,3 @@ class CellCheckAPIView(APIView):
             Response(status=400)
         except Profile.DoesNotExist:
             Response(status=400)
-

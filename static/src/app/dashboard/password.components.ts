@@ -35,19 +35,16 @@ export class PasswordComponent implements OnInit {
     if (this.checkPwd()) {
       this.profileService
         .changePwd(this.user)
-        .then(res => {
-          this.goBack();
-        })
-        .catch(error => {
-          // this.error = error;
-          this.error = "密码错误!"
-        }); // TODO: Display error message
+        .subscribe(
+          res => this.goBack(),
+          error => this.error = "密码错误!"
+        );
     }
   }
 
   checkPwd(): boolean {
     this.error = (this.user.password != this.second_pwd) ? "密码不一致,请重新输入" : null;
-    return (this.error) ? false : true;
+    return (!this.error);
   }
 
   cleanerror() {

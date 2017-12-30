@@ -20,12 +20,7 @@ export class AgentNewComponent{
     this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
     this.agentService
       .createAgent(this.agent)
-      .then(res => {
-        let a = 1;
-      })
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(error => this.error = error);
   }
 
   cleanerror() {

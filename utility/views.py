@@ -202,7 +202,9 @@ class SMSClient(object):
         return HttpResponse(json.dumps(resp))
 
     @classmethod
-    def verify_code(cls, request, phone_number, code):
+    def verify_code(cls, request):
+        phone_number = request.GET.get('phone_number')
+        code = request.GET.get('code')
         resp = {}
         try:
             SMSCode.objects.get(phone_number=phone_number, code=code)

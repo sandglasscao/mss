@@ -25,7 +25,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(term =>
         this.registerService
           .getAgentName(this.registration.parent_code)
-          .then(items => this.agents = items));
+          .subscribe(items => this.agents = items));
   }
 
   ngOnInit(): void {
@@ -35,15 +35,13 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.registerService
       .register(this.registration)
-      .then(account => {
-        sessionStorage.setItem('token', account.token);
-        sessionStorage.setItem('username', account.cellphone);
-        this.router.navigate(['dashboard']);
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "密码错误!"
-      }); // TODO: Display error message
+      .subscribe(
+        account => {
+          sessionStorage.setItem('token', account.token);
+          sessionStorage.setItem('username', account.cellphone);
+          this.router.navigate(['dashboard']);
+        },
+        error => this.error = "密码错误!");
   }
 
   checkPwd() {

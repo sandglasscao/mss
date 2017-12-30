@@ -38,8 +38,6 @@ export class StoreDetailComponent implements OnInit {
   saveLatlng() {
     this.service
       .saveLatlng(this.store)
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(error => this.error = error);
   }
 }

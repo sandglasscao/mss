@@ -28,31 +28,28 @@ export class LoginComponent {
     if (this.user.username) {
       this.loginService
         .login(this.user)
-        .then(account => {
-          sessionStorage.setItem('token', account.token);
-          sessionStorage.setItem('username', this.user.username);
-          this.routSwitch();
-        })
-        .catch(error => {
-          // this.error = error;
-          this.error = "密码错误!"
-        }); // TODO: Display error message
+        .subscribe(
+          data => {
+            sessionStorage.setItem('token', data.token);
+            sessionStorage.setItem('username', this.user.username);
+            this.routSwitch();
+          },
+          error => this.error = "密码错误!"
+        );
     }
   }
 
   routSwitch() {
     this.profileService
       .getProfile(this.user.username)
-      .then(res => {
-        this.next = (res.user.is_staff) ? 'console' : 'dashboard';
-        let entry = (res.user.is_staff) ? 'console' : 'dashboard';
-        sessionStorage.setItem('entry', entry);
-        this.router.navigate([this.next]);
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "业务员不存在!"
-      });
+      .subscribe(
+        data => {
+          this.next = (data.user.is_staff) ? 'console' : 'dashboard';
+          let entry = (data.user.is_staff) ? 'console' : 'dashboard';
+          sessionStorage.setItem('entry', entry);
+          this.router.navigate([this.next]);
+        },
+        error => this.error = "业务员不存在!");
   }
 
   cleanerror() {

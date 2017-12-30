@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
   hasRecommAuth: string;
   error = null;
   torf = false;
+
   constructor(private profileService: ProfileService,
               private router: Router) {
   }
@@ -27,13 +28,10 @@ export class ProfileComponent implements OnInit {
     this.username = sessionStorage.getItem('username');
     this.profileService
       .getProfile(this.username)
-      .then(res => {
-        this.dealProfile(res);
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "业务员不存在!"
-      });
+      .subscribe(
+        data => this.dealProfile(data),
+        error => this.error = "业务员不存在!"
+      );
   }
 
   private dealProfile(res: Profile) {

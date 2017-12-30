@@ -43,28 +43,29 @@ export class StoresComponent implements OnInit {
   initStores() {
     this.storeService
       .listStore()
-      .then(res => {
-        this.myStores = res;
-        let commStroes = this.myStores.filter(store => store.status == '2');
-        this.commLen = commStroes.length;
-        this.uncommLen = this.myStores.length - this.commLen;
-        this.myStores.map(store => {
-          store.status = this.statuslst.find(st => st.code == store.status).value
-        });
-        this.sortedStores = this.myStores;
-        this.storeService.myStores = this.myStores;
-      })
-      .catch(error => {
-        // this.error = error;
-        this.error = "业务员不存在!"
-      });
+      .subscribe(
+        res => {
+          this.myStores = res;
+          let commStroes = this.myStores.filter(store => store.status == '2');
+          this.commLen = commStroes.length;
+          this.uncommLen = this.myStores.length - this.commLen;
+          this.myStores.map(store => {
+            store.status = this.statuslst.find(st => st.code == store.status).value
+          });
+          this.sortedStores = this.myStores;
+          this.storeService.myStores = this.myStores;
+        },
+        error => this.error = "业务员不存在!"
+      );
   }
 
   private listStoreStatus() {
     this.metaService
       .listStoreStatus('1001')
-      .then(res => this.statuslst = res)
-      .catch(error => this.error = error);
+      .subscribe(
+        res => this.statuslst = res,
+        error => this.error = error
+      );
   }
 
   private filterStores(code: string) {

@@ -21,30 +21,32 @@ export class AgentMainComponent implements OnInit {
   ngOnInit(): void {
     this.agentService
       .listAgent()
-      .then(res => {
-        this.count = res.count;
-        this.previouspg = res.previous;
-        this.nextpg = res.next;
-        this.agents = res.results;
-        this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
-          (res.previous ? Number(res.previous.split("page=")[1]) + 1 : 1));
-      })
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(
+        res => {
+          this.count = res.count;
+          this.previouspg = res.previous;
+          this.nextpg = res.next;
+          this.agents = res.results;
+          this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
+            (res.previous ? Number(res.previous.split("page=")[1]) + 1 : 1));
+        },
+        error => this.error = error
+      );
   }
 
   paginate(link: string) {
     this.agentService
       .paginate(link)
-      .then(res => {
-        this.agents = res.results;
-        this.previouspg = res.previous;
-        this.nextpg = res.next;
-        this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
-          (res.previous ? Number(res.previous.split("page=")[1]) + 1 : 1));
-      })
-      .catch(error => this.error = error);
+      .subscribe(
+        res => {
+          this.agents = res.results;
+          this.previouspg = res.previous;
+          this.nextpg = res.next;
+          this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
+            (res.previous ? Number(res.previous.split("page=")[1]) + 1 : 1));
+        },
+        error => this.error = error
+      );
   }
 
   resetPwd(agent: Profile) {
@@ -52,17 +54,13 @@ export class AgentMainComponent implements OnInit {
     usr.password = agent.cellphone;
     this.agentService
       .resetPwd(usr)
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(error => this.error = error);
   }
 
   delAgent(agent: Profile) {
     agent.isDeleted = true;
     this.agentService
       .delAgent(agent)
-      .catch(error => {
-        this.error = error;
-      });
+      .subscribe(error => this.error = error);
   }
 }

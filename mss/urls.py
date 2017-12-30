@@ -24,7 +24,7 @@ from utility.views import SMSClient
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^sms/send/(?P<phone_number>\d{11})$', SMSClient.send_sms, name='sendsms'),
-    url(r'^sms/verify/(?P<phone_number>\d{11})/(?P<code>\w+)$', SMSClient.verify_code, name='verifysms'),
+    url(r'^sms/verify/$', SMSClient.verify_code, name='verifysms'),
     url(r'^api/users/', include('uprofile.urls')),
     url(r'^api/console/', include('console.urls')),
     url(r'^api/meta/', include('meta.urls')),

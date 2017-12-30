@@ -35,13 +35,10 @@ export class PasswordResetComponent implements OnInit {
     if (this.checkPwd()) {
       this.profileService
         .changePwd(this.user)
-        .then(res => {
-          this.back();
-        })
-        .catch(error => {
-          // this.error = error;
-          this.error = "密码错误!"
-        }); // TODO: Display error message
+        .subscribe(
+          data => this.back(),
+          error => this.error = "密码错误!"
+        );
     }
   }
 

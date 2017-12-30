@@ -7,7 +7,7 @@ from .views import (
     ChangePwdApiView,
     StoreViewSet,
     OrderViewSet,
-    DashHomeListApiView,
+    DashHomeApiView,
     TeamListApiView,
     CellCheckAPIView,
     # save_photo, Save_photoAPIView
@@ -43,7 +43,7 @@ urlpatterns = [
     url(r'^store/(?P<id>[0-9]+)$', store_detail, name='store-detail'),
     url(r'^order/$', order_list, name='order-list'),
     url(r'^order/(?P<id>[0-9]+)$', order_detail, name='order-detail'),
-    url(r'^home/$', DashHomeListApiView.as_view(), name='homelist'),
+    url(r'^home/$', DashHomeApiView.as_view(), name='homelist'),
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
     url(r'^cell/$',CellCheckAPIView.as_view(), name='cell-check'),
 

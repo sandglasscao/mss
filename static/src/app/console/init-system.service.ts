@@ -1,27 +1,19 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class SyncService {
   private baseUrl = 'api/console/sync';
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
-  initSystem(): Promise<any> {
-    let headers = new Headers({'X-CSRFToken': 'csrftoken'});
-    headers.append('Authorization', "JWT " + sessionStorage.getItem('token'));
-    let options = new RequestOptions({headers: headers});
+  initSystem(): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.baseUrl;
-    return this.http
-      .get(this.baseUrl, options)
-      .toPromise()
-      .catch(this.handleError);
-  }
-
-  private handleError(error: any) {
-    console.error(error);
-    return Promise.reject(error._body);
+    return this.http.get(this.baseUrl, {headers})
   }
 }
