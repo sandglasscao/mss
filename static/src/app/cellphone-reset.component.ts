@@ -15,9 +15,10 @@ export class CellPhoneResetComponent implements OnDestroy {
   cellPhone: string;
   smsCode: string;
   error = null;
-  count = 60; //发送间隔
-  verifylbl = '发送验证码';
-  private timer;
+  defaultlbl = '发送验证码';
+  verifylbl = this.defaultlbl;
+  intervalId = 0;
+  seconds = 60;
 
   constructor(private registerService: RegisterService,
               private smsService: SMSService,
@@ -25,16 +26,24 @@ export class CellPhoneResetComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.timer)
-      clearInterval(this.timer);
+    this.clearTimer();
   }
 
   sendSMS() {
     if (this.cellPhone) {
       this.cleanerror();
-      let timeOut = Date.now() + this.count * 1000;
-      this.timer = setInterval(this.setRemainTime, 1000, timeOut, this.verifylbl);
+      this.clearTimer();
       document.getElementById('verifybtn').setAttribute('disabled', 'true');
+      this.intervalId = window.setInterval(() => {
+        this.seconds--;
+        if (this.seconds === 0) {
+          this.clearTimer();
+          this.verifylbl = this.defaultlbl;
+          document.getElementById('verifybtn').removeAttribute('disabled');
+        } else {
+          this.verifylbl = "(" + this.seconds + ")秒";
+        }
+      }, 1000);
       this.smsService
         .sendSMS(this.cellPhone)
         .then(res => this.error = ('OK' == res.Code) ? null : '频繁获取验证码')
@@ -62,17 +71,8 @@ export class CellPhoneResetComponent implements OnDestroy {
     } else this.error = "请输入验证码";
   }
 
-  private setRemainTime(timeOut: number, verifylbl: string) {
-    let currlbl = verifylbl;
-    let currTime = Date.now();
-    if (currTime >= timeOut) {
-      clearInterval(this.timer);
-      document.getElementById('verifybtn').removeAttribute('disabled');
-    } else {
-      let currCount = Math.round((timeOut - currTime) / 1000);
-      currlbl = currCount.toString() + 's后可重发';
-    }
-    document.getElementById('verifybtn').innerHTML = currlbl;
+  private clearTimer() {
+    clearInterval(this.intervalId);
   }
 
   cleanerror() {
