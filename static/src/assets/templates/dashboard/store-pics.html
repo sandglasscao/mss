@@ -1,0 +1,26 @@
+<header>
+    <i class="fa fa-angle-left" (click)="goBack()"></i>
+    <div>店铺图片</div>
+</header>
+<section>
+    <form #userForm="ngForm" (ngSubmit)="upload()" enctype="multipart/form-data">
+        <div class="wrap" *ngFor="let which of keys">
+            <p>{{ lbl[which] }}</p>
+            <label class="preview-label" *ngIf="pic[which]">
+                <img src="{{ pic[which] }}">
+            </label>
+            <label class="preview-label">
+                <input type="file" name="pic" accept="image/*" (change)="selectedPic($event, which)">
+                <i class="fa fa-2x fa-plus uploadimgicon"></i>
+            </label>
+        </div>
+        <div class="sub">
+            <input type="submit" value="上&nbsp;&nbsp;传">
+        </div>
+    </form>
+    <div class="message" *ngIf="error">{{ error }}</div>
+    <div *ngFor="let which of errMsg">
+        <div class="message">{{ lbl[which] }}{{ failMsg }}</div>
+    </div>
+
+</section>

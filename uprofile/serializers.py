@@ -1,4 +1,5 @@
-from django.contrib.auth import get_user_model
+import os
+
 from django.contrib.auth.models import User
 from rest_framework.fields import (
     DateTimeField,
@@ -178,6 +179,19 @@ class StoreSerializer(ModelSerializer):
             'created_dt',
         )
 
+    def update(self, instance, validated_data):
+        oldFile = instance.license_pic
+        if validated_data.get('license_pic') and oldFile:
+            os.remove(oldFile.path)
+        oldFile = instance.indoor_pic
+        if validated_data.get('indoor_pic') and oldFile:
+            os.remove(oldFile.path)
+        oldFile = instance.outdoor_pic
+        if validated_data.get('outdoor_pic') and oldFile:
+            os.remove(oldFile.path)
+
+        return super(StoreSerializer, self).update(instance, validated_data)
+
 
 class OrderSerializer(ModelSerializer):
     class Meta:
@@ -232,8 +246,3 @@ class TeamListSerializer(Serializer):
 class CheckCellSerializer(Serializer):
     username = CharField(max_length=11, required=True)
     token = CharField(max_length=200, required=True)
-
-class Save_photoSerializer(Serializer):
-    username = CharField()
-    store_id = CharField()
-    license = CharField()

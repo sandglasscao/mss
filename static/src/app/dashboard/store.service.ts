@@ -35,4 +35,11 @@ export class StoreService {
     let ll = {'latitude': store.latitude, 'longitude': store.longitude};
     return this.http.patch(url, ll, {headers})
   }
+
+  uploadPic(storeId: number, formData: FormData): Observable<any> {
+    let headers = new HttpHeaders()
+      .append('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let url = this.storeUrl + storeId;
+    return this.http.patch(url, formData, {headers})
+  }
 }

@@ -30,9 +30,7 @@ export class StoresComponent implements OnInit {
   ngOnInit(): void {
     this.listStoreStatus();
     this.initStores();
-    if (sessionStorage.getItem('getShow')) {
-      sessionStorage.removeItem('getShow');
-    }
+    sessionStorage.getItem('getShow') ? sessionStorage.removeItem('getShow') : null;
   }
 
   goDetail(id) {

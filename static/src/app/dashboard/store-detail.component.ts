@@ -13,9 +13,9 @@ export class StoreDetailComponent implements OnInit {
   store: Store;
   getShow: string;
   error: null;
-  indoor_pic: number;
-  outdoor_pic: number;
-  license_pic: number;
+  has_license_pic: number;
+  has_indoor_pic: number;
+  has_outdoor_pic: number;
 
   constructor(private service: StoreService,
               private router: Router) {
@@ -26,9 +26,9 @@ export class StoreDetailComponent implements OnInit {
     this.store = this.service.getStore(sessionStorage.getItem('selected'));
     this.store.longitude = this.getShow ? +sessionStorage.getItem('lng') : this.store.longitude;
     this.store.latitude = this.getShow ? +sessionStorage.getItem('lat') : this.store.latitude;
-    this.indoor_pic = this.store.indoor_pic ? 1 : 0;
-    this.outdoor_pic = this.store.outdoor_pic ? 1 : 0;
-    this.license_pic = this.store.license_pic ? 1 : 0;
+    this.has_license_pic = this.store.license_pic ? 1 : 0;
+    this.has_indoor_pic = this.store.indoor_pic ? 1 : 0;
+    this.has_outdoor_pic = this.store.outdoor_pic ? 1 : 0;
   }
 
   goBack(){

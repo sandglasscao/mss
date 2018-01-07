@@ -1,5 +1,3 @@
-import base64
-
 from django.db.models import Q
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -31,7 +29,7 @@ from .serializers import (
     OrderSerializer,
     DashHomeSerializer,
     TeamListSerializer,
-    CheckCellSerializer, Save_photoSerializer)
+    CheckCellSerializer)
 
 
 class StandardPagination(PageNumberPagination):
@@ -115,70 +113,6 @@ class StoreViewSet(ModelViewSet):
     def get_queryset(self):
         queryset = Store.objects.filter(agent=self.request.user)
         return queryset
-
-    # 获取照片
-    # 为照片命名
-    # 将照片和名字保存
-    # 将地址和名字写入数据库
-
-
-    def update(self, request, *args, **kwargs):
-        photo1 = request.data.get('license_pic', None)
-        photo2 = request.data.get('store_pic', None)
-        photo3 = request.data.get('store_indoor_pic', None)
-        a, b, c = 0, 0, 0
-        if photo1 != 'undefined':
-            photo11 = photo1.split(',')[1]
-            photo111 = base64.b64decode(photo11)
-            picName = self.kwargs.get('id') + 'mentou' + '.jpeg'
-
-            destiantion = open(r'static/store_images/' + picName, 'wb+')
-            # for chunk in photo111.chunks:
-            destiantion.write(photo111)
-            destiantion.close()
-            photopath = r'static/store_images/' + picName
-            store = Store.objects.get(id=self.kwargs.get('id'))
-            store.license_pic = photopath
-            store.save()
-            a = 1
-
-        if photo2 != 'undefined':
-            photo21 = photo2.split(',')[1]
-            photo211 = base64.b64decode(photo21)
-            picName = self.kwargs.get('id') + 'lience' + '.jpeg'
-
-            destiantion = open(r'static/store_images/' + picName, 'wb+')
-            destiantion.write(photo211)
-            destiantion.close()
-            photopath = r'static/store_images/' + picName
-            store = Store.objects.get(id=self.kwargs.get('id'))
-            store.outdoor_pic = photopath
-            store.save()
-            b = 1
-
-        if photo3 != 'undefined':
-            photo31 = photo1.split(',')[1]
-            photo311 = base64.b64decode(photo31)
-            picName = self.kwargs.get('id') + 'indoor' + '.jpeg'
-
-            destiantion = open(r'static/store_images/' + picName, 'wb+')
-            # for chunk in photo111.chunks:
-            destiantion.write(photo311)
-            destiantion.close()
-            photopath = r'static/store_images/' + picName
-            store = Store.objects.get(id=self.kwargs.get('id'))
-            store.indoor_pic = photopath
-            store.save()
-            c = 1
-        return Response(data={'license_pic': a, 'store_pic': b, 'store_indoor_pic': c}, status=200)
-        # licpic = ('license_pic' in data.keys()) and data.pop('license_pic')[0]
-        #
-        # if licpic:
-        #     store['license_pic'] = licpic
-        # elif 'license_pic' in store.keys():
-        #     store.pop('license_pic')
-        # return super(StoreViewSet,self).update(request, *args, **kwargs)
-        #
 
 
 class OrderViewSet(ModelViewSet):
