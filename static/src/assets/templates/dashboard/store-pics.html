@@ -11,7 +11,8 @@
             </label>
             <label class="preview-label">
                 <input type="file" name="pic" accept="image/*" (change)="selectedPic($event, which)">
-                <i class="fa fa-2x fa-plus uploadimgicon"></i>
+                <i class="fa fa-2x fa-plus uploadimgicon" *ngIf="!pic[which]"></i>
+                <i class="fa fa-2x fa-pencil uploadimgicon" *ngIf="pic[which]"></i>
             </label>
         </div>
         <div class="sub">
