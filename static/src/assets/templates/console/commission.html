@@ -2,19 +2,19 @@
     <form #userForm="ngForm" class="login-form " (ngSubmit)="onSubmit()">
         <div class="agent_con">
             <div class="agent_con_body">
-                <span>佣金基数：</span>
+                <span>拓店奖金基数：</span>
                 <input class="agentname" type="text" name="base"
                        [(ngModel)]="commission.base" required
                 />
             </div>
             <div class="agent_con_body">
-                <span> 父级佣金比例： </span>
+                <span> 育成奖金比例： </span>
                 <input class="agentname" type="text" name="parent"
                        [(ngModel)]="commission.parent_percent" required
                 />
             </div>
             <div class="agent_con_body">
-                <span> 祖父级佣金比例： </span>
+                <span> 增员奖金比例： </span>
                 <input class="agentname" type="text" name="grand"
                        [(ngModel)]="commission.grand_percent" required
                 />
