@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ProfileService} from './dashboard/profile.service';
-import {User} from './dashboard/user';
 import {Router} from '@angular/router';
 import {Location} from '@angular/common';
+import {ProfileService} from './dashboard/profile.service';
+import {User} from './dashboard/user';
 
 @Component({
   selector: 'reset-pwd',

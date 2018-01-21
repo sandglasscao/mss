@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Headers, Http, RequestOptions} from "@angular/http";
 import {Commission} from "./commission";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";

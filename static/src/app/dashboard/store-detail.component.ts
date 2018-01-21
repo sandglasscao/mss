@@ -31,13 +31,16 @@ export class StoreDetailComponent implements OnInit {
     this.has_outdoor_pic = this.store.outdoor_pic ? 1 : 0;
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['/dashboard/store']);
   }
 
   saveLatlng() {
     this.service
       .saveLatlng(this.store)
-      .subscribe(error => this.error = error);
+      .subscribe(
+        res => this.store = res,
+        error => this.error = error
+      );
   }
 }

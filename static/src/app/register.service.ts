@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs/Observable";
 import 'rxjs/add/operator/toPromise';
 import {Registration} from "./registration";
 import {Profile} from "./dashboard/profile";
-import {Observable} from "rxjs/Observable";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable()
 export class RegisterService {

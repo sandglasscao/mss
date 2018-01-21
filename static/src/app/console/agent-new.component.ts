@@ -7,8 +7,7 @@ import {Profile} from "../dashboard/profile";
   templateUrl: '../../assets/templates/console/agent-new.html',
   styleUrls: ['../../assets/css/console/agent-new.css']
 })
-export class AgentNewComponent{
-
+export class AgentNewComponent {
   agent = new Profile();
 
   error = null;
@@ -20,7 +19,10 @@ export class AgentNewComponent{
     this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
     this.agentService
       .createAgent(this.agent)
-      .subscribe(error => this.error = error);
+      .subscribe(
+        res => this.agent = res,
+        error => this.error = error
+      );
   }
 
   cleanerror() {

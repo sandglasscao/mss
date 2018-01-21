@@ -37,9 +37,17 @@ export class CommissionComponent implements OnInit {
 
   onSubmit() {
     if (this.hasCommssion) {
-      this.commissionService.updateCmmssn(this.commission);
+      this.commissionService.updateCmmssn(this.commission)
+        .subscribe(
+          res => this.commission = res,
+          error => this.error
+        );
     } else {
-      this.commissionService.createCmmssn(this.commission);
+      this.commissionService.createCmmssn(this.commission)
+        .subscribe(
+          res => this.commission = res,
+          error => this.error
+        );
     }
   }
 }
