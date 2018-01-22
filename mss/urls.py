@@ -21,6 +21,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 from .views import home
 from utility.views import SMSClient
 
+from apscheduler.schedulers.blocking import BlockingScheduler
+
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^sms/send/(?P<phone_number>\d{11})$', SMSClient.send_sms, name='sendsms'),
@@ -34,3 +36,12 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
 ]
+
+sched = BlockingScheduler(daemonic=False)
+sched.start()
+
+def job():
+    print(123)
+
+sched.add_job(job, 'interval', seconds=10)
+
