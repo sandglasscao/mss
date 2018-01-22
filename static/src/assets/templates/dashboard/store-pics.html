@@ -10,7 +10,7 @@
                 <img src="{{ pic[which] }}">
             </label>
             <label class="preview-label">
-                <input type="file" name="pic" accept="image/*" (change)="selectedPic($event, which)">
+                <input type="file" name="pic" accept="image/*" capture="camera" (change)="selectedPic($event, which)">
                 <i class="fa fa-2x fa-plus uploadimgicon" *ngIf="!pic[which]"></i>
                 <i class="fa fa-2x fa-pencil uploadimgicon" *ngIf="pic[which]"></i>
             </label>
