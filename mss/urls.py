@@ -21,7 +21,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 from .views import home
 from utility.views import SMSClient
 
-from apscheduler.schedulers.blocking import BlockingScheduler
+# from apscheduler.schedulers.background import BackgroundScheduler
+# from utility.views import SyncRecord
 
 urlpatterns = [
     url(r'^$', home, name='home'),
@@ -37,11 +38,8 @@ urlpatterns = [
 
 ]
 
-sched = BlockingScheduler(daemonic=False)
-sched.start()
-
-def job():
-    print(123)
-
-sched.add_job(job, 'interval', seconds=10)
+# sched = BackgroundScheduler(daemonic=False)
+# sched.start()
+#
+# sched.add_job(SyncRecord.sync_records_from_b2b, 'interval', seconds=60)
 
