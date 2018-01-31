@@ -109,12 +109,12 @@ DATABASES = {
         }
     },
     'b2b': {
-        'ENGINE': 'django.db.backends.oracle',
-        'NAME': os.environ['ORACLE_APP_NAME'],
-        'USER': os.environ['ORACLE_DB_USERNAME'],
-        'PASSWORD': os.environ['ORACLE_DB_PASSWORD'],
-        'HOST': os.environ['ORACLE_DB_HOST'],
-        'PORT': os.environ['ORACLE_DB_PORT'],
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ['APP_NAME2'],
+        'USER': os.environ['MYSQL_DB_USERNAME2'],
+        'PASSWORD': os.environ['MYSQL_DB_PASSWORD2'],
+        'HOST': os.environ['MYSQL_DB_HOST2'],
+        'PORT': os.environ['MYSQL_DB_PORT2'],
     }
 }
 

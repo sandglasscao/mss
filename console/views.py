@@ -35,13 +35,3 @@ class CommissionViewSet(ModelViewSet):
     queryset = Commission.objects.all()
     serializer_class = CommissionSerializer
 
-
-class InitSystemApiView(APIView):
-    permission_classes = (AllowAny,)
-    serializer_class = StoreSerializer
-
-    def get(self, request):
-        if SyncRecord.sync_records_from_b2b():
-            return Response(status=200)
-        else:
-            return Response(status=500)

@@ -1,7 +1,7 @@
 import json
 import uuid
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest, QuerySendDetailsRequest
 from aliyunsdkcore.client import AcsClient
@@ -12,64 +12,56 @@ from rest_framework.response import Response
 
 from b2b.models import StoreB2B, AgentB2B, OrderB2B
 from uprofile.models import Profile, Store, Order
-from uprofile.serializers import StoreSerializer, RegisterSerializer, OrderSerializer
+from uprofile.serializers import StoreSerializer, OrderSerializer
 from utility.models import SMSCode
 
 
 class SyncRecord(object):
     @classmethod
     def sync_records_from_b2b(cls):
-        flag = True
-        try:
-            cls.sync_agents()
-            cls.sync_stores()
-            cls.sync_orders()
-        except:
-            flag = False
-        return flag
+        cls.sync_agents()
+        cls.sync_stores()
+        cls.sync_orders()
 
     @classmethod
     def sync_agents(cls):
         agentb2bs = AgentB2B.objects.all()
-        for agent2 in agentb2bs:
+        for agent in agentb2bs:
             try:
-                User.objects.get(username=agent2.num)
-            except User.DoesNotExist:
-                cls.__create_agent__(agent2)
+                Profile.objects.get(cellphone=agent.cellphone)
+            except Profile.DoesNotExist:
+                cls.__create_agent__(agent)
 
     @classmethod
     def sync_stores(cls):
         try:
-            last = Store.objects.latest('b2b_id')
-            latest_store_id = last.b2b_id
+            last = Store.objects.latest('created_dt')
+            latest_sync_time = last.created_dt
         except Store.DoesNotExist:
-            latest_store_id = 0
+            latest_sync_time = datetime.now() + timedelta(days=-200)
 
-        storeb2bs = StoreB2B.objects.filter(id__gt=latest_store_id)
+        storeb2bs = StoreB2B.objects.filter(created_dt__gt=latest_sync_time)
         stores = []
         for storeb2b in storeb2bs:
-            if (storeb2b.agent_id):
-                store = {}
+            store = {}
 
-                store['name'] = storeb2b.name or None
-                store['address'] = storeb2b.address or None
-                store['owner'] = storeb2b.owner or None
-                store['cellphone'] = storeb2b.cellphone or None
-                store['status'] = storeb2b.status or '-1'
-                store['b2b_id'] = storeb2b.id or None
-                store['created_dt'] = storeb2b.created_dt or datetime.now()
-                agent_num = storeb2b.agent_num.strip()
+            store['ownerno'] = storeb2b.ownerno or None
+            store['ownerPin'] = storeb2b.ownerPin or None
+            store['ownerName'] = storeb2b.ownerName or None
+            store['cellphone'] = storeb2b.cellphone or None
+            store['areaCode'] = storeb2b.areaCode or None
+            store['areaName'] = storeb2b.areaName or None
+            store['levelCode'] = storeb2b.levelCode or None
+            store['levelName'] = storeb2b.levelName or None
+            store['shopName'] = storeb2b.shopName or None
+            store['address'] = storeb2b.address or None
+            store['status'] = storeb2b.status
+            store['created_dt'] = storeb2b.created_dt
+            cls.__recomm_sales__(storeb2b.recomm_username, storeb2b.sales_username,
+                                 storeb2b.sales_cell, store
+                                 )
 
-                # find user id for agent. If there is no account for this agent, it will be generated.
-                try:
-                    usr = User.objects.get(username=agent_num)
-                except User.DoesNotExist:
-                    agentb2b = AgentB2B.objects.get(id=storeb2b.agent_id)
-                    cls.__create_agent__(agentb2b)
-                    usr = User.objects.get(username=agent_num)
-
-                store['agent'] = usr.id
-                stores.append(store)
+            stores.append(store)
 
         serializer = StoreSerializer(data=stores, many=True)
         if serializer.is_valid():
@@ -78,50 +70,60 @@ class SyncRecord(object):
         return Response(serializer.errors, status=400)
 
     @classmethod
+    def __recomm_sales__(cls, recomm_username, sales_username, cell, store):
+        recomm_name = recomm_username.strip() if recomm_username else sales_username.strip()
+        sales_name = sales_username.strip() if sales_username else recomm_name
+
+        # find user id for agent. If there is no account for this agent, it will be generated.
+        try:
+            usr = User.objects.get(username=recomm_name)
+        except User.DoesNotExist:
+            agentb2b = AgentB2B.objects.get(username=recomm_name)
+            cls.__create_agent__(agentb2b)
+            usr = User.objects.get(username=recomm_name)
+        store['recomm'] = usr.id
+        store['sales'] = usr.id if sales_name == recomm_name else Profile.objects.get(cellphone=cell).user.id
+
+    @classmethod
     def __create_agent__(cls, agentb2b):
-        user = User.objects.create(username=agentb2b.num)
+        user = User.objects.create(username=agentb2b.username)
         user.set_password(agentb2b.cellphone)
         user.save()
 
-        cellphone = agentb2b.cellphone or None
-        full_name = agentb2b.full_name or None
-        profile = Profile.objects.create(
+        Profile.objects.create(
             user=user,
-            cellphone=cellphone,
-            full_name=full_name,
+            cellphone=agentb2b.cellphone,
+            full_name=agentb2b.full_name,
             isEmployee=True,
             hasRecommAuth=True,
+            level_code=agentb2b.level_code,
+            level_name=agentb2b.level_name,
+            created_dt=agentb2b.create_date,
         )
-
-        serializer = RegisterSerializer(data=profile)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
 
     @classmethod
     def sync_orders(cls):
         try:
-            last = Order.objects.latest('b2b_id')
-            latest_order_id = last.b2b_id
+            last = Order.objects.latest('created_dt')
+            latest_sync_time = last.created_dt
         except Order.DoesNotExist:
-            latest_order_id = 0
+            latest_sync_time = datetime.now() + timedelta(days=-200)
 
-        orderb2bs = OrderB2B.objects.filter(id__gt=latest_order_id)
+        orderb2bs = OrderB2B.objects.filter(created_dt__gt=latest_sync_time)
         orders = []
         for orderb2b in orderb2bs:
-            if orderb2b.store_id:
+            if orderb2b.ownerPin:
                 order = {}
-                order['order_sn'] = orderb2b.order_sn
+                order['orderno'] = orderb2b.orderno
                 order['status'] = orderb2b.order_status
                 order['amount'] = orderb2b.amount
-                order['discount'] = orderb2b.discount
-                order['b2b_id'] = orderb2b.id
+                order['origNo'] = orderb2b.origNo
+                order['origStatus'] = orderb2b.origStatus
                 order['created_dt'] = orderb2b.created_dt
 
                 # find store id for order.
                 try:
-                    store = Store.objects.get(b2b_id=orderb2b.store_id)
+                    store = Store.objects.get(ownerPin=orderb2b.ownerPin)
                     order['store'] = store.id
                     orders.append(order)
                 except Store.DoesNotExist:

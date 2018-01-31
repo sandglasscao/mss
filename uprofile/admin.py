@@ -8,7 +8,11 @@ from .models import (
 
 # Register your models here.
 class ProfileAdmin(admin.ModelAdmin):
-    readonly_fields = ('created_dt',)
+    readonly_fields = (
+        'level_code',
+        'level_name',
+        'created_dt',
+    )
     list_display = (
         'full_name',
         'cellphone',
@@ -17,6 +21,8 @@ class ProfileAdmin(admin.ModelAdmin):
         'parent_agent',
         'grand_agent',
         'isDeleted',
+        'level_code',
+        'level_name',
         'created_dt')
     search_fields = (
         'full_name',
@@ -24,29 +30,48 @@ class ProfileAdmin(admin.ModelAdmin):
         'isEmployee',
         'hasRecommAuth',
         'isDeleted',
+        'level_code',
+        'level_name',
     )
 
 
 class StoreAdmin(admin.ModelAdmin):
     readonly_fields = ('created_dt',)
     list_display = (
-        'name',
+        'ownerno',
+        'ownerPin',
+        'ownerName',
+        'cellphone',
+        'areaCode',
+        'areaName',
+        'levelCode',
+        'levelName',
+        'shopName',
+        'address',
         'latitude',
         'longitude',
-        'owner',
-        'cellphone',
-        'agent',
+        'recomm',
+        'sales',
         'status',
         'license',
         'created_dt',
     )
     search_fields = (
-        'name',
-        'owner',
+        'ownerPin',
+        'ownerName',
         'cellphone',
+        'areaCode',
+        'areaName',
+        'levelCode',
+        'levelName',
+        'shopName',
+        'levelCode',
+        'recomm',
+        'sales',
         'status',
         'license',
     )
+
 
 admin.site.register(Profile, ProfileAdmin)
 admin.site.register(Store, StoreAdmin)

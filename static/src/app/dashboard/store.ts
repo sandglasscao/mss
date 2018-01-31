@@ -1,8 +1,8 @@
 export class Store {
   id: number;
-  name: string;
+  shopName: string;
   address: string;
-  owner: string;
+  ownerName: string;
   cellphone: string;
   status: string;
   created_dt: Date;

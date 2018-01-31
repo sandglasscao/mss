@@ -6,7 +6,6 @@ import {ConsoleRoutingModule} from "./console-routing.module";
 import {CommissionComponent} from "./commission.component";
 import {AgentNewComponent} from "./agent-new.component";
 import {ConsoleHomeComponent} from "./console-home.component";
-import {InitSystemComponent} from "./init-system.component";
 import {AgentMainComponent} from "./agent-main.component";
 import {AgentService} from "./agent.service";
 
@@ -20,7 +19,6 @@ import {AgentService} from "./agent.service";
     ConsoleComponent,
     ConsoleHomeComponent,
     CommissionComponent,
-    InitSystemComponent,
     AgentMainComponent,
     AgentNewComponent,
   ],
