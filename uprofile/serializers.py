@@ -123,12 +123,12 @@ class ProfileSerializer(ModelSerializer):
 
 
 class RegisterSerializer(Serializer):
-    username = CharField(max_length=6, required=False)
+    username = CharField(max_length=20, required=False)
     token = CharField(allow_blank=True, read_only=True)
     password = CharField(max_length=15)
     cellphone = CharField(max_length=11)
     full_name = CharField(max_length=50, required=False)
-    parent_code = CharField(max_length=6)
+    parent_code = CharField(max_length=20)
 
     def create(self, validated_data):
         cellphone = validated_data["cellphone"]

@@ -60,8 +60,7 @@ class UserRegisterApiView(APIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
-        data = request.data
-        serializer = RegisterSerializer(data=data)
+        serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
