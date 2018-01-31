@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils import timezone
 
 from meta.models import AddressCode
 
@@ -20,7 +21,9 @@ class Profile(models.Model):
     parent_agent = models.ForeignKey(User, related_name='son_agent', null=True, blank=True)
     grand_agent = models.ForeignKey(User, related_name='grand_agent', null=True, blank=True)
     isDeleted = models.BooleanField(default=False)
-    created_dt = models.DateTimeField(auto_now_add=True)
+    level_code = models.CharField(max_length=3)
+    level_name = models.CharField(max_length=20)
+    created_dt = models.DateTimeField(default=timezone.now)
 
 
 class Address(models.Model):
@@ -38,15 +41,22 @@ class Address(models.Model):
 
 class Store(models.Model):
     class Meta:
-        ordering = ['-b2b_id']
+        ordering = ['-created_dt']
 
-    name = models.CharField(max_length=50, null=True)
+    ownerno = models.CharField(max_length=15, null=True)
+    ownerPin = models.CharField(max_length=20, null=True)
+    ownerName = models.CharField(max_length=50, null=True)
+    cellphone = models.CharField(max_length=11, null=True)
+    areaCode = models.CharField(max_length=10, null=True)
+    areaName = models.CharField(max_length=20, null=True)
+    levelCode = models.CharField(max_length=10, null=True)
+    levelName = models.CharField(max_length=20, null=True)
+    shopName = models.CharField(max_length=50, null=True)
     address = models.CharField(max_length=100, null=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)
     longitude = models.DecimalField(max_digits=10, decimal_places=6, null=True)
-    owner = models.CharField(max_length=50, null=True)
-    cellphone = models.CharField(max_length=11, null=True)
-    agent = models.ForeignKey(User, related_name='store',)
+    recomm = models.ForeignKey(User, related_name='store', null=True)
+    sales = models.ForeignKey(User, related_name='storesales', null=True)
     status = models.CharField(max_length=2,
                               choices=(
                                   ('-2', '审核未通过'),
@@ -62,18 +72,17 @@ class Store(models.Model):
     license_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
     indoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
     outdoor_pic = models.FileField(upload_to='store/%Y/%m/%d', null=True)
-    b2b_id = models.IntegerField(null=True)
     created_dt = models.DateTimeField(null=True)
 
 
 class Order(models.Model):
     class Meta:
-        ordering = ['-b2b_id']
+        ordering = ['-created_dt']
 
-    order_sn = models.CharField(max_length=20, null=True)
-    status = models.CharField(max_length=100, null=True)
+    orderno = models.CharField(max_length=20, null=True)
+    status = models.CharField(max_length=2, null=True)
     amount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    discount = models.DecimalField(max_digits=10, decimal_places=2, null=True)
-    store = models.ForeignKey(Store, related_name='order',)
-    b2b_id = models.IntegerField(null=True)
+    store = models.ForeignKey(Store, related_name='order', )
+    origNo = models.CharField(max_length=20, null=True)
+    origStatus = models.CharField(max_length=3, null=True)
     created_dt = models.DateTimeField(null=True)

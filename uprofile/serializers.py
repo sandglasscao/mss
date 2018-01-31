@@ -50,6 +50,8 @@ class ProfileSerializer(ModelSerializer):
     parent_agent = UserSerializer(required=False)
     grand_agent = UserSerializer(required=False)
     isDeleted = BooleanField(required=False)
+    level_code = CharField(required=False)
+    level_name = CharField(required=False)
     created_dt = DateTimeField(required=False)
 
     class Meta:
@@ -65,10 +67,14 @@ class ProfileSerializer(ModelSerializer):
             'parent_agent',
             'grand_agent',
             'isDeleted',
+            'level_code',
+            'level_name',
             'created_dt',
         )
         read_only_fields = (
             'user',
+            'level_code',
+            'level_name',
             'created_dt')
 
     def update(self, instance, validated_data):
@@ -105,7 +111,7 @@ class ProfileSerializer(ModelSerializer):
         isEmployee = validated_data.get('isEmployee', False)
         hasRecommAuth = validated_data.get('hasRecommAuth', False)
 
-        profile = Profile.objects.create(
+        Profile.objects.create(
             user=user,
             cellphone=cellphone,
             full_name=full_name,
@@ -140,14 +146,13 @@ class RegisterSerializer(Serializer):
             parent = None
             grand_agent = None
 
-        profile = Profile.objects.create(
+        Profile.objects.create(
             user=user,
             cellphone=cellphone,
             full_name=full_name,
             parent_agent=parent,
             grand_agent=grand_agent
         )
-        # profile.save()
 
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
         jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
@@ -163,19 +168,25 @@ class StoreSerializer(ModelSerializer):
         model = Store
         fields = (
             'id',
-            'name',
+            'ownerno',
+            'ownerPin',
+            'ownerName',
+            'cellphone',
+            'areaCode',
+            'areaName',
+            'levelCode',
+            'levelName',
+            'shopName',
             'address',
             'latitude',
             'longitude',
-            'owner',
-            'cellphone',
-            'agent',
+            'recomm',
+            'sales',
             'status',
             'license',
             'license_pic',
             'indoor_pic',
             'outdoor_pic',
-            'b2b_id',
             'created_dt',
         )
 
@@ -198,32 +209,44 @@ class OrderSerializer(ModelSerializer):
         model = Order
         fields = (
             'id',
-            'order_sn',
+            'orderno',
             'status',
             'amount',
-            'discount',
             'store',
-            'b2b_id',
+            'origNo',
+            'origStatus',
             'created_dt',
         )
 
     def create(self, validated_data):
         order = Order.objects.create(
-            order_sn=validated_data.get("order_sn", None),
+            orderno=validated_data.get("orderno", None),
             status=validated_data.get("status", None),
             amount=validated_data.get("amount", None),
-            discount=validated_data.get("discount", None),
             store=validated_data.get("store", None),
-            b2b_id=validated_data.get("b2b_id", None),
+            origNo=validated_data.get("origNo", None),
+            origStatus=validated_data.get("origStatus", None),
             created_dt=validated_data.get("created_dt", None)
         )
 
         store = Store.objects.get(id=order.store.id)
-        if store.status == '0':
-            store.status = '1'
-        elif store.status == '1':
-            store.status = '2'
-        store.save()
+        if -1 == order.orderno.find('TBRT'):
+            if store.status == '0':
+                store.status = '1'
+            elif store.status == '1':
+                store.status = '2'
+            store.save()
+        else:
+            try:
+                orgi_order = Order.objects.get(orderno=order.origNo)
+                if 0 == (orgi_order.amount + order.amount):
+                    if store.status == '1':
+                        store.status = '0'
+                    elif store.status == '2':
+                        store.status = '1'
+                    store.save()
+            except Order.DoesNotExist:
+                pass
 
         return validated_data
 
