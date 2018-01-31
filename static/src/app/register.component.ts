@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
           sessionStorage.setItem('username', account.cellphone);
           this.router.navigate(['dashboard']);
         },
-        error => this.error = "密码错误!");
+        error => this.error = "注册失败，该手机号已注册!");
   }
 
   checkPwd() {

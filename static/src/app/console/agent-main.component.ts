@@ -23,7 +23,7 @@ export class AgentMainComponent implements OnInit {
       .listAgent()
       .subscribe(
         res => {
-          this.count = res.count;
+          this.count = Math.ceil(res.count / 10);
           this.previouspg = res.previous;
           this.nextpg = res.next;
           this.agents = res.results;
