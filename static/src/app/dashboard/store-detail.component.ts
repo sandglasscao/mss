@@ -17,6 +17,7 @@ export class StoreDetailComponent implements OnInit {
   has_indoor_pic: number;
   has_outdoor_pic: number;
 
+
   constructor(private service: StoreService,
               private router: Router) {
   }
@@ -29,6 +30,7 @@ export class StoreDetailComponent implements OnInit {
     this.has_license_pic = this.store.license_pic ? 1 : 0;
     this.has_indoor_pic = this.store.indoor_pic ? 1 : 0;
     this.has_outdoor_pic = this.store.outdoor_pic ? 1 : 0;
+    console.log(this.store);
   }
 
   goBack() {
