@@ -1,4 +1,5 @@
-Summary: marketing support system(shortly MSS) is a platform to manage agents and to help agents develop offline stores,
+Summary:
+marketing support system(shortly MSS) is a platform to manage agents and to help agents develop offline stores,
 shops and supermarkets.
 
 Technologies:
