@@ -13,4 +13,5 @@ export class Profile {
   isDeleted: boolean;
   user: User;
   created_dt: Date;
+  status: boolean;
 }
