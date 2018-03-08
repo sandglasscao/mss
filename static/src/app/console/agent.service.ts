@@ -44,4 +44,11 @@ export class AgentService {
       .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     return this.http.put(this.resetPwdUrl, user, {headers})
   }
+  checks(agent: Profile): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Authorization', "JWT " + sessionStorage.getItem('token'));
+    let url = this.baseUrl + agent.id;
+    let toStatus = {'status': true};
+    return this.http.put(url, toStatus, {headers})
+  }
 }

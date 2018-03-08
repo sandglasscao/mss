@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AgentService} from "./agent.service";
 import {Profile} from "../dashboard/profile";
+import {errorComparator} from "tslint/lib/verify/lintError";
 
 @Component({
   selector: 'agnt-main',
@@ -61,6 +62,12 @@ export class AgentMainComponent implements OnInit {
     agent.isDeleted = true;
     this.agentService
       .delAgent(agent)
+      .subscribe(error => this.error = error);
+  }
+  checks(agent: Profile) {
+    agent.status=true;
+    this.agentService
+      .checks(agent)
       .subscribe(error => this.error = error);
   }
 }

@@ -15,6 +15,7 @@ class ProfileAdmin(admin.ModelAdmin):
     )
     list_display = (
         'full_name',
+        'status',
         'cellphone',
         'isEmployee',
         'hasRecommAuth',

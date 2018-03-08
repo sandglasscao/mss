@@ -41,6 +41,9 @@
 #customers td button:nth-child(2){
   background-color: crimson;
 }
+#customers td button:nth-child(3){
+  background-color: orange;
+}
 #customers th {
   border: 1px solid #e2eafa;
   font-size: 16px;
