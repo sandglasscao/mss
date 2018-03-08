@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
   profile = new Profile();
   username = null;
   hasRecommAuth: string;
+  checkres: string;
   error = null;
   torf = false;
 
@@ -40,6 +41,7 @@ export class ProfileComponent implements OnInit {
     this.profile.cellphone = res.cellphone;
     this.profile.hasRecommAuth = res.hasRecommAuth;
     this.hasRecommAuth = this.profile.hasRecommAuth ? '有资格' : '没有资格';
+    this.checkres = res.status ? '已审核' : '待审核';
     this.profile.parent_code = res['parent_agent'] ? res['parent_agent'].username : null;
     this.profile.created_dt = res.created_dt;
   }
