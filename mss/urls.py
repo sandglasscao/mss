@@ -41,5 +41,5 @@ urlpatterns = [
 sched = BackgroundScheduler(daemonic=False)
 sched.start()
 
-sched.add_job(SyncRecord.sync_records_from_b2b, 'interval', seconds=60)
+sched.add_job(SyncRecord.sync_records_from_b2b, 'interval', seconds=3600)
 
