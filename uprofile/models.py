@@ -15,6 +15,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     cellphone = models.CharField(max_length=11, unique=True, null=True)
     full_name = models.CharField(max_length=50, null=True)
+    status = models.BooleanField(default=False, null=False)
     isEmployee = models.BooleanField(default=False)
     hasRecommAuth = models.BooleanField(default=False)
     address = models.ForeignKey('Address', null=True, blank=True)

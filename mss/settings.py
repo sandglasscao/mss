@@ -98,7 +98,8 @@ DATABASES = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['APP_NAME'],
+        # 'NAME': os.environ['APP_NAME'],
+        'NAME': 'mss2',
         'USER': os.environ['MYSQL_DB_USERNAME'],
         'PASSWORD': os.environ['MYSQL_DB_PASSWORD'],
         'HOST': os.environ['MYSQL_DB_HOST'],

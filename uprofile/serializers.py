@@ -45,6 +45,7 @@ class PasswordSerializer(ModelSerializer):
 class ProfileSerializer(ModelSerializer):
     user = UserSerializer(required=False)
     isEmployee = BooleanField(required=False)
+    status = BooleanField(required=True)
     hasRecommAuth = BooleanField(required=False)
     address = AddressSerializer(required=False)
     parent_agent = UserSerializer(required=False)
@@ -63,6 +64,7 @@ class ProfileSerializer(ModelSerializer):
             'full_name',
             'isEmployee',
             'hasRecommAuth',
+            'status',
             'address',
             'parent_agent',
             'grand_agent',
@@ -81,6 +83,7 @@ class ProfileSerializer(ModelSerializer):
         instance.full_name = validated_data.get('full_name', instance.full_name)
         instance.cellphone = validated_data.get('cellphone', instance.cellphone)
         instance.isEmployee = validated_data.get('isEmployee', instance.isEmployee)
+        instance.status = validated_data.get('status', instance.status)
         instance.address = validated_data.get('address', instance.address)
         instance.hasRecommAuth = validated_data.get('hasRecommAuth', instance.hasRecommAuth)
         instance.parent_agent = validated_data.get('parent_agent', instance.parent_agent)
