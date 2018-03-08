@@ -73,6 +73,7 @@ class ProfileSerializer(ModelSerializer):
             'level_name',
             'created_dt',
         )
+
         read_only_fields = (
             'user',
             'level_code',

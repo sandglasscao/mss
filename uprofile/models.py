@@ -26,6 +26,9 @@ class Profile(models.Model):
     level_name = models.CharField(max_length=20)
     created_dt = models.DateTimeField(default=timezone.now)
 
+    class Meta:
+        ordering = ('-id',)
+
 
 class Address(models.Model):
     province = models.ForeignKey(
