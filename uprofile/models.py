@@ -27,6 +27,10 @@ class Profile(models.Model):
     created_dt = models.DateTimeField(default=timezone.now)
 
 
+    class Meta:
+        ordering = ('-id',)
+
+
 class Address(models.Model):
     province = models.ForeignKey(
         AddressCode,
