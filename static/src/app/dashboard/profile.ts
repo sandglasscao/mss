@@ -11,7 +11,8 @@ export class Profile {
   parent_code: string;
   grand_code: string;
   isDeleted: boolean;
+  status: boolean;
   user: User;
   created_dt: Date;
-  status: boolean;
+
 }

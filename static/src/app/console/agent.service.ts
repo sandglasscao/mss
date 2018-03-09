@@ -29,7 +29,7 @@ export class AgentService {
     let headers = new HttpHeaders()
       .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     let url = this.baseUrl + agent.id;
-    let toDel = {'isDeleted': true};
+    let toDel = {'isDeleted': true, 'status':agent.status};
     return this.http.put(url, toDel, {headers})
   }
 
