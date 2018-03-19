@@ -23,6 +23,7 @@ agent_list = AgentViewSet.as_view({
 agent_detail = AgentViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
+    # 'patch': 'partial_update'
 })
 
 urlpatterns = [

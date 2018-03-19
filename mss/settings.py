@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'b2b',
     'console',
     'utility',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,6 +60,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+
 ]
 
 ROOT_URLCONF = 'mss.urls'
@@ -236,3 +240,11 @@ REST_FRAMEWORK = {
 JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=30000),
 }
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',# 标准username验证登录
+    'uprofile.authentication.EmailAuthBackend',# 邮箱作为用户名登录
+    'uprofile.authentication.CellphoneAuthBackend',# 手机号作为用户登录
+)
+
+CORS_ORIGIN_ALLOW_ALL = True
