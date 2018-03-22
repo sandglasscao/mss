@@ -34,26 +34,29 @@ def score(request, year, month):
 
     keyforname = []
     dataend = []
+    try:
+        for datanum in range(len(datalist)):
 
-    for datanum in range(len(datalist)):
+            if str(datalist[datanum]['name']) not in keyforname:
+                keyforname.append(datalist[datanum]['name'])
+                dataend.append(datalist[datanum])
 
-        if str(datalist[datanum]['name']) not in keyforname:
-            keyforname.append(datalist[datanum]['name'])
-            dataend.append(datalist[datanum])
-
-        else:
-            for index in range(len(datalist)):
-                if index < datanum and datalist[index]['name'] == datalist[datanum]['name']:
-                    dataend[index]['count'] = datalist[index]['count']+datalist[datanum]['count']
-                    dataend[index]['sum'] = datalist[index]['sum']+datalist[datanum]['sum']
-                    break
-    dataend_sort = sorted(dataend, key=operator.itemgetter('sum'), reverse=True)
+            else:
+                for index in range(len(datalist)):
+                    if index < datanum and datalist[index]['name'] == datalist[datanum]['name']:
+                        dataend[index]['count'] = datalist[index]['count']+datalist[datanum]['count']
+                        dataend[index]['sum'] = datalist[index]['sum']+datalist[datanum]['sum']
+                        break
+        dataend_sort = sorted(dataend, key=operator.itemgetter('sum'), reverse=True)
 
 
-    for x in datalist:
-        x['sum'] = str(x['sum'])
+        for x in datalist:
+            x['sum'] = str(x['sum'])
 
-    return HttpResponse(json.dumps(dataend_sort), content_type='application/json')
+        return HttpResponse(json.dumps(dataend_sort), content_type='application/json')
+    except:
+        HttpResponse(json.dumps({'result': 'faild lianxiguanliyuan'}), content_type='application/json')
+
 
 
 
