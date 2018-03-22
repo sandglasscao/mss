@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token),
 
     url(r'^score/(?P<year>.+)/(?P<month>.+)', score),
+    url(r'^investment/',include('investment.urls')),# 招商上传数据使用
 
     url(r'^admin/', admin.site.urls),
 

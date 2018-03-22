@@ -47,11 +47,16 @@ INSTALLED_APPS = [
     'console',
     'utility',
     'corsheaders',
+    'investment',
+
 ]
 
 MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
     'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -60,7 +65,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
 
 ]
 
@@ -120,8 +124,19 @@ DATABASES = {
         'PASSWORD': os.environ['MYSQL_DB_PASSWORD2'],
         'HOST': os.environ['MYSQL_DB_HOST2'],
         'PORT': os.environ['MYSQL_DB_PORT2'],
-    }
+    },
+    'investment': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hzbl_b2b',
+        'USER': 'investment',
+        'PASSWORD': 'pingtaiyunying@1313113',
+        'HOST': os.environ['MYSQL_DB_HOST2'],
+        'PORT': os.environ['MYSQL_DB_PORT2'],
+    },
 }
+SESSION_COOKIE_AGE = 60 * 10 # 2分钟
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # 关闭浏览器，则COOKIE失效
 
 # By Cao Fang >> use multi-database in django
 DATABASE_ROUTERS = ['b2b.database_router.DatabaseAppsRouter']
@@ -181,6 +196,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "static"),
 )
+# 文件、图片上传路径
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
 MEDIA_URL = STATIC_URL + 'media/'
@@ -248,3 +264,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# 文件、图片上传路径
