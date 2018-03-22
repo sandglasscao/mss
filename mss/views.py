@@ -17,8 +17,9 @@ def score(request, year, month):
         业务员数据API  hzyg备份数据库  和 excel读取汇总
     '''
     queryset = b2b_ordertable.objects.using('b2b').filter(createDate__year=year,createDate__month=month)
-    queryset_investment = sale_upload.objects.using('investment').filter(createdate__year=year, createdate__month=month)
+    queryset_investment = sale_upload.objects.using('investment').filter(createdate__year=year, createdate__month=month).filter(checkif=1)
     mysqldata = queryset.values('realName').annotate(c=Count('amount'),s=Sum('amount')).values_list('realName','c','s').order_by('-s')
+    # if queryset_investment.
     mysqldata_investment = queryset_investment.values('salesname').annotate(c=Count('amount'), s=Sum('amount')).values_list('salesname','c', 's')
     datalist = []
     # datalist_investment = []
@@ -26,11 +27,13 @@ def score(request, year, month):
 
     for data in mysqldata:
         datalist.append({'name': data[0],'count': data[1], 'sum': data[2]})
-
-    for dt in mysqldata_investment:
-        # print(data)
-        tmp_dic = {'name': dt[0],'count': dt[1], 'sum': dt[2]}
-        datalist.append(tmp_dic)
+    try:
+        for dt in mysqldata_investment:
+            # print(data)
+            tmp_dic = {'name': dt[0],'count': dt[1], 'sum': dt[2]}
+            datalist.append(tmp_dic)
+    except:
+        pass
 
     keyforname = []
     dataend = []
