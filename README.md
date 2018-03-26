@@ -4,6 +4,7 @@ marketing support system(shortly MSS) is a platform to manage agents and to help
 shops and supermarkets.
 
 
+
 Technologies:
 
 Centos - OS
