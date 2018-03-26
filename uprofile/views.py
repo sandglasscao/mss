@@ -109,7 +109,7 @@ class StoreViewSet(ModelViewSet):
     lookup_field = 'id'
 
     def get_queryset(self):
-        queryset = Store.objects.filter(recomm=self.request.user)
+        queryset = Store.objects.filter(sales=self.request.user)
         return queryset
 
 
@@ -133,12 +133,16 @@ class DashHomeApiView(APIView):
 
     def get(self, request):
         user = self.request.user
-        store_cnt = user.store.all().count()  # Store.objects.filter(agent=user).count()
+        # store_cnt = user.store.all().count()  # Store.objects.filter(agent=user).count()
+        store_cnt = Store.objects.filter(sales=user).count()
+        # ordered_cnt = 0
+        # for store in user.store.all():
+        #     # ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
+        #     ordered_cnt = ordered_cnt + store.order.filter(Q(status='2')|Q(status='3')).count()
         ordered_cnt = 0
-        for store in user.store.all():
-            # ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
-            # ordered_cnt = ordered_cnt + store.order.filter(Q(status='2')|Q(status='3')).count()
-            ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
+        for i in Store.objects.filter(sales=user):
+            if i.order.count() == 1:
+                ordered_cnt += 1
 
         # Store.objects.filter(user=self.request.user, status='1').count()
         myteam_cnt = Profile.objects.filter(Q(parent_agent=user) | Q(grand_agent=user)).count() or 0
