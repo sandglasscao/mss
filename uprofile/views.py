@@ -136,8 +136,9 @@ class DashHomeApiView(APIView):
         store_cnt = user.store.all().count()  # Store.objects.filter(agent=user).count()
         ordered_cnt = 0
         for store in user.store.all():
-            #ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
-            ordered_cnt = ordered_cnt + store.order.filter(Q(status='2')|Q(status='3')).count()
+            # ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
+            # ordered_cnt = ordered_cnt + store.order.filter(Q(status='2')|Q(status='3')).count()
+            ordered_cnt = ordered_cnt + store.order.filter(status='1').count()
 
         # Store.objects.filter(user=self.request.user, status='1').count()
         myteam_cnt = Profile.objects.filter(Q(parent_agent=user) | Q(grand_agent=user)).count() or 0

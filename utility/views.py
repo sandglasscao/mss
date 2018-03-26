@@ -25,7 +25,7 @@ class SyncRecord(object):
 
     @classmethod
     def sync_agents(cls):
-        agentb2bs = AgentB2B.objects.all()
+        agentb2bs = AgentB2B.objects.using('b2b').all()
         for agent in agentb2bs:
             try:
                 Profile.objects.get(cellphone=agent.cellphone)
@@ -40,7 +40,7 @@ class SyncRecord(object):
         except Store.DoesNotExist:
             latest_sync_time = datetime.now() + timedelta(days=-200)
 
-        storeb2bs = StoreB2B.objects.filter(created_dt__gt=latest_sync_time)
+        storeb2bs = StoreB2B.objects.using('b2b').filter(created_dt__gt=latest_sync_time)
         stores = []
         for storeb2b in storeb2bs:
             store = {}
@@ -78,11 +78,18 @@ class SyncRecord(object):
         try:
             usr = User.objects.get(username=recomm_name)
         except User.DoesNotExist:
-            agentb2b = AgentB2B.objects.get(username=recomm_name)
-            cls.__create_agent__(agentb2b)
-            usr = User.objects.get(username=recomm_name)
+            try:
+                agentb2b = AgentB2B.objects.using('b2b').get(username=recomm_name)
+                cls.__create_agent__(agentb2b)
+                usr = User.objects.get(username=recomm_name)
+            except:
+                usr = User.objects.get(id=1)
+
         store['recomm'] = usr.id
-        store['sales'] = usr.id if sales_name == recomm_name else Profile.objects.get(cellphone=cell).user.id
+        try:
+            store['sales'] = usr.id if sales_name == recomm_name else Profile.objects.get(cellphone=cell).user.id
+        except:
+            store['sales'] = usr.id
 
     @classmethod
     def __create_agent__(cls, agentb2b):
@@ -109,7 +116,7 @@ class SyncRecord(object):
         except Order.DoesNotExist:
             latest_sync_time = datetime.now() + timedelta(days=-200)
 
-        orderb2bs = OrderB2B.objects.filter(created_dt__gt=latest_sync_time)
+        orderb2bs = OrderB2B.objects.using('b2b').filter(created_dt__gt=latest_sync_time)
         orders = []
         for orderb2b in orderb2bs:
             if orderb2b.ownerPin:

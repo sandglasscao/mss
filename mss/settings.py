@@ -107,7 +107,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.environ['APP_NAME'],
-        'NAME': 'mss2',
+        'NAME': 'mss4',
         'USER': os.environ['MYSQL_DB_USERNAME'],
         'PASSWORD': os.environ['MYSQL_DB_PASSWORD'],
         'HOST': os.environ['MYSQL_DB_HOST'],
@@ -125,15 +125,17 @@ DATABASES = {
         'HOST': os.environ['MYSQL_DB_HOST2'],
         'PORT': os.environ['MYSQL_DB_PORT2'],
     },
-    'investment': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hzbl_b2b',
-        'USER': 'investment',
-        'PASSWORD': 'pingtaiyunying@1313113',
-        'HOST': os.environ['MYSQL_DB_HOST2'],
-        'PORT': os.environ['MYSQL_DB_PORT2'],
-    },
+
+    # 'investment': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'hzbl_b2b',
+    #     'USER': 'investment',
+    #     'PASSWORD': 'pingtaiyunying@1313113',
+    #     'HOST': os.environ['MYSQL_DB_HOST2'],
+    #     'PORT': os.environ['MYSQL_DB_PORT2'],
+    # },
 }
+
 SESSION_COOKIE_AGE = 60 * 10 # 2分钟
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True # 关闭浏览器，则COOKIE失效
