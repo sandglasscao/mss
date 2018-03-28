@@ -112,7 +112,7 @@ export class AgentMainComponent implements OnInit {
           res => {
             console.log(res);
             alert("删除成功!");
-            agent.isDeleted=res.isDeleted;
+            agent.isDeleted = res.isDeleted;
           },
           error => {
             this.error = error;
