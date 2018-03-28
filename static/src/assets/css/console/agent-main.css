@@ -33,7 +33,11 @@
 }
 #customers td button{
   padding: 0 4px;
-    border-radius: 3px;
+  border-radius: 3px;
+}
+#customers td input{
+  border-radius: 3px;
+  width: 100%;
 }
 #customers td button:nth-child(1){
   background-color: lightcyan;
