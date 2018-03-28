@@ -95,9 +95,6 @@ export class AgentMainComponent implements OnInit {
             }
             this.nextpg = c;
           }
-
-
-
           /*this.temptrans(this.nextpg, res.next);
           this.temptrans(this.previouspg, res.previous);*/
           this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
@@ -106,25 +103,56 @@ export class AgentMainComponent implements OnInit {
         error => this.error = error
       );
   }
-
   resetPwd(agent: Profile) {
-    let usr = agent.user;
-    usr.password = agent.cellphone;
-    this.agentService
-      .resetPwd(usr)
-      .subscribe(error => this.error = error);
+    if (confirm("是否确定重置密码？")==true){
+      let usr = agent.user;
+      usr.password = agent.cellphone;
+      this.agentService
+        .resetPwd(usr)
+        .subscribe(
+          res => {
+            console.log(res);
+            alert("重置成功!");
+          },
+          error => {
+            this.error = error;
+            alert("重置失败!");
+          }
+        );
+    }
   }
-
   delAgent(agent: Profile) {
-    agent.isDeleted = true;
-    this.agentService
-      .delAgent(agent)
-      .subscribe(error => this.error = error);
+    if (confirm("是否确定删除该业务员？")==true){
+      agent.isDeleted = true;
+      this.agentService
+        .delAgent(agent)
+        .subscribe(
+          res => {
+            console.log(res);
+            alert("删除成功!");
+          },
+          error => {
+            this.error = error;
+            alert("删除失败!");
+          }
+        );
+    }
   }
   checks(agent: Profile) {
-    agent.status=true;
-    this.agentService
-      .checks(agent)
-      .subscribe(error => this.error = error);
+    if (confirm("是否通过该业务员的审核？")==true){
+      this.agentService
+        .checks(agent)
+        .subscribe(
+          res => {
+            agent.status=true;
+            console.log(res);
+            alert("审核通过!");
+          },
+          error => {
+            this.error = error;
+            alert("审核失败!");
+          }
+        );
+    }
   }
 }

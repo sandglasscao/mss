@@ -21,8 +21,14 @@ export class AgentNewComponent {
     this.agentService
       .createAgent(this.agent)
       .subscribe(
-        res => this.agent = res,
-        error => this.error = error
+        res => {
+            this.agent = res;
+            alert("设置成功!");
+          },
+          error => {
+            this.error = error;
+            alert("失败！");
+          }
       );
   }
 

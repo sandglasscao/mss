@@ -17,6 +17,9 @@ export class DashboardHomeComponent implements OnInit {
   ngOnInit(): void {
     this.dashboardHomeSerice
       .getSummary()
-      .subscribe(res => this.summary = res);
+      .subscribe(res => {
+        console.log(res);
+        this.summary = res;
+      });
   }
 }

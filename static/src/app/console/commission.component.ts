@@ -12,7 +12,6 @@ import {Commission} from "./commission";
 export class CommissionComponent implements OnInit {
   commission = new Commission();
   hasCommssion = false;
-
   error = null;
 
   constructor(private commissionService: CommissionService,
@@ -39,14 +38,26 @@ export class CommissionComponent implements OnInit {
     if (this.hasCommssion) {
       this.commissionService.updateCmmssn(this.commission)
         .subscribe(
-          res => this.commission = res,
-          error => this.error
+          res => {
+            this.commission = res;
+            alert("设置成功!");
+          },
+          error => {
+            this.error=error;
+            alert("失败！");
+          }
         );
     } else {
       this.commissionService.createCmmssn(this.commission)
         .subscribe(
-          res => this.commission = res,
-          error => this.error
+          res => {
+            this.commission = res;
+            alert("设置成功!");
+          },
+          error => {
+            this.error=error;
+            alert("失败！");
+          }
         );
     }
   }
