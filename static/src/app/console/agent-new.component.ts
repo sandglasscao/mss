@@ -17,6 +17,7 @@ export class AgentNewComponent {
 
   onSubmit() {
     this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
+    this.agent.status=false;
     this.agentService
       .createAgent(this.agent)
       .subscribe(
