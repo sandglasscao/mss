@@ -27,10 +27,15 @@
                     <div *ngIf="!agent.hasRecommAuth">否</div>
                 </td>
                 <td>
-                    <button type="button" (click)="resetPwd(agent)">密码重置</button>
-                    <button type="button" (click)="delAgent(agent)">删除</button>
-                    <button *ngIf="!agent.status" type="button" (click)="checks(agent)">审核</button>
-                    <button *ngIf="agent.status" type="button" disabled>已审核</button>
+                    <div *ngIf="!agent.isDeleted">
+                        <button type="button" (click)="resetPwd(agent)">密码重置</button>
+                        <button type="button" (click)="delAgent(agent)">删除</button>
+                        <button *ngIf="!agent.status" type="button" (click)="checks(agent)">审核</button>
+                        <button *ngIf="agent.status" type="button" disabled>已审核</button>
+                    </div>
+                    <div *ngIf="agent.isDeleted">
+                        <input type="button" value="已删除">
+                    </div>
                 </td>
             </tr>
             </tbody>

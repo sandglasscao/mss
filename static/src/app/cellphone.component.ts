@@ -37,6 +37,7 @@ export class CellPhoneComponent implements OnDestroy {
         this.seconds--;
         if (this.seconds === 0) {
           this.clearTimer();
+          this.seconds=60;
           this.verifylbl = this.defaultlbl;
           document.getElementById('verifybtn').removeAttribute('disabled');
         } else {

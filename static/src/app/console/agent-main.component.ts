@@ -54,27 +54,12 @@ export class AgentMainComponent implements OnInit {
         error => this.error = error
       );
   }
-  /*temptrans(one, two) {
-    if (two !== null) {
-      let temp = two.split('/');
-      let c = window.location.origin;
-      for (let i = 3; i<temp.length; i++) {
-        c+='/'+temp[i];
-      }
-      one = c;
-    }else {
-      one = two;
-    }
-  }*/
   paginate(link: string) {
     this.agentService
       .paginate(link)
       .subscribe(
         res => {
           this.agents = res.results;
-          /*this.previouspg = res.previous;
-          this.nextpg = res.next;*/
-
           if (!res.previous){
             this.previouspg = res.previous;
           }else {
@@ -95,8 +80,6 @@ export class AgentMainComponent implements OnInit {
             }
             this.nextpg = c;
           }
-          /*this.temptrans(this.nextpg, res.next);
-          this.temptrans(this.previouspg, res.previous);*/
           this.pageNo = Number(res.next ? Number(res.next.split("page=")[1]) - 1 :
             (res.previous ? Number(res.previous.split("page=")[1]) + 1 : 1));
         },
@@ -123,13 +106,13 @@ export class AgentMainComponent implements OnInit {
   }
   delAgent(agent: Profile) {
     if (confirm("是否确定删除该业务员？")==true){
-      agent.isDeleted = true;
       this.agentService
         .delAgent(agent)
         .subscribe(
           res => {
             console.log(res);
             alert("删除成功!");
+            agent.isDeleted=res.isDeleted;
           },
           error => {
             this.error = error;
