@@ -93,9 +93,12 @@ class SyncRecord(object):
 
     @classmethod
     def __create_agent__(cls, agentb2b):
-        user = User.objects.create(username=agentb2b.username)
-        user.set_password(agentb2b.cellphone)
-        user.save()
+        try:
+            user = User.objects.create(username=agentb2b.username)
+            user.set_password(agentb2b.cellphone)
+            user.save()
+        except:
+            user = User.objects.get(username=agentb2b.username)
 
         Profile.objects.create(
             user=user,
