@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 
 import {LoginService} from './login.service';
@@ -14,7 +14,7 @@ import {ProfileService} from "./dashboard/profile.service";
   ]
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   user = new User();
   next = 'dashboard';
   error = null;
@@ -23,7 +23,13 @@ export class LoginComponent {
               private profileService: ProfileService,
               private router: Router) {
   }
-
+  ngOnInit(): void {
+    if (localStorage.userInfo){
+      const userInfos = JSON.parse(localStorage.userInfo);
+      this.user.username = userInfos.username;
+      this.user.password = userInfos.password;
+    }
+  }
   onSubmit() {
     if (this.user.username) {
       this.loginService
@@ -32,6 +38,11 @@ export class LoginComponent {
           data => {
             sessionStorage.setItem('token', data.token);
             sessionStorage.setItem('username', this.user.username);
+            const userInfo={
+              username: this.user.username,
+              password: this.user.password
+            };
+            localStorage.setItem('userInfo',JSON.stringify(userInfo));
             this.routSwitch();
           },
           error => this.error = "密码错误!"
