@@ -138,7 +138,11 @@ class SyncRecord(object):
                     orders.append(order)
                 except Store.DoesNotExist:
                     pass
-
+                    #         Store_tmp = orderb2b.store
+                    #         user = Store_tmp.sales
+                    # if Profile.objects.get(user=user).hasRecommAuth != 1:
+                    #     if Store.objects.filter(user=user).filter(status=2).count() >= 2:
+                    #         Profile.objects.filter(user=user).update(hasRecommAuth=1)
         serializer = OrderSerializer(data=orders, many=True)
         if serializer.is_valid():
             serializer.save()

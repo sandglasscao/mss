@@ -76,6 +76,16 @@ class ProfileApiView(APIView):
             user = User.objects.get(username=username)
         except:
             user = Profile.objects.get(cellphone=username).user
+        # rec_flag = 0
+        #
+        # if user.profile.hasRecommAuth != 1:
+        #     if rec_flag < 2:
+        #         for store in Store.objects.filter(sales=user):
+        #             if store.order.count() >= 2:
+        #                 rec_flag += 1
+        #     else:
+        #         Profile.objects.filter(user=user).update(hasRecommAuth=1)
+
         serializer = ProfileSerializer(user.profile)
         return Response(serializer.data, status=HTTP_200_OK)
 
@@ -160,24 +170,37 @@ class DashHomeApiView(APIView):
 
     def __commission__(self):
         user = self.request.user
+
         # myStore_cnt = user.store.filter(status='2').count()
         if user.profile.isEmployee:
             # this agent is employee, so his/her stores should not be involved in commission.
             myStore_cnt = 0
         else:
-            myStore_cnt = user.store.filter(status='2').count()
+            # myStore_cnt = user.store.filter(status='2').count()
+            myStore_cnt = Store.objects.filter(sales=user).filter(status='2').count()
+            if user.profile.hasRecommAuth != 1:
+                Profile.objects.filter(user=user).update(hasRecommAuth=1)
+
         subStore_cnt = 0
-        for subAgentProfile in user.son_agent.all():
-            subStore_cnt = subAgentProfile.user.store.filter(status='2').count()
+        queryset2 = Profile.objects.filter(parent_agent=user)
+        for i in queryset2:
+            user2 = i.user
+            # print(Store.objects.filter(sales=user2).filter(status='2').count())
+            subStore_cnt = Store.objects.filter(sales=user2).filter(status='2').count() + subStore_cnt
+
         subsubStore_cnt = 0
-        for grandAgentProfile in user.grand_agent.all():
-            subsubStore_cnt = grandAgentProfile.user.store.filter(status='2').count()
+        queryset3 = Profile.objects.filter(grand_agent=user)
+        for i in queryset3:
+            user3 = i.user
+            subsubStore_cnt = Store.objects.filter(sales=user3).filter(status='2').count() + subsubStore_cnt
+
+
         commissions = Commission.objects.all()
         commission = commissions[0]
         myComm = commission.base * (
             myStore_cnt
-            + subStore_cnt * commission.parent_percent
-            + subsubStore_cnt * commission.grand_percent
+            + subStore_cnt * commission.parent_percent/100
+            + subsubStore_cnt * commission.grand_percent/100
         )
         return myComm
 
@@ -189,16 +212,32 @@ class TeamListApiView(ListAPIView):
     def get_queryset(self):
         user = self.request.user
         queryset = []
-        for agentP in user.son_agent.all():
+        # for agentP in user.son_agent.all():
+        #     team = {}
+        #     agent = agentP.user
+        #     team['agent'] = agent.username
+        #     team['double_cnt'] = agent.store.filter(status='2').count()
+        #     team['ordered_cnt'] = agent.store.filter(status='1').count()
+        #     team['pending_cnt'] = agent.store.filter(status='-1').count()
+        #     subdouble_cnt = 0
+        #     for sonAgentProfile in agent.son_agent.all():
+        #         subdouble_cnt = subdouble_cnt + sonAgentProfile.user.store.filter(status='2').count()
+        #     team['subdouble_cnt'] = subdouble_cnt
+        #
+        #     queryset.append(team)
+
+        for agentP in Profile.objects.filter(parent_agent=user).all():
             team = {}
             agent = agentP.user
             team['agent'] = agent.username
-            team['double_cnt'] = agent.store.filter(status='2').count()
-            team['ordered_cnt'] = agent.store.filter(status='1').count()
-            team['pending_cnt'] = agent.store.filter(status='-1').count()
+            # team['double_cnt'] = agent.store.filter(status='2').count()
+            team['double_cnt'] = Store.objects.filter(sales=agent).filter(status=2).count()
+            team['ordered_cnt'] = Store.objects.filter(sales=agent).filter(status=1).count()
+            team['pending_cnt'] = Store.objects.filter(sales=agent).filter(status=-1).count()
             subdouble_cnt = 0
-            for sonAgentProfile in agent.son_agent.all():
-                subdouble_cnt = subdouble_cnt + sonAgentProfile.user.store.filter(status='2').count()
+            for sonAgentProfile in Profile.objects.filter(parent_agent=agent).all():
+                sonuser = sonAgentProfile.user
+                subdouble_cnt = subdouble_cnt + Store.objects.filter(sales=sonuser).filter(status=2).count()
             team['subdouble_cnt'] = subdouble_cnt
 
             queryset.append(team)
