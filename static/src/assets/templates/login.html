@@ -9,6 +9,7 @@
                 <div class="input_ login_account">
                     <i class="fa fa-user-o"></i>
                     <input type="text" class="username"
+                           autocomplete="off"
                            placeholder="账号"
                            (keydown)="cleanerror()"
                            [(ngModel)]="user.username" required autofocus
@@ -20,6 +21,7 @@
                 <div class="input_ login_password">
                     <i class="fa fa-lock"></i>
                     <input type="password" class="password" name="" id="password"
+                           autocomplete="off"
                            placeholder="请输入密码"
                            [(ngModel)]="user.password" required
                            minLength=6
