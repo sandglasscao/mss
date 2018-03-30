@@ -178,8 +178,9 @@ class DashHomeApiView(APIView):
         else:
             # myStore_cnt = user.store.filter(status='2').count()
             myStore_cnt = Store.objects.filter(sales=user).filter(status='2').count()
-            if user.profile.hasRecommAuth != 1:
-                Profile.objects.filter(user=user).update(hasRecommAuth=1)
+            if myStore_cnt >= 2:
+                if user.profile.hasRecommAuth != 1:
+                    Profile.objects.filter(user=user).update(hasRecommAuth=1)
 
         subStore_cnt = 0
         queryset2 = Profile.objects.filter(parent_agent=user)
