@@ -57,19 +57,16 @@ class UserListApiView(ListAPIView):
                 pass
         return queryset
 
-class UserPhoneApiView(ListAPIView):
-    permission_classes = (AllowAny,)
-    serializer_class = ProfileSerializer
 
-    def get_queryset(self):
-        userphone = self.kwargs.get('userphone', None)
-        try:
-            if Profile.objects.get(cellphone=userphone).user:
-                return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
-            else:
-                return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
-        except:
+def pcphone(request, userphone):
+    # userphone = request.get('userphone', None)
+    try:
+        if Profile.objects.get(cellphone=userphone).user:
+            return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+        else:
             return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+    except:
+        return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
         # users = User.objects.filter(username__icontains=userphone, id__gt=1)
         # queryset = []
         # for user in users:
@@ -293,13 +290,13 @@ class CellCheckAPIView(APIView):
         except Profile.DoesNotExist:
             Response(status=400)
 
-def pccheck(request):
-
-    pcphone = request.GET.get('pcphone', None)
-
-    if Profile.objects.filter(cellphone=pcphone).count() == 1:
-        return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
-    else:
-        return HttpResponse(json.dumps({'cellinfo': 'Faild'}), content_type='application/json')
+# def pccheck(request):
+#
+#     pcphone = request.GET.get('pcphone', None)
+#
+#     if Profile.objects.filter(cellphone=pcphone).count() == 1:
+#         return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+#     else:
+#         return HttpResponse(json.dumps({'cellinfo': 'Faild'}), content_type='application/json')
 
 
