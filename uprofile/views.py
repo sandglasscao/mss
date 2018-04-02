@@ -83,6 +83,18 @@ class UserRegisterApiView(APIView):
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
+        parent_cellphone = request.data.get('parent_cellphone', None)
+        if parent_cellphone:
+            parent = Profile.objects.filter(hasRecommAuth=1).get(cellphone=parent_cellphone).user
+            if parent:
+                # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+                try:
+                    grand_agent = parent.profile.parent_agent
+                except:
+                    grand_agent = None
+        else:
+            return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
