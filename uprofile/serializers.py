@@ -192,17 +192,17 @@ class RegisterSerializer(Serializer):
             if reccellphone:
                 try:
                     parent = Profile.objects.get(cellphone=reccellphone).user
-                    if parent:
-                        # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
-                        try:
-                            grand_agent = parent.profile.parent_agent
-                        except:
-                            grand_agent = None
 
-                    else:
-                        return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+                    # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+                    try:
+                        grand_agent = parent.profile.parent_agent
+                    except:
+                        grand_agent = None
+
+
                 except:
-                    return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+                    parent = None
+                    grand_agent = None
             # try:
             #     parent_code = Profile.objects.get(cellphone=validated_data.get("parent_cellphone", None))
             #     parent = parent_code.user

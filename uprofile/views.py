@@ -92,6 +92,7 @@ class UserRegisterApiView(APIView):
                 return HttpResponse(json.dumps({'cellinfo': 'cellphone_notexist'}), content_type='application/json')
 
         serializer = RegisterSerializer(data=request.data)
+        request.data['parent_cellphone']='99999999999'
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=201)
