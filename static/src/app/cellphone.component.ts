@@ -15,7 +15,7 @@ export class CellPhoneComponent implements OnDestroy {
   cellPhone: string;
   smsCode: string;
   error = null;
-  defaultlbl = '发送验证码';
+  defaultlbl = '获取验证码';
   verifylbl = this.defaultlbl;
   intervalId = 0;
   seconds = 60;

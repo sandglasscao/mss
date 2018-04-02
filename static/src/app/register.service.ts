@@ -28,7 +28,7 @@ export class RegisterService {
     return this.http.get<Profile>(url, {headers})
   }
 
-  register(registration: Registration): Observable<Registration> {
+  register(registration: Registration): Observable<any> {
     let url = this.baseUrl + 'register/';
     return this.http.post<Registration>(url, registration)
   }
