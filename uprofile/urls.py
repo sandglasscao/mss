@@ -13,7 +13,8 @@ from .views import (
     # pccheck,
     # save_photo, Save_photoAPIView
     # UserPhoneApiView,
-    pcphone)
+    # pcphone
+)
 
 store_list = StoreViewSet.as_view({
     'get': 'list',
@@ -37,13 +38,13 @@ order_detail = OrderViewSet.as_view({
 })
 
 urlpatterns = [
-    url(r'^(?P<userphone>[\d]{11})$', pcphone, name='listphone'),
+    # url(r'^(?P<userphone>[\d]{11})$', pcphone, name='listphone'),
     url(r'^(?P<username>[\w]*)$', UserListApiView.as_view(), name='list'),
     # url(r'^(?P<userphone>.*)$', pcphone, name='listphone'),
     url(r'^profile/(?P<username>[\w]+)$', ProfileApiView.as_view(), name='retrieve'),
     url(r'^changepwd/$', ChangePwdApiView.as_view(), name='chngpwd'),
-    # url(r'^register/$', UserRegisterApiView.as_view(), name='register'),
-    url(r'^register1/$', UserRegisterApiView.as_view(), name='register1'),
+    url(r'^register/$', UserRegisterApiView.as_view(), name='register'),
+    # url(r'^register1/$', UserRegisterApiView.as_view(), name='register1'),
     url(r'^store/$', store_list, name='store-list'),
     url(r'^store/(?P<id>[0-9]+)$', store_detail, name='store-detail'),
     url(r'^order/$', order_list, name='order-list'),

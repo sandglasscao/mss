@@ -58,15 +58,15 @@ class UserListApiView(ListAPIView):
         return queryset
 
 
-def pcphone(request, userphone):
-    # userphone = request.get('userphone', None)
-    try:
-        if Profile.objects.get(cellphone=userphone).user:
-            return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
-        else:
-            return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
-    except:
-        return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+# def pcphone(request, userphone):
+#     # userphone = request.get('userphone', None)
+#     try:
+#         if Profile.objects.get(cellphone=userphone).user:
+#             return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+#         else:
+#             return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+#     except:
+#         return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
         # users = User.objects.filter(username__icontains=userphone, id__gt=1)
         # queryset = []
         # for user in users:

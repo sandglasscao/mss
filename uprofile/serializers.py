@@ -1,6 +1,8 @@
+import json
 import os
 
 from django.contrib.auth.models import User
+from django.http import HttpResponse
 from rest_framework.fields import (
     DateTimeField,
     BooleanField, CharField, IntegerField, DecimalField)
@@ -183,13 +185,28 @@ class RegisterSerializer(Serializer):
         user.save()
 
         full_name = validated_data.get("full_name", None)
-        try:
-            parent_code = Profile.objects.get(cellphone=validated_data.get("parent_cellphone", None))
-            parent = parent_code.user
-            grand_agent = parent.profile.parent_agent
-        except User.DoesNotExist:
-            parent = None
-            grand_agent = None
+
+        reccellphone = validated_data.get('parent_cellphone', None)
+
+        if reccellphone:
+            try:
+                parent = Profile.objects.get(cellphone=reccellphone).user
+                if parent:
+                    # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+                    grand_agent = parent.profile.parent_agent
+
+
+                else:
+                    return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+            except:
+                return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+        # try:
+        #     parent_code = Profile.objects.get(cellphone=validated_data.get("parent_cellphone", None))
+        #     parent = parent_code.user
+        #     grand_agent = parent.profile.parent_agent
+        # except User.DoesNotExist:
+        #     parent = None
+        #     grand_agent = None
 
         Profile.objects.create(
             user=user,
