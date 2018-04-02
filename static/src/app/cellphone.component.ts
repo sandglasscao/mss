@@ -27,6 +27,11 @@ export class CellPhoneComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.clearTimer();
   }
+  sendTel(tel) {
+    if (tel.length===1){
+
+    }
+  }
 
   sendSMS() {
     if (this.cellPhone) {
