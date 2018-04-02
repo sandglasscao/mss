@@ -196,7 +196,7 @@ class SMSClient(object):
         return HttpResponse(json.dumps(resp))
 
     @classmethod
-    def send_sms(cls, request, phone_number):
+    def send_sms1(cls, request, phone_number):
         if Profile.objects.filter(cellphone=phone_number).count() == 1:
             # return HttpResponse(json.dumps({'Code': 'cellphone_exist'}), content_type='application/json')
             business_id = uuid.uuid1()

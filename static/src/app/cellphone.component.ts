@@ -27,31 +27,35 @@ export class CellPhoneComponent implements OnDestroy {
   ngOnDestroy(): void {
     this.clearTimer();
   }
-  sendTel(tel) {
-    if (tel.length===1){
-
-    }
-  }
 
   sendSMS() {
     if (this.cellPhone) {
-      this.cleanerror();
-      this.clearTimer();
-      document.getElementById('verifybtn').setAttribute('disabled', 'true');
-      this.intervalId = window.setInterval(() => {
-        this.seconds--;
-        if (this.seconds === 0) {
-          this.clearTimer();
-          this.seconds=60;
-          this.verifylbl = this.defaultlbl;
-          document.getElementById('verifybtn').removeAttribute('disabled');
-        } else {
-          this.verifylbl = "(" + this.seconds + ")秒";
-        }
-      }, 1000);
       this.smsService
         .sendSMS(this.cellPhone)
-        .then(res => this.error = ('OK' == res.Code) ? null : '频繁获取验证码')
+        .then(res => {
+          if (res.Code=='OK'){
+            this.error = null;
+            this.cleanerror();
+            this.clearTimer();
+            document.getElementById('verifybtn').setAttribute('disabled', 'true');
+            this.intervalId = window.setInterval(() => {
+              this.seconds--;
+              if (this.seconds === 0) {
+                this.clearTimer();
+                this.seconds=60;
+                this.verifylbl = this.defaultlbl;
+                document.getElementById('verifybtn').removeAttribute('disabled');
+              } else {
+                this.verifylbl = "(" + this.seconds + ")秒";
+              }
+            }, 1000);
+          }else if (res.Code=='cellphone_exist'){
+            this.error = '该手机号已注册！';
+          }
+          else{
+            this.error = '频繁获取验证码';
+          }
+        })
         .catch(error => this.error = error);
     } else {
       this.error = "请输入手机号";

@@ -18,6 +18,13 @@ export class SMSService {
       .toPromise()
       .catch(SMSService.handleError);
   }
+  sendSMS2(cellphone: string): Promise<any> {
+    let url = this.smsUrl + 'send1/' + cellphone;
+    return this.http
+      .get(url)
+      .toPromise()
+      .catch(SMSService.handleError);
+  }
 
   verifySMS(cellphone: string, code: string): Promise<any> {
     let url = this.smsUrl + 'verify/';
