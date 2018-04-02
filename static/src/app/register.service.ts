@@ -16,6 +16,10 @@ export class RegisterService {
     let url = this.baseUrl + 'cell/';
     return this.http.post(url, {'cellphone': cellphone})
   }
+  sendtels(tel: string): Observable<any> {
+    let url = this.baseUrl + 'parentcellchaeck/';
+    return this.http.post(url, {'pcphone': tel})
+  }
 
   getAgentName(agentCode: string): Observable<any> {
     let url = this.baseUrl + agentCode;

@@ -272,7 +272,7 @@ class CellCheckAPIView(APIView):
 
 def pccheck(request):
 
-    pcphone = request.GET.get('pcphone', None)
+    pcphone = request.POST.get('pcphone', None)
 
     if Profile.objects.filter(cellphone=pcphone).count() == 1:
         return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')

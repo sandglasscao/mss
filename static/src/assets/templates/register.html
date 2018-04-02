@@ -41,11 +41,12 @@
             <span>推荐人:</span>
             <input class="pnum" type="text" name="refereecode"
                    placeholder="推荐人手机号"
-                   [(ngModel)]="registration.parent_cellphone" required
+                   [(ngModel)]="registration.parent_cellphone"
                    [formControl]="term"
                    (keydown)="cleanerror()"
                    minLength=11
                    maxLength=11
+                   (input)="sendtel(registration.parent_cellphone)"
             />
         </div>
 
