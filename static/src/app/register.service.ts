@@ -16,10 +16,6 @@ export class RegisterService {
     let url = this.baseUrl + 'cell/';
     return this.http.post(url, {'cellphone': cellphone})
   }
-  sendtels(tel: string): Observable<any> {
-    let url = this.baseUrl + tel;
-    return this.http.get<any>(url)
-  }
 
   getAgentName(agentCode: string): Observable<any> {
     let url = this.baseUrl + agentCode;
@@ -33,7 +29,7 @@ export class RegisterService {
   }
 
   register(registration: Registration): Observable<Registration> {
-    let url = this.baseUrl + 'register1/';
+    let url = this.baseUrl + 'register/';
     return this.http.post<Registration>(url, registration)
   }
 
