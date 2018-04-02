@@ -17,8 +17,8 @@ export class RegisterService {
     return this.http.post(url, {'cellphone': cellphone})
   }
   sendtels(tel: string): Observable<any> {
-    let url = this.baseUrl + 'parentcellchaeck/';
-    return this.http.get(url, {'pcphone': tel})
+    let url = this.baseUrl + tel;
+    return this.http.get<any>(url)
   }
 
   getAgentName(agentCode: string): Observable<any> {
