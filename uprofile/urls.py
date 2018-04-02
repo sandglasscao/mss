@@ -37,6 +37,7 @@ order_detail = OrderViewSet.as_view({
 
 urlpatterns = [
     url(r'^(?P<username>[\w]*)$', UserListApiView.as_view(), name='list'),
+    url(r'^(?P<userphone>[\w]*)$', UserPhoneApiView.as_view(), name='list'),
     url(r'^profile/(?P<username>[\w]+)$', ProfileApiView.as_view(), name='retrieve'),
     url(r'^changepwd/$', ChangePwdApiView.as_view(), name='chngpwd'),
     # url(r'^register/$', UserRegisterApiView.as_view(), name='register'),
@@ -49,7 +50,7 @@ urlpatterns = [
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
     url(r'^cell/$',CellCheckAPIView.as_view(), name='cell-check'),
 
-    url(r'^parentcellchaeck/', pccheck, name='parentcellchaeck')
+    # url(r'^parentcellchaeck/', pccheck, name='parentcellchaeck')
 
     # url(r'^storephoto/$',Save_photoAPIView.as_view()),# 店铺照片POST地址
 

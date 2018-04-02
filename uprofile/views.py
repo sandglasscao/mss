@@ -57,6 +57,29 @@ class UserListApiView(ListAPIView):
                 pass
         return queryset
 
+class UserPhoneApiView(ListAPIView):
+    permission_classes = (AllowAny,)
+    serializer_class = ProfileSerializer
+
+    def get_queryset(self):
+        userphone = self.kwargs.get('userphone', None)
+        try:
+            if Profile.objects.get(cellphone=userphone).user:
+                return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+            else:
+                return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+        except:
+            return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+        # users = User.objects.filter(username__icontains=userphone, id__gt=1)
+        # queryset = []
+        # for user in users:
+        #     try:
+        #         profile = Profile.objects.get(user=user)
+        #         queryset.append(profile)
+        #     except Profile.DoesNotExist:
+        #         pass
+
+
 
 class UserRegisterApiView(APIView):
     permission_classes = [AllowAny]
@@ -272,7 +295,7 @@ class CellCheckAPIView(APIView):
 
 def pccheck(request):
 
-    pcphone = request.POST.get('pcphone', None)
+    pcphone = request.GET.get('pcphone', None)
 
     if Profile.objects.filter(cellphone=pcphone).count() == 1:
         return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
