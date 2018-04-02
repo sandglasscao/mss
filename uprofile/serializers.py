@@ -175,54 +175,59 @@ class RegisterSerializer(Serializer):
     password = CharField(max_length=15)
     cellphone = CharField(max_length=11)
     full_name = CharField(max_length=50, required=False)
-    parent_code = CharField(max_length=20)
+    parent_cellphone = CharField(max_length=20)
 
     def create(self, validated_data):
-        cellphone = validated_data["cellphone"]
-        username = cellphone
-        user = User.objects.create(username=username)
-        user.set_password(validated_data['password'])
-        user.save()
+        try:
+            cellphone = validated_data["cellphone"]
+            username = cellphone
+            user = User.objects.create(username=username)
+            user.set_password(validated_data['password'])
+            user.save()
 
-        full_name = validated_data.get("full_name", None)
+            full_name = validated_data.get("full_name", None)
 
-        reccellphone = validated_data.get('parent_cellphone', None)
+            reccellphone = validated_data.get('parent_cellphone', None)
 
-        if reccellphone:
-            try:
-                parent = Profile.objects.get(cellphone=reccellphone).user
-                if parent:
-                    # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
-                    grand_agent = parent.profile.parent_agent
+            if reccellphone:
+                try:
+                    parent = Profile.objects.get(cellphone=reccellphone).user
+                    if parent:
+                        # return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+                        try:
+                            grand_agent = parent.profile.parent_agent
+                        except:
+                            grand_agent = None
 
-
-                else:
+                    else:
+                        return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
+                except:
                     return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
-            except:
-                return HttpResponse(json.dumps({'cellinfo': 'faild'}), content_type='application/json')
-        # try:
-        #     parent_code = Profile.objects.get(cellphone=validated_data.get("parent_cellphone", None))
-        #     parent = parent_code.user
-        #     grand_agent = parent.profile.parent_agent
-        # except User.DoesNotExist:
-        #     parent = None
-        #     grand_agent = None
+            # try:
+            #     parent_code = Profile.objects.get(cellphone=validated_data.get("parent_cellphone", None))
+            #     parent = parent_code.user
+            #     grand_agent = parent.profile.parent_agent
+            # except User.DoesNotExist:
+            #     parent = None
+            #     grand_agent = None
 
-        Profile.objects.create(
-            user=user,
-            cellphone=cellphone,
-            full_name=full_name,
-            parent_agent=parent,
-            grand_agent=grand_agent
-        )
+            Profile.objects.create(
+                user=user,
+                cellphone=cellphone,
+                full_name=full_name,
+                parent_agent=parent,
+                grand_agent=grand_agent
+            )
 
-        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
-        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+            jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+            jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 
-        payload = jwt_payload_handler(user)
-        validated_data["token"] = jwt_encode_handler(payload)
-        validated_data['username'] = user.username
-        return validated_data
+            payload = jwt_payload_handler(user)
+            validated_data["token"] = jwt_encode_handler(payload)
+            validated_data['username'] = user.username
+            return validated_data
+        except:
+            return HttpResponse(json.dumps({'result': 'faild'}), content_type='application/json')
 
 
 
