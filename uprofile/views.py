@@ -84,11 +84,12 @@ class UserRegisterApiView(APIView):
 
     def post(self, request, *args, **kwargs):
         parent_cellphone = request.data.get('parent_cellphone', None)
-        try:
-            Profile.objects.filter(hasRecommAuth=1).get(cellphone=parent_cellphone).user
+        if parent_cellphone:
+            try:
+                Profile.objects.filter(hasRecommAuth=1).get(cellphone=parent_cellphone).user
 
-        except:
-            return HttpResponse(json.dumps({'cellinfo': 'cellphone_notexist'}), content_type='application/json')
+            except:
+                return HttpResponse(json.dumps({'cellinfo': 'cellphone_notexist'}), content_type='application/json')
 
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
