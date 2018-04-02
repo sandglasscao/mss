@@ -10,6 +10,7 @@ from .views import (
     DashHomeApiView,
     TeamListApiView,
     CellCheckAPIView,
+    pccheck,
     # save_photo, Save_photoAPIView
     )
 
@@ -47,6 +48,8 @@ urlpatterns = [
     url(r'^home/$', DashHomeApiView.as_view(), name='homelist'),
     url(r'^team/$', TeamListApiView.as_view(), name='teamlist'),
     url(r'^cell/$',CellCheckAPIView.as_view(), name='cell-check'),
+
+    url(r'^parentcellchaeck/', pccheck, name='parentcellchaeck')
 
     # url(r'^storephoto/$',Save_photoAPIView.as_view()),# 店铺照片POST地址
 

@@ -19,13 +19,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(private registerService: RegisterService,
               private router: Router) {
-    /*this.term.valueChanges
-      .debounceTime(100)
-      .distinctUntilChanged()
-      .subscribe(term =>
-        this.registerService
-          .getAgentName(this.registration.parent_cellphone)
-          .subscribe(items => this.agents = items));*/
+    // this.term.valueChanges
+    //   .debounceTime(100)
+    //   .distinctUntilChanged()
+    //   .subscribe(term =>
+    //     this.registerService
+    //       .getAgentName(this.registration.parent_cellphone)
+    //       .subscribe(items => this.agents = items));
   }
 
   ngOnInit(): void {

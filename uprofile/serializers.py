@@ -315,3 +315,4 @@ class TeamListSerializer(Serializer):
 class CheckCellSerializer(Serializer):
     username = CharField(max_length=11, required=True)
     token = CharField(max_length=200, required=True)
+

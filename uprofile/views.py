@@ -1,4 +1,7 @@
+import json
+
 from django.db.models import Q
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
 from rest_framework.generics import (
@@ -266,3 +269,14 @@ class CellCheckAPIView(APIView):
             Response(status=400)
         except Profile.DoesNotExist:
             Response(status=400)
+
+def pccheck(request):
+
+    pcphone = request.GET.get('pcphone', None)
+
+    if Profile.objects.filter(cellphone=pcphone).count() == 1:
+        return HttpResponse(json.dumps({'cellinfo': 'OK'}), content_type='application/json')
+    else:
+        return HttpResponse(json.dumps({'cellinfo': 'Faild'}), content_type='application/json')
+
+
