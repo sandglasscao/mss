@@ -27,6 +27,7 @@ from utility.views import SyncRecord
 urlpatterns = [
     url(r'^$', home, name='home'),
     url(r'^sms/send/(?P<phone_number>\d{11})$', SMSClient.send_sms, name='sendsms'),
+    url(r'^sms/send1/(?P<phone_number>\d{11})$', SMSClient.send_sms1, name='sendsms1'),
     url(r'^sms/verify/$', SMSClient.verify_code, name='verifysms'),
     url(r'^api/users/', include('uprofile.urls')),
     url(r'^api/console/', include('console.urls')),
