@@ -34,9 +34,13 @@ export class RegisterComponent implements OnInit {
       .register(this.registration)
       .subscribe(
         account => {
-          sessionStorage.setItem('token', account.token);
-          sessionStorage.setItem('username', account.cellphone);
-          this.router.navigate(['dashboard']);
+          if (account.cellinfo == 'cellphone_notexist'){
+            this.error = '推荐人不存在！';
+          }else {
+            sessionStorage.setItem('token', account.token);
+            sessionStorage.setItem('username', account.cellphone);
+            this.router.navigate(['dashboard']);
+          }
         },
         error => this.error = "注册失败!");
   }

@@ -15,7 +15,7 @@ export class CellPhoneComponent implements OnDestroy {
   cellPhone: string;
   smsCode: string;
   error = null;
-  defaultlbl = '发送验证码';
+  defaultlbl = '获取验证码';
   verifylbl = this.defaultlbl;
   intervalId = 0;
   seconds = 60;
@@ -63,7 +63,7 @@ export class CellPhoneComponent implements OnDestroy {
   }
 
   onSubmit() {
-    /*if (this.smsCode) {
+    if (this.smsCode) {
       this.smsService
         .verifySMS(this.cellPhone, this.smsCode)
         .then(res => {
@@ -77,10 +77,10 @@ export class CellPhoneComponent implements OnDestroy {
         .catch(error => this.error = error);
     } else {
       this.error = "请输入验证码";
-    }*/
+    }
 
-    sessionStorage.setItem('cellPhone', this.cellPhone);
-            this.router.navigate(['register']);
+    /*sessionStorage.setItem('cellPhone', this.cellPhone);
+            this.router.navigate(['register']);*/
   }
 
   private clearTimer() {
