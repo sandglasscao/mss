@@ -9,10 +9,16 @@ import {Profile} from "../dashboard/profile";
 })
 export class AgentNewComponent {
   agent = new Profile();
-
+  pwdConfirm = '';
   error = null;
+  pwd_err = null;
 
   constructor(private agentService: AgentService) {
+  }
+  confirm_pwd(){
+    if (this.pwdConfirm !== this.agent.password){
+      this.pwd_err = '密码不一致，请重新输入！';
+    }
   }
 
   onSubmit() {

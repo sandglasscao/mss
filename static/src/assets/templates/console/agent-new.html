@@ -4,6 +4,7 @@
                 <span>业务员编号：</span>
                 <input class="agentname" type="text" name="agentname"
                        [(ngModel)]="agent.username" required
+                       placeholder="业务员编号"
                 />
             </div>
 
@@ -11,12 +12,14 @@
                 <span> 姓名： </span>
                 <input class="username" type="text" name="username"
                        [(ngModel)]="agent.full_name"
+                       placeholder="业务员姓名"
                 />
             </div>
             <div class="agent_con_">
                 <span> 手机号： </span>
                 <input class="cellphone" type="text" name="cellphone"
                        [(ngModel)]="agent.cellphone" required
+                       placeholder="业务员手机号"
                 />
             </div>
 
@@ -24,6 +27,22 @@
                 <span>密码： </span>
                 <input class="cellphone" type="password" name="password"
                        [(ngModel)]="agent.password" required
+                       placeholder="填写账号密码"
+                />
+            </div>
+            <div class="agent_con_">
+                <span>确认密码： </span>
+                <input class="cellphone" type="password" name="password"
+                       [(ngModel)]="pwdConfirm" required
+                       placeholder="确认密码"
+                       (blur)="confirm_pwd()"
+                />
+            </div>
+            <div *ngIf="pwd_err">{{ pwd_err }}</div>
+            <div class="agent_con_">
+                <span>推荐人： </span>
+                <input class="cellphone" type="password" name="password"
+                       placeholder="推荐人手机号(选填)"
                 />
             </div>
 
@@ -40,7 +59,6 @@
                        [(ngModel)]="agent.hasRecommAuth"
                 /></label>
             </div>
-
             <div class="agent_con_seven">
                 <button type="submit" class="login" [disabled]="!userForm.valid">确认</button>
             </div>
