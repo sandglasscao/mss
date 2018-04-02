@@ -40,12 +40,12 @@
         <div class="inp">
             <span>推荐人:</span>
             <input class="pnum" type="text" name="refereecode"
-                   placeholder="业务员手机号"
-                   [(ngModel)]="registration.parent_code" required
+                   placeholder="推荐人手机号"
+                   [(ngModel)]="registration.parent_cellphone" required
                    [formControl]="term"
                    (keydown)="cleanerror()"
-                   minLength=2
-                   maxLength=6
+                   minLength=11
+                   maxLength=11
             />
         </div>
 

@@ -29,7 +29,7 @@ export class RegisterService {
   }
 
   register(registration: Registration): Observable<Registration> {
-    let url = this.baseUrl + 'register/';
+    let url = this.baseUrl + 'register1/';
     return this.http.post<Registration>(url, registration)
   }
 
