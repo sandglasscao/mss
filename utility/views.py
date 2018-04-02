@@ -1,4 +1,4 @@
-import json
+import json, time
 import uuid
 import random
 from datetime import datetime, timedelta
@@ -161,11 +161,12 @@ class SMSClient(object):
 
     @classmethod
     def send_sms(cls, request, phone_number):
+        timeflag = time.time()
         if Profile.objects.filter(cellphone=phone_number).count() == 1:
             return HttpResponse(json.dumps({'Code': 'cellphone_exist'}), content_type='application/json')
         business_id = uuid.uuid1()
         code = str(random.random() * pow(10, 10))[0:6]
-        template_param = {'code': code, 'product': cls.PRODUCT}
+        template_param = {'code': code, 'product': cls.PRODUCT, 'timeflag': timeflag}
         template_param = json.dumps(template_param)
 
         smsRequest = SendSmsRequest.SendSmsRequest()
@@ -192,7 +193,7 @@ class SMSClient(object):
         smsResponse = cls.ACS_CLIENT.do_action_with_exception(smsRequest)
         resp = json.loads(smsResponse)
         if 'OK' == resp.get('Code'):
-            SMSCode.objects.update_or_create(phone_number=phone_number, code=code)
+            SMSCode.objects.update_or_create(phone_number=phone_number, code=code, stutas=1)
         return HttpResponse(json.dumps(resp))
 
     @classmethod
