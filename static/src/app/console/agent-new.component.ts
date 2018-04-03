@@ -16,28 +16,45 @@ export class AgentNewComponent {
   constructor(private agentService: AgentService) {
   }
   confirm_pwd(){
-    if (this.pwdConfirm !== this.agent.password){
+    if (this.pwdConfirm && (this.pwdConfirm !== this.agent.password)){
       this.pwd_err = '密码不一致，请重新输入！';
+    }else {
+      this.pwd_err = null;
     }
   }
 
   onSubmit() {
-    this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
+    if (this.check(this.agent)){
+      this.agent.password = this.agent.password ? this.agent.password : this.agent.cellphone;
     this.agent.status=false;
     this.agentService
       .createAgent(this.agent)
       .subscribe(
         res => {
-            this.agent = res;
-            alert("设置成功!");
+            if (res.result==='successful'){
+              alert("设置成功!");
+            }else if (res.result==='faild'){
+              alert("失败!");
+            }else if (res.result==="username_exist"){
+              alert("该业务员编号已存在!");
+            }else if (res.result==="cellphone_exist"){
+              alert("该手机号已注册!");
+            }else if (res.result==="rec_notexist"){
+              alert("推荐人不存在!");
+            }else if (res.result==="rec_nopowerrec"){
+              alert("推荐人无推荐资格!");
+            }
           },
           error => {
-            this.error = error;
+            this.error = "失败！";
             alert("失败！");
           }
       );
+    }
   }
-
+  check(agent){
+    return (agent.username&&agent.full_name&&this.agent.password&&agent.cellphone&&agent.cellphone.length===11);
+  }
   cleanerror() {
     this.error = null;
   }

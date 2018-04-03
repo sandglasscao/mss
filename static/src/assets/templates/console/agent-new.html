@@ -12,14 +12,16 @@
                 <span> 姓名： </span>
                 <input class="username" type="text" name="username"
                        [(ngModel)]="agent.full_name"
-                       placeholder="业务员姓名"
+                       placeholder="业务员姓名" required
                 />
             </div>
             <div class="agent_con_">
                 <span> 手机号： </span>
-                <input class="cellphone" type="text" name="cellphone"
+                <input class="cellphone" type="tel" name="cellphone"
                        [(ngModel)]="agent.cellphone" required
                        placeholder="业务员手机号"
+                       minlength="11"
+                       maxlength="11"
                 />
             </div>
 
@@ -27,21 +29,26 @@
                 <span>密码： </span>
                 <input class="cellphone" type="password" name="password"
                        [(ngModel)]="agent.password" required
-                       placeholder="填写账号密码"
+                       placeholder="填写账号密码(6~10位)"
+                       minlength="6"
+                       maxlength="10"
+                       (blur)="confirm_pwd()"
                 />
             </div>
             <div class="agent_con_">
                 <span>确认密码： </span>
-                <input class="cellphone" type="password" name="password"
+                <input class="cellphone" type="password" name="pwdConfirm"
                        [(ngModel)]="pwdConfirm" required
                        placeholder="确认密码"
+                       minlength="6"
+                       maxlength="10"
                        (blur)="confirm_pwd()"
                 />
             </div>
             <div class="err_tit" *ngIf="pwd_err">{{ pwd_err }}</div>
             <div class="agent_con_">
                 <span>推荐人： </span>
-                <input class="cellphone" type="password" name="password"
+                <input class="cellphone" type="tel" name="password"
                        placeholder="推荐人手机号(选填)"
                        [(ngModel)]="agent.parent_cellphone"
                 />
@@ -60,7 +67,7 @@
                 /></label>
             </div>
             <div class="agent_con_seven">
-                <button type="submit" class="login" [disabled]="!userForm.valid" [disabled]="pwdConfirm!==agent.password">确认</button>
+                <button type="submit" class="login" >确认</button>
             </div>
         </div>
     </form>
