@@ -18,7 +18,7 @@ export class CellPhoneComponent implements OnDestroy {
   defaultlbl = '获取验证码';
   verifylbl = this.defaultlbl;
   intervalId = 0;
-  seconds = 60;
+  seconds = 300;
 
   constructor(private smsService: SMSService,
               private router: Router) {
@@ -42,7 +42,7 @@ export class CellPhoneComponent implements OnDestroy {
               this.seconds--;
               if (this.seconds === 0) {
                 this.clearTimer();
-                this.seconds=60;
+                this.seconds=300;
                 this.verifylbl = this.defaultlbl;
                 document.getElementById('verifybtn').removeAttribute('disabled');
               } else {
@@ -71,7 +71,11 @@ export class CellPhoneComponent implements OnDestroy {
           if ('OK' == res.Code) {
             sessionStorage.setItem('cellPhone', this.cellPhone);
             this.router.navigate(['register']);
-          } else {
+          } else if (res.Code == 'timeOut'){
+            this.error = '验证码已失效，请重新获取！';
+          }else if (res.Code == 'used'){
+            this.error = '验证码已使用，请获取新的验证码！';
+          }else {
             this.error = '验证码错误';
           }
         })
