@@ -12,6 +12,7 @@
             <span class="aln"><span>昵</span><span></span><span>称</span>:</span>
             <input class="username" type="text" name="username"
                    placeholder="昵称"
+                   autocomplete="off"
                    (keydown)="cleanerror()"
                    [(ngModel)]="registration.full_name" required autofocus
                    minLength=0
@@ -21,6 +22,7 @@
         <div class="inp">
             <span class="aln"><span>密</span><span></span><span>码</span>:</span>
             <input class="password" type="password" name="password"
+                   autocomplete="off"
                    placeholder="请输入密码"
                    [(ngModel)]="registration.password" required
                    minLength=6
@@ -30,6 +32,7 @@
         <div class="inp">
             <span class="con"><span>确认密码</span>:</span>
             <input class="conp" type="password" name="password2"
+                   autocomplete="off"
                    placeholder="请再次输入"
                    [(ngModel)]="second_pwd" required
                    minLength=6
@@ -40,6 +43,7 @@
         <div class="inp">
             <span>推荐人:</span>
             <input class="pnum" type="text" name="refereecode"
+                   autocomplete="off"
                    placeholder="推荐人手机号(选填)"
                    [(ngModel)]="registration.parent_cellphone"
                    [formControl]="term"
