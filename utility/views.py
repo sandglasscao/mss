@@ -275,10 +275,9 @@ class SMSClient(object):
             status = query.stutas
             resp = {}
             if status == 1:
-
                 timeflag = query.timeflag
                 timefront = request.GET.get('timeflag')
-                if timefront-timeflag<=1:# ??????
+                if timefront-timeflag<=300:# ??????
                     code = query.code
                     codefront = request.GET.get('code')
                     if code == codefront:
