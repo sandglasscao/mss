@@ -4,6 +4,7 @@ import {Profile} from "../dashboard/profile";
 import {User} from "../dashboard/user";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
+import {Agent1} from "../agent";
 
 @Injectable()
 export class AgentService {
@@ -19,7 +20,7 @@ export class AgentService {
     return this.http.get(this.baseUrl, {headers})
   }
 
-  createAgent(agent: Profile): Observable<any> {
+  createAgent(agent: Agent1): Observable<any> {
     let headers = new HttpHeaders()
       .set('Authorization', "JWT " + sessionStorage.getItem('token'));
     return this.http.post(this.baseUrl, agent, {headers})

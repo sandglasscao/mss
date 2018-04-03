@@ -59,3 +59,7 @@
 .agent_con_tf label:nth-child(1){
   float: right;
 }
+.err_tit{
+  text-align: center;
+  color: red;
+}

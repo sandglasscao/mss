@@ -1,6 +1,6 @@
-import {User} from "./user";
+import {User} from "./dashboard/user";
 
-export class Profile {
+export class Agent1 {
   id: number;
   username: string;
   password: string;
@@ -8,7 +8,7 @@ export class Profile {
   full_name: string;
   isEmployee: boolean;
   hasRecommAuth: boolean;
-  parent_code: string;
+  parent_cellphone: string;
   grand_code: string;
   isDeleted: boolean;
   status: boolean;

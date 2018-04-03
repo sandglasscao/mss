@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {AgentService} from "./agent.service";
-import {Profile} from "../dashboard/profile";
+import {Agent1} from "../agent";
 
 @Component({
   selector: 'agent-new',
@@ -8,7 +8,7 @@ import {Profile} from "../dashboard/profile";
   styleUrls: ['../../assets/css/console/agent-new.css']
 })
 export class AgentNewComponent {
-  agent = new Profile();
+  agent = new Agent1();
   pwdConfirm = '';
   error = null;
   pwd_err = null;

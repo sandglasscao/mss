@@ -38,14 +38,14 @@
                        (blur)="confirm_pwd()"
                 />
             </div>
-            <div *ngIf="pwd_err">{{ pwd_err }}</div>
+            <div class="err_tit" *ngIf="pwd_err">{{ pwd_err }}</div>
             <div class="agent_con_">
                 <span>推荐人： </span>
                 <input class="cellphone" type="password" name="password"
                        placeholder="推荐人手机号(选填)"
+                       [(ngModel)]="agent.parent_cellphone"
                 />
             </div>
-
             <div class="agent_con_tf">
                 <label>
                 <span>正式员工</span>
@@ -60,7 +60,7 @@
                 /></label>
             </div>
             <div class="agent_con_seven">
-                <button type="submit" class="login" [disabled]="!userForm.valid">确认</button>
+                <button type="submit" class="login" [disabled]="!userForm.valid" [disabled]="pwdConfirm!==agent.password">确认</button>
             </div>
         </div>
     </form>
