@@ -274,24 +274,25 @@ class SMSClient(object):
             query = SMSCode.objects.filter(phone_number=phone_number).last()
             status = query.stutas
             resp = {}
-            if status == 1:
+            code = query.code
+            codefront = request.GET.get('code')
+            if code == codefront:
                 timeflag = query.timeflag
                 timefront = request.GET.get('timeflag')
-
-                if int(timefront)-int(timeflag) <= 300:# ??????
-                    code = query.code
-                    codefront = request.GET.get('code')
-                    if code == codefront:
+                if int(timefront) - int(timeflag) <= 300:  # ??????
+                    if status == 1:
                         # SMSCode.objects.filter(phone_number=phone_number).update(stutas=2)
                         query.stutas = 2
                         query.save()
                         resp['Code'] = 'OK'
                     else:
-                        resp['Code'] = 'ErrCode' # 验证码错误
+                        resp['Code'] = 'used'  # 验证码已使用，请重新获取。
                 else:
                     resp['Code'] = 'timeOut'  # 验证码已过期，请重新获取。
+
             else:
-                resp['Code'] = 'used'# 验证码已使用，请重新获取。
+                resp['Code'] = 'ErrCode'
+
         return HttpResponse(json.dumps(resp), content_type='application/json')
 
 
