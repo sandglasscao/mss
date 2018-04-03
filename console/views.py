@@ -45,11 +45,6 @@ class AgentViewSet(ModelViewSet):
 
         password = request.data.get('password')
 
-        tmp_udata['username'] = username  # /////////////////////////////////////////////////
-        tmp_udata['full_name'] = full_name # /////////////////////////////////////////////////
-        tmp_udata['cellphone'] = cellphone # /////////////////////////////////////////////////
-        tmp_udata['password'] = password
-
         # 可以为空，推荐人手机号是否存在，是否有推荐资格
         parent_cellphone = request.data.get('parent_cellphone')
         if parent_cellphone:
@@ -63,25 +58,38 @@ class AgentViewSet(ModelViewSet):
             else:
                 parent_agent = pProfile.user
                 grand_agent = parent_agent.profile.parent_agent
-                tmp_udata['parent_agent'] = parent_agent  # /////////////////////////////////////////////////
-                tmp_udata['grand_agent'] = grand_agent # /////////////////////////////////////////////////
+
         else:
-            tmp_udata['parent_agent'] = None  # /////////////////////////////////////////////////
-            tmp_udata['grand_agent'] = None  # /////////////////////////////////////////////////
+            parent_agent = None  # /////////////////////////////////////////////////
+            grand_agent = None  # /////////////////////////////////////////////////
         try:
             if request.data.get('hasRecommAuth') == 1:
-                tmp_udata['hasRecommAuth'] = 1
+                hasRecommAuth = 1
+            else:
+                hasRecommAuth = 0
         except:
             pass
 
         try:
             if request.data.get('isEmployee') == 1:
-                tmp_udata['isEmployee'] = 1
+                isEmployee = 1
+            else:
+                isEmployee = 0
         except:
             pass
         try:
-            User.objects.create({'username': username, 'password': password})
-            Profile.objects.create(tmp_udata)
+            user = User.objects.create(username= username)
+            user.set_password(password)
+            user.save()
+            Profile.objects.create(user=User.objects.get(username=username),
+                                   cellphone=cellphone,
+                                   full_name=full_name,
+                                   status=0,
+                                   isEmployee=isEmployee,
+                                   hasRecommAuth=hasRecommAuth,
+                                   parent_agent=parent_agent,
+                                   grand_agent=grand_agent,
+                                   )
         except:
             return HttpResponse(json.dumps({'result': 'faild'}), content_type='application/json')
 
