@@ -18,7 +18,7 @@ export class CellPhoneResetComponent implements OnDestroy {
   defaultlbl = '获取验证码';
   verifylbl = this.defaultlbl;
   intervalId = 0;
-  seconds = 60;
+  seconds = 300;
 
   constructor(private registerService: RegisterService,
               private smsService: SMSService,
@@ -66,7 +66,7 @@ export class CellPhoneResetComponent implements OnDestroy {
               this.seconds--;
               if (this.seconds === 0) {
                 this.clearTimer();
-                this.seconds=60;
+                this.seconds=300;
                 this.verifylbl = this.defaultlbl;
                 document.getElementById('verifybtn').removeAttribute('disabled');
               } else {
