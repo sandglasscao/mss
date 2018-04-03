@@ -64,8 +64,9 @@ export class CellPhoneComponent implements OnDestroy {
 
   onSubmit() {
     if (this.smsCode) {
+      const time ='' +  Math.floor(new Date().getTime() / 1000);
       this.smsService
-        .verifySMS(this.cellPhone, this.smsCode)
+        .verifySMS(this.cellPhone, this.smsCode, time)
         .then(res => {
           if ('OK' == res.Code) {
             sessionStorage.setItem('cellPhone', this.cellPhone);

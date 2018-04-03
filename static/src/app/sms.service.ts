@@ -26,10 +26,11 @@ export class SMSService {
       .catch(SMSService.handleError);
   }
 
-  verifySMS(cellphone: string, code: string): Promise<any> {
+  verifySMS(cellphone: string, code: string, time: string): Promise<any> {
     let url = this.smsUrl + 'verify/';
     let params = new HttpParams()
       .set('phone_number', cellphone)
+      .set('timeflag', time)
       .set('code', code);
     return this.http
       .get(url, {params})
