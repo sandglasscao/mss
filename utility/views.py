@@ -161,12 +161,13 @@ class SMSClient(object):
 
     @classmethod
     def send_sms(cls, request, phone_number):
-        timeflag = time.time()
+
         if Profile.objects.filter(cellphone=phone_number).count() == 1:
             return HttpResponse(json.dumps({'Code': 'cellphone_exist'}), content_type='application/json')
+        timeflag = time.time()
         business_id = uuid.uuid1()
         code = str(random.random() * pow(10, 10))[0:6]
-        template_param = {'code': code, 'product': cls.PRODUCT, 'timeflag': timeflag}
+        template_param = {'code': code, 'product': cls.PRODUCT, 'timeflag': timeflag, 'stutas': 1,}
         template_param = json.dumps(template_param)
 
         smsRequest = SendSmsRequest.SendSmsRequest()
@@ -192,47 +193,55 @@ class SMSClient(object):
         # 发送请求
         smsResponse = cls.ACS_CLIENT.do_action_with_exception(smsRequest)
         resp = json.loads(smsResponse)
+        resp['stutas'] = 1
+        resp['timeflag'] = timeflag
+
         if 'OK' == resp.get('Code'):
-            SMSCode.objects.update_or_create(phone_number=phone_number, code=code, stutas=1)
-        return HttpResponse(json.dumps(resp))
+            SMSCode.objects.update_or_create(phone_number=phone_number, code=code, stutas=1, timeflag=timeflag)
+        return HttpResponse(json.dumps(resp), content_type='application/json')
 
     @classmethod
     def send_sms1(cls, request, phone_number):
-        if Profile.objects.filter(cellphone=phone_number).count() == 1:
-            # return HttpResponse(json.dumps({'Code': 'cellphone_exist'}), content_type='application/json')
-            business_id = uuid.uuid1()
-            code = str(random.random() * pow(10, 10))[0:6]
-            template_param = {'code': code, 'product': cls.PRODUCT}
-            template_param = json.dumps(template_param)
 
-            smsRequest = SendSmsRequest.SendSmsRequest()
-
-            # 申请的短信模板编码,必填
-            smsRequest.set_TemplateCode(cls.TEMPLATE_CODE)
-
-            # 短信模板变量参数,友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含
-            # 的情况在JSON中需要表示成,否则会导致JSON在服务端解析失败
-            if template_param is not None:
-                smsRequest.set_TemplateParam(template_param)
-
-            # 设置业务请求流水号，必填。
-            smsRequest.set_OutId(business_id)
-
-            # 短信签名
-            smsRequest.set_SignName(cls.SIGN_NAME)
-
-            # 短信发送的号码，必填。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,
-            # 验证码类型的短信推荐使用单条调用的方式
-            smsRequest.set_PhoneNumbers(phone_number)
-
-            # 发送请求
-            smsResponse = cls.ACS_CLIENT.do_action_with_exception(smsRequest)
-            resp = json.loads(smsResponse)
-            if 'OK' == resp.get('Code'):
-                SMSCode.objects.update_or_create(phone_number=phone_number, code=code)
-            return HttpResponse(json.dumps(resp))
-        else:
+        if Profile.objects.filter(cellphone=phone_number).count() == 0:
             return HttpResponse(json.dumps({'Code': 'cellphone_notexist'}), content_type='application/json')
+        timeflag = time.time()
+        business_id = uuid.uuid1()
+        code = str(random.random() * pow(10, 10))[0:6]
+        template_param = {'code': code, 'product': cls.PRODUCT, 'timeflag': timeflag, 'stutas': 1,}
+        template_param = json.dumps(template_param)
+
+        smsRequest = SendSmsRequest.SendSmsRequest()
+
+        # 申请的短信模板编码,必填
+        smsRequest.set_TemplateCode(cls.TEMPLATE_CODE)
+
+        # 短信模板变量参数,友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含
+        # 的情况在JSON中需要表示成,否则会导致JSON在服务端解析失败
+        if template_param is not None:
+            smsRequest.set_TemplateParam(template_param)
+
+        # 设置业务请求流水号，必填。
+        smsRequest.set_OutId(business_id)
+
+        # 短信签名
+        smsRequest.set_SignName(cls.SIGN_NAME)
+
+        # 短信发送的号码，必填。支持以逗号分隔的形式进行批量调用，批量上限为1000个手机号码,批量调用相对于单条调用及时性稍有延迟,
+        # 验证码类型的短信推荐使用单条调用的方式
+        smsRequest.set_PhoneNumbers(phone_number)
+
+        # 发送请求
+        smsResponse = cls.ACS_CLIENT.do_action_with_exception(smsRequest)
+        resp = json.loads(smsResponse)
+        resp['stutas'] = 1
+        resp['timeflag'] = timeflag
+
+        if 'OK' == resp.get('Code'):
+            SMSCode.objects.update_or_create(phone_number=phone_number, code=code, stutas=1, timeflag=timeflag)
+        return HttpResponse(json.dumps(resp), content_type='application/json')
+
+
 
     @classmethod
     def query_send_detail(cls, request, biz_id, phone_number):
@@ -260,12 +269,27 @@ class SMSClient(object):
 
     @classmethod
     def verify_code(cls, request):
-        phone_number = request.GET.get('phone_number')
-        code = request.GET.get('code')
-        resp = {}
-        try:
-            SMSCode.objects.get(phone_number=phone_number, code=code)
-            resp['Code'] = 'OK'
-        except SMSCode.DoesNotExist:
-            resp['Code'] = 'ErrCode'
-        return HttpResponse(json.dumps(resp))
+        phone_number = request.GET.get('phone_number', None)
+        if phone_number:
+            query = SMSCode.objects.get(phone_number=phone_number)
+            status = query.stutas
+            resp = {}
+            if status == 1:
+
+                timeflag = query.timeflag
+                timefront = request.GET.get('timeflag')
+                if timefront-timeflag<=1:# ??????
+                    code = query.code
+                    codefront = request.GET.get('code')
+                    if code == codefront:
+                        query.objects.update(status=2)
+                        resp['Code'] = 'OK'
+                    else:
+                        resp['Code'] = 'ErrCode' # 验证码错误
+                else:
+                    resp['Code'] = 'outtime'  # 验证码已过期，请重新获取。
+            else:
+                resp['Code'] = 'used'# 验证码已使用，请重新获取。
+        HttpResponse(json.dumps(resp), content_type='application/json')
+
+
