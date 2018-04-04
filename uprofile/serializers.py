@@ -181,10 +181,8 @@ class RegisterSerializer(Serializer):
         try:
             cellphone = validated_data["cellphone"]
             username = cellphone
-            user = User.objects.create(username=username)
-            user.set_password(validated_data['password'])
-            user.save()
-
+            # user = User.objects.create(username=username)
+            user = User.objects.get(username=username)
             full_name = validated_data.get("full_name", None)
 
             reccellphone = validated_data.get('parent_cellphone', None)
@@ -225,6 +223,8 @@ class RegisterSerializer(Serializer):
             payload = jwt_payload_handler(user)
             validated_data["token"] = jwt_encode_handler(payload)
             validated_data['username'] = user.username
+            # print(validated_data)
+            # print(type(validated_data))
             return validated_data
         except:
             return HttpResponse(json.dumps({'result': 'faild'}), content_type='application/json')

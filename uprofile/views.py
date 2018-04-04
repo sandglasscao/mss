@@ -90,8 +90,19 @@ class UserRegisterApiView(APIView):
 
             except:
                 return HttpResponse(json.dumps({'cellinfo': 'cellphone_notexist'}), content_type='application/json')
-        if request.data['parent_cellphone'] == '':
+        else:
             request.data['parent_cellphone'] = '99999999999'
+
+
+        username1 = request.data.get('cellphone', None)
+        try:
+            user = User.objects.create(username=username1)
+
+            password = request.data.get('password', None)
+            user.set_password(password)
+            user.save()
+        except Exception as e:
+            return HttpResponse(json.dumps({'result': 'faild'}), content_type='application/json')
 
         serializer = RegisterSerializer(data=request.data)
 
