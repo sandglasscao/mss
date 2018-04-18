@@ -132,14 +132,14 @@ DATABASES = {
         'PORT': os.environ['MYSQL_DB_PORT2'],
     },
 
-    # 'investment': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'hzbl_b2b',
-    #     'USER': 'investment',
-    #     'PASSWORD': 'pingtaiyunying@1313113',
-    #     'HOST': os.environ['MYSQL_DB_HOST2'],
-    #     'PORT': os.environ['MYSQL_DB_PORT2'],
-    # },
+    'investment': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hzbl_b2b',
+        'USER': 'investment',
+        'PASSWORD': 'pingtaiyunying@1313113',
+        'HOST': '47.92.133.25',
+        'PORT': os.environ['MYSQL_DB_PORT2'],
+    },
 }
 
 SESSION_COOKIE_AGE = 60 * 10 # 2分钟

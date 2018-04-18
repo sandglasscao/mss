@@ -6,7 +6,7 @@ class sale_upload(models.Model):
                (0,'待审核'),
                (-1,'无效数据'),
                )
-    createdate = models.DateField(auto_now_add=True)
+    createdate = models.DateField()
     salesname = models.CharField(max_length=10)
     amount = models.IntegerField(default=0)
     imageurl = models.CharField(max_length=256)

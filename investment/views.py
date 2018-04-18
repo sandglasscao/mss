@@ -127,7 +127,7 @@ def dataupload(request):
 
 
 
-# @login_required
+@login_required
 @csrf_exempt
 def checkdata(request):
     try:
