@@ -98,10 +98,10 @@
        	}
 		}
 		@media screen and (min-width:1600px) and (max-width:2099px){
-			.wrap_in{height:35%}
+			.wrap_in{height:350px;}
 		}
 		@media screen and (min-width:1200px) and (max-width:1599px){
-			.wrap_in{height:55%}
+			.wrap_in{height:350px;}
 			.wrap_input{width:25%}
 		}
 		@media screen and (min-width:700px) and (max-width:1199px){
