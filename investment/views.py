@@ -114,7 +114,7 @@ def dataupload(request):
             time.strftime("%Y-%m-%d-%Hh%Mm%Ss", time.localtime())) + '.' + name[1]
 
             handle_upload_file(request.FILES['img'], filenm)
-            models.sale_upload.objects.using('investment').create(createdate=request.POST.get('dates',str(time.strftime("%Y-%m-%d",time.localtime()))),
+            models.sale_upload.objects.using('investment').create(createdate=request.POST.get('dates','none'),
                                                                   salesname=str(request.POST.get('clerk','none')),
                                                                   amount=int(request.POST.get('money','0')),
                                                                   imageurl=path+filenm,
