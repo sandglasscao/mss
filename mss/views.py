@@ -12,11 +12,17 @@ def home(request):
     context = {}
     return render(request, 'index.html', context)
 
+
+def login(request):
+    context = {}
+    return render(request, 'login.html', context)
+
+
 def score(request, year, month):
     '''
         业务员数据API  hzyg备份数据库  和 excel读取汇总
     '''
-    queryset = b2b_ordertable.objects.using('b2b').filter(createDate__year=year,createDate__month=month)
+    queryset = b2b_ordertable.objects.using('b2b').filter(createDate__year=year,createDate__month=month).filter(orderStore='101101')
     queryset_investment = sale_upload.objects.using('investment').filter(createdate__year=year, createdate__month=month).filter(checkif=1)
     mysqldata = queryset.values('realName').annotate(c=Count('amount'),s=Sum('amount')).values_list('realName','c','s').order_by('-s')
     # if queryset_investment.

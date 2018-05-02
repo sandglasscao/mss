@@ -41,6 +41,7 @@ class OrderB2B(models.Model):
 class b2b_ordertable(models.Model):
     createDate = models.DateField(null=False, verbose_name='创建日期')
     organName = models.CharField(max_length=64, verbose_name='机构名称')
+    orderStore = models.CharField(max_length=16, verbose_name='门店编号')
     orderStoreName = models.CharField(max_length=64, verbose_name='订单归属门店名称')
     orderNo1 = models.CharField(max_length=32, verbose_name='单据编号1')
     orderNo2 = models.CharField(max_length=32, verbose_name='单据编号2')

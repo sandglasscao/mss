@@ -18,7 +18,7 @@ from django.contrib import admin
 
 from rest_framework_jwt.views import obtain_jwt_token
 
-from .views import home, score
+from .views import home, score, login
 from utility.views import SMSClient
 
 from apscheduler.schedulers.background import BackgroundScheduler
@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     # url(r'^api-token-auth/', views.obtain_auth_token),
     url(r'^login/', obtain_jwt_token),
+    # url(r'^login/', login),
 
     url(r'^score/(?P<year>.+)/(?P<month>.+)', score),
     url(r'^investment/',include('investment.urls')),# 招商上传数据使用
